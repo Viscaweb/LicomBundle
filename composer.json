@@ -1,0 +1,20 @@
+{
+    "name": "viscaweb/core-bundle",
+    "description": "Viscaweb core bundle",
+    "type": "symfony-bundle",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Damien Gavard",
+            "email": "damien@viscaweb.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Visca\\Bundle\\CoreBundle\\": ""
+        }
+    }
+}
