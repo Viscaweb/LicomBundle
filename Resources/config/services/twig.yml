@@ -1,0 +1,130 @@
+services:
+    # Twig Extensions
+    visca_licom.twig_extension.entity.participant:
+        class: Visca\Bundle\LicomViewBundle\Twig\Entity\ParticipantExtension
+        tags:
+          - { name: twig.extension }
+        arguments:
+          - @visca_licom.helper.participant
+          - @visca_licom.provider.image.participant
+
+    visca_licom.twig_extension.entity.country:
+        class: Visca\Bundle\LicomViewBundle\Twig\Entity\CountryExtension
+        tags:
+          - { name: twig.extension }
+        arguments:
+          - @visca_licom.provider.image.country
+
+    visca_licom.twig_extension.entity.sport:
+        class: Visca\Bundle\LicomViewBundle\Twig\Entity\SportExtension
+        tags:
+          - { name: twig.extension }
+        arguments:
+          - @visca_licom.provider.image.sport
+
+    visca_licom.twig_extension.entity.competition:
+        class: Visca\Bundle\LicomViewBundle\Twig\Entity\CompetitionExtension
+        tags:
+          - { name: twig.extension }
+        arguments:
+          - @visca_licom.provider.image.competition
+
+    visca_licom.twig_extension.entity.match:
+        class: Visca\Bundle\LicomViewBundle\Twig\Entity\MatchExtension
+        tags:
+          - { name: twig.extension }
+        arguments:
+          - @visca_licom.helper.match
+
+    visca_licom.twig_extension.entity.match_status_description:
+        class: Visca\Bundle\LicomViewBundle\Twig\Entity\MatchStatusDescriptionExtension
+        tags:
+          - { name: twig.extension }
+        arguments:
+          - @visca_licom.helper.match_status_description
+          - @app_bundle.detector.view
+
+    visca_licom.twig_extension.entity.translatable_demonym:
+        class: Visca\Bundle\LicomViewBundle\Twig\Entity\TranslatableDemonymExtension
+        arguments:
+          - @visca_licom.provider.translations.participant
+          - @visca_licom.provider.translations.competition
+          - @visca_licom.provider.translations.competition_category
+          - @visca_licom.provider.translations.competition_stage
+          - @visca_licom.provider.translations.country
+          - @visca_licom.provider.translations.match_status_description
+          - @visca_licom.provider.translations.sport
+        tags:
+          - { name: twig.extension }
+
+    visca_licom.twig_extension.entity.translatable_nickname:
+        class: Visca\Bundle\LicomViewBundle\Twig\Entity\TranslatableNickNameExtension
+        arguments:
+          - @visca_licom.provider.translations.participant
+          - @visca_licom.provider.translations.competition
+          - @visca_licom.provider.translations.competition_category
+          - @visca_licom.provider.translations.competition_stage
+          - @visca_licom.provider.translations.country
+          - @visca_licom.provider.translations.match_status_description
+          - @visca_licom.provider.translations.sport
+        tags:
+          - { name: twig.extension }
+
+    visca_licom.twig_extension.entity.translatable_shortname:
+        class: Visca\Bundle\LicomViewBundle\Twig\Entity\TranslatableShortNameExtension
+        arguments:
+          - @visca_licom.provider.translations.participant
+          - @visca_licom.provider.translations.competition
+          - @visca_licom.provider.translations.competition_category
+          - @visca_licom.provider.translations.competition_stage
+          - @visca_licom.provider.translations.country
+          - @visca_licom.provider.translations.match_status_description
+          - @visca_licom.provider.translations.sport
+        tags:
+          - { name: twig.extension }
+
+    visca_licom.twig_extension.entity.translatable_trigraph:
+        class: Visca\Bundle\LicomViewBundle\Twig\Entity\TranslatableTrigraphExtension
+        arguments:
+          - @visca_licom.provider.translations.participant
+          - @visca_licom.provider.translations.competition
+          - @visca_licom.provider.translations.competition_category
+          - @visca_licom.provider.translations.competition_stage
+          - @visca_licom.provider.translations.country
+          - @visca_licom.provider.translations.match_status_description
+          - @visca_licom.provider.translations.sport
+        tags:
+          - { name: twig.extension }
+
+    visca_licom.twig_extension.entity.translatable_autoname:
+        class: Visca\Bundle\LicomViewBundle\Twig\Entity\TranslatableAutoNameExtension
+        arguments:
+          - @visca_licom.provider.translations.participant
+          - @visca_licom.provider.translations.competition
+          - @visca_licom.provider.translations.competition_category
+          - @visca_licom.provider.translations.competition_stage
+          - @visca_licom.provider.translations.country
+          - @visca_licom.provider.translations.match_status_description
+          - @visca_licom.provider.translations.sport
+        tags:
+          - { name: twig.extension }
+
+    twig.extension.date:
+        class: Jasny\Twig\DateExtension
+        tags:
+          - { name: twig.extension }
+
+    twig.extension.pcre:
+        class: Jasny\Twig\PcreExtension
+        tags:
+          - { name: twig.extension }
+
+    twig.extension.text:
+        class: Jasny\Twig\TextExtension
+        tags:
+          - { name: twig.extension }
+
+    twig.extension.array:
+        class: Jasny\Twig\ArrayExtension
+        tags:
+          - { name: twig.extension }

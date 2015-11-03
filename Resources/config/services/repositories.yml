@@ -1,0 +1,3 @@
+services:
+    visca_licom.generator.view.standingviewtable_from_standingrow:
+      class: Visca\Bundle\LicomViewBundle\Generator\View\StandingViewTableFromStandingRow
