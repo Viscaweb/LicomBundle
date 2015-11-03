@@ -1,0 +1,655 @@
+Visca\Bundle\LicomBundle\Entity\BettingOfferProvider:
+    betting_offer_provider1:
+        id: 1
+        name: 'Paddy Power'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider2:
+        id: 2
+        name: 'The Greek'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider3:
+        id: 3
+        name: 'Pinnacle Sports'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider4:
+        id: 4
+        name: Ladbrokes
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider5:
+        id: 5
+        name: Bet-at-home.com
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider6:
+        id: 6
+        name: VIP.com
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider7:
+        id: 7
+        name: 'Stan James'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider8:
+        id: 8
+        name: SportsBetting.com.au
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider9:
+        id: 9
+        name: SuperBook
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider10:
+        id: 10
+        name: Betfair
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider11:
+        id: 11
+        name: Bet365
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider12:
+        id: 12
+        name: Bodog.uk
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider13:
+        id: 13
+        name: 5Dimes
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider14:
+        id: 14
+        name: MyBet
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider15:
+        id: 15
+        name: BetCris
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider16:
+        id: 16
+        name: BET24
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider17:
+        id: 17
+        name: Linesmaker
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider18:
+        id: 18
+        name: Totosi
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider19:
+        id: 19
+        name: Partouche
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider20:
+        id: 20
+        name: BetEd
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider21:
+        id: 21
+        name: BetUS
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider22:
+        id: 22
+        name: Sportsbook.ag
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider23:
+        id: 23
+        name: Sports.com
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider24:
+        id: 24
+        name: Bookmaker.ag
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider25:
+        id: 25
+        name: 'Mansion Sportsbook'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider26:
+        id: 26
+        name: 'Mansion Exchange'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider27:
+        id: 27
+        name: Betfred
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider28:
+        id: 28
+        name: Racebook
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider29:
+        id: 29
+        name: 'Hollywood Sportsbook'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider31:
+        id: 31
+        name: WagerWeb
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider32:
+        id: 32
+        name: Gamebookers
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider33:
+        id: 33
+        name: BetJamaica
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider34:
+        id: 34
+        name: 'SBG Global'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider35:
+        id: 35
+        name: Skybook
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider36:
+        id: 36
+        name: 'Diamond Sportsbook Int.'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider37:
+        id: 37
+        name: Bowmans
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider38:
+        id: 38
+        name: 10Bet
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider39:
+        id: 39
+        name: Parier.net
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider40:
+        id: 40
+        name: SNAI
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider41:
+        id: 41
+        name: 'Sports Interaction'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider42:
+        id: 42
+        name: Canbet
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider43:
+        id: 43
+        name: Intertops
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider44:
+        id: 44
+        name: Unibet
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider45:
+        id: 45
+        name: SportingBet
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider46:
+        id: 46
+        name: BWin
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider47:
+        id: 47
+        name: Centrebet
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider48:
+        id: 48
+        name: Interwetten
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider49:
+        id: 49
+        name: Eurobet
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider50:
+        id: 50
+        name: Expekt
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider51:
+        id: 51
+        name: BetShop
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider52:
+        id: 52
+        name: 'William Hill'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider53:
+        id: 53
+        name: Bodog.eu
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider54:
+        id: 54
+        name: Tipico
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider55:
+        id: 55
+        name: Globet.it
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider56:
+        id: 56
+        name: JazzSports
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider57:
+        id: 57
+        name: BetPhoenix
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider58:
+        id: 58
+        name: test
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider59:
+        id: 59
+        name: Betonline
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider60:
+        id: 60
+        name: Betpro.it
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider61:
+        id: 61
+        name: 'Bookmaker - not used'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider62:
+        id: 62
+        name: 'Las Palmas'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider63:
+        id: 63
+        name: Betfair.it
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider64:
+        id: 64
+        name: Intralot.it
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider65:
+        id: 65
+        name: BWin.it
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider66:
+        id: 66
+        name: Eurobet.it
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider67:
+        id: 67
+        name: Betshop.it
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider68:
+        id: 68
+        name: wette.at
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider69:
+        id: 69
+        name: LooseLines
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider70:
+        id: 70
+        name: Ladbrokes.it
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider71:
+        id: 71
+        name: Better.it
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider72:
+        id: 72
+        name: 888Sport
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider73:
+        id: 73
+        name: Sportsbet.com.au
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider74:
+        id: 74
+        name: BetClic
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider75:
+        id: 75
+        name: Nine.com
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider76:
+        id: 76
+        name: BetCascade
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider77:
+        id: 77
+        name: Winamax
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider78:
+        id: 78
+        name: Betway
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider79:
+        id: 79
+        name: JustBet
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider80:
+        id: 80
+        name: BetBoo
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider81:
+        id: 81
+        name: PartyBets
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider82:
+        id: 82
+        name: 'MyBet Exchange'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider83:
+        id: 83
+        name: Sportbet
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider84:
+        id: 84
+        name: Skiller.it
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider85:
+        id: 85
+        name: Titanbet
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider86:
+        id: 86
+        name: NetBet
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider87:
+        id: 87
+        name: Eurosportbet
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider88:
+        id: 88
+        name: Unibet.fr
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider89:
+        id: 89
+        name: BWin.fr
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider90:
+        id: 90
+        name: Misterbet
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider91:
+        id: 91
+        name: BetClic.fr
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider92:
+        id: 92
+        name: Paf
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider93:
+        id: 93
+        name: BetClic.it
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider94:
+        id: 94
+        name: Parionsweb
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider95:
+        id: 95
+        name: Chilipari
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider96:
+        id: 96
+        name: PMU
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider97:
+        id: 97
+        name: Sisal
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider98:
+        id: 98
+        name: France-Pari
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider99:
+        id: 99
+        name: Paris365
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider100:
+        id: 100
+        name: 'William Hill.it'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider101:
+        id: 101
+        name: Iziplay
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider102:
+        id: 102
+        name: Interwetten.it
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider103:
+        id: 103
+        name: Unibet.it
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider104:
+        id: 104
+        name: Betsson.dk
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider105:
+        id: 105
+        name: Betflag.it
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider106:
+        id: 106
+        name: Bovada.lv
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider107:
+        id: 107
+        name: Tipico.it
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider108:
+        id: 108
+        name: Netbet.fr
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider109:
+        id: 109
+        name: Winamax.fr
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_offer_provider110:
+        id: 110
+        name: Partypoker
+        del: 'no'
+        createdAt: null
+        updatedAt: null

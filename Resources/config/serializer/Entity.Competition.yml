@@ -1,0 +1,13 @@
+Visca\Bundle\LicomBundle\Entity\Competition:
+    exclusion_policy: ALL
+    properties:
+      id:
+        expose: true
+      name:
+        expose: true
+      level:
+        expose: true
+      gender:
+        expose: true
+      competitionCategory:
+        expose: true

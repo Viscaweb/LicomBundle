@@ -1,0 +1,56 @@
+Visca\Bundle\LicomBundle\Entity\LocalizationTranslationType:
+  type: entity
+  table: LocalizationTranslationType
+  repositoryClass: Visca\Bundle\LicomBundle\Repository\LocalizationTranslationTypeRepository
+  id:
+    id:
+      type: smallint
+      length: 5
+      options:
+        unsigned: true
+  fields:
+    code:
+      type: string
+      length: 32
+      nullable: false
+    name:
+      type: string
+      length: 128
+      nullable: false
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+    createdAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+    updatedAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+  indexes:
+    fk_entity:
+      columns: [Entity]
+  uniqueConstraints:
+    uq_code_entity:
+      columns: [code, Entity]
+  oneToMany:
+    localizationTranslation:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\LocalizationTranslation
+      mappedBy: localizationTranslationType
+  manyToOne:
+    entity:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\Entity
+      inversedBy: localizationTranslationType
+      joinColumns:
+        Entity:
+          referencedColumnName: id
+          nullable: false
+  cache:
+    region: Type
+    usage: READ_ONLY

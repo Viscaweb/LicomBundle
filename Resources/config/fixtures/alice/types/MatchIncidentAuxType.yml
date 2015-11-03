@@ -1,0 +1,11 @@
+Visca\Bundle\LicomBundle\Entity\MatchIncidentAuxType:
+    match_incident_aux_type1:
+        id: 1
+        code: Reference
+        name: Reference
+        del: 'no'
+    match_incident_aux_type2:
+        id: 2
+        code: ParticipantName
+        name: 'Participant name'
+        del: 'no'

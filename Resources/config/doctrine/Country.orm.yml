@@ -1,0 +1,43 @@
+Visca\Bundle\LicomBundle\Entity\Country:
+  type: entity
+  table: Country
+  repositoryClass: Visca\Bundle\LicomBundle\Repository\CountryRepository
+  id:
+    id:
+      type: smallint
+      length: 5
+      options:
+        unsigned: true
+  fields:
+    name:
+      type: string
+      length: 255
+      nullable: false
+    code:
+      type: string
+      length: 2
+      nullable: false
+      columnDefinition: VARCHAR(10) NULL DEFAULT NULL
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+    createdAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+    updatedAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+  oneToMany:
+    competitionCategory:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\CompetitionCategory
+      mappedBy: country
+  cache:
+    region: Competition
+    usage: READ_ONLY

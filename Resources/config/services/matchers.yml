@@ -1,0 +1,29 @@
+services:
+    # Matchers
+    visca_licom.matcher.slug.competition:
+        class: Visca\Bundle\LicomBundle\Matcher\Slug\CompetitionSlugMatcher
+        arguments:
+             - @visca_licom.repository.competition
+             - %licom_profile_id%
+
+    visca_licom.matcher.slug.match:
+        class: Visca\Bundle\LicomBundle\Matcher\Slug\MatchSlugMatcher
+        arguments:
+             - @visca_licom.repository.match
+             - @visca_licom.matcher.participant_combination
+             - @visca_licom.filter.match.most_revelant
+             - %licom_profile_id%
+
+    visca_licom.matcher.slug.country:
+        class: Visca\Bundle\LicomBundle\Matcher\Slug\CountrySlugMatcher
+        arguments:
+             - @visca_licom.repository.country
+             - %licom_profile_id%
+
+    visca_licom.matcher.participant_combination:
+        class: Visca\Bundle\LicomBundle\Matcher\Slug\ParticipantCombinationSlugMatcher
+        arguments:
+            - @doctrine.orm.default_result_cache
+            - @doctrine.orm.licom_entity_manager
+            - @file_locator
+            - @visca_licom.repository.participant

@@ -1,0 +1,12 @@
+Visca\Bundle\LicomBundle\Entity\MatchParticipant:
+  match_participant_home:
+    __construct: { create: [] }
+    number: 1
+    participant: @team0
+    match: @match_default
+
+  match_participant_away:
+    __construct: { create: [] }
+    number: 2
+    participant: @team1
+    match: @match_default

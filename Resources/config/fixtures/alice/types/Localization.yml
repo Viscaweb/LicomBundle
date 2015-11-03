@@ -1,0 +1,78 @@
+Visca\Bundle\LicomBundle\Entity\Localization:
+    localization1:
+        id: 1
+        language: en
+        country: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    localization2:
+        id: 2
+        language: fr
+        country: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    localization3:
+        id: 3
+        language: de
+        country: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    localization4:
+        id: 4
+        language: it
+        country: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    localization5:
+        id: 5
+        language: es
+        country: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    localization6:
+        id: 6
+        language: nl
+        country: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    localization7:
+        id: 7
+        language: pt
+        country: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    localization8:
+        id: 8
+        language: pt
+        country: BR
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    localization9:
+        id: 9
+        language: en
+        country: CA
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    localization10:
+        id: 10
+        language: en
+        country: US
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    localization11:
+        id: 11
+        language: en
+        country: IN
+        del: 'no'
+        createdAt: null
+        updatedAt: null

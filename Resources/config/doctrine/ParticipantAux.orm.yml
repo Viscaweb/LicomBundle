@@ -1,0 +1,56 @@
+Visca\Bundle\LicomBundle\Entity\ParticipantAux:
+  type: entity
+  table: Participant_aux
+  id:
+    participant:
+      type: integer
+      length: 10
+      associationKey: true
+      column: Participant
+    type:
+      type: smallint
+      length: 5
+      associationKey: true
+      column: ParticipantAuxType
+      options:
+        unsigned: true
+  fields:
+    value:
+      type: string
+      length: 45
+      nullable: false
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+  indexes:
+    fk_participantAuxType:
+      columns: [ParticipantAuxType]
+    fk_participant:
+      columns: [Participant]
+  manyToOne:
+    participant:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\Participant
+      inversedBy: aux
+      cache:
+        region: Participant
+        usage: READ_ONLY
+      joinColumns:
+        Participant:
+          referencedColumnName: id
+          nullable: false
+    type:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\ParticipantAuxType
+      inversedBy: aux
+      cache:
+        region: Type
+        usage: READ_ONLY
+      joinColumns:
+        ParticipantAuxType:
+          referencedColumnName: id
+          nullable: false
+  cache:
+    region: Participant
+    usage: READ_ONLY

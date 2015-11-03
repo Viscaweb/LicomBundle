@@ -1,0 +1,71 @@
+Visca\Bundle\LicomBundle\Entity\MatchLineupParticipant:
+  type: entity
+  table: MatchLineupParticipant
+  repositoryClass: Visca\Bundle\LicomBundle\Repository\MatchLineupParticipantRepository
+  id:
+    id:
+      type: integer
+      length: 10
+      generator:
+        strategy: AUTO
+      options:
+        unsigned: true
+  fields:
+    position:
+      type: smallint
+      length: 3
+      nullable: true
+      columnDefinition: TINYINT(3) UNSIGNED
+      options:
+        default: NULL
+        unsigned: true
+    shirt:
+      type: smallint
+      length: 3
+      nullable: true
+      columnDefinition: TINYINT(3) UNSIGNED
+      options:
+        default: NULL
+        unsigned: true
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+    createdAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+    updatedAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+  indexes:
+    fk_matchLineup:
+      columns: [MatchLineup]
+    fk_participant:
+      columns: [Participant]
+    fk_matchLineupType:
+      columns: [MatchLineupParticipantType]
+  manyToOne:
+    matchLineup:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\MatchLineup
+      joinColumns:
+        MatchLineup:
+          referencedColumnName: id
+          nullable: false
+    participant:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\Participant
+      joinColumns:
+        Participant:
+          referencedColumnName: id
+          nullable: false
+    matchLineupType:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\MatchLineupParticipantType
+      joinColumns:
+        MatchLineupParticipantType:
+          referencedColumnName: id
+          nullable: false

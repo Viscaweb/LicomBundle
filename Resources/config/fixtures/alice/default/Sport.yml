@@ -1,0 +1,5 @@
+Visca\Bundle\LicomBundle\Entity\Sport:
+  sport1:
+    __construct: { create: [] }
+    id: 1
+    name: Default sport

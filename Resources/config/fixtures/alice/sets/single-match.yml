@@ -1,0 +1,40 @@
+include:
+  - ../types/MatchStatusDescription.yml
+  - ../types/CompetitionStageType.yml
+  - ../types/Sport.yml
+  - ../default/Country.yml
+  - ../default/CompetitionCategory.yml
+  - ../default/Competition.yml
+  - ../default/CompetitionSeason.yml
+  - ../default/CompetitionStage.yml
+  - ../default/CompetitionSeasonStage.yml
+
+
+Visca\Bundle\LicomBundle\Entity\Team:
+  participant{0..1}:
+    __construct: { create: [] }
+    name: Participant<current()>
+    country: @country1
+    gender: male
+    sport: @sport1
+
+Visca\Bundle\LicomBundle\Entity\Match:
+  match1:
+    __construct: { create: [] }
+    name: Default match
+    startDate: <dateTimeBetween('-1 week', 'now')>
+    competitionSeasonStage: @competition_season_stage_default
+    matchStatusDescription: @match_status_description1
+
+Visca\Bundle\LicomBundle\Entity\MatchParticipant:
+  match_participant_home:
+    __construct: { create: [] }
+    number: 1
+    participant: @participant0
+    match: @match1
+
+  match_participant_away:
+    __construct: { create: [] }
+    number: 2
+    participant: @participant1
+    match: @match1

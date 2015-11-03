@@ -1,0 +1,57 @@
+Visca\Bundle\LicomBundle\Entity\BettingOfferProviderGraph:
+  type: entity
+  table: BettingOfferProvider_graph
+  id:
+    bettingOfferProvider:
+      type: smallint
+      length: 5
+      associationKey: true
+      column: BettingOfferProvider
+      options:
+        unsigned: true
+    label:
+      type: smallint
+      length: 5
+      associationKey: true
+      options:
+        unsigned: true
+    bookmaker:
+      type: smallint
+      length: 5
+      associationKey: true
+      column: Bookmaker
+      options:
+        unsigned: true
+  fields:
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+  indexes:
+    fk_bettingOfferProvider:
+      columns: [BettingOfferProvider]
+    fk_bookmaker:
+      columns: [Bookmaker]
+    fk_label:
+      columns: [label]
+  manyToOne:
+    bettingOfferProvider:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\BettingOfferProvider
+      joinColumns:
+        BettingOfferProvider:
+          referencedColumnName: id
+          nullable: false
+    label:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\BettingOfferProviderGraphLabel
+      joinColumns:
+        label:
+          referencedColumnName: id
+          nullable: false
+    bookmaker:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\Bookmaker
+      joinColumns:
+        Bookmaker:
+          referencedColumnName: id
+          nullable: false

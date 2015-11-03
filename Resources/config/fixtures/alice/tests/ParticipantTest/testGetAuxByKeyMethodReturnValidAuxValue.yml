@@ -1,0 +1,19 @@
+include:
+  - ../../types/Sport.yml
+  - ../../types/Country.yml
+  - ../../types/ParticipantAuxType.yml
+  - ../../default/Athlete.yml
+
+
+Visca\Bundle\LicomBundle\Entity\ParticipantAux:
+  athlete_firstname_aux:
+    type: @participant_aux_type1
+    participant: @athlete0
+    value: John
+    del: no
+
+  athlete_lastname_aux:
+    type: @participant_aux_type2
+    participant: @athlete0
+    value: Smith
+    del: no

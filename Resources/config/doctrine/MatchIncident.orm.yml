@@ -1,0 +1,86 @@
+Visca\Bundle\LicomBundle\Entity\MatchIncident:
+  type: entity
+  table: MatchIncident
+  repositoryClass: Visca\Bundle\LicomBundle\Repository\MatchIncidentRepository
+  id:
+    id:
+      type: integer
+      length: 10
+      generator:
+        strategy: AUTO
+      options:
+        unsigned: true
+  fields:
+    timeElapsed:
+      type: smallint
+      length: 5
+      nullable: false
+      options:
+        default:
+        unsigned: true
+    timeElapsedExtra:
+      type: smallint
+      length: 5
+      nullable: false
+      options:
+        default: 0
+        unsigned: true
+    position:
+      type: smallint
+      length: 3
+      nullable: true
+      columnDefinition: TINYINT(3) UNSIGNED NOT NULL DEFAULT '255' COMMENT 'sorted position'
+      options:
+        default: '255'
+        unsigned: true
+    time:
+      type: DateTimeUTCType
+      nullable: false
+      column: `time`
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+    createdAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+    updatedAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+  indexes:
+    fk_matchParticipant:
+      columns: [MatchParticipant]
+    fk_matchIncidentType:
+      columns: [MatchIncidentType]
+    fk_participant:
+      columns: [Participant]
+  oneToMany:
+    matchIncidentAux:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\MatchIncidentAux
+      mappedBy: matchIncident
+  manyToOne:
+    matchParticipant:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\MatchParticipant
+      inversedBy: matchIncident
+      joinColumns:
+        MatchParticipant:
+          referencedColumnName: id
+          nullable: false
+    matchIncidentType:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\MatchIncidentType
+      joinColumns:
+        MatchIncidentType:
+          referencedColumnName: id
+          nullable: false
+    participant:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\Participant
+      inversedBy: matchIncident
+      joinColumns:
+        Participant:
+          referencedColumnName: id

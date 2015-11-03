@@ -1,0 +1,519 @@
+Visca\Bundle\LicomBundle\Entity\MatchResultType:
+    match_result_type1:
+        id: 1
+        code: OrdinaryTime
+        name: 'Ordinary time'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type2:
+        id: 2
+        code: ExtraTime
+        name: 'Extra time'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type3:
+        id: 3
+        code: PenaltyShootout
+        name: 'Penalty Shootout'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type4:
+        id: 4
+        code: FinalResult
+        name: 'Final Result'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type5:
+        id: 5
+        code: HalfTime
+        name: Halftime
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type6:
+        id: 6
+        code: RunningScore
+        name: 'Running score'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type31:
+        id: 31
+        code: StrokesRound1
+        name: 'Strokes 1st round'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type32:
+        id: 32
+        code: StrokesRound2
+        name: 'Strokes 2nd round'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type33:
+        id: 33
+        code: StrokesRound3
+        name: 'Strokes 3rd round'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type34:
+        id: 34
+        code: StrokesRound4
+        name: 'Strokes 4th round'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type35:
+        id: 35
+        code: StrokesRound5
+        name: 'Strokes 5th round'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type36:
+        id: 36
+        code: Par
+        name: Par
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type37:
+        id: 37
+        code: Position
+        name: Position
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type38:
+        id: 38
+        code: MadeCut
+        name: 'Made cut'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type39:
+        id: 39
+        code: MatchPlayScore
+        name: 'Match Play Score'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type40:
+        id: 40
+        code: Weight
+        name: Weight
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type51:
+        id: 51
+        code: Period1
+        name: 'Period 1'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type52:
+        id: 52
+        code: Period2
+        name: 'Period 2'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type53:
+        id: 53
+        code: Period3
+        name: 'Period 3'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type60:
+        id: 60
+        code: Quarter1
+        name: 'Quarter 1'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type61:
+        id: 61
+        code: Quarter2
+        name: 'Quarter 2'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type62:
+        id: 62
+        code: Quarter3
+        name: 'Quarter 3'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type63:
+        id: 63
+        code: Quarter4
+        name: 'Quarter 4'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type80:
+        id: 80
+        code: Set1
+        name: 'Set 1'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type81:
+        id: 81
+        code: Set2
+        name: 'Set 2'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type82:
+        id: 82
+        code: Set3
+        name: 'Set 3'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type83:
+        id: 83
+        code: Set4
+        name: 'Set 4'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type84:
+        id: 84
+        code: Set5
+        name: 'Set 5'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type85:
+        id: 85
+        code: SetsWon
+        name: 'Won sets'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type86:
+        id: 86
+        code: Tiebreak1
+        name: 'Tiebreak 1'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type87:
+        id: 87
+        code: Tiebreak2
+        name: 'Tiebreak 2'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type88:
+        id: 88
+        code: Tiebreak3
+        name: 'Tiebreak 3'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type89:
+        id: 89
+        code: Tiebreak4
+        name: 'Tiebreak 4'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type90:
+        id: 90
+        code: Tiebreak5
+        name: 'Tiebreak 5'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type91:
+        id: 91
+        code: GameScore
+        name: 'Game score'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type92:
+        id: 92
+        code: Set6
+        name: 'Set 6'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type93:
+        id: 93
+        code: Set7
+        name: 'Set 7'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type100:
+        id: 100
+        code: Rank
+        name: Rank
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type101:
+        id: 101
+        code: Duration
+        name: Duration
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type102:
+        id: 102
+        code: Points
+        name: Points
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type103:
+        id: 103
+        code: Distance
+        name: Distance
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type104:
+        id: 104
+        code: Comment
+        name: Comment
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type221:
+        id: 221
+        code: Laps
+        name: Laps
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type222:
+        id: 222
+        code: LapsBehind
+        name: 'Laps behind'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type223:
+        id: 223
+        code: PitStops
+        name: Pitstops
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type301:
+        id: 301
+        code: Inning1
+        name: 'Inning 1'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type302:
+        id: 302
+        code: Inning2
+        name: 'Inning 2'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type303:
+        id: 303
+        code: Inning3
+        name: 'Inning 3'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type304:
+        id: 304
+        code: Inning4
+        name: 'Inning 4'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type305:
+        id: 305
+        code: Inning5
+        name: 'Inning 5'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type306:
+        id: 306
+        code: Inning6
+        name: 'Inning 6'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type307:
+        id: 307
+        code: Inning7
+        name: 'Inning 7'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type308:
+        id: 308
+        code: Inning8
+        name: 'Inning 8'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type309:
+        id: 309
+        code: Inning9
+        name: 'Inning 9'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type310:
+        id: 310
+        code: InningExtra
+        name: 'Extra inning'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type311:
+        id: 311
+        code: Hits
+        name: Hits
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type312:
+        id: 312
+        code: Errors
+        name: Errors
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type313:
+        id: 313
+        code: Misses
+        name: Misses
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type401:
+        id: 401
+        code: HorseRacingOdds
+        name: 'Horse Racing Odds'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type408:
+        id: 408
+        code: StartNumber
+        name: Startnumber
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type501:
+        id: 501
+        code: Medal
+        name: Medal
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type502:
+        id: 502
+        code: MissedShots
+        name: 'Missed shots'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type503:
+        id: 503
+        code: AdditionalShots
+        name: 'Additional shots'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type504:
+        id: 504
+        code: Tries
+        name: Tries
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type505:
+        id: 505
+        code: 4s
+        name: '4s points'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type506:
+        id: 506
+        code: 6s
+        name: '6s points'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type507:
+        id: 507
+        code: Overs
+        name: Overs
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type508:
+        id: 508
+        code: Extra
+        name: Extras
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type509:
+        id: 509
+        code: Wickets
+        name: Wickets
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type510:
+        id: 510
+        code: SecondPoints
+        name: 'Second points'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type511:
+        id: 511
+        code: SecondOvers
+        name: 'Second overs'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type512:
+        id: 512
+        code: SecondExtra
+        name: 'Second extra'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type513:
+        id: 513
+        code: SecondWickets
+        name: 'Second wickets'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_result_type1000:
+        id: 1000
+        code: Aggregated
+        name: Aggregated
+        del: 'no'
+        createdAt: null
+        updatedAt: null

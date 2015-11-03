@@ -1,0 +1,344 @@
+Visca\Bundle\LicomBundle\Entity\CompetitionStageType:
+    competition_stage_type1:
+        id: 1
+        code: qualification
+        name: qualification
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type2:
+        id: 2
+        code: group
+        name: group
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type3:
+        id: 3
+        code: final
+        name: final
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type4:
+        id: 4
+        code: qualification_playoff
+        name: qualification_playoff
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type5:
+        id: 5
+        code: 1st_group
+        name: 1st_group
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type6:
+        id: 6
+        code: 2nd_group
+        name: 2nd_group
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type7:
+        id: 7
+        code: 3rd_group
+        name: 3rd_group
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type8:
+        id: 8
+        code: 4th_group
+        name: 4th_group
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type9:
+        id: 9
+        code: knockout
+        name: knockout
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type10:
+        id: 10
+        code: playoff
+        name: playoff
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type11:
+        id: 11
+        code: regular
+        name: regular
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type12:
+        id: 12
+        code: promotion
+        name: promotion
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type13:
+        id: 13
+        code: relegation
+        name: relegation
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type14:
+        id: 14
+        code: apertura
+        name: apertura
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type15:
+        id: 15
+        code: clausura
+        name: clausura
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type16:
+        id: 16
+        code: 'championship group'
+        name: 'championship group'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type17:
+        id: 17
+        code: 'championship playoff'
+        name: 'championship playoff'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type18:
+        id: 18
+        code: 'international qualif. playoff'
+        name: 'international qualif. playoff'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type19:
+        id: 19
+        code: 'champions lge qualif. playoff'
+        name: 'champions lge qualif. playoff'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type20:
+        id: 20
+        code: 'europa lge qualif. playoff'
+        name: 'europa lge qualif. playoff'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type21:
+        id: 21
+        code: 'libertadores qualif. playoff'
+        name: 'libertadores qualif. playoff'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type22:
+        id: 22
+        code: 'sudamericana qualif. playoff'
+        name: 'sudamericana qualif. playoff'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type23:
+        id: 23
+        code: 'placement group'
+        name: 'placement group'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type24:
+        id: 24
+        code: 'relegation playoff'
+        name: 'relegation playoff'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type25:
+        id: 25
+        code: 'relegation group'
+        name: 'relegation group'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type26:
+        id: 26
+        code: 'promotion group'
+        name: 'promotion group'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type27:
+        id: 27
+        code: 'promotion playoff (from below div)'
+        name: 'promotion playoff (from below div)'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type28:
+        id: 28
+        code: 'promotion playoff'
+        name: 'promotion playoff'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type29:
+        id: 29
+        code: 'quarter finals'
+        name: 'quarter finals'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type30:
+        id: 30
+        code: 'semi finals'
+        name: 'semi finals'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type31:
+        id: 31
+        code: 'third place match'
+        name: 'third place match'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type32:
+        id: 32
+        code: 'torneo invierno'
+        name: 'torneo invierno'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type33:
+        id: 33
+        code: 'torneo verano'
+        name: 'torneo verano'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type34:
+        id: 34
+        code: spring
+        name: spring
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type35:
+        id: 35
+        code: fall
+        name: fall
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type36:
+        id: 36
+        code: 'torneo inicial'
+        name: 'torneo inicial'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type37:
+        id: 37
+        code: 'torneo final'
+        name: 'torneo final'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type38:
+        id: 38
+        code: playout
+        name: playout
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type39:
+        id: 39
+        code: 'intertoto playoff'
+        name: 'intertoto playoff'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type40:
+        id: 40
+        code: 1st_phase
+        name: 1st_phase
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type41:
+        id: 41
+        code: 2nd_phase
+        name: 2nd_phase
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type42:
+        id: 42
+        code: Rio
+        name: Rio
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type43:
+        id: 43
+        code: Guanabara
+        name: Guanabara
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type45:
+        id: 45
+        code: main
+        name: main
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type46:
+        id: 46
+        code: bowls
+        name: bowls
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type47:
+        id: 47
+        code: superbowl
+        name: superbowl
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type48:
+        id: 48
+        code: arenabowl
+        name: arenabowl
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type49:
+        id: 49
+        code: placement_matches
+        name: placement_matches
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    competition_stage_type50:
+        id: 50
+        code: preliminary
+        name: preliminary
+        del: 'no'
+        createdAt: null
+        updatedAt: null

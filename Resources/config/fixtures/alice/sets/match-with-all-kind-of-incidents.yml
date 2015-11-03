@@ -1,0 +1,14 @@
+include:
+  - ../types/MatchStatusDescription.yml
+  - ../types/CompetitionStageType.yml
+  - ../types/Sport.yml
+  - ../default/Country.yml
+  - ../default/CompetitionCategory.yml
+  - ../default/Competition.yml
+  - ../default/CompetitionSeason.yml
+  - ../default/CompetitionStage.yml
+  - ../default/CompetitionSeasonStage.yml
+  - ../default/Team.yml
+  - ../default/Match.yml
+  - ../default/MatchParticipant.yml
+  - ../default/Athlete.yml

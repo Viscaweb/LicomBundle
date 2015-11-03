@@ -1,0 +1,7 @@
+Visca\Bundle\LicomBundle\Entity\CompetitionCategory:
+  competition_category_default:
+    __construct: { create: [] }
+    id: 1
+    name: Default competition category
+    sport: @sport1
+    country: @country1

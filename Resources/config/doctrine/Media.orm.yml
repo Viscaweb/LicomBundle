@@ -1,0 +1,71 @@
+Visca\Bundle\LicomBundle\Entity\Media:
+  type: entity
+  table: Media
+  id:
+    id:
+      type: integer
+      length: 10
+      generator:
+        strategy: AUTO
+      options:
+        unsigned: true
+  fields:
+    entityId:
+      type: integer
+      length: 10
+      nullable: false
+      options:
+        unsigned: true
+    legal:
+      type: MediaLegalType
+      length: 0
+      nullable: true
+      options:
+        default: NULL
+    usage:
+      type: MediaUsageType
+      length: 0
+      nullable: true
+      options:
+        default: NULL
+    urlDownload:
+      type: string
+      length: 255
+      nullable: true
+      column: _url_download
+      options:
+        default: NULL
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+    createdAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+    updatedAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+  indexes:
+    fk_mediaTheme:
+      columns: [MediaTheme]
+    fk_mediaType:
+      columns: [MediaType]
+  manyToOne:
+    mediaTheme:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\MediaTheme
+      joinColumns:
+        MediaTheme:
+          referencedColumnName: id
+          nullable: false
+    mediaType:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\MediaType
+      joinColumns:
+        MediaType:
+          referencedColumnName: id
+          nullable: false

@@ -1,0 +1,83 @@
+Visca\Bundle\LicomBundle\Entity\StandingView:
+  type: entity
+  table: StandingView
+  repositoryClass: Visca\Bundle\LicomBundle\Repository\StandingViewRepository
+  id:
+    id:
+      type: integer
+      length: 10
+      options:
+        unsigned: true
+  fields:
+    code:
+      type: string
+      unique: true
+      length: 45
+      nullable: false
+    description:
+      type: string
+      length: 255
+      nullable: false
+      options:
+        default: NULL
+    scopeEntityId:
+      type: integer
+      length: 10
+      nullable: false
+      options:
+        unsigned: true
+    position:
+      type: smallint
+      length: 5
+      nullable: true
+      options:
+        default: '255'
+        unsigned: true
+    extraMethod:
+      type: string
+      length: 64
+      nullable: true
+      options:
+        default: NULL
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+    createdAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+    updatedAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+  indexes:
+    fk_standingType:
+      columns: [StandingType]
+    fk_entity:
+      columns: [Entity]
+    fk_scopeEntity:
+      columns: [scopeEntity]
+  manyToOne:
+    standingType:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\StandingType
+      joinColumns:
+        StandingType:
+          referencedColumnName: id
+          nullable: false
+    entity:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\Entity
+      joinColumns:
+        Entity:
+          referencedColumnName: id
+          nullable: false
+    scopeEntity:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\Entity
+      joinColumns:
+        scopeEntity:
+          referencedColumnName: id
+          nullable: false

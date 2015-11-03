@@ -1,0 +1,72 @@
+Visca\Bundle\LicomBundle\Entity\Standing:
+  type: entity
+  table: Standing
+  repositoryClass: Visca\Bundle\LicomBundle\Repository\StandingRepository
+  id:
+    id:
+      type: integer
+      length: 10
+      generator:
+        strategy: AUTO
+      options:
+        unsigned: true
+  fields:
+    entityId:
+      type: integer
+      length: 10
+      nullable: false
+      options:
+        unsigned: true
+    round:
+      type: string
+      length: 8
+      nullable: true
+      options:
+        default: NULL
+    name:
+      type: string
+      length: 64
+      nullable: true
+      options:
+        default: NULL
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+    createdAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+    updatedAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+  indexes:
+    fk_entity:
+      columns: [Entity]
+    fk_standingType:
+      columns: [StandingType]
+  uniqueConstraints:
+    uq_entity_entityId_standingType_round_name:
+      columns: [Entity, entityId, StandingType, round, name]
+  oneToMany:
+    standingRow:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\StandingRow
+      mappedBy: standing
+  manyToOne:
+    entity:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\Entity
+      joinColumns:
+        Entity:
+          referencedColumnName: id
+          nullable: false
+    standingType:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\StandingType
+      joinColumns:
+        StandingType:
+          referencedColumnName: id
+          nullable: false

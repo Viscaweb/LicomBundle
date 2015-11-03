@@ -1,0 +1,54 @@
+Visca\Bundle\LicomBundle\Entity\MatchResult:
+  type: entity
+  table: MatchResult
+  id:
+    id:
+      type: integer
+      length: 10
+      generator:
+        strategy: IDENTITY
+      options:
+        unsigned: true
+  fields:
+    value:
+      type: string
+      length: 45
+      nullable: true
+      options:
+        default: NULL
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+    createdAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+    updatedAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+  indexes:
+    fk_matchParticipant:
+      columns: [MatchParticipant]
+    fk_matchResultType:
+      columns: [MatchResultType]
+  manyToOne:
+    matchParticipant:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\MatchParticipant
+      inversedBy: matchResult
+      joinColumns:
+        MatchParticipant:
+          referencedColumnName: id
+          nullable: false
+    matchResultType:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\MatchResultType
+      inversedBy: matchResult
+      joinColumns:
+        MatchResultType:
+          referencedColumnName: id
+          nullable: false

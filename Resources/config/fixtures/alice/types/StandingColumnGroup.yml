@@ -1,0 +1,15 @@
+Visca\Bundle\LicomBundle\Entity\StandingColumnGroup:
+    standing_column_group1:
+        id: 1
+        code: GoalsForTotal
+        name: GoalsForTotal
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column_group2:
+        id: 2
+        code: GoalsAgainstTotal
+        name: GoalsAgainstTotal
+        del: 'no'
+        createdAt: null
+        updatedAt: null

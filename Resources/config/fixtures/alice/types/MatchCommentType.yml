@@ -1,0 +1,177 @@
+Visca\Bundle\LicomBundle\Entity\MatchCommentType:
+    match_comment_type1:
+        id: 1
+        code: RefereeWhistle
+        name: 'Referee whistle'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'
+    match_comment_type2:
+        id: 2
+        code: InjuryTime
+        name: 'Injury time'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'
+    match_comment_type3:
+        id: 3
+        code: Injury
+        name: Injury
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'
+    match_comment_type4:
+        id: 4
+        code: InjuryBack
+        name: 'Injury back'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'
+    match_comment_type5:
+        id: 5
+        code: Lineups
+        name: Lineups
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'
+    match_comment_type6:
+        id: 6
+        code: Attendance
+        name: Attendance
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'
+    match_comment_type7:
+        id: 7
+        code: Goal
+        name: Goal
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'
+    match_comment_type8:
+        id: 8
+        code: PenaltyScored
+        name: 'Penalty scored'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'
+    match_comment_type9:
+        id: 9
+        code: PenaltyMissed
+        name: 'Penalty missed'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'
+    match_comment_type10:
+        id: 10
+        code: Important
+        name: Important
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'
+    match_comment_type11:
+        id: 11
+        code: OwnGoal
+        name: 'Own goal'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'
+    match_comment_type12:
+        id: 12
+        code: YellowCard
+        name: 'Yellow card'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'
+    match_comment_type13:
+        id: 13
+        code: Yellow2Card
+        name: 'Yellow2 card'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'
+    match_comment_type14:
+        id: 14
+        code: RedCard
+        name: 'Red card'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'
+    match_comment_type15:
+        id: 15
+        code: Offside
+        name: Offside
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'
+    match_comment_type16:
+        id: 16
+        code: Substitutions
+        name: Substitutions
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'
+    match_comment_type17:
+        id: 17
+        code: Corner
+        name: Corner
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'
+    match_comment_type18:
+        id: 18
+        code: Info
+        name: Info
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'
+    match_comment_type19:
+        id: 19
+        code: General
+        name: General
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'
+    match_comment_type20:
+        id: 20
+        code: BettingTips
+        name: 'Betting Tips'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'
+    match_comment_type21:
+        id: 21
+        code: PenaltyShootout
+        name: 'Penalty Shootout'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'
+    match_comment_type22:
+        id: 22
+        code: Assist
+        name: Assist
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'

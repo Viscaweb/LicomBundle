@@ -1,0 +1,456 @@
+Visca\Bundle\LicomBundle\Entity\Entity:
+    entity101:
+        id: 101
+        code: Entity
+        name: 'Entity persistent in Entity'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity211:
+        id: 211
+        code: Match
+        name: 'Entity persistent in Match'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity212:
+        id: 212
+        code: MatchAuxProfileType
+        name: 'Entity persistent in Match_auxProfileType'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity213:
+        id: 213
+        code: MatchAuxType
+        name: 'Entity persistent in Match_auxType'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity214:
+        id: 214
+        code: MatchStatusDescription
+        name: 'Entity persistent in MatchStatusDescription'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity221:
+        id: 221
+        code: MatchIncident
+        name: 'Entity persistent in MatchIncident'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity222:
+        id: 222
+        code: MatchIncidentType
+        name: 'Entity persistent in MatchIncidentType'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity223:
+        id: 223
+        code: MatchIncidentAuxType
+        name: 'Entity persistent in MatchIncident_auxType'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity225:
+        id: 225
+        code: MatchTiming
+        name: 'Entity persistent in MatchTiming'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity231:
+        id: 231
+        code: MatchParticipant
+        name: 'Entity persistent in MatchParticipant'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity232:
+        id: 232
+        code: MatchParticipantAuxType
+        name: 'Entity persistent in MatchParticipant_auxType'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity241:
+        id: 241
+        code: MatchStats
+        name: 'Entity persistent in MatchStats'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity242:
+        id: 242
+        code: MatchStatsType
+        name: 'Entity persistent in MatchStatsType'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity251:
+        id: 251
+        code: MatchResult
+        name: 'Entity persistent in MatchResult'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity252:
+        id: 252
+        code: MatchResultType
+        name: 'Entity persistent in MatchResultType'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity261:
+        id: 261
+        code: MatchComment
+        name: 'Entity persistent in MatchComment'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity262:
+        id: 262
+        code: MatchCommentType
+        name: 'Entity persistent in MatchCommentType'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity271:
+        id: 271
+        code: MatchLineup
+        name: 'Entity persistent in MatchLineup'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity272:
+        id: 272
+        code: MatchLineupParticipantType
+        name: 'Entity persistent in MatchLineupParticipantType'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity273:
+        id: 273
+        code: MatchLineupParticipant
+        name: 'Entity persistent in MatchLineupParticipant'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity301:
+        id: 301
+        code: Localization
+        name: 'Entity persistent in Localization'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity306:
+        id: 306
+        code: LocalizationTranslation
+        name: 'Entity persistent in LocalizationTranslation'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity308:
+        id: 308
+        code: LocalizationTranslationType
+        name: 'Entity persistent in LocalizationTranslationType'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity401:
+        id: 401
+        code: Participant
+        name: 'Entity persistent in Participant'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity402:
+        id: 402
+        code: ParticipantAuxType
+        name: 'Entity persistent in Participant_auxType'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity403:
+        id: 403
+        code: ParticipantMembership
+        name: 'Entity persistent in ParticipantMembership'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity501:
+        id: 501
+        code: Sport
+        name: 'Entity persistent in Sport'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity502:
+        id: 502
+        code: Country
+        name: 'Entity persistent in Country'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity503:
+        id: 503
+        code: Competition
+        name: 'Entity persistent in Competition'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity504:
+        id: 504
+        code: CompetitionCategory
+        name: 'Entity persistent in CompetitionCategory'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity505:
+        id: 505
+        code: CompetitionSeason
+        name: 'Entity persistent in CompetitionSeason'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity506:
+        id: 506
+        code: CompetitionStage
+        name: 'Entity persistent in CompetitionStage'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity507:
+        id: 507
+        code: CompetitionRound
+        name: 'Entity persistent in CompetitionRound'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity508:
+        id: 508
+        code: CompetitionLeg
+        name: 'Entity persistent in CompetitionLeg'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity509:
+        id: 509
+        code: CompetitionSeasonStage
+        name: 'Entity persistent in CompetitionSeasonStage'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity510:
+        id: 510
+        code: CompetitionStageType
+        name: 'Entity persistent in CompetitionStageType'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity601:
+        id: 601
+        code: Standing
+        name: 'Entity persistent in Standing'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity602:
+        id: 602
+        code: StandingColumn
+        name: 'Entity persistent in StandingColumnType'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity603:
+        id: 603
+        code: StandingComment
+        name: 'Entity persistent in StandingComment'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity604:
+        id: 604
+        code: StandingPromotion
+        name: 'Entity persistent in StandingPromotionType'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity605:
+        id: 605
+        code: StandingRow
+        name: 'Entity persistent in StandingRow'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity606:
+        id: 606
+        code: StandingCell
+        name: 'Entity persistent in StandingRowData'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity607:
+        id: 607
+        code: StandingType
+        name: 'Entity persistent in StandingType'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity608:
+        id: 608
+        code: StandingPromotionType
+        name: 'Entity persistent in StandingPromotionType'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity609:
+        id: 609
+        code: StandingColumnGroup
+        name: 'Entity persistent in StandingColumnGroup'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity610:
+        id: 610
+        code: StandingColumnScope
+        name: 'Entity persistent in StandingColumnScope'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity611:
+        id: 611
+        code: StandingView
+        name: 'Entity persistent in StandingView'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity701:
+        id: 701
+        code: BettingOffer
+        name: 'Entity persistent in BettingOffer'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity702:
+        id: 702
+        code: BettingOfferAvailability
+        name: 'Entity persistent in BettingOfferAvailability'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity703:
+        id: 703
+        code: MatchBettingOutcome
+        name: 'Entity persistent in MatchBettingOutcome'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity704:
+        id: 704
+        code: BettingOutcomeScopeType
+        name: 'Entity persistent in BettingOutcomeScopeType'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity705:
+        id: 705
+        code: BettingOutcomeSubType
+        name: 'Entity persistent in BettingOutcomeSubType'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity706:
+        id: 706
+        code: BettingOutcomeType
+        name: 'Entity persistent in BettingOutcomeType'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity707:
+        id: 707
+        code: BettingOfferProvider
+        name: 'Entity persistent in BettingOfferProvider'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity708:
+        id: 708
+        code: Bookmaker
+        name: 'Entity persistent in Bookmaker'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity801:
+        id: 801
+        code: Profile
+        name: 'Entity persistent in Profile'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity802:
+        id: 802
+        code: ProfileTranslationGraphLabel
+        name: 'Entity persistent in ProfileTranslation_graphLabel'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity803:
+        id: 803
+        code: ProfileEntityGraphLabel
+        name: 'Entity persistent in ProfileEntity_graphLabel'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity804:
+        id: 804
+        code: ProfileRule
+        name: 'Entity persistent in ProfileRule'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity805:
+        id: 805
+        code: ProfileRuleType
+        name: 'Entity persistent in ProfileRuleType'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity901:
+        id: 901
+        code: Media
+        name: 'Entity persistent in Media'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity902:
+        id: 902
+        code: MediaType
+        name: 'Entity persistent in MediaType'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity903:
+        id: 903
+        code: MediaTheme
+        name: 'Entity persistent in MediaTheme'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity1001:
+        id: 1001
+        code: Event
+        name: 'Publisher Event'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    entity1002:
+        id: 1002
+        code: EventType
+        name: 'Publisher Event Type'
+        del: 'no'
+        createdAt: null
+        updatedAt: null

@@ -1,0 +1,5 @@
+Visca\Bundle\LicomBundle\Entity\BettingOfferProviderGraphLabel:
+    betting_offer_provider_graph_label1:
+        id: 1
+        code: Default
+        name: Default

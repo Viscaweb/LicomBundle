@@ -1,0 +1,6 @@
+Visca\Bundle\LicomBundle\Entity\CompetitionStage:
+  competition_stage_default:
+    __construct: { create: [] }
+    name: Default stage
+    competition: @competition_default
+    competitionStageType1: @competition_stage_type1

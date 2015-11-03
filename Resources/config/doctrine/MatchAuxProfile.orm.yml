@@ -1,0 +1,63 @@
+Visca\Bundle\LicomBundle\Entity\MatchAuxProfile:
+  type: entity
+  table: Match_auxProfile
+  id:
+    match:
+      type: integer
+      length: 10
+      associationKey: true
+      column: Match_id
+      options:
+        unsigned: true
+    matchAuxProfileType:
+      type: smallint
+      length: 5
+      associationKey: true
+      column: MatchAuxProfileType
+      options:
+        unsigned: true
+    profile:
+      type: smallint
+      length: 5
+      associationKey: true
+      column: Profile
+      options:
+        unsigned: true
+  fields:
+    value:
+      type: string
+      length: 45
+      nullable: false
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+  indexes:
+    fk_match:
+      columns: [Match_id]
+    fk_matchAuxProfileType:
+      columns: [MatchAuxProfileType]
+    fk_profile:
+      columns: [Profile]
+  manyToOne:
+    match:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\Match
+      inversedBy: matchAuxProfile
+      joinColumns:
+        Match_id:
+          referencedColumnName: id
+          nullable: false
+    profile:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\Profile
+      joinColumns:
+        Profile:
+          referencedColumnName: id
+          nullable: false
+    matchAuxProfileType:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\MatchAuxProfileType
+      joinColumns:
+        MatchAuxProfileType:
+          referencedColumnName: id
+          nullable: false

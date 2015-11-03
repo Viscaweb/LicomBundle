@@ -1,0 +1,50 @@
+Visca\Bundle\LicomBundle\Entity\StandingType:
+    standing_type1:
+        id: 1
+        code: LeagueTable
+        name: 'League table'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_type2:
+        id: 2
+        code: LeagueFairPlay
+        name: 'League fair-play'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_type3:
+        id: 3
+        code: LeagueTopScorers
+        name: 'League top scorers'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_type4:
+        id: 4
+        code: LeagueHalftimeTable
+        name: 'League halftime table'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_type5:
+        id: 5
+        code: LeagueSecondHalftimeTable
+        name: 'League second halftime table'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_type6:
+        id: 6
+        code: LiveLeagueTable
+        name: 'Live league table'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_type7:
+        id: 7
+        code: LeaguePlayerCards
+        name: 'League table cards'
+        del: 'no'
+        createdAt: null
+        updatedAt: null

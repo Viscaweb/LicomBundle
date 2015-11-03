@@ -1,0 +1,7 @@
+{% block match_status_content %}
+{% if modelView.live %}
+    {{ modelView.statusName }} <span class="minute">{{ modelView.timeElapsed }}'</span>
+{% else %}
+    {{ modelView.statusName }}
+{% endif %}
+{% endblock %}

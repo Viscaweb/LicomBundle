@@ -1,0 +1,29 @@
+Visca\Bundle\LicomBundle\Entity\EventType:
+    event_type1:
+        id: 1
+        code: MatchIncidentGoalSoccer
+        description: 'MatchIncident Type Goal for Soccer'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    event_type2:
+        id: 2
+        code: MatchIncidentGoalOther
+        description: 'MatchIncident type Goal for other sports'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    event_type3:
+        id: 3
+        code: EntityCreated
+        description: 'Entity has been created'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    event_type4:
+        id: 4
+        code: EntityModified
+        description: 'Entity has been modified'
+        del: 'no'
+        createdAt: null
+        updatedAt: null

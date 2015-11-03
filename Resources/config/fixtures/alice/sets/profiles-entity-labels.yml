@@ -1,0 +1,164 @@
+include:
+  - ../types/Entity.yml
+
+Visca\Bundle\LicomBundle\Entity\ProfileEntityGraphLabel:
+  profile_entity_label_1:
+    id: 1
+    code: top-championships
+    entity: @entity501
+    entityId: 24
+    name: Top championships for Am. Football
+
+  profile_entity_label_2:
+    id: 2
+    code: top-championships
+    entity: @entity501
+    entityId: 26
+    name: Top championships for Baseball
+
+  profile_entity_label_3:
+    id: 3
+    code: top-championships
+    entity: @entity501
+    entityId: 23
+    name: Top championships for Basketball
+
+  profile_entity_label_4:
+    id: 4
+    code: top-championships
+    entity: @entity501
+    entityId: 20
+    name: Top championships for Handball
+
+  profile_entity_label_5:
+    id: 5
+    code: top-championships
+    entity: @entity501
+    entityId: 5
+    name: Top championships for Ice Hockey
+
+  profile_entity_label_6:
+    id: 6
+    code: top-championships
+    entity: @entity501
+    entityId: 29
+    name: Top championships for Rugby
+
+  profile_entity_label_7:
+    id: 7
+    code: top-championships
+    entity: @entity501
+    entityId: 1
+    name: Top championships for Soccer
+
+  profile_entity_label_8:
+    id: 8
+    code: top-championships
+    entity: @entity501
+    entityId: 2
+    name: Top championships for Tennis
+
+  profile_entity_label_9:
+    id: 9
+    code: top-championships
+    entity: @entity501
+    entityId: 51
+    name: Top championships for Volleyball
+
+  profile_entity_label_10:
+    id: 10
+    code: top-competitions
+    entity: @entity501
+    entityId: 1
+    name: Top competitions for Soccer
+
+  profile_entity_label_11:
+    id: 11
+    code: top-countries
+    entity: @entity501
+    entityId: 24
+    name: Top countries for Am. Football
+
+  profile_entity_label_12:
+    id: 12
+    code: top-countries
+    entity: @entity501
+    entityId: 26
+    name: Top countries for Baseball
+
+  profile_entity_label_13:
+    id: 13
+    code: top-countries
+    entity: @entity501
+    entityId: 23
+    name: Top countries for Basketball
+
+  profile_entity_label_14:
+    id: 14
+    code: top-countries
+    entity: @entity501
+    entityId: 20
+    name: Top countries for Handball
+
+  profile_entity_label_15:
+    id: 15
+    code: top-countries
+    entity: @entity501
+    entityId: 5
+    name: Top countries for Ice Hockey
+
+  profile_entity_label_16:
+    id: 16
+    code: top-countries
+    entity: @entity501
+    entityId: 29
+    name: Top countries for Rugby
+
+  profile_entity_label_17:
+    id: 17
+    code: top-countries
+    entity: @entity501
+    entityId: 1
+    name: Top countries for Soccer
+
+  profile_entity_label_18:
+    id: 18
+    code: top-cups
+    entity: @entity501
+    entityId: 23
+    name: Top cups for Basketball
+
+  profile_entity_label_19:
+    id: 19
+    code: top-cups
+    entity: @entity501
+    entityId: 5
+    name: Top cups for Ice Hockey
+
+  profile_entity_label_20:
+    id: 20
+    code: top-cups
+    entity: @entity501
+    entityId: 29
+    name: Top cups for Rugby
+
+  profile_entity_label_21:
+    id: 21
+    code: top-cups
+    entity: @entity501
+    entityId: 1
+    name: Top cups for Soccer
+
+  profile_entity_label_22:
+    id: 22
+    code: top-teams
+    entity: @entity501
+    entityId: 1
+    name: Top Teams for Soccer
+
+  profile_entity_label_23:
+    id: 23
+    code: top-sports
+#    entity: NULL
+    entityId: null
+    name: Top Sports

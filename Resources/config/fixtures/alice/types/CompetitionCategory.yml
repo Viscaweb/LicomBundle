@@ -1,0 +1,2953 @@
+Visca\Bundle\LicomBundle\Entity\CompetitionCategory:
+    competition_category1:
+        id: 1
+        name: Denmark
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country1'
+        sport: '@sport1'
+    competition_category2:
+        id: 2
+        name: England
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country2'
+        sport: '@sport1'
+    competition_category3:
+        id: 3
+        name: Germany
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country3'
+        sport: '@sport1'
+    competition_category4:
+        id: 4
+        name: Italy
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country4'
+        sport: '@sport1'
+    competition_category5:
+        id: 5
+        name: France
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country5'
+        sport: '@sport1'
+    competition_category6:
+        id: 6
+        name: Sweden
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country6'
+        sport: '@sport1'
+    competition_category7:
+        id: 7
+        name: Norway
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country7'
+        sport: '@sport1'
+    competition_category8:
+        id: 8
+        name: Spain
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country8'
+        sport: '@sport1'
+    competition_category9:
+        id: 9
+        name: Netherlands
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country9'
+        sport: '@sport1'
+    competition_category10:
+        id: 10
+        name: World
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country11'
+        sport: '@sport1'
+    competition_category11:
+        id: 11
+        name: Portugal
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country12'
+        sport: '@sport1'
+    competition_category12:
+        id: 12
+        name: Turkey
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country13'
+        sport: '@sport1'
+    competition_category13:
+        id: 13
+        name: Belgium
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country14'
+        sport: '@sport1'
+    competition_category14:
+        id: 14
+        name: Scotland
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country15'
+        sport: '@sport1'
+    competition_category15:
+        id: 15
+        name: USA
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country16'
+        sport: '@sport1'
+    competition_category16:
+        id: 16
+        name: Slovenia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country17'
+        sport: '@sport1'
+    competition_category17:
+        id: 17
+        name: 'Czech Republic'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country19'
+        sport: '@sport1'
+    competition_category18:
+        id: 18
+        name: Serbia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country20'
+        sport: '@sport1'
+    competition_category19:
+        id: 19
+        name: Romania
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country21'
+        sport: '@sport1'
+    competition_category20:
+        id: 20
+        name: Russia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country22'
+        sport: '@sport1'
+    competition_category21:
+        id: 21
+        name: Canada
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country23'
+        sport: '@sport1'
+    competition_category22:
+        id: 22
+        name: Finland
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country24'
+        sport: '@sport1'
+    competition_category23:
+        id: 23
+        name: Japan
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country25'
+        sport: '@sport1'
+    competition_category24:
+        id: 24
+        name: Hungary
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country26'
+        sport: '@sport1'
+    competition_category25:
+        id: 25
+        name: 'South Africa'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country28'
+        sport: '@sport1'
+    competition_category26:
+        id: 26
+        name: Tunisia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country29'
+        sport: '@sport1'
+    competition_category27:
+        id: 27
+        name: Nigeria
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country30'
+        sport: '@sport1'
+    competition_category28:
+        id: 28
+        name: Egypt
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country31'
+        sport: '@sport1'
+    competition_category29:
+        id: 29
+        name: Cameroon
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country32'
+        sport: '@sport1'
+    competition_category30:
+        id: 30
+        name: Greece
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country33'
+        sport: '@sport1'
+    competition_category31:
+        id: 31
+        name: Austria
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country34'
+        sport: '@sport1'
+    competition_category32:
+        id: 32
+        name: U.A.E.
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country35'
+        sport: '@sport1'
+    competition_category33:
+        id: 33
+        name: Switzerland
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country37'
+        sport: '@sport1'
+    competition_category34:
+        id: 34
+        name: Israel
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country38'
+        sport: '@sport1'
+    competition_category35:
+        id: 35
+        name: Australia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country39'
+        sport: '@sport1'
+    competition_category36:
+        id: 36
+        name: Luxembourg
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country41'
+        sport: '@sport1'
+    competition_category37:
+        id: 37
+        name: 'N. Ireland'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country42'
+        sport: '@sport1'
+    competition_category38:
+        id: 38
+        name: Croatia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country44'
+        sport: '@sport1'
+    competition_category39:
+        id: 39
+        name: Ireland
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country45'
+        sport: '@sport1'
+    competition_category40:
+        id: 40
+        name: Poland
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country47'
+        sport: '@sport1'
+    competition_category41:
+        id: 41
+        name: Argentina
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country48'
+        sport: '@sport1'
+    competition_category42:
+        id: 42
+        name: Thailand
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country50'
+        sport: '@sport1'
+    competition_category43:
+        id: 43
+        name: Brazil
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country51'
+        sport: '@sport1'
+    competition_category44:
+        id: 44
+        name: Morocco
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country52'
+        sport: '@sport1'
+    competition_category45:
+        id: 45
+        name: Ukraine
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country53'
+        sport: '@sport1'
+    competition_category46:
+        id: 46
+        name: Malta
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country54'
+        sport: '@sport1'
+    competition_category47:
+        id: 47
+        name: Georgia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country55'
+        sport: '@sport1'
+    competition_category48:
+        id: 48
+        name: Bulgaria
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country56'
+        sport: '@sport1'
+    competition_category49:
+        id: 49
+        name: Belarus
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country57'
+        sport: '@sport1'
+    competition_category50:
+        id: 50
+        name: Wales
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country58'
+        sport: '@sport1'
+    competition_category51:
+        id: 51
+        name: Cyprus
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country59'
+        sport: '@sport1'
+    competition_category52:
+        id: 52
+        name: Estonia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country60'
+        sport: '@sport1'
+    competition_category53:
+        id: 53
+        name: Latvia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country61'
+        sport: '@sport1'
+    competition_category54:
+        id: 54
+        name: Slovakia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country62'
+        sport: '@sport1'
+    competition_category55:
+        id: 55
+        name: 'Saudi Arabia'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country63'
+        sport: '@sport1'
+    competition_category56:
+        id: 56
+        name: Azerbaijan
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country64'
+        sport: '@sport1'
+    competition_category57:
+        id: 57
+        name: Moldova
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country65'
+        sport: '@sport1'
+    competition_category58:
+        id: 58
+        name: Lithuania
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country66'
+        sport: '@sport1'
+    competition_category59:
+        id: 59
+        name: 'Faroe Islands'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country67'
+        sport: '@sport1'
+    competition_category60:
+        id: 60
+        name: Macedonia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country68'
+        sport: '@sport1'
+    competition_category61:
+        id: 61
+        name: Iceland
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country69'
+        sport: '@sport1'
+    competition_category62:
+        id: 62
+        name: Bosnia-Herzegovina
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country70'
+        sport: '@sport1'
+    competition_category63:
+        id: 63
+        name: Albania
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country71'
+        sport: '@sport1'
+    competition_category64:
+        id: 64
+        name: Armenia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country72'
+        sport: '@sport1'
+    competition_category65:
+        id: 65
+        name: 'San Marino'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country73'
+        sport: '@sport1'
+    competition_category66:
+        id: 66
+        name: Liechtenstein
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country74'
+        sport: '@sport1'
+    competition_category67:
+        id: 67
+        name: Andorra
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country76'
+        sport: '@sport1'
+    competition_category68:
+        id: 68
+        name: Chile
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country77'
+        sport: '@sport1'
+    competition_category69:
+        id: 69
+        name: Colombia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country78'
+        sport: '@sport1'
+    competition_category70:
+        id: 70
+        name: Uruguay
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country79'
+        sport: '@sport1'
+    competition_category71:
+        id: 71
+        name: Ecuador
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country80'
+        sport: '@sport1'
+    competition_category72:
+        id: 72
+        name: Bolivia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country81'
+        sport: '@sport1'
+    competition_category73:
+        id: 73
+        name: Paraguay
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country82'
+        sport: '@sport1'
+    competition_category74:
+        id: 74
+        name: Peru
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country83'
+        sport: '@sport1'
+    competition_category75:
+        id: 75
+        name: Venezuela
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country84'
+        sport: '@sport1'
+    competition_category76:
+        id: 76
+        name: Algeria
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country85'
+        sport: '@sport1'
+    competition_category77:
+        id: 77
+        name: Greenland
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country86'
+        sport: '@sport1'
+    competition_category78:
+        id: 78
+        name: Kuwait
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country87'
+        sport: '@sport1'
+    competition_category79:
+        id: 79
+        name: 'South Korea'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country88'
+        sport: '@sport1'
+    competition_category80:
+        id: 80
+        name: Malaysia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country89'
+        sport: '@sport1'
+    competition_category81:
+        id: 81
+        name: Singapore
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country90'
+        sport: '@sport1'
+    competition_category82:
+        id: 82
+        name: Qatar
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country91'
+        sport: '@sport1'
+    competition_category83:
+        id: 83
+        name: Zimbabwe
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country92'
+        sport: '@sport1'
+    competition_category84:
+        id: 84
+        name: 'New Zealand'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country93'
+        sport: '@sport1'
+    competition_category85:
+        id: 85
+        name: Fiji
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country94'
+        sport: '@sport1'
+    competition_category86:
+        id: 86
+        name: Taiwan
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country95'
+        sport: '@sport1'
+    competition_category87:
+        id: 87
+        name: Burma
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country96'
+        sport: '@sport1'
+    competition_category88:
+        id: 88
+        name: Libya
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country98'
+        sport: '@sport1'
+    competition_category89:
+        id: 89
+        name: Togo
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country99'
+        sport: '@sport1'
+    competition_category90:
+        id: 90
+        name: Zambia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country100'
+        sport: '@sport1'
+    competition_category91:
+        id: 91
+        name: Sudan
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country101'
+        sport: '@sport1'
+    competition_category92:
+        id: 92
+        name: Ghana
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country102'
+        sport: '@sport1'
+    competition_category93:
+        id: 93
+        name: Liberia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country103'
+        sport: '@sport1'
+    competition_category94:
+        id: 94
+        name: 'Sierra Leone'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country104'
+        sport: '@sport1'
+    competition_category95:
+        id: 95
+        name: Namibia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country105'
+        sport: '@sport1'
+    competition_category96:
+        id: 96
+        name: Senegal
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country106'
+        sport: '@sport1'
+    competition_category97:
+        id: 97
+        name: Congo
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country107'
+        sport: '@sport1'
+    competition_category98:
+        id: 98
+        name: 'DR Congo'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country108'
+        sport: '@sport1'
+    competition_category99:
+        id: 99
+        name: Malawi
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country109'
+        sport: '@sport1'
+    competition_category100:
+        id: 100
+        name: 'Burkina Faso'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country110'
+        sport: '@sport1'
+    competition_category101:
+        id: 101
+        name: 'Ivory Coast'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country111'
+        sport: '@sport1'
+    competition_category102:
+        id: 102
+        name: Jamaica
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country112'
+        sport: '@sport1'
+    competition_category103:
+        id: 103
+        name: 'Trinidad and Tobago'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country113'
+        sport: '@sport1'
+    competition_category104:
+        id: 104
+        name: Mexico
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country114'
+        sport: '@sport1'
+    competition_category105:
+        id: 105
+        name: Nicaragua
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country115'
+        sport: '@sport1'
+    competition_category106:
+        id: 106
+        name: 'El Salvador'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country116'
+        sport: '@sport1'
+    competition_category107:
+        id: 107
+        name: 'Costa Rica'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country117'
+        sport: '@sport1'
+    competition_category108:
+        id: 108
+        name: Honduras
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country118'
+        sport: '@sport1'
+    competition_category109:
+        id: 109
+        name: Angola
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country119'
+        sport: '@sport1'
+    competition_category110:
+        id: 110
+        name: Madagascar
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country120'
+        sport: '@sport1'
+    competition_category111:
+        id: 111
+        name: 'North Korea'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country121'
+        sport: '@sport1'
+    competition_category112:
+        id: 112
+        name: Iran
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country122'
+        sport: '@sport1'
+    competition_category113:
+        id: 113
+        name: Iraq
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country123'
+        sport: '@sport1'
+    competition_category114:
+        id: 114
+        name: China
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country125'
+        sport: '@sport1'
+    competition_category115:
+        id: 115
+        name: Mali
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country126'
+        sport: '@sport1'
+    competition_category116:
+        id: 116
+        name: Jordan
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country127'
+        sport: '@sport1'
+    competition_category117:
+        id: 117
+        name: 'Hong Kong'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country128'
+        sport: '@sport1'
+    competition_category118:
+        id: 118
+        name: Kazakhstan
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country129'
+        sport: '@sport1'
+    competition_category119:
+        id: 119
+        name: Uzbekistan
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country130'
+        sport: '@sport1'
+    competition_category120:
+        id: 120
+        name: Benin
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country131'
+        sport: '@sport1'
+    competition_category121:
+        id: 121
+        name: India
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country133'
+        sport: '@sport1'
+    competition_category122:
+        id: 122
+        name: Oman
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country134'
+        sport: '@sport1'
+    competition_category123:
+        id: 123
+        name: Laos
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country135'
+        sport: '@sport1'
+    competition_category124:
+        id: 124
+        name: Guatemala
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country136'
+        sport: '@sport1'
+    competition_category125:
+        id: 125
+        name: Cuba
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country137'
+        sport: '@sport1'
+    competition_category126:
+        id: 126
+        name: Martinique
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country138'
+        sport: '@sport1'
+    competition_category127:
+        id: 127
+        name: Haiti
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country139'
+        sport: '@sport1'
+    competition_category128:
+        id: 128
+        name: Bahamas
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country140'
+        sport: '@sport1'
+    competition_category129:
+        id: 129
+        name: Indonesia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country141'
+        sport: '@sport1'
+    competition_category130:
+        id: 130
+        name: 'Puerto Rico'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country142'
+        sport: '@sport1'
+    competition_category131:
+        id: 131
+        name: Panama
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country143'
+        sport: '@sport1'
+    competition_category132:
+        id: 132
+        name: Bahrain
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country144'
+        sport: '@sport1'
+    competition_category133:
+        id: 133
+        name: Rwanda
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country145'
+        sport: '@sport1'
+    competition_category134:
+        id: 134
+        name: Guinea
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country146'
+        sport: '@sport1'
+    competition_category135:
+        id: 135
+        name: Kenya
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country147'
+        sport: '@sport1'
+    competition_category136:
+        id: 136
+        name: Yemen
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country148'
+        sport: '@sport1'
+    competition_category137:
+        id: 137
+        name: Barbados
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country149'
+        sport: '@sport1'
+    competition_category138:
+        id: 138
+        name: Kyrgyzstan
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country150'
+        sport: '@sport1'
+    competition_category139:
+        id: 139
+        name: Botswana
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country151'
+        sport: '@sport1'
+    competition_category140:
+        id: 140
+        name: Gabon
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country152'
+        sport: '@sport1'
+    competition_category141:
+        id: 141
+        name: 'Cape Verde'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country153'
+        sport: '@sport1'
+    competition_category142:
+        id: 142
+        name: Uganda
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country154'
+        sport: '@sport1'
+    competition_category143:
+        id: 143
+        name: Vietnam
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country155'
+        sport: '@sport1'
+    competition_category144:
+        id: 144
+        name: 'Sri Lanka'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country156'
+        sport: '@sport1'
+    competition_category145:
+        id: 145
+        name: Palestine
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country157'
+        sport: '@sport1'
+    competition_category146:
+        id: 146
+        name: Syria
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country158'
+        sport: '@sport1'
+    competition_category147:
+        id: 147
+        name: Tajikistan
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country159'
+        sport: '@sport1'
+    competition_category148:
+        id: 148
+        name: Lebanon
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country160'
+        sport: '@sport1'
+    competition_category149:
+        id: 149
+        name: Maldives
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country161'
+        sport: '@sport1'
+    competition_category150:
+        id: 150
+        name: Turkmenistan
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country162'
+        sport: '@sport1'
+    competition_category151:
+        id: 151
+        name: Pakistan
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country163'
+        sport: '@sport1'
+    competition_category152:
+        id: 152
+        name: 'Dominican Rep.'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country164'
+        sport: '@sport1'
+    competition_category153:
+        id: 153
+        name: 'St. Kitts and Nevis'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country165'
+        sport: '@sport1'
+    competition_category154:
+        id: 154
+        name: 'Saint Vincent and The Grenadines'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country166'
+        sport: '@sport1'
+    competition_category155:
+        id: 155
+        name: Vanuatu
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country167'
+        sport: '@sport1'
+    competition_category156:
+        id: 156
+        name: Tahiti
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country168'
+        sport: '@sport1'
+    competition_category157:
+        id: 157
+        name: 'Solomon Islands'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country169'
+        sport: '@sport1'
+    competition_category158:
+        id: 158
+        name: 'Great Britain'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country170'
+        sport: '@sport1'
+    competition_category159:
+        id: 159
+        name: Tonga
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country171'
+        sport: '@sport1'
+    competition_category160:
+        id: 160
+        name: Philippines
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country172'
+        sport: '@sport1'
+    competition_category161:
+        id: 161
+        name: Mongolia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country173'
+        sport: '@sport1'
+    competition_category162:
+        id: 162
+        name: Afghanistan
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country174'
+        sport: '@sport1'
+    competition_category163:
+        id: 163
+        name: Lesotho
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country175'
+        sport: '@sport1'
+    competition_category164:
+        id: 164
+        name: Nepal
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country176'
+        sport: '@sport1'
+    competition_category165:
+        id: 165
+        name: Ethiopia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country177'
+        sport: '@sport1'
+    competition_category166:
+        id: 166
+        name: Mauritius
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country178'
+        sport: '@sport1'
+    competition_category167:
+        id: 167
+        name: Seychelles
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country179'
+        sport: '@sport1'
+    competition_category168:
+        id: 168
+        name: Brunei
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country180'
+        sport: '@sport1'
+    competition_category169:
+        id: 169
+        name: 'Virgin Islands'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country181'
+        sport: '@sport1'
+    competition_category170:
+        id: 170
+        name: Micronesia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country182'
+        sport: '@sport1'
+    competition_category171:
+        id: 171
+        name: Bermuda
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country183'
+        sport: '@sport1'
+    competition_category172:
+        id: 172
+        name: Nauru
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country184'
+        sport: '@sport1'
+    competition_category173:
+        id: 173
+        name: 'Central African Rep.'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country185'
+        sport: '@sport1'
+    competition_category174:
+        id: 174
+        name: Guam
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country186'
+        sport: '@sport1'
+    competition_category175:
+        id: 175
+        name: 'Netherlands Antilles'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country187'
+        sport: '@sport1'
+    competition_category176:
+        id: 176
+        name: Bangladesh
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country188'
+        sport: '@sport1'
+    competition_category177:
+        id: 177
+        name: Bhutan
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country189'
+        sport: '@sport1'
+    competition_category178:
+        id: 178
+        name: Monaco
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country190'
+        sport: '@sport1'
+    competition_category179:
+        id: 179
+        name: 'Antigua and Barbuda'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country192'
+        sport: '@sport1'
+    competition_category180:
+        id: 180
+        name: 'American Samoa'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country193'
+        sport: '@sport1'
+    competition_category181:
+        id: 181
+        name: Belize
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country194'
+        sport: '@sport1'
+    competition_category182:
+        id: 182
+        name: Aruba
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country195'
+        sport: '@sport1'
+    competition_category183:
+        id: 183
+        name: Burundi
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country196'
+        sport: '@sport1'
+    competition_category184:
+        id: 184
+        name: 'Cayman Islands'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country197'
+        sport: '@sport1'
+    competition_category185:
+        id: 185
+        name: Djibouti
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country198'
+        sport: '@sport1'
+    competition_category186:
+        id: 186
+        name: Dominica
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country199'
+        sport: '@sport1'
+    competition_category187:
+        id: 187
+        name: 'Ecuatorial Guinea'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country200'
+        sport: '@sport1'
+    competition_category188:
+        id: 188
+        name: Eritrea
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country201'
+        sport: '@sport1'
+    competition_category189:
+        id: 189
+        name: 'Cook Islands'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country202'
+        sport: '@sport1'
+    competition_category190:
+        id: 190
+        name: Cambodia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country203'
+        sport: '@sport1'
+    competition_category191:
+        id: 191
+        name: 'French Guyana'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country204'
+        sport: '@sport1'
+    competition_category192:
+        id: 192
+        name: Gambia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country205'
+        sport: '@sport1'
+    competition_category193:
+        id: 193
+        name: 'Saint Lucia'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country206'
+        sport: '@sport1'
+    competition_category194:
+        id: 194
+        name: Niger
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country207'
+        sport: '@sport1'
+    competition_category195:
+        id: 195
+        name: 'Papua New Guinea'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country208'
+        sport: '@sport1'
+    competition_category196:
+        id: 196
+        name: Chad
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country209'
+        sport: '@sport1'
+    competition_category197:
+        id: 197
+        name: Swaziland
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country210'
+        sport: '@sport1'
+    competition_category198:
+        id: 198
+        name: Comoros
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country211'
+        sport: '@sport1'
+    competition_category199:
+        id: 199
+        name: Kiribati
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country212'
+        sport: '@sport1'
+    competition_category200:
+        id: 200
+        name: Grenada
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country213'
+        sport: '@sport1'
+    competition_category201:
+        id: 201
+        name: 'British Virgin Islands'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country214'
+        sport: '@sport1'
+    competition_category202:
+        id: 202
+        name: Mozambique
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country215'
+        sport: '@sport1'
+    competition_category203:
+        id: 203
+        name: Guyana
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country216'
+        sport: '@sport1'
+    competition_category204:
+        id: 204
+        name: Mauretania
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country217'
+        sport: '@sport1'
+    competition_category205:
+        id: 205
+        name: Tanzania
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country218'
+        sport: '@sport1'
+    competition_category206:
+        id: 206
+        name: Somalia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country219'
+        sport: '@sport1'
+    competition_category207:
+        id: 207
+        name: Surinam
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country220'
+        sport: '@sport1'
+    competition_category208:
+        id: 208
+        name: 'Sao Tome and Principe'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country221'
+        sport: '@sport1'
+    competition_category209:
+        id: 209
+        name: 'Former East Timor'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country222'
+        sport: '@sport1'
+    competition_category210:
+        id: 210
+        name: Palau
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country223'
+        sport: '@sport1'
+    competition_category211:
+        id: 211
+        name: Samoa
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country224'
+        sport: '@sport1'
+    competition_category212:
+        id: 212
+        name: Europe
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country225'
+        sport: '@sport1'
+    competition_category213:
+        id: 213
+        name: GB/Ireland
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country226'
+        sport: '@sport1'
+    competition_category214:
+        id: 214
+        name: Asia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country227'
+        sport: '@sport1'
+    competition_category215:
+        id: 215
+        name: Macao
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country228'
+        sport: '@sport1'
+    competition_category216:
+        id: 216
+        name: Guadeloupe
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country229'
+        sport: '@sport1'
+    competition_category217:
+        id: 217
+        name: Montenegro
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country230'
+        sport: '@sport1'
+    competition_category218:
+        id: 218
+        name: Unknown
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country465'
+        sport: '@sport1'
+    competition_category219:
+        id: 219
+        name: Undefined
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country652'
+        sport: '@sport1'
+    competition_category220:
+        id: 220
+        name: Timor-Leste
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country653'
+        sport: '@sport1'
+    competition_category221:
+        id: 221
+        name: 'New Caledonia'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country654'
+        sport: '@sport1'
+    competition_category222:
+        id: 222
+        name: Gibraltar
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country655'
+        sport: '@sport1'
+    competition_category223:
+        id: 223
+        name: Guinea-Bissau
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country656'
+        sport: '@sport1'
+    competition_category224:
+        id: 224
+        name: 'Marshall Islands'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country657'
+        sport: '@sport1'
+    competition_category225:
+        id: 225
+        name: Tuvalu
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country658'
+        sport: '@sport1'
+    competition_category226:
+        id: 226
+        name: Jersey
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country659'
+        sport: '@sport1'
+    competition_category227:
+        id: 227
+        name: 'Christmas Island'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country660'
+        sport: '@sport1'
+    competition_category228:
+        id: 228
+        name: Anguilla
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country661'
+        sport: '@sport1'
+    competition_category229:
+        id: 229
+        name: Montserrat
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country662'
+        sport: '@sport1'
+    competition_category230:
+        id: 230
+        name: 'Turks and Caicos Islands'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country663'
+        sport: '@sport1'
+    competition_category231:
+        id: 231
+        name: Curacao
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country664'
+        sport: '@sport1'
+    competition_category232:
+        id: 232
+        name: Zanzibar
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country665'
+        sport: '@sport1'
+    competition_category233:
+        id: 233
+        name: 'South Sudan'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country666'
+        sport: '@sport1'
+    competition_category234:
+        id: 234
+        name: 'Northern Mariana Islands'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country667'
+        sport: '@sport1'
+    competition_category235:
+        id: 235
+        name: Kosovo
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country668'
+        sport: '@sport1'
+    competition_category236:
+        id: 236
+        name: Yugoslavia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country669'
+        sport: '@sport1'
+    competition_category237:
+        id: 237
+        name: 'West Germany'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country670'
+        sport: '@sport1'
+    competition_category238:
+        id: 238
+        name: 'East Germany'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country671'
+        sport: '@sport1'
+    competition_category239:
+        id: 239
+        name: 'Soviet Union'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country672'
+        sport: '@sport1'
+    competition_category240:
+        id: 240
+        name: Czechoslovakia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country673'
+        sport: '@sport1'
+    competition_category241:
+        id: 241
+        name: 'Dutch East Indies'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country674'
+        sport: '@sport1'
+    competition_category242:
+        id: 242
+        name: Zaire
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country675'
+        sport: '@sport1'
+    competition_category244:
+        id: 244
+        name: Africa
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country701'
+        sport: '@sport1'
+    competition_category245:
+        id: 245
+        name: Asia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country702'
+        sport: '@sport1'
+    competition_category246:
+        id: 246
+        name: 'Australia and Oceania'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country703'
+        sport: '@sport1'
+    competition_category247:
+        id: 247
+        name: 'North and Central America'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country704'
+        sport: '@sport1'
+    competition_category248:
+        id: 248
+        name: 'South America'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country705'
+        sport: '@sport1'
+    competition_category325:
+        id: 325
+        name: Denmark
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country1'
+        sport: '@sport5'
+    competition_category326:
+        id: 326
+        name: Germany
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country3'
+        sport: '@sport5'
+    competition_category327:
+        id: 327
+        name: Italy
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country4'
+        sport: '@sport5'
+    competition_category328:
+        id: 328
+        name: France
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country5'
+        sport: '@sport5'
+    competition_category329:
+        id: 329
+        name: Sweden
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country6'
+        sport: '@sport5'
+    competition_category330:
+        id: 330
+        name: Norway
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country7'
+        sport: '@sport5'
+    competition_category331:
+        id: 331
+        name: World
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country11'
+        sport: '@sport5'
+    competition_category332:
+        id: 332
+        name: USA
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country16'
+        sport: '@sport5'
+    competition_category333:
+        id: 333
+        name: Slovenia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country17'
+        sport: '@sport5'
+    competition_category334:
+        id: 334
+        name: 'Czech Republic'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country19'
+        sport: '@sport5'
+    competition_category335:
+        id: 335
+        name: Russia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country22'
+        sport: '@sport5'
+    competition_category336:
+        id: 336
+        name: Finland
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country24'
+        sport: '@sport5'
+    competition_category337:
+        id: 337
+        name: Austria
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country34'
+        sport: '@sport5'
+    competition_category338:
+        id: 338
+        name: Switzerland
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country37'
+        sport: '@sport5'
+    competition_category339:
+        id: 339
+        name: Poland
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country47'
+        sport: '@sport5'
+    competition_category340:
+        id: 340
+        name: Slovakia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country62'
+        sport: '@sport5'
+    competition_category341:
+        id: 341
+        name: Denmark
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country1'
+        sport: '@sport20'
+    competition_category342:
+        id: 342
+        name: Germany
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country3'
+        sport: '@sport20'
+    competition_category343:
+        id: 343
+        name: France
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country5'
+        sport: '@sport20'
+    competition_category344:
+        id: 344
+        name: Sweden
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country6'
+        sport: '@sport20'
+    competition_category345:
+        id: 345
+        name: Norway
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country7'
+        sport: '@sport20'
+    competition_category346:
+        id: 346
+        name: Spain
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country8'
+        sport: '@sport20'
+    competition_category347:
+        id: 347
+        name: World
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country11'
+        sport: '@sport20'
+    competition_category348:
+        id: 348
+        name: Slovenia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country17'
+        sport: '@sport20'
+    competition_category349:
+        id: 349
+        name: 'Czech Republic'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country19'
+        sport: '@sport20'
+    competition_category350:
+        id: 350
+        name: Serbia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country20'
+        sport: '@sport20'
+    competition_category351:
+        id: 351
+        name: Romania
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country21'
+        sport: '@sport20'
+    competition_category352:
+        id: 352
+        name: Finland
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country24'
+        sport: '@sport20'
+    competition_category353:
+        id: 353
+        name: Austria
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country34'
+        sport: '@sport20'
+    competition_category354:
+        id: 354
+        name: Switzerland
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country37'
+        sport: '@sport20'
+    competition_category355:
+        id: 355
+        name: Croatia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country44'
+        sport: '@sport20'
+    competition_category356:
+        id: 356
+        name: Poland
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country47'
+        sport: '@sport20'
+    competition_category357:
+        id: 357
+        name: Slovakia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country62'
+        sport: '@sport20'
+    competition_category358:
+        id: 358
+        name: Denmark
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country1'
+        sport: '@sport23'
+    competition_category359:
+        id: 359
+        name: Germany
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country3'
+        sport: '@sport23'
+    competition_category360:
+        id: 360
+        name: Italy
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country4'
+        sport: '@sport23'
+    competition_category361:
+        id: 361
+        name: France
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country5'
+        sport: '@sport23'
+    competition_category362:
+        id: 362
+        name: Norway
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country7'
+        sport: '@sport23'
+    competition_category363:
+        id: 363
+        name: Spain
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country8'
+        sport: '@sport23'
+    competition_category364:
+        id: 364
+        name: Netherlands
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country9'
+        sport: '@sport23'
+    competition_category365:
+        id: 365
+        name: World
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country11'
+        sport: '@sport23'
+    competition_category366:
+        id: 366
+        name: Turkey
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country13'
+        sport: '@sport23'
+    competition_category367:
+        id: 367
+        name: Belgium
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country14'
+        sport: '@sport23'
+    competition_category368:
+        id: 368
+        name: USA
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country16'
+        sport: '@sport23'
+    competition_category369:
+        id: 369
+        name: Slovenia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country17'
+        sport: '@sport23'
+    competition_category370:
+        id: 370
+        name: 'Czech Republic'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country19'
+        sport: '@sport23'
+    competition_category371:
+        id: 371
+        name: Serbia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country20'
+        sport: '@sport23'
+    competition_category372:
+        id: 372
+        name: Russia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country22'
+        sport: '@sport23'
+    competition_category373:
+        id: 373
+        name: Finland
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country24'
+        sport: '@sport23'
+    competition_category374:
+        id: 374
+        name: Japan
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country25'
+        sport: '@sport23'
+    competition_category375:
+        id: 375
+        name: Greece
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country33'
+        sport: '@sport23'
+    competition_category376:
+        id: 376
+        name: Austria
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country34'
+        sport: '@sport23'
+    competition_category377:
+        id: 377
+        name: Croatia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country44'
+        sport: '@sport23'
+    competition_category378:
+        id: 378
+        name: Poland
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country47'
+        sport: '@sport23'
+    competition_category379:
+        id: 379
+        name: Argentina
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country48'
+        sport: '@sport23'
+    competition_category380:
+        id: 380
+        name: Brazil
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country51'
+        sport: '@sport23'
+    competition_category381:
+        id: 381
+        name: Ukraine
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country53'
+        sport: '@sport23'
+    competition_category382:
+        id: 382
+        name: Cyprus
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country59'
+        sport: '@sport23'
+    competition_category383:
+        id: 383
+        name: Estonia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country60'
+        sport: '@sport23'
+    competition_category384:
+        id: 384
+        name: Latvia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country61'
+        sport: '@sport23'
+    competition_category385:
+        id: 385
+        name: Slovakia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country62'
+        sport: '@sport23'
+    competition_category386:
+        id: 386
+        name: Lithuania
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country66'
+        sport: '@sport23'
+    competition_category387:
+        id: 387
+        name: 'Great Britain'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country170'
+        sport: '@sport23'
+    competition_category388:
+        id: 388
+        name: Denmark
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country1'
+        sport: '@sport24'
+    competition_category389:
+        id: 389
+        name: World
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country11'
+        sport: '@sport24'
+    competition_category390:
+        id: 390
+        name: USA
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country16'
+        sport: '@sport24'
+    competition_category391:
+        id: 391
+        name: Canada
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country23'
+        sport: '@sport24'
+    competition_category392:
+        id: 392
+        name: World
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country11'
+        sport: '@sport26'
+    competition_category393:
+        id: 393
+        name: USA
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country16'
+        sport: '@sport26'
+    competition_category394:
+        id: 394
+        name: Japan
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country25'
+        sport: '@sport26'
+    competition_category395:
+        id: 395
+        name: 'South Korea'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country88'
+        sport: '@sport26'
+    competition_category396:
+        id: 396
+        name: Denmark
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country1'
+        sport: '@sport29'
+    competition_category397:
+        id: 397
+        name: England
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country2'
+        sport: '@sport29'
+    competition_category398:
+        id: 398
+        name: France
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country5'
+        sport: '@sport29'
+    competition_category399:
+        id: 399
+        name: World
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country11'
+        sport: '@sport29'
+    competition_category400:
+        id: 400
+        name: Australia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country39'
+        sport: '@sport29'
+    competition_category401:
+        id: 401
+        name: Denmark
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country1'
+        sport: '@sport51'
+    competition_category402:
+        id: 402
+        name: Germany
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country3'
+        sport: '@sport51'
+    competition_category403:
+        id: 403
+        name: Italy
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country4'
+        sport: '@sport51'
+    competition_category404:
+        id: 404
+        name: France
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country5'
+        sport: '@sport51'
+    competition_category405:
+        id: 405
+        name: Norway
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country7'
+        sport: '@sport51'
+    competition_category406:
+        id: 406
+        name: Spain
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country8'
+        sport: '@sport51'
+    competition_category407:
+        id: 407
+        name: World
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country11'
+        sport: '@sport51'
+    competition_category408:
+        id: 408
+        name: Turkey
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country13'
+        sport: '@sport51'
+    competition_category409:
+        id: 409
+        name: Slovenia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country17'
+        sport: '@sport51'
+    competition_category410:
+        id: 410
+        name: 'Czech Republic'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country19'
+        sport: '@sport51'
+    competition_category411:
+        id: 411
+        name: Russia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country22'
+        sport: '@sport51'
+    competition_category412:
+        id: 412
+        name: Finland
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country24'
+        sport: '@sport51'
+    competition_category413:
+        id: 413
+        name: Greece
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country33'
+        sport: '@sport51'
+    competition_category414:
+        id: 414
+        name: Switzerland
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country37'
+        sport: '@sport51'
+    competition_category415:
+        id: 415
+        name: Croatia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country44'
+        sport: '@sport51'
+    competition_category416:
+        id: 416
+        name: Poland
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country47'
+        sport: '@sport51'
+    competition_category417:
+        id: 417
+        name: ATP
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country652'
+        sport: '@sport2'
+    competition_category418:
+        id: 418
+        name: WTA
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country652'
+        sport: '@sport2'
+    competition_category419:
+        id: 419
+        name: Challenge
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country652'
+        sport: '@sport2'
+    competition_category420:
+        id: 420
+        name: 'Federation Cup'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country652'
+        sport: '@sport2'
+    competition_category421:
+        id: 421
+        name: 'Davis Cup'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country652'
+        sport: '@sport2'
+    competition_category422:
+        id: 422
+        name: Exhibition
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country652'
+        sport: '@sport2'
+    competition_category423:
+        id: 423
+        name: 'Hopman Cup'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country652'
+        sport: '@sport2'
+    competition_category424:
+        id: 424
+        name: 'ITF Women'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country652'
+        sport: '@sport2'
+    competition_category425:
+        id: 425
+        name: 'Veterans Men'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country652'
+        sport: '@sport2'
+    competition_category426:
+        id: 426
+        name: 'Veterans Women'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country652'
+        sport: '@sport2'
+    competition_category427:
+        id: 427
+        name: ATF
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country652'
+        sport: '@sport2'
+    competition_category428:
+        id: 428
+        name: 'ITF Men'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country652'
+        sport: '@sport2'
+    competition_category429:
+        id: 429
+        name: 'Challenge Women'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country652'
+        sport: '@sport2'
+    competition_category430:
+        id: 430
+        name: 'Virtual Tennis'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country652'
+        sport: '@sport2'
+    competition_category447:
+        id: 447
+        name: World
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country11'
+        sport: '@sport2'
+    competition_category484:
+        id: 484
+        name: Mexico
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country114'
+        sport: '@sport2'
+    competition_category486:
+        id: 486
+        name: China
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country125'
+        sport: '@sport2'
+    competition_category501:
+        id: 501
+        name: Switzerland
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country37'
+        sport: '@sport2'
+    competition_category504:
+        id: 504
+        name: Australia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country39'
+        sport: '@sport2'
+    competition_category513:
+        id: 513
+        name: Slovakia
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country62'
+        sport: '@sport2'
+    competition_category525:
+        id: 525
+        name: Challenger
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country652'
+        sport: '@sport2'
+    competition_category526:
+        id: 526
+        name: 'Grand Slam'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country652'
+        sport: '@sport2'
+    competition_category527:
+        id: 527
+        name: 'WTA Challenger'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country652'
+        sport: '@sport2'
+    competition_category528:
+        id: 528
+        name: Europe
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country652'
+        sport: '@sport20'
+    competition_category529:
+        id: 529
+        name: Europe
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country652'
+        sport: '@sport23'
+    competition_category530:
+        id: 530
+        name: Europe
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country652'
+        sport: '@sport24'
+    competition_category531:
+        id: 531
+        name: Europe
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country652'
+        sport: '@sport29'
+    competition_category532:
+        id: 532
+        name: 'Southern Hemisphere'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country652'
+        sport: '@sport29'
+    competition_category533:
+        id: 533
+        name: Europe
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country652'
+        sport: '@sport5'
+    competition_category534:
+        id: 534
+        name: Europe
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        country: '@country652'
+        sport: '@sport51'

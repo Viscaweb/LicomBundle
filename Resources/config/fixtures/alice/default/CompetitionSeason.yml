@@ -1,0 +1,7 @@
+Visca\Bundle\LicomBundle\Entity\CompetitionSeason:
+  competition_season_default:
+    __construct: { create: [] }
+    name: Default season
+    start: <dateTime()>
+    end: <dateTime()>
+    competition: @competition_default

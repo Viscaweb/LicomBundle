@@ -1,13 +1,8 @@
 services:
-    visca_licom.listener.translation_injector:
-        class: Visca\Bundle\LicomViewBundle\Listener\TranslationInjectorListener
+    visca_licom.listener.date_time_alterer:
+        class: Visca\Bundle\LicomBundle\Listener\DateTimeAltererListener
         arguments:
-            - @visca_licom.provider.translations.participant
-            - @visca_licom.provider.translations.competition
-            - @visca_licom.provider.translations.competition_category
-            - @visca_licom.provider.translations.competition_stage
-            - @visca_licom.provider.translations.country
-            - @visca_licom.provider.translations.match_status_description
-            - @visca_licom.provider.translations.sport
+            - @visca_licom.alterer.utc_date
+            - %kernel.cache_dir%
         tags:
             - { name: doctrine.event_listener, connection: licom, event: postLoad }

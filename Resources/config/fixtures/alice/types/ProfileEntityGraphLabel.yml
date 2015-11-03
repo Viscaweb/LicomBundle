@@ -1,0 +1,138 @@
+Visca\Bundle\LicomBundle\Entity\ProfileEntityGraphLabel:
+    profile_entity_graph_label1:
+        id: 1
+        code: top-championships
+        entityId: 24
+        name: 'Top championships for Am. Football'
+        entity: @entity501
+    profile_entity_graph_label2:
+        id: 2
+        code: top-championships
+        entityId: 26
+        name: 'Top championships for Baseball'
+        entity: '@entity501'
+    profile_entity_graph_label3:
+        id: 3
+        code: top-championships
+        entityId: 23
+        name: 'Top championships for Basketball'
+        entity: '@entity501'
+    profile_entity_graph_label4:
+        id: 4
+        code: top-championships
+        entityId: 20
+        name: 'Top championships for Handball'
+        entity: '@entity501'
+    profile_entity_graph_label5:
+        id: 5
+        code: top-championships
+        entityId: 5
+        name: 'Top championships for Ice Hockey'
+        entity: '@entity501'
+    profile_entity_graph_label6:
+        id: 6
+        code: top-championships
+        entityId: 29
+        name: 'Top championships for Rugby'
+        entity: '@entity501'
+    profile_entity_graph_label7:
+        id: 7
+        code: top-championships
+        entityId: 1
+        name: 'Top championships for Soccer'
+        entity: '@entity501'
+    profile_entity_graph_label8:
+        id: 8
+        code: top-championships
+        entityId: 2
+        name: 'Top championships for Tennis'
+        entity: '@entity501'
+    profile_entity_graph_label9:
+        id: 9
+        code: top-championships
+        entityId: 51
+        name: 'Top championships for Volleyball'
+        entity: '@entity501'
+    profile_entity_graph_label10:
+        id: 10
+        code: top-competitions
+        entityId: 1
+        name: 'Top competitions for Soccer'
+        entity: '@entity501'
+    profile_entity_graph_label11:
+        id: 11
+        code: top-countries
+        entityId: 24
+        name: 'Top countries for Am. Football'
+        entity: '@entity501'
+    profile_entity_graph_label12:
+        id: 12
+        code: top-countries
+        entityId: 26
+        name: 'Top countries for Baseball'
+        entity: '@entity501'
+    profile_entity_graph_label13:
+        id: 13
+        code: top-countries
+        entityId: 23
+        name: 'Top countries for Basketball'
+        entity: '@entity501'
+    profile_entity_graph_label14:
+        id: 14
+        code: top-countries
+        entityId: 20
+        name: 'Top countries for Handball'
+        entity: '@entity501'
+    profile_entity_graph_label15:
+        id: 15
+        code: top-countries
+        entityId: 5
+        name: 'Top countries for Ice Hockey'
+        entity: '@entity501'
+    profile_entity_graph_label16:
+        id: 16
+        code: top-countries
+        entityId: 29
+        name: 'Top countries for Rugby'
+        entity: '@entity501'
+    profile_entity_graph_label17:
+        id: 17
+        code: top-countries
+        entityId: 1
+        name: 'Top countries for Soccer'
+        entity: '@entity501'
+    profile_entity_graph_label18:
+        id: 18
+        code: top-cups
+        entityId: 23
+        name: 'Top cups for Basketball'
+        entity: '@entity501'
+    profile_entity_graph_label19:
+        id: 19
+        code: top-cups
+        entityId: 5
+        name: 'Top cups for Ice Hockey'
+        entity: '@entity501'
+    profile_entity_graph_label20:
+        id: 20
+        code: top-cups
+        entityId: 29
+        name: 'Top cups for Rugby'
+        entity: '@entity501'
+    profile_entity_graph_label21:
+        id: 21
+        code: top-cups
+        entityId: 1
+        name: 'Top cups for Soccer'
+        entity: '@entity501'
+    profile_entity_graph_label22:
+        id: 22
+        code: top-teams
+        entityId: 1
+        name: 'Top Teams for Soccer'
+        entity: '@entity501'
+    profile_entity_graph_label23:
+        id: 23
+        code: top-sports
+        entityId: null
+        name: 'Top Sports'

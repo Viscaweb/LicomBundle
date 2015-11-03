@@ -1,6 +1,28 @@
 imports:
-    - { resource: services/helper.yml }
-    - { resource: services/providers.yml }
-    - { resource: services/twig.yml }
     - { resource: services/listeners.yml }
+    - { resource: services/manager.entities.yml }
+    - { resource: services/matchers.yml }
     - { resource: services/repositories.yml }
+    - { resource: services/translation.yml }
+    - { resource: services/filters.yml }
+
+services:
+   visca_licom.alterer.utc_date:
+       class: Visca\Bundle\LicomBundle\Alterer\UTCDateAlterer
+       arguments:
+           - @visca_licom.provider.timezone
+
+   visca_doctrine.generator.code_and_entity_fields:
+       class: Visca\Bundle\LicomBundle\Generator\EntityAndCodeFieldsGenerator
+       arguments:
+         - @visca_doctrine.naming.classes
+         - @visca_doctrine.naming.constant
+         - @visca_doctrine.templating.engine
+         - '%visca_doctrine.generator.unique_values_class.template%'
+
+   visca_licom.warmer.utc_date_fields:
+       class: Visca\Bundle\LicomBundle\Cache\UTCDateFieldsWarmer
+       arguments:
+           - @doctrine.orm.licom_entity_manager
+       tags:
+           - { name: kernel.cache_warmer, priority: 0 }

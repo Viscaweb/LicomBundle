@@ -1,0 +1,44 @@
+Visca\Bundle\LicomBundle\Entity\MatchIncidentAux:
+  type: entity
+  table: MatchIncident_aux
+  id:
+    matchIncident:
+      type: integer
+      length: 10
+      associationKey: true
+      column: MatchIncident
+    type:
+      type: integer
+      length: 10
+      associationKey: true
+      column: MatchIncidentAuxType
+  fields:
+    value:
+      type: string
+      length: 45
+      nullable: false
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+  indexes:
+    fk_matchIncident:
+      columns: [MatchIncident]
+    fk_matchIncidentAuxType:
+      columns: [MatchIncidentAuxType]
+  manyToOne:
+    matchIncident:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\MatchIncident
+      inversedBy: matchIncidentAux
+      joinColumns:
+        MatchIncident:
+          referencedColumnName: id
+          nullable: false
+    type:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\MatchIncidentAuxType
+      joinColumns:
+        MatchIncidentAuxType:
+          referencedColumnName: id
+          nullable: false

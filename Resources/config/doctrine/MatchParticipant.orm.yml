@@ -1,0 +1,75 @@
+Visca\Bundle\LicomBundle\Entity\MatchParticipant:
+  type: entity
+  table: MatchParticipant
+  repositoryClass: Visca\Bundle\LicomBundle\Repository\MatchParticipantRepository
+  id:
+    id:
+      type: integer
+      length: 10
+      generator:
+        strategy: IDENTITY
+      options:
+        unsigned: true
+  fields:
+    number:
+      type: smallint
+      length: 5
+      nullable: false
+      options:
+        unsigned: true
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+    createdAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+    updatedAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+  indexes:
+    idx_match_participant:
+      columns: [Match_id, Participant]
+    fk_match:
+      columns: [Match_id]
+    fk_participant:
+      columns: [Participant]
+  uniqueConstraints:
+    uq_number_match:
+      columns: [number, Match_id]
+    uq_match_participant:
+      columns: [Match_id, Participant]
+  oneToMany:
+    matchIncident:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\MatchIncident
+      mappedBy: matchParticipant
+    matchResult:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\MatchResult
+      mappedBy: matchParticipant
+  manyToOne:
+    match:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\Match
+      inversedBy: matchParticipant
+      joinColumns:
+        Match_id:
+          referencedColumnName: id
+          nullable: false
+    participant:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\Participant
+      inversedBy: matchParticipant
+      cache:
+        region: Participant
+        usage: READ_ONLY
+      joinColumns:
+        Participant:
+          referencedColumnName: id
+          nullable: false
+  cache:
+    region: Match
+    usage: READ_ONLY

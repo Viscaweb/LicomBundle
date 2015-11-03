@@ -1,0 +1,45 @@
+Visca\Bundle\LicomBundle\Entity\ProfileTranslationGraphLabel:
+    profile_translation_graph_label1:
+        id: 1
+        code: name
+        name: name
+    profile_translation_graph_label2:
+        id: 2
+        code: shortname
+        name: shortname
+    profile_translation_graph_label3:
+        id: 3
+        code: nickname-male-sin
+        name: nickname-male-sin
+    profile_translation_graph_label4:
+        id: 4
+        code: nickname-female-sin
+        name: nickname-female-sin
+    profile_translation_graph_label5:
+        id: 5
+        code: nickname-male-plu
+        name: nickname-male-plu
+    profile_translation_graph_label6:
+        id: 6
+        code: nickname-female-plu
+        name: nickname-female-plu
+    profile_translation_graph_label7:
+        id: 7
+        code: demonyms-male-sin
+        name: demonyms-male-sin
+    profile_translation_graph_label8:
+        id: 8
+        code: demonyms-female-sin
+        name: demonyms-female-sin
+    profile_translation_graph_label9:
+        id: 9
+        code: demonyms-male-plu
+        name: demonyms-male-plu
+    profile_translation_graph_label10:
+        id: 10
+        code: demonyms-female-plu
+        name: demonyms-female-plu
+    profile_translation_graph_label11:
+        id: 11
+        code: trigraph
+        name: trigraph

@@ -1,0 +1,57 @@
+Visca\Bundle\LicomBundle\Entity\MediaType:
+    media_type1:
+        id: 1
+        code: TeamLogo
+        name: 'Teams logos'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity401'
+    media_type2:
+        id: 2
+        code: TeamHomeShirt
+        name: 'Teams home jerseys'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity401'
+    media_type3:
+        id: 3
+        code: TeamAwayShirt
+        name: 'Teams away jerseys'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity401'
+    media_type4:
+        id: 4
+        code: TeamThirdShirt
+        name: 'Teams third jerseys'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity401'
+    media_type5:
+        id: 5
+        code: PlayerPortrait
+        name: 'Players portraits'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity401'
+    media_type6:
+        id: 6
+        code: CompetitionLogo
+        name: 'Competitions logos'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity503'
+    media_type7:
+        id: 7
+        code: CountryFlag
+        name: 'Countries flags'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity502'

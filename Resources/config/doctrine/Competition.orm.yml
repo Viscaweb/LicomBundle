@@ -1,0 +1,70 @@
+Visca\Bundle\LicomBundle\Entity\Competition:
+  type: entity
+  table: Competition
+  repositoryClass: Visca\Bundle\LicomBundle\Repository\CompetitionRepository
+  id:
+    id:
+      type: integer
+      length: 10
+      generator:
+        strategy: IDENTITY
+      options:
+        unsigned: true
+  fields:
+    name:
+      type: string
+      length: 128
+      nullable: false
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+    level:
+      type: smallint
+      length: 5
+      nullable: true
+      columnDefinition: tinyint(3) unsigned DEFAULT NULL
+      options:
+        default: NULL
+        unsigned: true
+    gender:
+      type: CompetitionGenderType
+      nullable: false
+      options:
+        default: 'undefined'
+    createdAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+    updatedAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+  indexes:
+    fk_competitionCategory:
+      columns: [CompetitionCategory]
+  oneToMany:
+    competitionSeason:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\CompetitionSeason
+      mappedBy: competition
+    competitionStage:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\CompetitionStage
+      mappedBy: competition
+    competitionGraph:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\CompetitionGraph
+      mappedBy: competition
+  manyToOne:
+    competitionCategory:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\CompetitionCategory
+      inversedBy: competition
+      joinColumns:
+        CompetitionCategory:
+          referencedColumnName: id
+          nullable: false
+  cache:
+    region: Competition
+    usage: READ_ONLY

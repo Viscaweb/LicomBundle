@@ -1,0 +1,56 @@
+Visca\Bundle\LicomBundle\Entity\MatchTiming:
+  type: entity
+  table: MatchTiming
+  id:
+    id:
+      type: integer
+      length: 10
+      generator:
+        strategy: AUTO
+      options:
+        unsigned: true
+  fields:
+    start:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+    end:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+    createdAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+    updatedAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+  indexes:
+    fk_match:
+      columns: [Match_id]
+    fk_matchStatusDescription:
+      columns: [MatchStatusDescription]
+  manyToOne:
+    match:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\Match
+      joinColumns:
+        Match_id:
+          referencedColumnName: id
+          nullable: false
+    matchStatusDescription:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\MatchStatusDescription
+      joinColumns:
+        MatchStatusDescription:
+          referencedColumnName: id
+          nullable: false

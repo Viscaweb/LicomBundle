@@ -1,0 +1,52 @@
+include:
+  - ../types/Bookmaker.yml
+  - ../types/BettingOfferProvider.yml
+  - ../types/BettingOfferProviderGraphLabel.yml
+  - ../types/BettingOutcomeScopeType.yml
+  - ../types/BettingOutcomeSubType.yml
+
+  - ../types/CompetitionCategory.yml
+  - ../types/CompetitionGraphLabel.yml
+  - ../types/CompetitionRoundGraphLabel.yml
+  - ../types/CompetitionSeasonGraphLabel.yml
+  - ../types/CompetitionSeasonStageGraphLabel.yml
+  - ../types/CompetitionStageType.yml
+
+  - ../types/ParticipantAuxType.yml
+
+  - ../types/MediaTheme.yml
+  - ../types/MatchParticipantAuxType.yml
+  - ../types/MatchAuxProfileType.yml
+  - ../types/MatchAuxType.yml
+  - ../types/MatchIncidentAuxType.yml
+  - ../types/MatchIncidentType.yml
+  - ../types/MatchCommentType.yml
+  - ../types/MatchResultType.yml
+  - ../types/MatchStatsType.yml
+  - ../types/MatchLineupParticipantType.yml
+
+  - ../types/MatchStatusDescription.yml
+
+  - ../types/Entity.yml
+  - ../types/EventType.yml
+  - ../types/Sport.yml
+  - ../types/Country.yml
+  - ../types/MediaType.yml
+
+  - ../types/Localization.yml
+  - ../types/LocalizationTranslationType.yml
+  - ../types/LocalizationTranslationGraphLabel.yml
+  - ../types/ProfileRuleType.yml
+  - ../types/ProfileEntityGraphLabel.yml
+  - ../types/ProfileTranslationGraphLabel.yml
+
+  - ../types/StandingColumnScope.yml
+  - ../types/StandingColumnGroup.yml
+  - ../types/StandingColumn.yml
+  - ../types/StandingType.yml
+  - ../types/StandingView.yml
+  - ../types/StandingViewGraphLabel.yml
+  - ../types/StandingViewGraph.yml
+  - ../types/StandingPromotionType.yml
+  - ../types/StandingPromotion.yml
+  - ../types/StandingCommentGraphLabel.yml

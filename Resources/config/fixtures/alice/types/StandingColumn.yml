@@ -1,0 +1,453 @@
+Visca\Bundle\LicomBundle\Entity\StandingColumn:
+    standing_column1:
+        id: 1
+        code: ChangeAway
+        name: Change
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column2:
+        id: 2
+        code: ChangeHome
+        name: Change
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column3:
+        id: 3
+        code: ChangeTotal
+        name: Change
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column4:
+        id: 4
+        code: DrawAway
+        name: D
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column5:
+        id: 5
+        code: DrawHome
+        name: D
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column6:
+        id: 6
+        code: DrawTotal
+        name: D
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column7:
+        id: 7
+        code: GoalDiffAway
+        name: Diff.
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column8:
+        id: 8
+        code: GoalDiffHome
+        name: Diff.
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column9:
+        id: 9
+        code: GoalDiffTotal
+        name: Diff.
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column10:
+        id: 10
+        code: GoalsAgainstAway
+        name: 'Sum points'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column11:
+        id: 11
+        code: GoalsAgainstHome
+        name: 'Sum points'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column12:
+        id: 12
+        code: GoalsAgainstTotal
+        name: 'Sum points'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        standingColumnGroup: '@standing_column_group2'
+    standing_column13:
+        id: 13
+        code: GoalsForAway
+        name: 'Sum points'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column14:
+        id: 14
+        code: GoalsForHome
+        name: 'Sum points'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column15:
+        id: 15
+        code: GoalsForTotal
+        name: 'Sum points'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        standingColumnGroup: '@standing_column_group1'
+    standing_column19:
+        id: 19
+        code: LossAway
+        name: L
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column20:
+        id: 20
+        code: LossHome
+        name: L
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column21:
+        id: 21
+        code: LossTotal
+        name: L
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column22:
+        id: 22
+        code: MatchesAway
+        name: P
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column23:
+        id: 23
+        code: MatchesHome
+        name: P
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column24:
+        id: 24
+        code: MatchesTotal
+        name: P
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column25:
+        id: 25
+        code: PointsAway
+        name: 'Team points'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column26:
+        id: 26
+        code: PointsHome
+        name: 'Team points'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column27:
+        id: 27
+        code: PointsTotal
+        name: 'Team points'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column28:
+        id: 28
+        code: PositionAway
+        name: Pos
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column29:
+        id: 29
+        code: PositionHome
+        name: Pos
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column30:
+        id: 30
+        code: PositionTotal
+        name: Pos
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column31:
+        id: 31
+        code: SortPositionAway
+        name: Pos
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column32:
+        id: 32
+        code: SortPositionHome
+        name: Pos
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column33:
+        id: 33
+        code: SortPositionTotal
+        name: Pos
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column34:
+        id: 34
+        code: WinAway
+        name: W
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column35:
+        id: 35
+        code: WinHome
+        name: W
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column36:
+        id: 36
+        code: WinTotal
+        name: W
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column37:
+        id: 37
+        code: YellowCards
+        name: 'Yellow cards'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column38:
+        id: 38
+        code: RedCards
+        name: 'Red cards'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column39:
+        id: 39
+        code: TotalCards
+        name: 'Total cards'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column40:
+        id: 40
+        code: GoalsForTotal1To15Minute
+        name: GoalsForTotal1To15Minute
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        standingColumnScope: '@standing_column_scope3'
+        standingColumnGroup: '@standing_column_group1'
+    standing_column41:
+        id: 41
+        code: GoalsForTotal16To30Minute
+        name: GoalsForTotal16To30Minute
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        standingColumnScope: '@standing_column_scope4'
+        standingColumnGroup: '@standing_column_group1'
+    standing_column42:
+        id: 42
+        code: GoalsForTotal31To45Minute
+        name: GoalsForTotal31To45Minute
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        standingColumnScope: '@standing_column_scope5'
+        standingColumnGroup: '@standing_column_group1'
+    standing_column43:
+        id: 43
+        code: GoalsForTotal46To60Minute
+        name: GoalsForTotal46To60Minute
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        standingColumnScope: '@standing_column_scope6'
+        standingColumnGroup: '@standing_column_group1'
+    standing_column44:
+        id: 44
+        code: GoalsForTotal61To75Minute
+        name: GoalsForTotal61To75Minute
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        standingColumnScope: '@standing_column_scope7'
+        standingColumnGroup: '@standing_column_group1'
+    standing_column45:
+        id: 45
+        code: GoalsForTotal76To90Minute
+        name: GoalsForTotal76To90Minute
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        standingColumnScope: '@standing_column_scope8'
+        standingColumnGroup: '@standing_column_group1'
+    standing_column46:
+        id: 46
+        code: GoalsAwayTotal1To15Minute
+        name: GoalsAwayTotal1To15Minute
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        standingColumnScope: '@standing_column_scope3'
+        standingColumnGroup: '@standing_column_group2'
+    standing_column47:
+        id: 47
+        code: GoalsAwayTotal16To30Minute
+        name: GoalsAwayTotal16To30Minute
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        standingColumnScope: '@standing_column_scope4'
+        standingColumnGroup: '@standing_column_group2'
+    standing_column48:
+        id: 48
+        code: GoalsAwayTotal31To45Minute
+        name: GoalsAwayTotal31To45Minute
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        standingColumnScope: '@standing_column_scope5'
+        standingColumnGroup: '@standing_column_group2'
+    standing_column49:
+        id: 49
+        code: GoalsAwayTotal46To60Minute
+        name: GoalsAwayTotal46To60Minute
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        standingColumnScope: '@standing_column_scope6'
+        standingColumnGroup: '@standing_column_group2'
+    standing_column50:
+        id: 50
+        code: GoalsAwayTotal61To75Minute
+        name: GoalsAwayTotal61To75Minute
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        standingColumnScope: '@standing_column_scope7'
+        standingColumnGroup: '@standing_column_group2'
+    standing_column51:
+        id: 51
+        code: GoalsAwayTotal76To90Minute
+        name: GoalsAwayTotal76To90Minute
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        standingColumnScope: '@standing_column_scope8'
+        standingColumnGroup: '@standing_column_group2'
+    standing_column52:
+        id: 52
+        code: MatchesOverTwoAndHalfGoals
+        name: MatchesOverTwoAndHalfGoals
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column53:
+        id: 53
+        code: MatchesUnderTwoAndHalfGoals
+        name: MatchesUnderTwoAndHalfGoals
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column154:
+        id: 154
+        code: PositionTopScorer
+        name: PositionTopScorer
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column155:
+        id: 155
+        code: PositionAttack
+        name: PositionAttack
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column156:
+        id: 156
+        code: PositionDefense
+        name: PositionDefense
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column157:
+        id: 157
+        code: SortPositionTopScorer
+        name: SortPositionTopScorer
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+
+    standing_column160:
+        id: 160
+        code: PositionFirstHalf
+        name: PositionFirstHalf
+        del: no
+        createdAt: null
+        updatedAt: null
+
+    standing_column161:
+        id: 161
+        code: PositionSecondHalf
+        name: PositionSecondHalf
+        del: no
+        createdAt: null
+        updatedAt: null
+
+    standing_column158:
+        id: 158
+        code: SortPositionAttack
+        name: SortPositionAttack
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+
+    standing_column159:
+        id: 159
+        code: SortPositionDefense
+        name: SortPositionDefense
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+
+    standing_column163:
+        id: 163
+        code: SortPositionFirstHalf
+        name: SortPositionFirstHalf
+        del: no
+        createdAt: null
+        updatedAt: null
+
+    standing_column164:
+        id: 164
+        code: SortPositionSecondHalf
+        name: SortPositionSecondHalf
+        del: no
+        createdAt: null
+        updatedAt: null

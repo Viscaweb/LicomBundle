@@ -1,0 +1,9 @@
+Visca\Bundle\LicomBundle\Entity\StandingViewGraphLabel:
+    standing_view_graph_label1:
+        id: 1
+        code: Display
+        name: Display
+    standing_view_graph_label2:
+        id: 2
+        code: SortRows
+        name: SortRows

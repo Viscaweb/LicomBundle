@@ -1,0 +1,183 @@
+Visca\Bundle\LicomBundle\Entity\StandingView:
+    standing_view1:
+        id: 1
+        code: CompetitionTable
+        description: 'Main competition table for soccer'
+        scopeEntityId: 1
+        position: 10
+        extraMethod: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        standingType: '@standing_type1'
+        entity: '@entity503'
+        scopeEntity: '@entity501'
+    standing_view2:
+        id: 2
+        code: CompetitionTableHome
+        description: 'Competition table for soccer for home matches'
+        scopeEntityId: 1
+        position: 20
+        extraMethod: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        standingType: '@standing_type1'
+        entity: '@entity503'
+        scopeEntity: '@entity501'
+    standing_view3:
+        id: 3
+        code: CompetitionTableAway
+        description: 'Competition table for soccer for away matches'
+        scopeEntityId: 1
+        position: 30
+        extraMethod: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        standingType: '@standing_type1'
+        entity: '@entity503'
+        scopeEntity: '@entity501'
+    standing_view4:
+        id: 4
+        code: CompetitionTableAttack
+        description: 'Competition table for soccer for Attacks'
+        scopeEntityId: 1
+        position: 40
+        extraMethod: getStandingRowSortedDesc
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        standingType: '@standing_type1'
+        entity: '@entity503'
+        scopeEntity: '@entity501'
+    standing_view5:
+        id: 5
+        code: CompetitionTableDefense
+        description: 'Competition table for soccer for Defenses'
+        scopeEntityId: 1
+        position: 50
+        extraMethod: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        standingType: '@standing_type1'
+        entity: '@entity503'
+        scopeEntity: '@entity501'
+    standing_view6:
+        id: 6
+        code: CompetitionTable1stHT
+        description: 'Competition table for soccer for 1st Half Time'
+        scopeEntityId: 1
+        position: 60
+        extraMethod: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        standingType: '@standing_type4'
+        entity: '@entity503'
+        scopeEntity: '@entity501'
+    standing_view7:
+        id: 7
+        code: CompetitionTable2ndHT
+        description: 'Competition table for soccer for 2nd Half time'
+        scopeEntityId: 1
+        position: 70
+        extraMethod: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        standingType: '@standing_type5'
+        entity: '@entity503'
+        scopeEntity: '@entity501'
+    standing_view8:
+        id: 8
+        code: CompetitionTableFaireplay
+        description: 'Competition table for soccer for Faireplay'
+        scopeEntityId: 1
+        position: 80
+        extraMethod: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        standingType: '@standing_type2'
+        entity: '@entity503'
+        scopeEntity: '@entity501'
+    standing_view9:
+        id: 9
+        code: CompetitionTableTopScorer
+        description: 'Competition table for soccer for Top Scorer'
+        scopeEntityId: 1
+        position: 90
+        extraMethod: getStandingRowSortedDesc
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        standingType: '@standing_type3'
+        entity: '@entity503'
+        scopeEntity: '@entity501'
+    standing_view10:
+        id: 10
+        code: CompetitionTableCards
+        description: 'Competition table for soccer for Cards'
+        scopeEntityId: 1
+        position: 100
+        extraMethod: getStandingRowSortedCards
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        standingType: '@standing_type7'
+        entity: '@entity503'
+        scopeEntity: '@entity501'
+    standing_view11:
+        id: 11
+        code: LiveCompetitionTable
+        description: 'Live competition table for soccer'
+        scopeEntityId: 1
+        position: 110
+        extraMethod: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        standingType: '@standing_type6'
+        entity: '@entity503'
+        scopeEntity: '@entity501'
+    standing_view12:
+        id: 12
+        code: CompetitionCardsStats
+        description: 'Cards statistics of teams per competition'
+        scopeEntityId: 1
+        position: 255
+        extraMethod: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        standingType: '@standing_type1'
+        entity: '@entity503'
+        scopeEntity: '@entity501'
+    standing_view13:
+        id: 13
+        code: CompetitionGoalsStats
+        description: 'Goal statistics of teams per competition'
+        scopeEntityId: 1
+        position: 255
+        extraMethod: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        standingType: '@standing_type1'
+        entity: '@entity509'
+        scopeEntity: '@entity501'
+    standing_view14:
+        id: 14
+        code: CompetitionTeamOverUnderStats
+        description: 'Over/Under 2.5 goals statistics of teams per competition'
+        scopeEntityId: 1
+        position: 255
+        extraMethod: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        standingType: '@standing_type1'
+        entity: '@entity509'
+        scopeEntity: '@entity501'

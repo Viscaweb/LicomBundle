@@ -1,0 +1,68 @@
+Visca\Bundle\LicomBundle\Entity\CompetitionSeasonStageGraph:
+  type: entity
+  table: CompetitionSeasonStage_graph
+  id:
+    competitionSeasonStage:
+      type: integer
+      length: 10
+      associationKey: true
+      column: CompetitionSeasonStage
+      options:
+        unsigned: true
+    label:
+      type: smallint
+      associationKey: true
+      options:
+        unsigned: true
+    competitionRound:
+      type: integer
+      length: 10
+      associationKey: true
+      column: CompetitionRound
+      options:
+        unsigned: true
+  fields:
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+  indexes:
+    fk_competitionSeasonStage:
+      columns: [CompetitionSeasonStage]
+    fk_competitionRound:
+      columns: [CompetitionRound]
+    fk_label:
+      columns: [label]
+  manyToOne:
+    competitionSeasonStage:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\CompetitionSeasonStage
+      cache:
+        region: Competition
+        usage: READ_ONLY
+      joinColumns:
+        CompetitionSeasonStage:
+          referencedColumnName: id
+          nullable: false
+    label:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\CompetitionSeasonStageGraphLabel
+      cache:
+        region: Competition
+        usage: READ_ONLY
+      joinColumns:
+        label:
+          referencedColumnName: id
+          nullable: false
+    competitionRound:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\CompetitionRound
+      cache:
+        region: Competition
+        usage: READ_ONLY
+      joinColumns:
+        CompetitionRound:
+          referencedColumnName: id
+          nullable: false
+  cache:
+    region: Competition
+    usage: READ_ONLY

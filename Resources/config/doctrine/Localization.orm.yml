@@ -1,0 +1,45 @@
+Visca\Bundle\LicomBundle\Entity\Localization:
+  type: entity
+  table: Localization
+  repositoryClass: Visca\Bundle\LicomBundle\Repository\LocalizationRepository
+  id:
+    id:
+      type: smallint
+      length: 5
+      options:
+        unsigned: true
+  fields:
+    language:
+      type: string
+      length: 2
+      nullable: false
+      fixed: true
+      columnDefinition: CHAR(2) NOT NULL
+    country:
+      type: string
+      length: 2
+      nullable: true
+      fixed: true
+      columnDefinition: CHAR(2) NULL DEFAULT NULL
+      options:
+        default: NULL
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+    createdAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+    updatedAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+  oneToMany:
+    localizationTranslationGraph:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\LocalizationTranslationGraph
+      mappedBy: localization

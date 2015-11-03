@@ -1,0 +1,30 @@
+Visca\Bundle\LicomBundle\Entity\StandingColumnScope:
+  type: entity
+  id:
+    id:
+      type: smallint
+      length: 5
+      options:
+        unsigned: true
+  fields:
+    code:
+      type: string
+      unique: true
+      length: 32
+      nullable: false
+    name:
+      type: string
+      length: 255
+      nullable: false
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+    createdAt:
+      type: DateTimeUTCType
+      nullable: true
+    updatedAt:
+      type: DateTimeUTCType
+      nullable: true

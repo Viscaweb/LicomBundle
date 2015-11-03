@@ -1,0 +1,44 @@
+Visca\Bundle\LicomBundle\Entity\StandingPromotion:
+  type: entity
+  table: StandingPromotion
+  id:
+    id:
+      type: smallint
+      length: 5
+      options:
+        unsigned: true
+  fields:
+    code:
+      type: string
+      unique: true
+      length: 32
+      nullable: false
+    name:
+      type: string
+      length: 255
+      nullable: false
+      options:
+        default: NULL
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+    createdAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+    updatedAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+  manyToOne:
+    StandingPromotionType:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\StandingPromotionType
+      joinColumns:
+        StandingPromotionType:
+          referencedColumnName: id
+          nullable: false

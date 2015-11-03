@@ -1,0 +1,68 @@
+Visca\Bundle\LicomBundle\Entity\ProfileTranslationGraph:
+  type: entity
+  table: ProfileTranslation_graph
+  id:
+    localizationTranslation:
+      type: integer
+      length: 10
+      associationKey: true
+      column: LocalizationTranslation
+    profileTranslationGraphLabel:
+      type: smallint
+      length: 5
+      associationKey: true
+      options:
+        unsigned: true
+    profile:
+      type: integer
+      length: 2
+      associationKey: true
+      column: Profile
+  fields:
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+  indexes:
+    fk_localizationTranslation:
+      columns: [LocalizationTranslation]
+    fk_profile:
+      columns: [Profile]
+    fk_label:
+      columns: [label]
+  manyToOne:
+    localizationTranslation:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\LocalizationTranslation
+      inversedBy: profileTranslationGraph
+      cache:
+        region: Profile
+        usage: READ_ONLY
+      joinColumns:
+        LocalizationTranslation:
+          referencedColumnName: id
+          nullable: false
+    profileTranslationGraphLabel:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\ProfileTranslationGraphLabel
+      inversedBy: profileTranslationGraph
+      cache:
+        region: Profile
+        usage: READ_ONLY
+      joinColumns:
+        label:
+          referencedColumnName: id
+          nullable: false
+    profile:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\Profile
+      inversedBy: profileTranslationGraph
+      cache:
+        region: Profile
+        usage: READ_ONLY
+      joinColumns:
+        Profile:
+          referencedColumnName: id
+          nullable: false
+  cache:
+    region: Profile
+    usage: READ_ONLY

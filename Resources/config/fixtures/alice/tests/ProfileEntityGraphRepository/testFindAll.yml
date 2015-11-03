@@ -1,0 +1,30 @@
+include:
+  - ../../types/Entity.yml
+  - ../../types/MatchStatusDescription.yml
+  - ../../types/CompetitionStageType.yml
+  - ../../types/ProfileEntityGraphLabel.yml
+  - ../../types/Sport.yml
+  - ../../default/Country.yml
+  - ../../default/CompetitionCategory.yml
+  - ../../default/Competition.yml
+  - ../../default/CompetitionSeason.yml
+  - ../../default/CompetitionStage.yml
+  - ../../default/CompetitionSeasonStage.yml
+
+Visca\Bundle\LicomBundle\Entity\Profile:
+  default_profile:
+      __construct:
+        create: []
+      id: 1
+      code: default
+      name: Default
+
+Visca\Bundle\LicomBundle\Entity\ProfileEntityGraph:
+  default_entity_graph_competition:
+      __construct:
+        create: []
+      label: @profile_entity_graph_label7
+      entity: @entity503
+      entityId: 1
+      position: 1
+      profile: @default_profile

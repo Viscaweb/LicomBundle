@@ -1,0 +1,15 @@
+Visca\Bundle\LicomBundle\Entity\MediaTheme:
+    media_theme1:
+        id: 1
+        code: Default
+        name: Default
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    media_theme2:
+        id: 2
+        code: Rounded
+        name: Rounded
+        del: 'no'
+        createdAt: null
+        updatedAt: null

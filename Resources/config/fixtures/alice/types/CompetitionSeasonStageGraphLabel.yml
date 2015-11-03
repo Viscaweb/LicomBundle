@@ -1,0 +1,17 @@
+Visca\Bundle\LicomBundle\Entity\CompetitionSeasonStageGraphLabel:
+    competition_season_stage_graph_label1:
+        id: 1
+        code: Current
+        name: 'Current round'
+    competition_season_stage_graph_label2:
+        id: 2
+        code: Next
+        name: 'Next round'
+    competition_season_stage_graph_label3:
+        id: 3
+        code: Last
+        name: 'Last round'
+    competition_season_stage_graph_label4:
+        id: 4
+        code: Previous
+        name: 'Previous round'

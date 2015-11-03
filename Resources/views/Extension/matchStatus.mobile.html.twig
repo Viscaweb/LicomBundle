@@ -1,0 +1,9 @@
+{% block match_status_content %}
+    <span class="{{ modelView.cssClass }}">
+        {% if modelView.live %}
+            {{ modelView.timeElapsed }}'
+        {% else %}
+            {{ modelView.statusName }}
+        {% endif %}
+    </span>
+{% endblock %}

@@ -1,0 +1,8 @@
+Visca\Bundle\LicomBundle\Entity\ThreeWayMatchBettingOutcome:
+  type: entity
+  manyToOne:
+    winner:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\Participant
+      joinColumns:
+        iparam:
+          referencedColumnName: id

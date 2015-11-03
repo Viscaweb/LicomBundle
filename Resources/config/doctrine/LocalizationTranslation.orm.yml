@@ -1,0 +1,63 @@
+Visca\Bundle\LicomBundle\Entity\LocalizationTranslation:
+  type: entity
+  table: LocalizationTranslation
+  repositoryClass: Visca\Bundle\LicomBundle\Repository\LocalizationTranslationRepository
+  id:
+    id:
+      type: integer
+      length: 10
+      generator:
+        strategy: AUTO
+      options:
+        unsigned: true
+  fields:
+    entityId:
+      type: integer
+      length: 10
+      nullable: false
+      options:
+        unsigned: true
+    text:
+      type: text
+      nullable: true
+      columnDefinition: LONGTEXT
+      options:
+        default: NULL
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+    createdAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+    updatedAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+  indexes:
+    idx_entityId:
+      columns: [entityId]
+    idx_localizationTranslationType_entityId:
+      columns: [LocalizationTranslationType, entityId]
+    fk_localizationTranslationType:
+      columns: [LocalizationTranslationType]
+  oneToMany:
+    localizationTranslationGraph:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\LocalizationTranslationGraph
+      mappedBy: localizationTranslation
+    profileTranslationGraph:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\ProfileTranslationGraph
+      mappedBy: localizationTranslation
+  manyToOne:
+    localizationTranslationType:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\LocalizationTranslationType
+      inversedBy: localizationTranslation
+      joinColumns:
+        LocalizationTranslationType:
+          referencedColumnName: id
+          nullable: false

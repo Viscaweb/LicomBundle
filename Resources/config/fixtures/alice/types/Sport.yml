@@ -1,0 +1,55 @@
+Visca\Bundle\LicomBundle\Entity\Sport:
+    sport1:
+        id: 1
+        name: Soccer
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    sport2:
+        id: 2
+        name: Tennis
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    sport5:
+        id: 5
+        name: 'Ice hockey'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    sport20:
+        id: 20
+        name: Handball
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    sport23:
+        id: 23
+        name: Basketball
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    sport24:
+        id: 24
+        name: 'American football'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    sport26:
+        id: 26
+        name: Baseball
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    sport29:
+        id: 29
+        name: Rugby
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    sport51:
+        id: 51
+        name: Volleyball
+        del: 'no'
+        createdAt: null
+        updatedAt: null

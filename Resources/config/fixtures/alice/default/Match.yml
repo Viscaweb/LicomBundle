@@ -1,0 +1,7 @@
+Visca\Bundle\LicomBundle\Entity\Match:
+  match_default:
+    __construct: { create: [] }
+    name: Default match
+    startDate: <dateTimeBetween('-1 day', '-1 day')>
+    competitionSeasonStage: @competition_season_stage_default
+    matchStatusDescription: @match_status_description72

@@ -1,0 +1,81 @@
+Visca\Bundle\LicomBundle\Entity\MatchComment:
+  type: entity
+  table: MatchComment
+  repositoryClass: Visca\Bundle\LicomBundle\Repository\MatchCommentRepository
+  id:
+    id:
+      type: integer
+      length: 10
+      generator:
+        strategy: AUTO
+      options:
+        unsigned: true
+  fields:
+    text:
+      type: text
+      nullable: false
+      columnDefinition: TEXT NOT NULL
+      options:
+        default: NULL
+    timeElapsed:
+      type: smallint
+      length: 3
+      nullable: true
+      columnDefinition: TINYINT(4) DEFAULT NULL
+      options:
+        default: NULL
+    timeElapsedExtra:
+      type: smallint
+      length: 3
+      nullable: true
+      columnDefinition: TINYINT(4) DEFAULT NULL
+      options:
+        default: NULL
+    time:
+      type: DateTimeUTCType
+      nullable: true
+      column: `time`
+      options:
+        default: NULL
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+    createdAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+    updatedAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+  indexes:
+    fk_match:
+      columns: [Match_id]
+    fk_localization:
+      columns: [LocalizationProfile]
+    fk_matchCommentType:
+      columns: [MatchCommentType]
+  manyToOne:
+    match:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\Match
+      joinColumns:
+        Match_id:
+          referencedColumnName: id
+          nullable: false
+    localization:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\Localization
+      joinColumns:
+        LocalizationProfile:
+          referencedColumnName: id
+          nullable: false
+    matchCommentType:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\MatchCommentType
+      joinColumns:
+        MatchCommentType:
+          referencedColumnName: id
+          nullable: false

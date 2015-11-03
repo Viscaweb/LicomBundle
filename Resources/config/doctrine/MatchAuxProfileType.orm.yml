@@ -1,0 +1,28 @@
+Visca\Bundle\LicomBundle\Entity\MatchAuxProfileType:
+  type: entity
+  table: Match_auxProfileType
+  id:
+    id:
+      type: smallint
+      length: 5
+      options:
+        unsigned: true
+  fields:
+    code:
+      type: string
+      unique: true
+      length: 45
+      nullable: false
+    name:
+      type: string
+      length: 255
+      nullable: false
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+  cache:
+    region: Type
+    usage: READ_ONLY

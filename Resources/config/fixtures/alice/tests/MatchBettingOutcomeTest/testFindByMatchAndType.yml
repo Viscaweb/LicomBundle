@@ -1,0 +1,50 @@
+include:
+  - ../../types/MatchStatusDescription.yml
+  - ../../types/CompetitionStageType.yml
+  - ../../types/Sport.yml
+  - ../../types/Entity.yml
+  - ../../types/BettingOutcomeSubType.yml
+  - ../../types/BettingOutcomeScopeType.yml
+  - ../../default/Country.yml
+  - ../../default/CompetitionCategory.yml
+  - ../../default/Competition.yml
+  - ../../default/CompetitionSeason.yml
+  - ../../default/CompetitionStage.yml
+  - ../../default/CompetitionSeasonStage.yml
+  - ../../default/Team.yml
+  - ../../default/Match.yml
+  - ../../default/MatchParticipant.yml
+
+# 1x2 Outcomes
+Visca\Bundle\LicomBundle\Entity\ThreeWayMatchBettingOutcome:
+  three_way_match_betting_outcome (template):
+    entity: @entity703
+    match: @match_default
+    scopeType: @betting_outcome_scope_type1
+    del: 'no'
+
+  three_way_match_betting_outcome_home (extends three_way_match_betting_outcome):
+    winner: @team0
+    subType: @betting_outcome_sub_type1
+
+  three_way_match_betting_outcome_draw (extends three_way_match_betting_outcome):
+    subType: @betting_outcome_sub_type2
+
+  three_way_match_betting_outcome_away (extends three_way_match_betting_outcome):
+    winner: @team1
+    subType: @betting_outcome_sub_type1
+
+# Over Under outcomes
+Visca\Bundle\LicomBundle\Entity\OverUnderMatchBettingOutcome:
+  over_under_match_betting_outcome (template):
+    entity: @entity703
+    match: @match_default
+    scopeType: @betting_outcome_scope_type1
+    goalsTotal: 2.5
+    del: 'no'
+
+  over_under_match_betting_outcome_over (extends over_under_match_betting_outcome):
+    subType: @betting_outcome_sub_type11
+
+  over_under_match_betting_outcome_under (extends over_under_match_betting_outcome):
+    subType: @betting_outcome_sub_type3

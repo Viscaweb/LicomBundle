@@ -1,0 +1,1730 @@
+Visca\Bundle\LicomBundle\Entity\Country:
+    country1:
+        id: 1
+        name: Denmark
+        code: dk
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country2:
+        id: 2
+        name: England
+        code: _england
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country3:
+        id: 3
+        name: Germany
+        code: de
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country4:
+        id: 4
+        name: Italy
+        code: it
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country5:
+        id: 5
+        name: France
+        code: fr
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country6:
+        id: 6
+        name: Sweden
+        code: se
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country7:
+        id: 7
+        name: Norway
+        code: 'no'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country8:
+        id: 8
+        name: Spain
+        code: es
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country9:
+        id: 9
+        name: Netherlands
+        code: nl
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country11:
+        id: 11
+        name: World
+        code: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country12:
+        id: 12
+        name: Portugal
+        code: pt
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country13:
+        id: 13
+        name: Turkey
+        code: tr
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country14:
+        id: 14
+        name: Belgium
+        code: be
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country15:
+        id: 15
+        name: Scotland
+        code: _scotland
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country16:
+        id: 16
+        name: USA
+        code: us
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country17:
+        id: 17
+        name: Slovenia
+        code: si
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country19:
+        id: 19
+        name: 'Czech Republic'
+        code: cz
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country20:
+        id: 20
+        name: Serbia
+        code: rs
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country21:
+        id: 21
+        name: Romania
+        code: ro
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country22:
+        id: 22
+        name: Russia
+        code: ru
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country23:
+        id: 23
+        name: Canada
+        code: ca
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country24:
+        id: 24
+        name: Finland
+        code: fi
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country25:
+        id: 25
+        name: Japan
+        code: jp
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country26:
+        id: 26
+        name: Hungary
+        code: hu
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country28:
+        id: 28
+        name: 'South Africa'
+        code: za
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country29:
+        id: 29
+        name: Tunisia
+        code: tn
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country30:
+        id: 30
+        name: Nigeria
+        code: ng
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country31:
+        id: 31
+        name: Egypt
+        code: eg
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country32:
+        id: 32
+        name: Cameroon
+        code: cm
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country33:
+        id: 33
+        name: Greece
+        code: gr
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country34:
+        id: 34
+        name: Austria
+        code: at
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country35:
+        id: 35
+        name: U.A.E.
+        code: ae
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country37:
+        id: 37
+        name: Switzerland
+        code: ch
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country38:
+        id: 38
+        name: Israel
+        code: il
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country39:
+        id: 39
+        name: Australia
+        code: au
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country41:
+        id: 41
+        name: Luxembourg
+        code: lu
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country42:
+        id: 42
+        name: 'N. Ireland'
+        code: _n-ireland
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country44:
+        id: 44
+        name: Croatia
+        code: hr
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country45:
+        id: 45
+        name: Ireland
+        code: ie
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country47:
+        id: 47
+        name: Poland
+        code: pl
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country48:
+        id: 48
+        name: Argentina
+        code: ar
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country50:
+        id: 50
+        name: Thailand
+        code: th
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country51:
+        id: 51
+        name: Brazil
+        code: br
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country52:
+        id: 52
+        name: Morocco
+        code: ma
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country53:
+        id: 53
+        name: Ukraine
+        code: ua
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country54:
+        id: 54
+        name: Malta
+        code: mt
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country55:
+        id: 55
+        name: Georgia
+        code: ge
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country56:
+        id: 56
+        name: Bulgaria
+        code: bg
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country57:
+        id: 57
+        name: Belarus
+        code: by
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country58:
+        id: 58
+        name: Wales
+        code: _wales
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country59:
+        id: 59
+        name: Cyprus
+        code: cy
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country60:
+        id: 60
+        name: Estonia
+        code: ee
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country61:
+        id: 61
+        name: Latvia
+        code: lv
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country62:
+        id: 62
+        name: Slovakia
+        code: sk
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country63:
+        id: 63
+        name: 'Saudi Arabia'
+        code: sa
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country64:
+        id: 64
+        name: Azerbaijan
+        code: az
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country65:
+        id: 65
+        name: Moldova
+        code: md
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country66:
+        id: 66
+        name: Lithuania
+        code: lt
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country67:
+        id: 67
+        name: 'Faroe Islands'
+        code: fo
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country68:
+        id: 68
+        name: Macedonia
+        code: mk
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country69:
+        id: 69
+        name: Iceland
+        code: is
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country70:
+        id: 70
+        name: Bosnia-Herzegovina
+        code: ba
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country71:
+        id: 71
+        name: Albania
+        code: al
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country72:
+        id: 72
+        name: Armenia
+        code: am
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country73:
+        id: 73
+        name: 'San Marino'
+        code: sm
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country74:
+        id: 74
+        name: Liechtenstein
+        code: li
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country76:
+        id: 76
+        name: Andorra
+        code: ad
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country77:
+        id: 77
+        name: Chile
+        code: cl
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country78:
+        id: 78
+        name: Colombia
+        code: co
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country79:
+        id: 79
+        name: Uruguay
+        code: uy
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country80:
+        id: 80
+        name: Ecuador
+        code: ec
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country81:
+        id: 81
+        name: Bolivia
+        code: bo
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country82:
+        id: 82
+        name: Paraguay
+        code: py
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country83:
+        id: 83
+        name: Peru
+        code: pe
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country84:
+        id: 84
+        name: Venezuela
+        code: ve
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country85:
+        id: 85
+        name: Algeria
+        code: dz
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country86:
+        id: 86
+        name: Greenland
+        code: gl
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country87:
+        id: 87
+        name: Kuwait
+        code: kw
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country88:
+        id: 88
+        name: 'South Korea'
+        code: kr
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country89:
+        id: 89
+        name: Malaysia
+        code: my
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country90:
+        id: 90
+        name: Singapore
+        code: sg
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country91:
+        id: 91
+        name: Qatar
+        code: qa
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country92:
+        id: 92
+        name: Zimbabwe
+        code: zw
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country93:
+        id: 93
+        name: 'New Zealand'
+        code: nz
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country94:
+        id: 94
+        name: Fiji
+        code: fj
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country95:
+        id: 95
+        name: Taiwan
+        code: tw
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country96:
+        id: 96
+        name: Burma
+        code: mm
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country98:
+        id: 98
+        name: Libya
+        code: ly
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country99:
+        id: 99
+        name: Togo
+        code: tg
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country100:
+        id: 100
+        name: Zambia
+        code: zm
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country101:
+        id: 101
+        name: Sudan
+        code: sd
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country102:
+        id: 102
+        name: Ghana
+        code: gh
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country103:
+        id: 103
+        name: Liberia
+        code: lr
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country104:
+        id: 104
+        name: 'Sierra Leone'
+        code: sl
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country105:
+        id: 105
+        name: Namibia
+        code: na
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country106:
+        id: 106
+        name: Senegal
+        code: sn
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country107:
+        id: 107
+        name: Congo
+        code: cg
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country108:
+        id: 108
+        name: 'DR Congo'
+        code: cd
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country109:
+        id: 109
+        name: Malawi
+        code: mw
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country110:
+        id: 110
+        name: 'Burkina Faso'
+        code: bf
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country111:
+        id: 111
+        name: 'Ivory Coast'
+        code: ci
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country112:
+        id: 112
+        name: Jamaica
+        code: jm
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country113:
+        id: 113
+        name: 'Trinidad and Tobago'
+        code: tt
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country114:
+        id: 114
+        name: Mexico
+        code: mx
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country115:
+        id: 115
+        name: Nicaragua
+        code: ni
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country116:
+        id: 116
+        name: 'El Salvador'
+        code: sv
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country117:
+        id: 117
+        name: 'Costa Rica'
+        code: cr
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country118:
+        id: 118
+        name: Honduras
+        code: hn
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country119:
+        id: 119
+        name: Angola
+        code: ao
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country120:
+        id: 120
+        name: Madagascar
+        code: mg
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country121:
+        id: 121
+        name: 'North Korea'
+        code: kp
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country122:
+        id: 122
+        name: Iran
+        code: ir
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country123:
+        id: 123
+        name: Iraq
+        code: iq
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country125:
+        id: 125
+        name: China
+        code: cn
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country126:
+        id: 126
+        name: Mali
+        code: ml
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country127:
+        id: 127
+        name: Jordan
+        code: jo
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country128:
+        id: 128
+        name: 'Hong Kong'
+        code: hk
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country129:
+        id: 129
+        name: Kazakhstan
+        code: kz
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country130:
+        id: 130
+        name: Uzbekistan
+        code: uz
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country131:
+        id: 131
+        name: Benin
+        code: bj
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country133:
+        id: 133
+        name: India
+        code: in
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country134:
+        id: 134
+        name: Oman
+        code: om
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country135:
+        id: 135
+        name: Laos
+        code: la
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country136:
+        id: 136
+        name: Guatemala
+        code: gt
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country137:
+        id: 137
+        name: Cuba
+        code: cu
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country138:
+        id: 138
+        name: Martinique
+        code: mq
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country139:
+        id: 139
+        name: Haiti
+        code: ht
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country140:
+        id: 140
+        name: Bahamas
+        code: bs
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country141:
+        id: 141
+        name: Indonesia
+        code: id
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country142:
+        id: 142
+        name: 'Puerto Rico'
+        code: pr
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country143:
+        id: 143
+        name: Panama
+        code: pa
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country144:
+        id: 144
+        name: Bahrain
+        code: bh
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country145:
+        id: 145
+        name: Rwanda
+        code: rw
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country146:
+        id: 146
+        name: Guinea
+        code: gn
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country147:
+        id: 147
+        name: Kenya
+        code: ke
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country148:
+        id: 148
+        name: Yemen
+        code: ye
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country149:
+        id: 149
+        name: Barbados
+        code: bb
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country150:
+        id: 150
+        name: Kyrgyzstan
+        code: kg
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country151:
+        id: 151
+        name: Botswana
+        code: bw
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country152:
+        id: 152
+        name: Gabon
+        code: ga
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country153:
+        id: 153
+        name: 'Cape Verde'
+        code: cv
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country154:
+        id: 154
+        name: Uganda
+        code: ug
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country155:
+        id: 155
+        name: Vietnam
+        code: vn
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country156:
+        id: 156
+        name: 'Sri Lanka'
+        code: lk
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country157:
+        id: 157
+        name: Palestine
+        code: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country158:
+        id: 158
+        name: Syria
+        code: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country159:
+        id: 159
+        name: Tajikistan
+        code: tj
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country160:
+        id: 160
+        name: Lebanon
+        code: lb
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country161:
+        id: 161
+        name: Maldives
+        code: mv
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country162:
+        id: 162
+        name: Turkmenistan
+        code: tm
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country163:
+        id: 163
+        name: Pakistan
+        code: pk
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country164:
+        id: 164
+        name: 'Dominican Rep.'
+        code: do
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country165:
+        id: 165
+        name: 'St. Kitts and Nevis'
+        code: kn
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country166:
+        id: 166
+        name: 'Saint Vincent and The Grenadines'
+        code: vc
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country167:
+        id: 167
+        name: Vanuatu
+        code: vu
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country168:
+        id: 168
+        name: Tahiti
+        code: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country169:
+        id: 169
+        name: 'Solomon Islands'
+        code: sb
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country170:
+        id: 170
+        name: 'Great Britain'
+        code: gb
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country171:
+        id: 171
+        name: Tonga
+        code: to
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country172:
+        id: 172
+        name: Philippines
+        code: ph
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country173:
+        id: 173
+        name: Mongolia
+        code: mn
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country174:
+        id: 174
+        name: Afghanistan
+        code: af
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country175:
+        id: 175
+        name: Lesotho
+        code: ls
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country176:
+        id: 176
+        name: Nepal
+        code: np
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country177:
+        id: 177
+        name: Ethiopia
+        code: et
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country178:
+        id: 178
+        name: Mauritius
+        code: mu
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country179:
+        id: 179
+        name: Seychelles
+        code: sc
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country180:
+        id: 180
+        name: Brunei
+        code: bn
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country181:
+        id: 181
+        name: 'Virgin Islands'
+        code: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country182:
+        id: 182
+        name: Micronesia
+        code: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country183:
+        id: 183
+        name: Bermuda
+        code: bm
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country184:
+        id: 184
+        name: Nauru
+        code: nr
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country185:
+        id: 185
+        name: 'Central African Rep.'
+        code: cf
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country186:
+        id: 186
+        name: Guam
+        code: gu
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country187:
+        id: 187
+        name: 'Netherlands Antilles'
+        code: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country188:
+        id: 188
+        name: Bangladesh
+        code: bd
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country189:
+        id: 189
+        name: Bhutan
+        code: bt
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country190:
+        id: 190
+        name: Monaco
+        code: mc
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country192:
+        id: 192
+        name: 'Antigua and Barbuda'
+        code: ag
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country193:
+        id: 193
+        name: 'American Samoa'
+        code: as
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country194:
+        id: 194
+        name: Belize
+        code: bz
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country195:
+        id: 195
+        name: Aruba
+        code: aw
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country196:
+        id: 196
+        name: Burundi
+        code: bi
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country197:
+        id: 197
+        name: 'Cayman Islands'
+        code: ky
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country198:
+        id: 198
+        name: Djibouti
+        code: dj
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country199:
+        id: 199
+        name: Dominica
+        code: dm
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country200:
+        id: 200
+        name: 'Ecuatorial Guinea'
+        code: gq
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country201:
+        id: 201
+        name: Eritrea
+        code: er
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country202:
+        id: 202
+        name: 'Cook Islands'
+        code: ck
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country203:
+        id: 203
+        name: Cambodia
+        code: kh
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country204:
+        id: 204
+        name: 'French Guyana'
+        code: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country205:
+        id: 205
+        name: Gambia
+        code: gm
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country206:
+        id: 206
+        name: 'Saint Lucia'
+        code: lc
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country207:
+        id: 207
+        name: Niger
+        code: ne
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country208:
+        id: 208
+        name: 'Papua New Guinea'
+        code: pg
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country209:
+        id: 209
+        name: Chad
+        code: td
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country210:
+        id: 210
+        name: Swaziland
+        code: sz
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country211:
+        id: 211
+        name: Comoros
+        code: km
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country212:
+        id: 212
+        name: Kiribati
+        code: ki
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country213:
+        id: 213
+        name: Grenada
+        code: gd
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country214:
+        id: 214
+        name: 'British Virgin Islands'
+        code: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country215:
+        id: 215
+        name: Mozambique
+        code: mz
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country216:
+        id: 216
+        name: Guyana
+        code: gy
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country217:
+        id: 217
+        name: Mauretania
+        code: mr
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country218:
+        id: 218
+        name: Tanzania
+        code: tz
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country219:
+        id: 219
+        name: Somalia
+        code: so
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country220:
+        id: 220
+        name: Surinam
+        code: sr
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country221:
+        id: 221
+        name: 'Sao Tome and Principe'
+        code: st
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country222:
+        id: 222
+        name: 'Former East Timor'
+        code: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country223:
+        id: 223
+        name: Palau
+        code: pw
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country224:
+        id: 224
+        name: Samoa
+        code: ws
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country225:
+        id: 225
+        name: Europe
+        code: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country226:
+        id: 226
+        name: GB/Ireland
+        code: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country227:
+        id: 227
+        name: Asia
+        code: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country228:
+        id: 228
+        name: Macao
+        code: mo
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country229:
+        id: 229
+        name: Guadeloupe
+        code: gp
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country230:
+        id: 230
+        name: Montenegro
+        code: me
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country465:
+        id: 465
+        name: Unknown
+        code: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country652:
+        id: 652
+        name: Undefined
+        code: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country653:
+        id: 653
+        name: Timor-Leste
+        code: tl
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country654:
+        id: 654
+        name: 'New Caledonia'
+        code: nc
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country655:
+        id: 655
+        name: Gibraltar
+        code: gi
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country656:
+        id: 656
+        name: Guinea-Bissau
+        code: gw
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country657:
+        id: 657
+        name: 'Marshall Islands'
+        code: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country658:
+        id: 658
+        name: Tuvalu
+        code: tv
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country659:
+        id: 659
+        name: Jersey
+        code: je
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country660:
+        id: 660
+        name: 'Christmas Island'
+        code: cx
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country661:
+        id: 661
+        name: Anguilla
+        code: ai
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country662:
+        id: 662
+        name: Montserrat
+        code: ms
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country663:
+        id: 663
+        name: 'Turks and Caicos Islands'
+        code: tc
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country664:
+        id: 664
+        name: Curacao
+        code: cw
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country665:
+        id: 665
+        name: Zanzibar
+        code: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country666:
+        id: 666
+        name: 'South Sudan'
+        code: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country667:
+        id: 667
+        name: 'Northern Mariana Islands'
+        code: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country668:
+        id: 668
+        name: Kosovo
+        code: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country669:
+        id: 669
+        name: Yugoslavia
+        code: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country670:
+        id: 670
+        name: 'West Germany'
+        code: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country671:
+        id: 671
+        name: 'East Germany'
+        code: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country672:
+        id: 672
+        name: 'Soviet Union'
+        code: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country673:
+        id: 673
+        name: Czechoslovakia
+        code: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country674:
+        id: 674
+        name: 'Dutch East Indies'
+        code: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country675:
+        id: 675
+        name: Zaire
+        code: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country701:
+        id: 701
+        name: Africa
+        code: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country702:
+        id: 702
+        name: Asia
+        code: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country703:
+        id: 703
+        name: 'Australia and Oceania'
+        code: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country704:
+        id: 704
+        name: 'North and Central America'
+        code: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    country705:
+        id: 705
+        name: 'South America'
+        code: null
+        del: 'no'
+        createdAt: null
+        updatedAt: null

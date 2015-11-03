@@ -1,0 +1,737 @@
+Visca\Bundle\LicomBundle\Entity\MatchStatusDescription:
+    match_status_description1:
+        id: 1
+        code: NotStarted
+        name: 'Not started'
+        category: notstarted
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description2:
+        id: 2
+        code: KickOffDelayed
+        name: 'Kick off delayed'
+        category: notstarted
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description3:
+        id: 3
+        code: FirstHalf
+        name: '1st half'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description4:
+        id: 4
+        code: Halftime
+        name: halftime
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description5:
+        id: 5
+        code: SecondHalf
+        name: '2nd half'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description6:
+        id: 6
+        code: ExtraTimeWaitingForET
+        name: 'Extra time - waiting for ET'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description7:
+        id: 7
+        code: ExtraTime
+        name: 'Extra time'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description8:
+        id: 8
+        code: ExtraTime1stHalf
+        name: 'Extra time - 1st half'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description9:
+        id: 9
+        code: ExtraTime1stHalf2ndTime
+        name: 'Extra time - 1st half - 2nd time'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description10:
+        id: 10
+        code: ExtraTimeHalftime
+        name: 'Extra time - halftime'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description11:
+        id: 11
+        code: ExtraTime2ndHalf
+        name: 'Extra time - 2nd half'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description12:
+        id: 12
+        code: ExtraTime2ndHalf2ndTime
+        name: 'Extra time - 2nd half - 2nd time'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description13:
+        id: 13
+        code: OvertimeWaitingForOvertime
+        name: 'Overtime - waiting for overtime'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description14:
+        id: 14
+        code: Overtime
+        name: Overtime
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description15:
+        id: 15
+        code: Overtime1stHalf
+        name: 'Overtime - 1st half'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description16:
+        id: 16
+        code: Overtime2ndHalf
+        name: 'Overtime - 2nd half'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description17:
+        id: 17
+        code: GoldenGoalWaitingForGoldenGoal
+        name: 'Golden goal - waiting for golden goal'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description18:
+        id: 18
+        code: GoldenGoal1stHalf
+        name: 'Golden goal - 1st half'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description19:
+        id: 19
+        code: GoldenGoal2ndHalf
+        name: 'Golden goal - 2nd half'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description20:
+        id: 20
+        code: SilverGoalWaitingForSilverGoal
+        name: 'Silver goal - waiting for silver goal'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description21:
+        id: 21
+        code: SilverGoal1stHalf
+        name: 'Silver goal - 1st half'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description22:
+        id: 22
+        code: SilverGoal2ndHalf
+        name: 'Silver goal - 2nd half'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description23:
+        id: 23
+        code: AwaitingPenalties
+        name: 'Awaiting penalties'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description24:
+        id: 24
+        code: Penalties
+        name: Penalties
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description25:
+        id: 25
+        code: Started
+        name: Started
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description26:
+        id: 26
+        code: Pause
+        name: Pause
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description27:
+        id: 27
+        code: FirsPeriod
+        name: '1st period'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description28:
+        id: 28
+        code: SecondPeriod
+        name: '2nd period'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description29:
+        id: 29
+        code: ThirdPeriod
+        name: '3rd period'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description30:
+        id: 30
+        code: FourthPeriod
+        name: '4th period'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description31:
+        id: 31
+        code: FifthPeriod
+        name: '5th period'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description32:
+        id: 32
+        code: FirstSet
+        name: '1st set'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description33:
+        id: 33
+        code: SecondSet
+        name: '2nd set'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description34:
+        id: 34
+        code: ThirdSet
+        name: '3rd set'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description35:
+        id: 35
+        code: FourthSet
+        name: '4th set'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description36:
+        id: 36
+        code: FifthSet
+        name: '5th set'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description37:
+        id: 37
+        code: FirstQuarter
+        name: '1st quarter'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description38:
+        id: 38
+        code: SecondQuarter
+        name: '2nd quarter'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description39:
+        id: 39
+        code: ThirdQuarter
+        name: '3rd quarter'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description40:
+        id: 40
+        code: FourthQuarter
+        name: '4th quarter'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description41:
+        id: 41
+        code: Top1st
+        name: 'Top 1st'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description42:
+        id: 42
+        code: Bottom1st
+        name: 'Bottom 1st'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description43:
+        id: 43
+        code: End1st
+        name: 'End 1st'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description44:
+        id: 44
+        code: Top2nd
+        name: 'Top 2nd'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description45:
+        id: 45
+        code: Bottom2nd
+        name: 'Bottom 2nd'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description46:
+        id: 46
+        code: End2nd
+        name: 'End 2nd'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description47:
+        id: 47
+        code: Top3rd
+        name: 'Top 3rd'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description48:
+        id: 48
+        code: Bottom3rd
+        name: 'Bottom 3rd'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description49:
+        id: 49
+        code: End3rd
+        name: 'End 3rd'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description50:
+        id: 50
+        code: Top4th
+        name: 'Top 4th'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description51:
+        id: 51
+        code: Bottom4th
+        name: 'Bottom 4th'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description52:
+        id: 52
+        code: End4th
+        name: 'End 4th'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description53:
+        id: 53
+        code: Top5th
+        name: 'Top 5th'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description54:
+        id: 54
+        code: Bottom5th
+        name: 'Bottom 5th'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description55:
+        id: 55
+        code: End5th
+        name: 'End 5th'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description56:
+        id: 56
+        code: Top6th
+        name: 'Top 6th'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description57:
+        id: 57
+        code: Bottom6th
+        name: 'Bottom 6th'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description58:
+        id: 58
+        code: End6th
+        name: 'End 6th'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description59:
+        id: 59
+        code: Top7th
+        name: 'Top 7th'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description60:
+        id: 60
+        code: Bottom7th
+        name: 'Bottom 7th'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description61:
+        id: 61
+        code: End7th
+        name: 'End 7th'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description62:
+        id: 62
+        code: Top8th
+        name: 'Top 8th'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description63:
+        id: 63
+        code: Bottom8th
+        name: 'Bottom 8th'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description64:
+        id: 64
+        code: End8th
+        name: 'End 8th'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description65:
+        id: 65
+        code: Top9th
+        name: 'Top 9th'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description66:
+        id: 66
+        code: Bottom9th
+        name: 'Bottom 9th'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description67:
+        id: 67
+        code: End9th
+        name: 'End 9th'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description68:
+        id: 68
+        code: TopEI
+        name: 'Top EI'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description69:
+        id: 69
+        code: BottomEI
+        name: 'Bottom EI'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description70:
+        id: 70
+        code: SuddenDeath
+        name: 'Sudden Death'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description71:
+        id: 71
+        code: LunchBreak
+        name: 'Lunch break'
+        category: inprogress
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description72:
+        id: 72
+        code: Finished
+        name: Finished
+        category: finished
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description73:
+        id: 73
+        code: FinishedAfterExtraTime
+        name: 'Finished after extra time'
+        category: finished
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description74:
+        id: 74
+        code: FinishedAfterPenalties
+        name: 'Finished after penalties'
+        category: finished
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description75:
+        id: 75
+        code: FinishedAfterGoldenSet
+        name: 'Finished after golden set'
+        category: finished
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description76:
+        id: 76
+        code: FinishedAfterExtraInning
+        name: 'Finished after extra inning'
+        category: finished
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description77:
+        id: 77
+        code: FinishedAfterAwardedWin
+        name: 'Finished after awarded win'
+        category: finished
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description78:
+        id: 78
+        code: Walkover
+        name: Walkover
+        category: finished
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description79:
+        id: 79
+        code: Retired
+        name: Retired
+        category: finished
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description80:
+        id: 80
+        code: FinishedAfterOvertime
+        name: 'Finished after overtime'
+        category: finished
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description81:
+        id: 81
+        code: FinishedAfterGolderGoal
+        name: 'Finished after golder goal'
+        category: finished
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description82:
+        id: 82
+        code: FinishedAfterSilverGoal
+        name: 'Finished after silver goal'
+        category: finished
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description83:
+        id: 83
+        code: Postponed
+        name: Postponed
+        category: notstarted
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description84:
+        id: 84
+        code: PlayoffPostponed
+        name: 'Play-off postponed'
+        category: notstarted
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description85:
+        id: 85
+        code: PlayoffInterrupted
+        name: 'Play-off interrupted'
+        category: interrupted
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description86:
+        id: 86
+        code: Cancelled
+        name: Cancelled
+        category: cancelled
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description87:
+        id: 87
+        code: Interrupted
+        name: Interrupted
+        category: interrupted
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description88:
+        id: 88
+        code: SuspendedToFinish
+        name: 'Suspended / To finish'
+        category: interrupted
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description89:
+        id: 89
+        code: Abandoned
+        name: Abandoned
+        category: notstarted
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description92:
+        id: 92
+        code: Deleted
+        name: Deleted
+        category: deleted
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description93:
+        id: 93
+        code: NoInfoYet
+        name: 'No info yet'
+        category: unknown
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_status_description94:
+        id: 94
+        code: Unknown
+        name: Unknown
+        category: unknown
+        del: 'no'
+        createdAt: null
+        updatedAt: null

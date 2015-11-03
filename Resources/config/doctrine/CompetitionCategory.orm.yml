@@ -1,0 +1,58 @@
+Visca\Bundle\LicomBundle\Entity\CompetitionCategory:
+  type: entity
+  table: CompetitionCategory
+  repositoryClass: Visca\Bundle\LicomBundle\Repository\CompetitionCategoryRepository
+  id:
+    id:
+      type: smallint
+      length: 5
+      options:
+        unsigned: true
+  fields:
+    name:
+      type: string
+      length: 45
+      nullable: false
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+    createdAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+    updatedAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+  indexes:
+    fk_country:
+      columns: [Country]
+    fk_sport:
+      columns: [Sport]
+  oneToMany:
+    competition:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\Competition
+      mappedBy: competitionCategory
+  manyToOne:
+    country:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\Country
+      inversedBy: competitionCategory
+      joinColumns:
+        Country:
+          referencedColumnName: id
+          nullable: false
+    sport:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\Sport
+      inversedBy: competitionCategory
+      joinColumns:
+        Sport:
+          referencedColumnName: id
+          nullable: false
+  cache:
+    region: Competition
+    usage: READ_ONLY

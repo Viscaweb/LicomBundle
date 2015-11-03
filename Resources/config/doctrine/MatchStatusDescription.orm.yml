@@ -1,0 +1,43 @@
+Visca\Bundle\LicomBundle\Entity\MatchStatusDescription:
+  type: entity
+  table: MatchStatusDescription
+  repositoryClass: Visca\Bundle\LicomBundle\Repository\MatchStatusDescriptionRepository
+  id:
+    id:
+      type: smallint
+      length: 5
+      options:
+        unsigned: true
+  fields:
+    code:
+      type: string
+      unique: true
+      length: 45
+      nullable: false
+    name:
+      type: string
+      length: 255
+      nullable: false
+    category:
+      type: MatchStatusDescriptionCategoryType
+      length: 0
+      nullable: false
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+    createdAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+    updatedAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+  cache:
+    region: MatchStatusDescription
+    usage: READ_ONLY

@@ -1,0 +1,135 @@
+Visca\Bundle\LicomBundle\Entity\Match:
+  type: entity
+  table: `Match`
+  repositoryClass: Visca\Bundle\LicomBundle\Repository\MatchRepository
+  id:
+    id:
+      type: integer
+      length: 10
+      generator:
+        strategy: IDENTITY
+      options:
+        unsigned: true
+  fields:
+    name:
+      type: string
+      length: 45
+      nullable: false
+    startDate:
+      type: DateTimeUTCType
+      nullable: false
+      column: startDate
+    coverage:
+      type: string
+      nullable: true
+      columnDefinition: SET('live','comment','lineup') DEFAULT NULL
+      options:
+        default: NULL
+    winner:
+      type: MatchWinnerType
+      length: 0
+      nullable: true
+      options:
+        default: NULL
+    ordinaryTimeWinner:
+      type: MatchWinnerType
+      length: 0
+      nullable: true
+      options:
+        default: NULL
+    afterShootoutWinner:
+      type: MatchWinnerType
+      length: 0
+      nullable: true
+      options:
+        default: NULL
+    aggregatedWinner:
+      type: MatchWinnerType
+      length: 0
+      nullable: true
+      options:
+        default: NULL
+    del:
+      type: SoftDeletionType
+      nullable: false
+      options:
+        default: 'no'
+    createdAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+    updatedAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+  indexes:
+    idx_startDate:
+      columns: [startDate]
+    fk_competitionSeasonStage:
+      columns: [CompetitionSeasonStage]
+    fk_matchStatusDescription:
+      columns: [MatchStatusDescription]
+    fk_competitionRound:
+      columns: [CompetitionRound]
+    fk_competitionLeg:
+      columns: [CompetitionLeg]
+  oneToMany:
+    aux:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\MatchAux
+      mappedBy: match
+      cache:
+        region: Match
+        usage: READ_ONLY
+    matchAuxProfile:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\MatchAuxProfile
+      mappedBy: match
+      cache:
+        region: Match
+        usage: READ_ONLY
+    matchParticipant:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\MatchParticipant
+      mappedBy: match
+      cache:
+        region: Match
+        usage: READ_ONLY
+  manyToOne:
+    competitionSeasonStage:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\CompetitionSeasonStage
+      inversedBy: match
+      cache:
+        region: Competition
+        usage: READ_ONLY
+      joinColumns:
+        CompetitionSeasonStage:
+          referencedColumnName: id
+          nullable: false
+    matchStatusDescription:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\MatchStatusDescription
+      cache:
+        region: MatchStatusDescription
+        usage: READ_ONLY
+      joinColumns:
+        MatchStatusDescription:
+          referencedColumnName: id
+          nullable: false
+    competitionRound:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\CompetitionRound
+      cache:
+        region: Competition
+        usage: READ_ONLY
+      joinColumns:
+        CompetitionRound:
+          referencedColumnName: id
+    competitionLeg:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\CompetitionLeg
+      cache:
+        region: Competition
+        usage: READ_ONLY
+      joinColumns:
+        CompetitionLeg:
+          referencedColumnName: id
+  cache:
+    region: Match
+    usage: READ_ONLY

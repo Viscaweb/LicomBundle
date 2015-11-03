@@ -1,4 +1,0 @@
-imports:
-    - { resource: providers/images.yml }
-    - { resource: providers/translations.yml }
-    - { resource: providers/slugs.yml }

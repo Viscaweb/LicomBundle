@@ -1,0 +1,7 @@
+Visca\Bundle\LicomBundle\Entity\OverUnderMatchBettingOutcome:
+  type: entity
+  fields:
+    goalsTotal:
+      type: float
+      nullable: true
+      column: dparam

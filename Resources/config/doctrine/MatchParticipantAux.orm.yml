@@ -1,0 +1,47 @@
+Visca\Bundle\LicomBundle\Entity\MatchParticipantAux:
+  type: entity
+  table: MatchParticipant_aux
+  id:
+    matchParticipant:
+      type: integer
+      length: 10
+      associationKey: true
+      column: MatchParticipant
+      options:
+        unsigned: true
+    matchParticipantAuxType:
+      type: smallint
+      length: 5
+      associationKey: true
+      column: MatchParticipantAuxType
+      options:
+        unsigned: true
+  fields:
+    value:
+      type: string
+      length: 45
+      nullable: false
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+  indexes:
+    fk_matchParticipantAuxType:
+      columns: [MatchParticipantAuxType]
+    fk_matchParticipant:
+      columns: [MatchParticipant]
+  manyToOne:
+    matchParticipant:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\MatchParticipant
+      joinColumns:
+        MatchParticipant:
+          referencedColumnName: id
+          nullable: false
+    matchParticipantAuxType:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\MatchParticipantAuxType
+      joinColumns:
+        MatchParticipantAuxType:
+          referencedColumnName: id
+          nullable: false

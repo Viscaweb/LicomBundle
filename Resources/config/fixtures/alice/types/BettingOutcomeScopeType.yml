@@ -1,0 +1,169 @@
+Visca\Bundle\LicomBundle\Entity\BettingOutcomeScopeType:
+    betting_outcome_scope_type1:
+        id: 1
+        code: OrdinaryTime
+        description: 'Ordinary time'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_scope_type2:
+        id: 2
+        code: OrdinaryTimeIncludingExtratime
+        description: 'Ordinary time including extratime'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_scope_type3:
+        id: 3
+        code: FullEvent
+        description: 'Full event'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_scope_type4:
+        id: 4
+        code: FirstHalf
+        description: '1st half'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_scope_type5:
+        id: 5
+        code: SecondHalf
+        description: '2nd Half'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_scope_type6:
+        id: 6
+        code: FirstPeriod
+        description: '1st Period'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_scope_type7:
+        id: 7
+        code: SecondPeriod
+        description: '2nd Period'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_scope_type8:
+        id: 8
+        code: ThirdPeriod
+        description: '3rd Period'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_scope_type9:
+        id: 9
+        code: FirstQuarter
+        description: '1st Quarter'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_scope_type10:
+        id: 10
+        code: SecondQuarter
+        description: '2nd Quarter'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_scope_type11:
+        id: 11
+        code: ThirdQuarter
+        description: '3rd Quarter'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_scope_type12:
+        id: 12
+        code: FourthQuarter
+        description: '4th Quarter'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_scope_type13:
+        id: 13
+        code: FirstSet
+        description: '1st Set'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_scope_type14:
+        id: 14
+        code: SecondSet
+        description: '2nd Set'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_scope_type15:
+        id: 15
+        code: ThirdSet
+        description: '3rd Set'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_scope_type16:
+        id: 16
+        code: FourthSet
+        description: '4th Set'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_scope_type17:
+        id: 17
+        code: FifthSet
+        description: '5th Set'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_scope_type18:
+        id: 18
+        code: FirstRound
+        description: '1st Round'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_scope_type19:
+        id: 19
+        code: SecondRound
+        description: '2nd Round'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_scope_type20:
+        id: 20
+        code: ThirdRound
+        description: '3rd Round'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_scope_type21:
+        id: 21
+        code: FourthRound
+        description: '4th Round'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_scope_type22:
+        id: 22
+        code: FifthRound
+        description: '5th Round'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_scope_type23:
+        id: 23
+        code: SixRound
+        description: '6th Round'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_scope_type24:
+        id: 24
+        code: FirstFifthInnings
+        description: 'First 5 innings'
+        del: 'no'
+        createdAt: null
+        updatedAt: null

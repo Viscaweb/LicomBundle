@@ -1,0 +1,31 @@
+Visca\Bundle\LicomBundle\Entity\ParticipantAuxType:
+    participant_aux_type1:
+        id: 1
+        code: FirstName
+        name: 'Athlete first name'
+        del: 'no'
+    participant_aux_type2:
+        id: 2
+        code: LastName
+        name: 'Athlete last name'
+        del: 'no'
+    participant_aux_type3:
+        id: 3
+        code: DateOfBirth
+        name: 'Athlete date of birth'
+        del: 'no'
+    participant_aux_type4:
+        id: 4
+        code: Height
+        name: 'Athlete height'
+        del: 'no'
+    participant_aux_type5:
+        id: 5
+        code: Weight
+        name: 'Athlete weight'
+        del: 'no'
+    participant_aux_type6:
+        id: 6
+        code: Position
+        name: 'Athlete position (forward, etc)'
+        del: 'no'

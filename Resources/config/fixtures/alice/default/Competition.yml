@@ -1,0 +1,6 @@
+Visca\Bundle\LicomBundle\Entity\Competition:
+  competition_default:
+    __construct: { create: [] }
+    name: Default competition
+    competitionCategory: @competition_category_default
+    gender: undefined

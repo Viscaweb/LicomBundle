@@ -1,0 +1,13 @@
+Visca\Bundle\LicomBundle\Entity\Participant:
+    exclusion_policy: ALL
+    discriminator:
+        field_name: type
+        map:
+            team: Visca\Bundle\LicomBundle\Entity\Team
+            athlete: Visca\Bundle\LicomBundle\Entity\Athlete
+            coach: Visca\Bundle\LicomBundle\Entity\Coach
+    properties:
+      id:
+        expose: true
+      name:
+        expose: true

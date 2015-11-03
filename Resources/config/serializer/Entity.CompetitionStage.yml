@@ -1,0 +1,7 @@
+Visca\Bundle\LicomBundle\Entity\CompetitionStage:
+    exclusion_policy: NONE
+    properties:
+      id:
+        expose: true
+      name:
+        expose: true

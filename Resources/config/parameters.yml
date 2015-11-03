@@ -1,0 +1,10 @@
+parameters:
+    ref_sport_football: 1
+    ref_sport_basket: 23
+    ref_sport_rugby: 29
+    ref_sport_tennis: 2
+    ref_sport_handball: 20
+    ref_sport_volleyball: 51
+    ref_sport_american_football: 24
+    ref_sport_baseball: 26
+    ref_sport_ice_hockey: 5

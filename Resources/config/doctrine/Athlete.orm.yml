@@ -1,0 +1,3 @@
+Visca\Bundle\LicomBundle\Entity\Athlete:
+  type: entity
+  repositoryClass: Visca\Bundle\LicomBundle\Repository\AthleteRepository

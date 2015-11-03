@@ -1,0 +1,241 @@
+Visca\Bundle\LicomBundle\Entity\LocalizationTranslationType:
+    localization_translation_type1:
+        id: 1
+        code: name
+        name: 'Default name Entity'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity101'
+    localization_translation_type2:
+        id: 2
+        code: name
+        name: 'Default name Match'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity211'
+    localization_translation_type3:
+        id: 3
+        code: name
+        name: 'Default name MatchAuxProfiles'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity212'
+    localization_translation_type4:
+        id: 4
+        code: name
+        name: 'Default name MatchStatusDescription'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity214'
+    localization_translation_type5:
+        id: 5
+        code: name
+        name: 'Default name MatchIncidentType'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity222'
+    localization_translation_type6:
+        id: 6
+        code: name
+        name: 'Default name MatchStatsType'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity242'
+    localization_translation_type7:
+        id: 7
+        code: name
+        name: 'Default name MatchResultType'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity252'
+    localization_translation_type8:
+        id: 8
+        code: name
+        name: 'Default name MatchCommentType'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity262'
+    localization_translation_type9:
+        id: 9
+        code: name
+        name: 'Default name MatchLineupParticipantType'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity272'
+    localization_translation_type10:
+        id: 10
+        code: name
+        name: 'Default name LocalizationTranslationType'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity308'
+    localization_translation_type11:
+        id: 11
+        code: name
+        name: 'Default name Participant'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity401'
+    localization_translation_type12:
+        id: 12
+        code: name
+        name: 'Default name Sport'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity501'
+    localization_translation_type13:
+        id: 13
+        code: name
+        name: 'Default name Country'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity502'
+    localization_translation_type14:
+        id: 14
+        code: name
+        name: 'Default name StandingColumnType'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity602'
+    localization_translation_type15:
+        id: 15
+        code: name
+        name: 'Default name StandingComment'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity603'
+    localization_translation_type16:
+        id: 16
+        code: name
+        name: 'Default name StandingPromotionType'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity604'
+    localization_translation_type17:
+        id: 17
+        code: name
+        name: 'Default name StandingType'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity607'
+    localization_translation_type18:
+        id: 18
+        code: name
+        name: 'Default name Profile'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity801'
+    localization_translation_type19:
+        id: 19
+        code: name
+        name: 'Default name ProfileRuleType'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity805'
+    localization_translation_type20:
+        id: 20
+        code: name
+        name: 'Default name Competition'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity503'
+    localization_translation_type21:
+        id: 21
+        code: trigraph
+        name: 'Team name with 3 or 4 chars'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity401'
+    localization_translation_type22:
+        id: 22
+        code: pluralDemonym
+        name: 'Team plural demonym (can be female or male) (Ex: Madrilenians, Mancunians)'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity401'
+    localization_translation_type23:
+        id: 23
+        code: nickname
+        name: 'Team nickname (Ex: Gunners, Red devils)'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity401'
+    localization_translation_type24:
+        id: 24
+        code: maleSingularDemonym
+        name: 'Country male singular demonym (Ex: Australian, Danish)'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity502'
+    localization_translation_type25:
+        id: 25
+        code: malePluralDemonym
+        name: 'Country male plural demonym (Ex: Australians, Danish)'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity502'
+    localization_translation_type26:
+        id: 26
+        code: femaleSingularDemonym
+        name: 'Country female singular demonym (Ex: Française)'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity502'
+    localization_translation_type27:
+        id: 27
+        code: femalePluralDemonym
+        name: 'Country female plural demonym (Ex: Françaises)'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity502'
+    localization_translation_type28:
+        id: 28
+        code: content
+        name: 'Match comment content'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity261'
+    localization_translation_type29:
+        id: 29
+        code: shortName
+        name: 'Short name for MatchResultType'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity252'
+    localization_translation_type30:
+        id: 30
+        code: shortName
+        name: 'Short name StandingColumnType'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        entity: '@entity602'

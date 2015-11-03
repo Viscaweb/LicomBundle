@@ -1,0 +1,42 @@
+Visca\Bundle\LicomBundle\Entity\Profile:
+  profile_en:
+    id: 1
+    code: whatsthescore.com
+    name: TAP - www.whatsthescore.com
+    del: no
+
+  profile_fr:
+    id: 2
+    code: footendirect.com
+    name: TAP - www.footendirect.com
+    del: no
+
+  profile_de:
+    id: 3
+    code: live-ticker.com
+    name: TAP - www.live-ticker.com
+    del: no
+
+  profile_it:
+    id: 4
+    code: livescore.it
+    name: TAP - www.livescore.it
+    del: no
+
+  profile_es:
+    id: 5
+    code: marcadores.com
+    name: TAP - www.marcadores.com
+    del: no
+
+  profile_nl:
+    id: 6
+    code: watisdescore.com
+    name: TAP - www.watisdescore.com
+    del: no
+
+  profile_pt:
+    id: 7
+    code: futebol.com
+    name: TAP - www.futebol.com
+    del: no

@@ -1,0 +1,61 @@
+Visca\Bundle\LicomBundle\Entity\MatchAuxType:
+    match_aux_type1:
+        id: 1
+        code: DateEnded
+        name: DateEnded
+        del: 'no'
+    match_aux_type2:
+        id: 2
+        code: DateStarted
+        name: DateStarted
+        del: 'no'
+    match_aux_type3:
+        id: 3
+        code: DateSecondHalfStarted
+        name: DateSecondHalfStarted
+        del: 'no'
+    match_aux_type4:
+        id: 4
+        code: Referee
+        name: Referee
+        del: 'no'
+    match_aux_type5:
+        id: 5
+        code: Spectators
+        name: Spectators
+        del: 'no'
+    match_aux_type6:
+        id: 6
+        code: VenueName
+        name: VenueName
+        del: 'no'
+    match_aux_type7:
+        id: 7
+        code: FirstToServe
+        name: FirstToServe
+        del: 'no'
+    match_aux_type8:
+        id: 8
+        code: CurrentPeriodStartedAt
+        name: CurrentPeriodStartedAt
+        del: 'no'
+    match_aux_type9:
+        id: 9
+        code: FirstHalfTimeStartedAt
+        name: 'First half start date'
+        del: 'no'
+    match_aux_type10:
+        id: 10
+        code: SecondHalfTimeStartedAt
+        name: 'Second half start date'
+        del: 'no'
+    match_aux_type11:
+        id: 11
+        code: ExtraTime1stHalfTimeStartedAt
+        name: 'First extra time half start date'
+        del: 'no'
+    match_aux_type12:
+        id: 12
+        code: ExtraTime2ndHalfTimeStartedAt
+        name: 'Second extra time half start date'
+        del: 'no'

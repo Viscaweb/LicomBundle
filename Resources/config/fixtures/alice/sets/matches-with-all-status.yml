@@ -1,0 +1,53 @@
+include:
+  - ../types/MatchStatusDescription.yml
+  - ../types/CompetitionStageType.yml
+  - ../types/Sport.yml
+  - ../default/Country.yml
+  - ../default/CompetitionCategory.yml
+  - ../default/Competition.yml
+  - ../default/CompetitionSeason.yml
+  - ../default/CompetitionStage.yml
+  - ../default/CompetitionSeasonStage.yml
+
+Visca\Bundle\LicomBundle\Entity\Team:
+  participant-home-{1..89}:
+    __construct:
+      create: []
+    name: Home participant<current()>
+    country: @country1
+    gender: male
+    sport: @sport1
+
+  participant-away-{1..89}:
+      __construct:
+        create: []
+      name: Away participant<current()>
+      country: @country1
+      gender: male
+      sport: @sport1
+
+Visca\Bundle\LicomBundle\Entity\Match:
+  match_template (template):
+    __construct:
+      create: []
+    startDate: <dateTimeBetween('now', 'now')>
+    competitionSeasonStage: @competition_season_stage_default
+
+  match-{1..89} (extends match_template):
+    name: Match with status <current()>
+    matchStatusDescription: @match_status_description<current()>
+
+Visca\Bundle\LicomBundle\Entity\MatchParticipant:
+  match_participant_template (template):
+    __construct:
+      create: []
+
+  match_participant_template_home-{1..89} (extends match_participant_template):
+    number: 1
+    match: @match-<current()>
+    participant: @participant-home-<current()>
+
+  match_participant_template_away-{1..89} (extends match_participant_template):
+    number: 2
+    match: @match-<current()>
+    participant: @participant-away-<current()>

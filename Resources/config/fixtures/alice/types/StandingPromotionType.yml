@@ -1,0 +1,50 @@
+Visca\Bundle\LicomBundle\Entity\StandingPromotionType:
+    standing_promotion_type1:
+        id: 1
+        code: Green
+        name: Green
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_promotion_type2:
+        id: 2
+        code: LightGreen
+        name: LightGreen
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_promotion_type3:
+        id: 3
+        code: Blue
+        name: Blue
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_promotion_type4:
+        id: 4
+        code: LightBlue
+        name: LightBlue
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_promotion_type5:
+        id: 5
+        code: Orange
+        name: Orange
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_promotion_type6:
+        id: 6
+        code: Red
+        name: Red
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_promotion_type7:
+        id: 7
+        code: None
+        name: None
+        del: 'no'
+        createdAt: null
+        updatedAt: null

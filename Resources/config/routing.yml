@@ -1,0 +1,7 @@
+visca_licom_test_team_normal:
+    path:     /test-translations/teams
+    defaults: { _controller: ViscaLicomBundle:DebugTranslation:testTeamNormalTranslation }
+
+visca_licom_test_country_slug_matchers:
+    path:     /test-translations/country-slug-matchers
+    defaults: { _controller: ViscaLicomBundle:DebugSlugCountry:testSlugMatchers }

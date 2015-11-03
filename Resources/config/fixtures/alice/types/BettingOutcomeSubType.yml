@@ -1,0 +1,134 @@
+Visca\Bundle\LicomBundle\Entity\BettingOutcomeSubType:
+    betting_outcome_sub_type1:
+        id: 1
+        code: Win
+        description: Win
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_sub_type2:
+        id: 2
+        code: Draw
+        description: Draw
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_sub_type3:
+        id: 3
+        code: Under
+        description: Under
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_sub_type4:
+        id: 4
+        code: Score
+        description: Score
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_sub_type5:
+        id: 5
+        code: Odd
+        description: Odd
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_sub_type6:
+        id: 6
+        code: Even
+        description: Even
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_sub_type7:
+        id: 7
+        code: Next
+        description: Next
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_sub_type8:
+        id: 8
+        code: Last
+        description: Last
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_sub_type9:
+        id: 9
+        code: Anytime
+        description: Anytime
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_sub_type10:
+        id: 10
+        code: Other
+        description: Other
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_sub_type11:
+        id: 11
+        code: Over
+        description: Over
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_sub_type12:
+        id: 12
+        code: Win_draw
+        description: 'Win Draw'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_sub_type13:
+        id: 13
+        code: From
+        description: From
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_sub_type14:
+        id: 14
+        code: From_to
+        description: 'From To'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_sub_type15:
+        id: 15
+        code: To
+        description: To
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_sub_type16:
+        id: 16
+        code: 'Yes'
+        description: 'Yes'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_sub_type17:
+        id: 17
+        code: 'No'
+        description: 'No'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_sub_type18:
+        id: 18
+        code: Place
+        description: Place
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    betting_outcome_sub_type19:
+        id: 19
+        code: None
+        description: None
+        del: 'no'
+        createdAt: null
+        updatedAt: null

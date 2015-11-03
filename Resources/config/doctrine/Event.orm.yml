@@ -1,0 +1,58 @@
+Visca\Bundle\LicomBundle\Entity\Event:
+  type: entity
+  table: Event
+  id:
+    id:
+      type: integer
+      length: 10
+      generator:
+        strategy: AUTO
+      options:
+        unsigned: true
+  fields:
+    entityId:
+      type: integer
+      length: 10
+      nullable: false
+      options:
+        unsigned: true
+    property:
+      type: json_array
+      nullable: true
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+    createdAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+    updatedAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+  indexes:
+    fk_eventType:
+      columns: [EventType]
+    fk_entity:
+      columns: [Entity]
+  uniqueConstraints:
+    uq_entity_entityId_eventType_del_createdAt:
+      columns: [Entity, entityId, EventType, del, createdAt]
+  manyToOne:
+    eventType:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\EventType
+      joinColumns:
+        EventType:
+          referencedColumnName: id
+          nullable: false
+    entity:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\Entity
+      joinColumns:
+        Entity:
+          referencedColumnName: id
+          nullable: false

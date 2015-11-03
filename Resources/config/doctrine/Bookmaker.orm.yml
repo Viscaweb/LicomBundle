@@ -1,0 +1,34 @@
+Visca\Bundle\LicomBundle\Entity\Bookmaker:
+  type: entity
+  table: Bookmaker
+  id:
+    id:
+      type: smallint
+      length: 5
+      options:
+        unsigned: true
+  fields:
+    name:
+      type: string
+      length: 45
+      nullable: false
+    url:
+      type: string
+      length: 255
+      nullable: false
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+    createdAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+    updatedAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL

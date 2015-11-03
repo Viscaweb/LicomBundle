@@ -1,0 +1,90 @@
+Visca\Bundle\LicomBundle\Entity\Participant:
+  type: entity
+  inheritanceType: SINGLE_TABLE
+  table: Participant
+  repositoryClass: Visca\Bundle\LicomBundle\Repository\ParticipantRepository
+  id:
+    id:
+      type: integer
+      length: 10
+      column: id
+      generator:
+        strategy: AUTO
+      options:
+        unsigned: true
+  fields:
+    name:
+      type: string
+      length: 45
+      nullable: false
+      column: name
+    gender:
+      type: ParticipantGenderType
+      nullable: false
+      column: gender
+      options:
+        default: undefined
+    toBeConfirmed:
+      type: boolean
+      nullable: false
+      column: toBeConfirmed
+      options:
+        default: '0'
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+    createdAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+    updatedAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+  indexes:
+    fk_country:
+      columns: [Country]
+    fk_sport:
+      columns: [Sport]
+  oneToMany:
+    matchParticipant:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\MatchParticipant
+      mappedBy: participant
+    aux:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\ParticipantAux
+      mappedBy: participant
+    matchIncident:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\MatchIncident
+      mappedBy: participant
+    participantMembership:
+        targetEntity: Visca\Bundle\LicomBundle\Entity\ParticipantMembership
+        mappedBy: participant
+  manyToOne:
+    country:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\Country
+      joinColumns:
+        Country:
+          referencedColumnName: id
+          nullable: false
+    sport:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\Sport
+      joinColumns:
+        Sport:
+          referencedColumnName: id
+          nullable: false
+  discriminatorColumn:
+    name: type
+    length: 0
+    type: ParticipantType
+  discriminatorMap:
+    team: Visca\Bundle\LicomBundle\Entity\Team
+    athlete: Visca\Bundle\LicomBundle\Entity\Athlete
+    coach: Visca\Bundle\LicomBundle\Entity\Coach
+  cache:
+    region: Participant
+    usage: READ_ONLY

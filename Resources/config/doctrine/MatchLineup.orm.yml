@@ -1,0 +1,45 @@
+Visca\Bundle\LicomBundle\Entity\MatchLineup:
+  type: entity
+  table: MatchLineup
+  repositoryClass: Visca\Bundle\LicomBundle\Repository\MatchLineupRepository
+  id:
+    id:
+      type: integer
+      length: 10
+      generator:
+        strategy: AUTO
+      options:
+        unsigned: true
+  fields:
+    formation:
+      type: string
+      length: 10
+      nullable: true
+      options:
+        default: NULL
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+    createdAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+    updatedAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+  indexes:
+    fk_matchParticipant:
+      columns: [MatchParticipant]
+  manyToOne:
+    matchParticipant:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\MatchParticipant
+      joinColumns:
+        MatchParticipant:
+          referencedColumnName: id
+          nullable: false

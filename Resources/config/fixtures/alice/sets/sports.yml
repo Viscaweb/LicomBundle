@@ -1,0 +1,5 @@
+Visca\Bundle\LicomBundle\Entity\Sport:
+  sport_soccer:
+    id: 1
+    name: Soccer
+    del: no

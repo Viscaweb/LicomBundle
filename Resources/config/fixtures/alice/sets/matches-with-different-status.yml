@@ -1,0 +1,68 @@
+include:
+  - ../types/MatchStatusDescription.yml
+  - ../types/CompetitionStageType.yml
+  - ../types/Sport.yml
+  - ../default/Country.yml
+  - ../default/CompetitionCategory.yml
+  - ../default/Competition.yml
+  - ../default/CompetitionSeason.yml
+  - ../default/CompetitionStage.yml
+  - ../default/CompetitionSeasonStage.yml
+
+Visca\Bundle\LicomBundle\Entity\Team:
+  participant_template (template):
+    __construct:
+      create: []
+    country: @country1
+    gender: male
+    sport: @sport1
+  participant-home-{0..4} (extends participant_template):
+    name: Home participant<current()>
+  participant-away-{0..4} (extends participant_template):
+    name: Away participant<current()>
+
+Visca\Bundle\LicomBundle\Entity\Match:
+  match_template (template):
+    __construct:
+      create: []
+    startDate: <dateTimeBetween('now', 'now')>
+    competitionSeasonStage: @competition_season_stage_default
+
+  match-0 (extends match_template):
+    name: Notstarted match
+    matchStatusDescription: @match_status_description1
+
+  match-1 (extends match_template):
+    name: First half match
+    matchStatusDescription: @match_status_description3
+
+  match-2 (extends match_template):
+    name: Halftime match
+    matchStatusDescription: @match_status_description4
+
+  match-3 (extends match_template):
+    name: Second half match
+    matchStatusDescription: @match_status_description5
+
+  match-4 (extends match_template):
+    name: Finished match
+    matchStatusDescription: @match_status_description72
+
+  match-5 (extends match_template):
+    name: Finished after overtime
+    matchStatusDescription: @match_status_description80
+
+Visca\Bundle\LicomBundle\Entity\MatchParticipant:
+  match_participant_template (template):
+    __construct:
+      create: []
+
+  match_participant_template_home{0..4} (extends match_participant_template):
+    number: 1
+    match: @match-<current()>
+    participant: @participant-home-<current()>
+
+  match_participant_template_away{0..4} (extends match_participant_template):
+    number: 2
+    match: @match-<current()>
+    participant: @participant-away-<current()>

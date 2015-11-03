@@ -1,0 +1,8 @@
+Visca\Bundle\LicomBundle\Entity\CompetitionRound:
+  competition_round_default:
+    #__construct: { create: [] }
+    name: Default round
+    start: <dateTime()>
+    end: <dateTime()>
+    del: no
+    competitionseasonstage: @competition_season_stage_default

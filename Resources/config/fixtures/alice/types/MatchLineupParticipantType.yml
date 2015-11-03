@@ -1,0 +1,99 @@
+Visca\Bundle\LicomBundle\Entity\MatchLineupParticipantType:
+    match_lineup_participant_type1:
+        id: 1
+        code: Goalkeeper
+        name: Goalkeeper
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_lineup_participant_type2:
+        id: 2
+        code: Defence
+        name: Defence
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_lineup_participant_type3:
+        id: 3
+        code: Midfield
+        name: Midfield
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_lineup_participant_type4:
+        id: 4
+        code: Forward
+        name: Forward
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_lineup_participant_type5:
+        id: 5
+        code: SubstitutePlayer
+        name: 'Substitute player'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_lineup_participant_type6:
+        id: 6
+        code: Unknown
+        name: Unknown
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_lineup_participant_type7:
+        id: 7
+        code: Injured
+        name: Injured
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_lineup_participant_type8:
+        id: 8
+        code: Suspended
+        name: Suspended
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_lineup_participant_type9:
+        id: 9
+        code: Unavailable
+        name: Unavailable
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_lineup_participant_type10:
+        id: 10
+        code: Coach
+        name: Coach
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_lineup_participant_type11:
+        id: 11
+        code: Pitcher
+        name: Pitcher
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_lineup_participant_type12:
+        id: 12
+        code: Batter
+        name: Batter
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_lineup_participant_type13:
+        id: 13
+        code: Doubtful
+        name: Doubtful
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_lineup_participant_type14:
+        id: 14
+        code: Starter
+        name: Starter
+        del: 'no'
+        createdAt: null
+        updatedAt: null

@@ -1,0 +1,38 @@
+Visca\Bundle\LicomBundle\Entity\Sport:
+  type: entity
+  table: Sport
+  repositoryClass: Visca\Bundle\LicomBundle\Repository\SportRepository
+  id:
+    id:
+      type: smallint
+      length: 5
+      options:
+        unsigned: true
+  fields:
+    name:
+      type: string
+      length: 45
+      nullable: false
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+    createdAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+    updatedAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+  oneToMany:
+    competitionCategory:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\CompetitionCategory
+      mappedBy: sport
+  cache:
+    region: Competition
+    usage: READ_ONLY

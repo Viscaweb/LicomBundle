@@ -1,0 +1,6 @@
+visca_api_competition:
+    type: annotation
+    prefix: /v1
+    resource: Visca\Bundle\LicomBundle\Controller\Api\CompetitionController
+    options:
+        expose: true

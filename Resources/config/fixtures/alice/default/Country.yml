@@ -1,0 +1,6 @@
+Visca\Bundle\LicomBundle\Entity\Country:
+  country{0..3}:
+    __construct: { create: [] }
+    id: <current()>
+    name: <country()>
+    code: <countryCode()>

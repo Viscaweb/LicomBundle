@@ -1,0 +1,68 @@
+Visca\Bundle\LicomBundle\Entity\BettingOffer:
+  type: entity
+  table: BettingOffer
+  id:
+    id:
+      type: integer
+      length: 10
+      generator:
+        strategy: AUTO
+      options:
+        unsigned: true
+  fields:
+    odds:
+      type: float
+      nullable: false
+      columnDefinition: FLOAT UNSIGNED NOT NULL
+      options:
+        unsigned: true
+    oddsOld:
+      type: float
+      nullable: false
+      column: odds_old
+      columnDefinition: FLOAT UNSIGNED NOT NULL
+      options:
+        unsigned: true
+    valid:
+      type: boolean
+      nullable: false
+      column: is_valid
+      options:
+        default: '1'
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+    createdAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+    updatedAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+  indexes:
+    fk_bettingOutcome:
+      columns: [BettingOutcome]
+    fk_bettingOfferProvider:
+      columns: [BettingOfferProvider]
+  uniqueConstraints:
+    uq_bettingOutcome_bettingOfferProvider:
+      columns: [BettingOutcome, BettingOfferProvider]
+  manyToOne:
+    bettingOutcome:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\MatchBettingOutcome
+      joinColumns:
+        BettingOutcome:
+          referencedColumnName: id
+          nullable: false
+    bettingOfferProvider:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\BettingOfferProvider
+      joinColumns:
+        BettingOfferProvider:
+          referencedColumnName: id
+          nullable: false

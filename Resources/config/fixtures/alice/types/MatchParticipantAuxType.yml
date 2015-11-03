@@ -1,0 +1,76 @@
+Visca\Bundle\LicomBundle\Entity\MatchParticipantAuxType:
+    match_participant_aux_type1:
+        id: 1
+        code: Formation
+        name: Formation
+        del: 'no'
+    match_participant_aux_type2:
+        id: 2
+        code: HStripesColor
+        name: hStripesColor
+        del: 'no'
+    match_participant_aux_type3:
+        id: 3
+        code: MainColor
+        name: mainColor
+        del: 'no'
+    match_participant_aux_type4:
+        id: 4
+        code: NumberColor
+        name: numberColor
+        del: 'no'
+    match_participant_aux_type5:
+        id: 5
+        code: SleeveColor
+        name: sleeveColor
+        del: 'no'
+    match_participant_aux_type6:
+        id: 6
+        code: SplitColor
+        name: splitColor
+        del: 'no'
+    match_participant_aux_type7:
+        id: 7
+        code: SquaresColor
+        name: squaresColor
+        del: 'no'
+    match_participant_aux_type8:
+        id: 8
+        code: VStripesColor
+        name: vStripesColor
+        del: 'no'
+    match_participant_aux_type9:
+        id: 9
+        code: HStripesGoalKeeperColor
+        name: hStripesGoalKeeperColor
+        del: 'no'
+    match_participant_aux_type10:
+        id: 10
+        code: MainGoalKeeperColor
+        name: mainGoalKeeperColor
+        del: 'no'
+    match_participant_aux_type11:
+        id: 11
+        code: NumberGoalKeeperColor
+        name: numberGoalKeeperColor
+        del: 'no'
+    match_participant_aux_type12:
+        id: 12
+        code: SleeveGoalKeeperColor
+        name: sleeveGoalKeeperColor
+        del: 'no'
+    match_participant_aux_type13:
+        id: 13
+        code: SplitGoalKeeperColor
+        name: splitGoalKeeperColor
+        del: 'no'
+    match_participant_aux_type14:
+        id: 14
+        code: SquaresGoalKeeperColor
+        name: squaresGoalKeeperColor
+        del: 'no'
+    match_participant_aux_type15:
+        id: 15
+        code: VStripesGoalKeeperColor
+        name: vStripesGoalKeeperColor
+        del: 'no'

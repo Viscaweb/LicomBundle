@@ -1,0 +1,64 @@
+Visca\Bundle\LicomBundle\Entity\StandingViewGraph:
+  type: entity
+  table: StandingView_graph
+  repositoryClass: Visca\Bundle\LicomBundle\Repository\StandingViewGraphRepository
+  id:
+    standingView:
+      type: integer
+      length: 10
+      associationKey: true
+      column: StandingView
+      options:
+        unsigned: true
+    label:
+      type: smallint
+      length: 5
+      associationKey: true
+      options:
+        unsigned: true
+    standingColumn:
+      type: smallint
+      length: 5
+      associationKey: true
+      column: StandingColumn
+      options:
+        unsigned: true
+  fields:
+    position:
+      type: smallint
+      length: 5
+      nullable: true
+      options:
+        default: '65535'
+        unsigned: true
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+  indexes:
+    fk_standingView:
+      columns: [StandingView]
+    fk_standingColumn:
+      columns: [StandingColumn]
+  manyToOne:
+    standingView:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\StandingView
+      joinColumns:
+        StandingView:
+          referencedColumnName: id
+          nullable: false
+    label:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\StandingViewGraphLabel
+      joinColumns:
+        label:
+          referencedColumnName: id
+          nullable: false
+    standingColumn:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\StandingColumn
+      inversedBy: standingViewGraph
+      joinColumns:
+        StandingColumn:
+          referencedColumnName: id
+          nullable: false

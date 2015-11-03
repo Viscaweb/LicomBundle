@@ -1,0 +1,48 @@
+Visca\Bundle\LicomBundle\Entity\MatchCommentType:
+  type: entity
+  table: MatchCommentType
+  id:
+    id:
+      type: smallint
+      length: 5
+      options:
+        unsigned: true
+  fields:
+    code:
+      type: string
+      unique: true
+      length: 45
+      nullable: false
+    name:
+      type: string
+      length: 255
+      nullable: false
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+    createdAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+    updatedAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+  indexes:
+    fk_sport:
+      columns: [Sport]
+  manyToOne:
+    sport:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\Sport
+      joinColumns:
+        Sport:
+          referencedColumnName: id
+          nullable: false
+  cache:
+    region: Type
+    usage: READ_ONLY

@@ -1,0 +1,1235 @@
+Visca\Bundle\LicomBundle\Entity\Country:
+  country1:
+    __construct: { create: [] }
+    id: 1
+    name: Denmark
+
+  country2:
+    __construct: { create: [] }
+    id: 2
+    name: England
+
+  country3:
+    __construct: { create: [] }
+    id: 3
+    name: Germany
+
+  country4:
+    __construct: { create: [] }
+    id: 4
+    name: Italy
+
+  country5:
+    __construct: { create: [] }
+    id: 5
+    name: France
+
+  country6:
+    __construct: { create: [] }
+    id: 6
+    name: Sweden
+
+  country7:
+    __construct: { create: [] }
+    id: 7
+    name: Norway
+
+  country8:
+    __construct: { create: [] }
+    id: 8
+    name: Spain
+
+  country9:
+    __construct: { create: [] }
+    id: 9
+    name: Netherlands
+
+  country11:
+    __construct: { create: [] }
+    id: 11
+    name: International Clubs
+
+  country12:
+    __construct: { create: [] }
+    id: 12
+    name: Portugal
+
+  country13:
+    __construct: { create: [] }
+    id: 13
+    name: Turkey
+
+  country14:
+    __construct: { create: [] }
+    id: 14
+    name: Belgium
+
+  country15:
+    __construct: { create: [] }
+    id: 15
+    name: Scotland
+
+  country16:
+    __construct: { create: [] }
+    id: 16
+    name: USA
+
+  country17:
+    __construct: { create: [] }
+    id: 17
+    name: Slovenia
+
+  country19:
+    __construct: { create: [] }
+    id: 19
+    name: Czech Republic
+
+  country20:
+    __construct: { create: [] }
+    id: 20
+    name: Serbia
+
+  country21:
+    __construct: { create: [] }
+    id: 21
+    name: Romania
+
+  country22:
+    __construct: { create: [] }
+    id: 22
+    name: Russia
+
+  country23:
+    __construct: { create: [] }
+    id: 23
+    name: Canada
+
+  country24:
+    __construct: { create: [] }
+    id: 24
+    name: Finland
+
+  country25:
+    __construct: { create: [] }
+    id: 25
+    name: Japan
+
+  country26:
+    __construct: { create: [] }
+    id: 26
+    name: Hungary
+
+  country28:
+    __construct: { create: [] }
+    id: 28
+    name: South Africa
+
+  country29:
+    __construct: { create: [] }
+    id: 29
+    name: Tunisia
+
+  country30:
+    __construct: { create: [] }
+    id: 30
+    name: Nigeria
+
+  country31:
+    __construct: { create: [] }
+    id: 31
+    name: Egypt
+
+  country32:
+    __construct: { create: [] }
+    id: 32
+    name: Cameroon
+
+  country33:
+    __construct: { create: [] }
+    id: 33
+    name: Greece
+
+  country34:
+    __construct: { create: [] }
+    id: 34
+    name: Austria
+
+  country35:
+    __construct: { create: [] }
+    id: 35
+    name: U.A.E.
+
+  country37:
+    __construct: { create: [] }
+    id: 37
+    name: Switzerland
+
+  country38:
+    __construct: { create: [] }
+    id: 38
+    name: Israel
+
+  country39:
+    __construct: { create: [] }
+    id: 39
+    name: Australia
+
+  country41:
+    __construct: { create: [] }
+    id: 41
+    name: Luxembourg
+
+  country42:
+    __construct: { create: [] }
+    id: 42
+    name: N. Ireland
+
+  country44:
+    __construct: { create: [] }
+    id: 44
+    name: Croatia
+
+  country45:
+    __construct: { create: [] }
+    id: 45
+    name: Ireland
+
+  country47:
+    __construct: { create: [] }
+    id: 47
+    name: Poland
+
+  country48:
+    __construct: { create: [] }
+    id: 48
+    name: Argentina
+
+  country50:
+    __construct: { create: [] }
+    id: 50
+    name: Thailand
+
+  country51:
+    __construct: { create: [] }
+    id: 51
+    name: Brazil
+
+  country52:
+    __construct: { create: [] }
+    id: 52
+    name: Morocco
+
+  country53:
+    __construct: { create: [] }
+    id: 53
+    name: Ukraine
+
+  country54:
+    __construct: { create: [] }
+    id: 54
+    name: Malta
+
+  country55:
+    __construct: { create: [] }
+    id: 55
+    name: Georgia
+
+  country56:
+    __construct: { create: [] }
+    id: 56
+    name: Bulgaria
+
+  country57:
+    __construct: { create: [] }
+    id: 57
+    name: Belarus
+
+  country58:
+    __construct: { create: [] }
+    id: 58
+    name: Wales
+
+  country59:
+    __construct: { create: [] }
+    id: 59
+    name: Cyprus
+
+  country60:
+    __construct: { create: [] }
+    id: 60
+    name: Estonia
+
+  country61:
+    __construct: { create: [] }
+    id: 61
+    name: Latvia
+
+  country62:
+    __construct: { create: [] }
+    id: 62
+    name: Slovakia
+
+  country63:
+    __construct: { create: [] }
+    id: 63
+    name: Saudi Arabia
+
+  country64:
+    __construct: { create: [] }
+    id: 64
+    name: Azerbaijan
+
+  country65:
+    __construct: { create: [] }
+    id: 65
+    name: Moldova
+
+  country66:
+    __construct: { create: [] }
+    id: 66
+    name: Lithuania
+
+  country67:
+    __construct: { create: [] }
+    id: 67
+    name: Faroe Islands
+
+  country68:
+    __construct: { create: [] }
+    id: 68
+    name: Macedonia
+
+  country69:
+    __construct: { create: [] }
+    id: 69
+    name: Iceland
+
+  country70:
+    __construct: { create: [] }
+    id: 70
+    name: Bosnia-Herzegovina
+
+  country71:
+    __construct: { create: [] }
+    id: 71
+    name: Albania
+
+  country72:
+    __construct: { create: [] }
+    id: 72
+    name: Armenia
+
+  country73:
+    __construct: { create: [] }
+    id: 73
+    name: San Marino
+
+  country74:
+    __construct: { create: [] }
+    id: 74
+    name: Liechtenstein
+
+  country76:
+    __construct: { create: [] }
+    id: 76
+    name: Andorra
+
+  country77:
+    __construct: { create: [] }
+    id: 77
+    name: Chile
+
+  country78:
+    __construct: { create: [] }
+    id: 78
+    name: Colombia
+
+  country79:
+    __construct: { create: [] }
+    id: 79
+    name: Uruguay
+
+  country80:
+    __construct: { create: [] }
+    id: 80
+    name: Ecuador
+
+  country81:
+    __construct: { create: [] }
+    id: 81
+    name: Bolivia
+
+  country82:
+    __construct: { create: [] }
+    id: 82
+    name: Paraguay
+
+  country83:
+    __construct: { create: [] }
+    id: 83
+    name: Peru
+
+  country84:
+    __construct: { create: [] }
+    id: 84
+    name: Venezuela
+
+  country85:
+    __construct: { create: [] }
+    id: 85
+    name: Algeria
+
+  country86:
+    __construct: { create: [] }
+    id: 86
+    name: Greenland
+
+  country87:
+    __construct: { create: [] }
+    id: 87
+    name: Kuwait
+
+  country88:
+    __construct: { create: [] }
+    id: 88
+    name: South Korea
+
+  country89:
+    __construct: { create: [] }
+    id: 89
+    name: Malaysia
+
+  country90:
+    __construct: { create: [] }
+    id: 90
+    name: Singapore
+
+  country91:
+    __construct: { create: [] }
+    id: 91
+    name: Qatar
+
+  country92:
+    __construct: { create: [] }
+    id: 92
+    name: Zimbabwe
+
+  country93:
+    __construct: { create: [] }
+    id: 93
+    name: New Zealand
+
+  country94:
+    __construct: { create: [] }
+    id: 94
+    name: Fiji
+
+  country95:
+    __construct: { create: [] }
+    id: 95
+    name: Taiwan
+
+  country96:
+    __construct: { create: [] }
+    id: 96
+    name: Burma
+
+  country98:
+    __construct: { create: [] }
+    id: 98
+    name: Libya
+
+  country99:
+    __construct: { create: [] }
+    id: 99
+    name: Togo
+
+  country100:
+    __construct: { create: [] }
+    id: 100
+    name: Zambia
+
+  country101:
+    __construct: { create: [] }
+    id: 101
+    name: Sudan
+
+  country102:
+    __construct: { create: [] }
+    id: 102
+    name: Ghana
+
+  country103:
+    __construct: { create: [] }
+    id: 103
+    name: Liberia
+
+  country104:
+    __construct: { create: [] }
+    id: 104
+    name: Sierra Leone
+
+  country105:
+    __construct: { create: [] }
+    id: 105
+    name: Namibia
+
+  country106:
+    __construct: { create: [] }
+    id: 106
+    name: Senegal
+
+  country107:
+    __construct: { create: [] }
+    id: 107
+    name: Congo
+
+  country108:
+    __construct: { create: [] }
+    id: 108
+    name: DR Congo
+
+  country109:
+    __construct: { create: [] }
+    id: 109
+    name: Malawi
+
+  country110:
+    __construct: { create: [] }
+    id: 110
+    name: Burkina Faso
+
+  country111:
+    __construct: { create: [] }
+    id: 111
+    name: Ivory Coast
+
+  country112:
+    __construct: { create: [] }
+    id: 112
+    name: Jamaica
+
+  country113:
+    __construct: { create: [] }
+    id: 113
+    name: Trinidad and Tobago
+
+  country114:
+    __construct: { create: [] }
+    id: 114
+    name: Mexico
+
+  country115:
+    __construct: { create: [] }
+    id: 115
+    name: Nicaragua
+
+  country116:
+    __construct: { create: [] }
+    id: 116
+    name: El Salvador
+
+  country117:
+    __construct: { create: [] }
+    id: 117
+    name: Costa Rica
+
+  country118:
+    __construct: { create: [] }
+    id: 118
+    name: Honduras
+
+  country119:
+    __construct: { create: [] }
+    id: 119
+    name: Angola
+
+  country120:
+    __construct: { create: [] }
+    id: 120
+    name: Madagascar
+
+  country121:
+    __construct: { create: [] }
+    id: 121
+    name: North Korea
+
+  country122:
+    __construct: { create: [] }
+    id: 122
+    name: Iran
+
+  country123:
+    __construct: { create: [] }
+    id: 123
+    name: Iraq
+
+  country125:
+    __construct: { create: [] }
+    id: 125
+    name: China
+
+  country126:
+    __construct: { create: [] }
+    id: 126
+    name: Mali
+
+  country127:
+    __construct: { create: [] }
+    id: 127
+    name: Jordan
+
+  country128:
+    __construct: { create: [] }
+    id: 128
+    name: Hong Kong
+
+  country129:
+    __construct: { create: [] }
+    id: 129
+    name: Kazakhstan
+
+  country130:
+    __construct: { create: [] }
+    id: 130
+    name: Uzbekistan
+
+  country131:
+    __construct: { create: [] }
+    id: 131
+    name: Benin
+
+  country133:
+    __construct: { create: [] }
+    id: 133
+    name: India
+
+  country134:
+    __construct: { create: [] }
+    id: 134
+    name: Oman
+
+  country135:
+    __construct: { create: [] }
+    id: 135
+    name: Laos
+
+  country136:
+    __construct: { create: [] }
+    id: 136
+    name: Guatemala
+
+  country137:
+    __construct: { create: [] }
+    id: 137
+    name: Cuba
+
+  country138:
+    __construct: { create: [] }
+    id: 138
+    name: Martinique
+
+  country139:
+    __construct: { create: [] }
+    id: 139
+    name: Haiti
+
+  country140:
+    __construct: { create: [] }
+    id: 140
+    name: Bahamas
+
+  country141:
+    __construct: { create: [] }
+    id: 141
+    name: Indonesia
+
+  country142:
+    __construct: { create: [] }
+    id: 142
+    name: Puerto Rico
+
+  country143:
+    __construct: { create: [] }
+    id: 143
+    name: Panama
+
+  country144:
+    __construct: { create: [] }
+    id: 144
+    name: Bahrain
+
+  country145:
+    __construct: { create: [] }
+    id: 145
+    name: Rwanda
+
+  country146:
+    __construct: { create: [] }
+    id: 146
+    name: Guinea
+
+  country147:
+    __construct: { create: [] }
+    id: 147
+    name: Kenya
+
+  country148:
+    __construct: { create: [] }
+    id: 148
+    name: Yemen
+
+  country149:
+    __construct: { create: [] }
+    id: 149
+    name: Barbados
+
+  country150:
+    __construct: { create: [] }
+    id: 150
+    name: Kyrgyzstan
+
+  country151:
+    __construct: { create: [] }
+    id: 151
+    name: Botswana
+
+  country152:
+    __construct: { create: [] }
+    id: 152
+    name: Gabon
+
+  country153:
+    __construct: { create: [] }
+    id: 153
+    name: Cape Verde
+
+  country154:
+    __construct: { create: [] }
+    id: 154
+    name: Uganda
+
+  country155:
+    __construct: { create: [] }
+    id: 155
+    name: Vietnam
+
+  country156:
+    __construct: { create: [] }
+    id: 156
+    name: Sri Lanka
+
+  country157:
+    __construct: { create: [] }
+    id: 157
+    name: Palestine
+
+  country158:
+    __construct: { create: [] }
+    id: 158
+    name: Syria
+
+  country159:
+    __construct: { create: [] }
+    id: 159
+    name: Tajikistan
+
+  country160:
+    __construct: { create: [] }
+    id: 160
+    name: Lebanon
+
+  country161:
+    __construct: { create: [] }
+    id: 161
+    name: Maldives
+
+  country162:
+    __construct: { create: [] }
+    id: 162
+    name: Turkmenistan
+
+  country163:
+    __construct: { create: [] }
+    id: 163
+    name: Pakistan
+
+  country164:
+    __construct: { create: [] }
+    id: 164
+    name: Dominican Rep.
+
+  country165:
+    __construct: { create: [] }
+    id: 165
+    name: St. Kitts and Nevis
+
+  country166:
+    __construct: { create: [] }
+    id: 166
+    name: Saint Vincent and The Grenadines
+
+  country167:
+    __construct: { create: [] }
+    id: 167
+    name: Vanuatu
+
+  country168:
+    __construct: { create: [] }
+    id: 168
+    name: Tahiti
+
+  country169:
+    __construct: { create: [] }
+    id: 169
+    name: Solomon Islands
+
+  country170:
+    __construct: { create: [] }
+    id: 170
+    name: Great Britain
+
+  country171:
+    __construct: { create: [] }
+    id: 171
+    name: Tonga
+
+  country172:
+    __construct: { create: [] }
+    id: 172
+    name: Philippines
+
+  country173:
+    __construct: { create: [] }
+    id: 173
+    name: Mongolia
+
+  country174:
+    __construct: { create: [] }
+    id: 174
+    name: Afghanistan
+
+  country175:
+    __construct: { create: [] }
+    id: 175
+    name: Lesotho
+
+  country176:
+    __construct: { create: [] }
+    id: 176
+    name: Nepal
+
+  country177:
+    __construct: { create: [] }
+    id: 177
+    name: Ethiopia
+
+  country178:
+    __construct: { create: [] }
+    id: 178
+    name: Mauritius
+
+  country179:
+    __construct: { create: [] }
+    id: 179
+    name: Seychelles
+
+  country180:
+    __construct: { create: [] }
+    id: 180
+    name: Brunei
+
+  country181:
+    __construct: { create: [] }
+    id: 181
+    name: Virgin Islands
+
+  country182:
+    __construct: { create: [] }
+    id: 182
+    name: Micronesia
+
+  country183:
+    __construct: { create: [] }
+    id: 183
+    name: Bermuda
+
+  country184:
+    __construct: { create: [] }
+    id: 184
+    name: Nauru
+
+  country185:
+    __construct: { create: [] }
+    id: 185
+    name: Central African Rep.
+
+  country186:
+    __construct: { create: [] }
+    id: 186
+    name: Guam
+
+  country187:
+    __construct: { create: [] }
+    id: 187
+    name: Netherlands Antilles
+
+  country188:
+    __construct: { create: [] }
+    id: 188
+    name: Bangladesh
+
+  country189:
+    __construct: { create: [] }
+    id: 189
+    name: Bhutan
+
+  country190:
+    __construct: { create: [] }
+    id: 190
+    name: Monaco
+
+  country192:
+    __construct: { create: [] }
+    id: 192
+    name: Antigua and Barbuda
+
+  country193:
+    __construct: { create: [] }
+    id: 193
+    name: American Samoa
+
+  country194:
+    __construct: { create: [] }
+    id: 194
+    name: Belize
+
+  country195:
+    __construct: { create: [] }
+    id: 195
+    name: Aruba
+
+  country196:
+    __construct: { create: [] }
+    id: 196
+    name: Burundi
+
+  country197:
+    __construct: { create: [] }
+    id: 197
+    name: Cayman Islands
+
+  country198:
+    __construct: { create: [] }
+    id: 198
+    name: Djibouti
+
+  country199:
+    __construct: { create: [] }
+    id: 199
+    name: Dominica
+
+  country200:
+    __construct: { create: [] }
+    id: 200
+    name: Ecuatorial Guinea
+
+  country201:
+    __construct: { create: [] }
+    id: 201
+    name: Eritrea
+
+  country202:
+    __construct: { create: [] }
+    id: 202
+    name: Cook Islands
+
+  country203:
+    __construct: { create: [] }
+    id: 203
+    name: Cambodia
+
+  country204:
+    __construct: { create: [] }
+    id: 204
+    name: French Guyana
+
+  country205:
+    __construct: { create: [] }
+    id: 205
+    name: Gambia
+
+  country206:
+    __construct: { create: [] }
+    id: 206
+    name: Saint Lucia
+
+  country207:
+    __construct: { create: [] }
+    id: 207
+    name: Niger
+
+  country208:
+    __construct: { create: [] }
+    id: 208
+    name: Papua New Guinea
+
+  country209:
+    __construct: { create: [] }
+    id: 209
+    name: Chad
+
+  country210:
+    __construct: { create: [] }
+    id: 210
+    name: Swaziland
+
+  country211:
+    __construct: { create: [] }
+    id: 211
+    name: Comoros
+
+  country212:
+    __construct: { create: [] }
+    id: 212
+    name: Kiribati
+
+  country213:
+    __construct: { create: [] }
+    id: 213
+    name: Grenada
+
+  country214:
+    __construct: { create: [] }
+    id: 214
+    name: British Virgin Islands
+
+  country215:
+    __construct: { create: [] }
+    id: 215
+    name: Mozambique
+
+  country216:
+    __construct: { create: [] }
+    id: 216
+    name: Guyana
+
+  country217:
+    __construct: { create: [] }
+    id: 217
+    name: Mauretania
+
+  country218:
+    __construct: { create: [] }
+    id: 218
+    name: Tanzania
+
+  country219:
+    __construct: { create: [] }
+    id: 219
+    name: Somalia
+
+  country220:
+    __construct: { create: [] }
+    id: 220
+    name: Surinam
+
+  country221:
+    __construct: { create: [] }
+    id: 221
+    name: Sao Tome and Principe
+
+  country222:
+    __construct: { create: [] }
+    id: 222
+    name: Former East Timor
+
+  country223:
+    __construct: { create: [] }
+    id: 223
+    name: Palau
+
+  country224:
+    __construct: { create: [] }
+    id: 224
+    name: Samoa
+
+  country225:
+    __construct: { create: [] }
+    id: 225
+    name: Europe
+
+  country226:
+    __construct: { create: [] }
+    id: 226
+    name: GB/Ireland
+
+  country227:
+    __construct: { create: [] }
+    id: 227
+    name: Asia
+
+  country228:
+    __construct: { create: [] }
+    id: 228
+    name: Macao
+
+  country229:
+    __construct: { create: [] }
+    id: 229
+    name: Guadeloupe
+
+  country230:
+    __construct: { create: [] }
+    id: 230
+    name: Montenegro
+
+  country465:
+    __construct: { create: [] }
+    id: 465
+    name: Unknown
+
+  country652:
+    __construct: { create: [] }
+    id: 652
+    name: Undefined
+
+  country653:
+    __construct: { create: [] }
+    id: 653
+    name: Timor-Leste
+
+  country654:
+    __construct: { create: [] }
+    id: 654
+    name: New Caledonia
+
+  country655:
+    __construct: { create: [] }
+    id: 655
+    name: Gibraltar
+
+  country656:
+    __construct: { create: [] }
+    id: 656
+    name: Guinea-Bissau
+
+  country657:
+    __construct: { create: [] }
+    id: 657
+    name: Marshall Islands
+
+  country658:
+    __construct: { create: [] }
+    id: 658
+    name: Tuvalu
+
+  country659:
+    __construct: { create: [] }
+    id: 659
+    name: Jersey
+
+  country660:
+    __construct: { create: [] }
+    id: 660
+    name: Christmas Island
+
+  country661:
+    __construct: { create: [] }
+    id: 661
+    name: Anguilla
+
+  country662:
+    __construct: { create: [] }
+    id: 662
+    name: Montserrat
+
+  country663:
+    __construct: { create: [] }
+    id: 663
+    name: Turks and Caicos Islands
+
+  country664:
+    __construct: { create: [] }
+    id: 664
+    name: Curacao
+
+  country665:
+    __construct: { create: [] }
+    id: 665
+    name: Zanzibar
+
+  country666:
+    __construct: { create: [] }
+    id: 666
+    name: South Sudan
+
+  country667:
+    __construct: { create: [] }
+    id: 667
+    name: Northern Mariana Islands
+
+  country668:
+    __construct: { create: [] }
+    id: 668
+    name: Kosovo
+
+  country669:
+    __construct: { create: [] }
+    id: 669
+    name: Yugoslavia
+
+  country670:
+    __construct: { create: [] }
+    id: 670
+    name: West Germany
+
+  country671:
+    __construct: { create: [] }
+    id: 671
+    name: East Germany
+
+  country672:
+    __construct: { create: [] }
+    id: 672
+    name: Soviet Union
+
+  country673:
+    __construct: { create: [] }
+    id: 673
+    name: Czechoslovakia
+
+  country674:
+    __construct: { create: [] }
+    id: 674
+    name: Dutch East Indies
+
+  country675:
+    __construct: { create: [] }
+    id: 675
+    name: Zaire
+
+  country701:
+    __construct: { create: [] }
+    id: 701
+    name: Africa
+
+  country702:
+    __construct: { create: [] }
+    id: 702
+    name: Asia
+
+  country703:
+    __construct: { create: [] }
+    id: 703
+    name: Australia and Oceania
+
+  country704:
+    __construct: { create: [] }
+    id: 704
+    name: North and Central America
+
+  country705:
+    __construct: { create: [] }
+    id: 705
+    name: South America

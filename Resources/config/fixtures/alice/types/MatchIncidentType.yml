@@ -1,0 +1,136 @@
+Visca\Bundle\LicomBundle\Entity\MatchIncidentType:
+    match_incident_type7:
+        id: 7
+        code: RegularGoal
+        name: 'Regular goal'
+        category: goal
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'
+    match_incident_type8:
+        id: 8
+        code: Penalty
+        name: Penalty
+        category: goal
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'
+    match_incident_type9:
+        id: 9
+        code: MissedPenalty
+        name: 'Missed penalty'
+        category: goal
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'
+    match_incident_type10:
+        id: 10
+        code: OwnGoal
+        name: 'Own goal'
+        category: goal
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'
+    match_incident_type11:
+        id: 11
+        code: PenaltyShootoutMissed
+        name: 'Penalty shootout missed'
+        category: goal
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'
+    match_incident_type12:
+        id: 12
+        code: PenaltyShootoutScored
+        name: 'Penalty shootout scored'
+        category: goal
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'
+    match_incident_type14:
+        id: 14
+        code: YellowCard
+        name: 'Yellow card'
+        category: card
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'
+    match_incident_type15:
+        id: 15
+        code: YellowCard2
+        name: 'Yellow card 2'
+        category: card
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'
+    match_incident_type16:
+        id: 16
+        code: RedCard
+        name: 'Red card'
+        category: card
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'
+    match_incident_type18:
+        id: 18
+        code: ExtratimeGoal
+        name: 'Extratime Goal'
+        category: goal
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'
+    match_incident_type19:
+        id: 19
+        code: ExtratimeMissedPenalty
+        name: 'Extratime missed penalty'
+        category: goal
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'
+    match_incident_type20:
+        id: 20
+        code: SubstitutionOut
+        name: 'Substitution out'
+        category: subst
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'
+    match_incident_type28:
+        id: 28
+        code: ExtratimePenaltyScored
+        name: 'Extratime penalty scored'
+        category: goal
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'
+    match_incident_type32:
+        id: 32
+        code: SubstitutionIn
+        name: 'Substitution in'
+        category: subst
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'
+    match_incident_type34:
+        id: 34
+        code: Assist
+        name: Assist
+        category: assist
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        sport: '@sport1'

@@ -1,0 +1,74 @@
+Visca\Bundle\LicomBundle\Entity\MatchBettingOutcome:
+  type: entity
+  inheritanceType: SINGLE_TABLE
+  table: BettingOutcome
+  repositoryClass: Visca\Bundle\LicomBundle\Repository\MatchBettingOutcomeRepository
+  id:
+    id:
+      type: integer
+      length: 10
+      generator:
+        strategy: AUTO
+      options:
+        unsigned: true
+  fields:
+    status:
+      type: BettingOutcomeStatusType
+      length: 0
+      nullable: true
+      options:
+        default: NULL
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+    createdAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+    updatedAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+  indexes:
+    fk_entity:
+      columns: [Entity]
+    fk_bettingOutcomeSubType:
+      columns: [BettingOutcomeSubType]
+    fk_bettingOutcomeScopeType:
+      columns: [BettingOutcomeScopeType]
+  manyToOne:
+    entity:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\Entity
+      joinColumns:
+        Entity:
+          referencedColumnName: id
+          nullable: false
+    subType:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\BettingOutcomeSubType
+      joinColumns:
+        BettingOutcomeSubType:
+          referencedColumnName: id
+          nullable: false
+    scopeType:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\BettingOutcomeScopeType
+      joinColumns:
+        BettingOutcomeScopeType:
+          referencedColumnName: id
+          nullable: false
+    match:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\Match
+      joinColumns:
+        entityId:
+          referencedColumnName: id
+          nullable: false
+  discriminatorColumn:
+    name: type
+    type: smallint
+  discriminatorMap:
+    1: Visca\Bundle\LicomBundle\Entity\ThreeWayMatchBettingOutcome
+    2: Visca\Bundle\LicomBundle\Entity\OverUnderMatchBettingOutcome

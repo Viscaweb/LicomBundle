@@ -1,0 +1,329 @@
+Visca\Bundle\LicomBundle\Entity\StandingPromotion:
+    standing_promotion0:
+        id: 0
+        code: none
+        name: none
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type7'
+    standing_promotion1:
+        id: 1
+        code: afcchampionsleague
+        name: 'AFC Champions League'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type1'
+    standing_promotion2:
+        id: 2
+        code: afccup
+        name: 'AFC Cup'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type1'
+    standing_promotion3:
+        id: 3
+        code: cafconfederationcup
+        name: 'CAF Confederation Cup'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type1'
+    standing_promotion4:
+        id: 4
+        code: championsleague
+        name: ChampionsLeague
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type1'
+    standing_promotion5:
+        id: 5
+        code: championsleaguequal
+        name: ChampionsLeagueQualification
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type2'
+    standing_promotion6:
+        id: 6
+        code: championsround
+        name: 'Champions round'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type2'
+    standing_promotion7:
+        id: 7
+        code: copalibertadores
+        name: 'Copa Libertadores'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type1'
+    standing_promotion8:
+        id: 8
+        code: copasudamericana
+        name: 'Copa Sudamericana'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type3'
+    standing_promotion9:
+        id: 9
+        code: cupwinnerscup
+        name: CupwinnersCup
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type3'
+    standing_promotion10:
+        id: 10
+        code: ehfcup
+        name: EhfCup
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type3'
+    standing_promotion11:
+        id: 11
+        code: finalround
+        name: 'Final Round'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type3'
+    standing_promotion12:
+        id: 12
+        code: finals
+        name: Finals
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type2'
+    standing_promotion13:
+        id: 13
+        code: placementmatchesgreen
+        name: 'Placement Matches Green'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type2'
+    standing_promotion14:
+        id: 14
+        code: playoff
+        name: Playoff
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type4'
+    standing_promotion15:
+        id: 15
+        code: promotion
+        name: Promotion
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type1'
+    standing_promotion16:
+        id: 16
+        code: promotionplayoff
+        name: PromotionPlayoff
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type2'
+    standing_promotion17:
+        id: 17
+        code: promotionround
+        name: 'Promotion round'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type2'
+    standing_promotion18:
+        id: 18
+        code: qualification_to_next_stage
+        name: 'Qualification to next stage'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type1'
+    standing_promotion19:
+        id: 19
+        code: relegation
+        name: Relegation
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type6'
+    standing_promotion20:
+        id: 20
+        code: relegationplayoff
+        name: RelegationPlayoff
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type5'
+    standing_promotion21:
+        id: 21
+        code: relegationplayoffs
+        name: 'Relegation Playoffs'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type5'
+    standing_promotion22:
+        id: 22
+        code: uefacup
+        name: UefaCup
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type3'
+    standing_promotion23:
+        id: 23
+        code: uefaqual
+        name: UefaQual
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type3'
+    standing_promotion24:
+        id: 24
+        code: uefaqualplayoff
+        name: UefaQualPlayoff
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type3'
+    standing_promotion25:
+        id: 25
+        code: cfuclubchampionship
+        name: 'CFU Club Championship'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type7'
+    standing_promotion26:
+        id: 26
+        code: fa2uefa
+        name: 'FA Cup gives Europa League'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type7'
+    standing_promotion27:
+        id: 27
+        code: fa2uefaqual
+        name: 'FA Cup gives Europa League Qual.'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type7'
+    standing_promotion28:
+        id: 28
+        code: test
+        name: Test
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type7'
+    standing_promotion29:
+        id: 29
+        code: afcchampionsleaguequal
+        name: 'AFC Champions League Qualification'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type2'
+    standing_promotion30:
+        id: 30
+        code: afccupqual
+        name: 'AFC Cup Qualification'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type2'
+    standing_promotion31:
+        id: 31
+        code: afcpresidentscup
+        name: 'AFC Presidents Cup'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type1'
+    standing_promotion32:
+        id: 32
+        code: cafchampionsleaguequal
+        name: 'CAF Champions League Qualification'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type2'
+    standing_promotion33:
+        id: 33
+        code: championship_playoff
+        name: 'Championship playoff'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type1'
+    standing_promotion34:
+        id: 34
+        code: challengecup
+        name: ChallengeCup
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type3'
+    standing_promotion35:
+        id: 35
+        code: concacafchampionsleague
+        name: 'CONCACAF Champions League'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type1'
+    standing_promotion36:
+        id: 36
+        code: copalibertadoresqual
+        name: 'Copa Libertadores Qualification'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type2'
+    standing_promotion37:
+        id: 37
+        code: ofcchampionsleague
+        name: 'OFC Champions League'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type1'
+    standing_promotion38:
+        id: 38
+        code: ofcchampionsleaguequal
+        name: 'OFC Champions League qualification'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type2'
+    standing_promotion39:
+        id: 39
+        code: placementmatches
+        name: 'Placement matches'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type4'
+    standing_promotion40:
+        id: 40
+        code: intertotocup
+        name: 'UEFA Intertoto Cup'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+        StandingPromotionType: '@standing_promotion_type7'

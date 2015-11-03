@@ -1,0 +1,771 @@
+Visca\Bundle\LicomBundle\Entity\Bookmaker:
+    bookmaker1:
+        id: 1
+        name: 'Paddy Power'
+        url: 'http://www.paddypower.com/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker2:
+        id: 2
+        name: 'The Greek'
+        url: 'http://www.thegreek.com/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker3:
+        id: 3
+        name: 'Pinnacle Sports'
+        url: 'http://www.pinnaclesports.com/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker4:
+        id: 4
+        name: Ladbrokes
+        url: 'http://www.ladbrokes.com/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker5:
+        id: 5
+        name: Bet-at-home.com
+        url: 'http://www.bet-at-home.com/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker6:
+        id: 6
+        name: VIP.com
+        url: 'http://www.vip.com/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker7:
+        id: 7
+        name: 'Stan James'
+        url: 'http://www.stanjames.com'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker8:
+        id: 8
+        name: SportsBetting.com.au
+        url: 'http://www.sportsbetting.com.au/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker9:
+        id: 9
+        name: SuperBook
+        url: 'http://www.superbook.com'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker10:
+        id: 10
+        name: Betfair
+        url: 'http://www.betfair.com/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker11:
+        id: 11
+        name: Bet365
+        url: 'http://www.bet365.com/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker12:
+        id: 12
+        name: Bodog.uk
+        url: 'http://sports.bodoglife.co.uk/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker13:
+        id: 13
+        name: 5Dimes
+        url: 'http://www.5dimes.com'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker14:
+        id: 14
+        name: MyBet
+        url: 'http://www.mybet.com'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker15:
+        id: 15
+        name: BetCris
+        url: 'http://www.betcris.com/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker16:
+        id: 16
+        name: BET24
+        url: 'https://www.bet24.com/sports.htm'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker17:
+        id: 17
+        name: Linesmaker
+        url: 'http://www.linesmaker.com'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker18:
+        id: 18
+        name: Totosi
+        url: 'http://www.totosi.it'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker19:
+        id: 19
+        name: Partouche
+        url: 'https://www.partouche-betting.com/index.php'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker20:
+        id: 20
+        name: BetEd
+        url: 'http://www.beted.com'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker21:
+        id: 21
+        name: BetUS
+        url: 'http://www.betus.com'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker22:
+        id: 22
+        name: Sportsbook.ag
+        url: 'https://www.sportsbook.ag/welcome'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker23:
+        id: 23
+        name: Sports.com
+        url: 'http://www.sports.com'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker24:
+        id: 24
+        name: Bookmaker.ag
+        url: 'http://bmaker.ag/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker25:
+        id: 25
+        name: 'Mansion Sportsbook'
+        url: 'http://www.mansion.com'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker26:
+        id: 26
+        name: 'Mansion Exchange'
+        url: 'http://www.mansion.com'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker27:
+        id: 27
+        name: Betfred
+        url: 'http://www.betfred.com'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker28:
+        id: 28
+        name: Racebook
+        url: 'http://racebook.com/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker29:
+        id: 29
+        name: 'Hollywood Sportsbook'
+        url: 'http://www.hollywoodsportsbook.com'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker31:
+        id: 31
+        name: WagerWeb
+        url: 'http://www.wagerweb.com'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker32:
+        id: 32
+        name: Gamebookers
+        url: 'http://www.gamebookers.com'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker33:
+        id: 33
+        name: BetJamaica
+        url: 'http://www.betjamaica.com'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker34:
+        id: 34
+        name: 'SBG Global'
+        url: 'http://www.sbgglobal.com'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker35:
+        id: 35
+        name: Skybook
+        url: 'http://www.skybook.com/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker36:
+        id: 36
+        name: 'Diamond Sportsbook Int.'
+        url: 'http://www.betdsi.eu/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker37:
+        id: 37
+        name: Bowmans
+        url: 'http://www.bowmans.com'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker38:
+        id: 38
+        name: 10Bet
+        url: 'http://www.10bet.com'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker39:
+        id: 39
+        name: Parier.net
+        url: 'http://www.parier.net/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker40:
+        id: 40
+        name: SNAI
+        url: 'http://www.snai.it'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker41:
+        id: 41
+        name: 'Sports Interaction'
+        url: 'http://www.sportsinteraction.com/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker42:
+        id: 42
+        name: Canbet
+        url: 'http://www.canbet.com/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker43:
+        id: 43
+        name: Intertops
+        url: 'http://www.intertops.com/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker44:
+        id: 44
+        name: Unibet
+        url: 'http://www.unibet.co.uk/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker45:
+        id: 45
+        name: SportingBet
+        url: 'http://www.sportingbet.com/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker46:
+        id: 46
+        name: BWin
+        url: 'http://www.bwin.com'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker47:
+        id: 47
+        name: Centrebet
+        url: 'http://www.centrebet.com/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker48:
+        id: 48
+        name: Interwetten
+        url: 'http://www.interwetten.com/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker49:
+        id: 49
+        name: Eurobet
+        url: 'http://www.eurobet.com/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker50:
+        id: 50
+        name: Expekt
+        url: 'http://www.expekt.com/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker51:
+        id: 51
+        name: BetShop
+        url: 'http://www.betshop.com/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker52:
+        id: 52
+        name: 'William Hill'
+        url: 'http://www.willhill.com/iibs/EN/sportsbook.asp'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker53:
+        id: 53
+        name: Bodog.eu
+        url: 'http://www.bodog.eu/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker54:
+        id: 54
+        name: Tipico
+        url: 'http://www.tipico.com/en/online-sports-betting/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker55:
+        id: 55
+        name: Globet.it
+        url: 'http://www.globet.it/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker56:
+        id: 56
+        name: JazzSports
+        url: 'http://jazzsports.com/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker57:
+        id: 57
+        name: BetPhoenix
+        url: 'http://www.betphoenix.com/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker58:
+        id: 58
+        name: test
+        url: 'http://www.test.test'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker59:
+        id: 59
+        name: Betonline
+        url: 'http://www.betonline.com'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker60:
+        id: 60
+        name: Betpro.it
+        url: 'http://www.betpro.it/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker61:
+        id: 61
+        name: 'Bookmaker - not used'
+        url: 'http://www.bookmaker.com'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker62:
+        id: 62
+        name: 'Las Palmas'
+        url: 'http://www.betlaspalmas.com/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker63:
+        id: 63
+        name: Betfair.it
+        url: 'https://www.betfair.it/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker64:
+        id: 64
+        name: Intralot.it
+        url: 'http://www.intralot.it/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker65:
+        id: 65
+        name: BWin.it
+        url: 'https://www.bwin.it/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker66:
+        id: 66
+        name: Eurobet.it
+        url: 'http://www.eurobet.it/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker67:
+        id: 67
+        name: Betshop.it
+        url: 'http://betshopitalia.com/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker68:
+        id: 68
+        name: wette.at
+        url: 'https://ssl.wette.at'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker69:
+        id: 69
+        name: LooseLines
+        url: 'http://www.looselines.com/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker70:
+        id: 70
+        name: Ladbrokes.it
+        url: 'http://www.ladbrokes.it/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker71:
+        id: 71
+        name: Better.it
+        url: 'http://www.better.it/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker72:
+        id: 72
+        name: 888Sport
+        url: 'http://www.888sport.com/bet'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker73:
+        id: 73
+        name: Sportsbet.com.au
+        url: 'https://www.sportsbet.com.au'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker74:
+        id: 74
+        name: BetClic
+        url: 'http://www.betclic.com/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker75:
+        id: 75
+        name: Nine.com
+        url: 'http://www.nine.com'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker76:
+        id: 76
+        name: BetCascade
+        url: 'http://www.betcascade.com/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker77:
+        id: 77
+        name: Winamax
+        url: 'http://www.winamax.com'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker78:
+        id: 78
+        name: Betway
+        url: 'http://www.betway.com'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker79:
+        id: 79
+        name: JustBet
+        url: 'http://www.justbet.com'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker80:
+        id: 80
+        name: BetBoo
+        url: 'http://www.betboo.com/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker81:
+        id: 81
+        name: PartyBets
+        url: 'http://www.partybets.com/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker82:
+        id: 82
+        name: 'MyBet Exchange'
+        url: 'https://www.mybet.com/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker83:
+        id: 83
+        name: Sportbet
+        url: 'http://www.sportbet.com/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker84:
+        id: 84
+        name: Skiller.it
+        url: 'http://www.skiller.it/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker85:
+        id: 85
+        name: Titanbet
+        url: 'http://www.titanbet.com/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker86:
+        id: 86
+        name: NetBet
+        url: 'https://sport.netbet.com/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker87:
+        id: 87
+        name: Eurosportbet
+        url: 'http://www.eurosportbet.co.uk'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker88:
+        id: 88
+        name: Unibet.fr
+        url: 'https://www.unibet.fr/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker89:
+        id: 89
+        name: BWin.fr
+        url: 'https://www.bwin.fr/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker90:
+        id: 90
+        name: Misterbet
+        url: 'http://www.misterbet.it'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker91:
+        id: 91
+        name: SAjOO.fr
+        url: 'https://www.sajoo.fr/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker92:
+        id: 92
+        name: BetClic.fr
+        url: 'https://www.betclic.fr/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker93:
+        id: 93
+        name: Paf
+        url: 'http://secure.paf.com/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker94:
+        id: 94
+        name: BetClic.it
+        url: 'http://www.betclic.it/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker95:
+        id: 95
+        name: Parionsweb
+        url: 'https://parionsweb.fdj.fr/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker96:
+        id: 96
+        name: Chilipari
+        url: 'https://www.chilipari.fr/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker97:
+        id: 97
+        name: PMU
+        url: 'http://paris-sportifs.pmu.fr/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker98:
+        id: 98
+        name: Sisal
+        url: 'http://www.sisal.it/online/Scommesse-Matchpoint/Palinsesto'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker99:
+        id: 99
+        name: France-Pari
+        url: 'https://www.france-pari.fr/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker100:
+        id: 100
+        name: Paris365
+        url: 'https://www.paris365.fr/fr/home.bet'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker101:
+        id: 101
+        name: 'William Hill.it'
+        url: 'http://sports.williamhill.it/bet_ita/it'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker102:
+        id: 102
+        name: Iziplay
+        url: 'https://www.iziplay.it/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker103:
+        id: 103
+        name: Interwetten.it
+        url: 'https://www.interwetten.it/it/scommesse-sportive/Default.aspx'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker104:
+        id: 104
+        name: Unibet.it
+        url: 'https://www.unibet.it/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker105:
+        id: 105
+        name: Betsson.dk
+        url: 'http://www.betsson.dk'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker106:
+        id: 106
+        name: Betflag.it
+        url: 'https://www.betflag.it'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker107:
+        id: 107
+        name: Bovada.lv
+        url: 'http://www.bovada.lv/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker108:
+        id: 108
+        name: Tipico.it
+        url: 'https://www.tipico.it/en/online-sports-betting/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker109:
+        id: 109
+        name: Netbet.fr
+        url: 'https://netbetsport.fr/'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker110:
+        id: 110
+        name: Winamax.fr
+        url: 'https://www.winamax.fr/paris-sportifs#/sports'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    bookmaker111:
+        id: 111
+        name: Partypoker
+        url: 'https://sports.partypoker.com/en/sports'
+        del: 'no'
+        createdAt: null
+        updatedAt: null

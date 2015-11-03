@@ -1,0 +1,148 @@
+Visca\Bundle\LicomBundle\Entity\MatchStatsType:
+    match_stats_type1:
+        id: 1
+        code: BallPossession
+        name: 'Ball possession in percentage'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_stats_type2:
+        id: 2
+        code: ShotsOnGoal
+        name: 'Shots on goal'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_stats_type3:
+        id: 3
+        code: ShotsOffGoal
+        name: 'Shots off goal'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_stats_type4:
+        id: 4
+        code: FreeKicks
+        name: 'Free quicks'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_stats_type5:
+        id: 5
+        code: CornerKicks
+        name: 'Corner kicks'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_stats_type6:
+        id: 6
+        code: Offsides
+        name: Offsides
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_stats_type7:
+        id: 7
+        code: ThrowIns
+        name: 'Throw ins'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_stats_type8:
+        id: 8
+        code: GoalkeeperSaves
+        name: 'Goal keeper saves'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_stats_type9:
+        id: 9
+        code: GoalKicks
+        name: 'Goal kicks'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_stats_type10:
+        id: 10
+        code: Fouls
+        name: Fouls
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_stats_type11:
+        id: 11
+        code: Crosses
+        name: 'Total cross amount'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_stats_type12:
+        id: 12
+        code: BlockedShots
+        name: 'Total amount of blocked shots by the goalkeeper'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_stats_type13:
+        id: 13
+        code: YellowCards
+        name: 'Total amount of yellow cards'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_stats_type14:
+        id: 14
+        code: Counters
+        name: 'Total amount of counters'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_stats_type15:
+        id: 15
+        code: RedCards
+        name: 'Total amount of red cards'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_stats_type16:
+        id: 16
+        code: Goals
+        name: 'Total amount of goals'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_stats_type17:
+        id: 17
+        code: Passes
+        name: 'Total amount of passes'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_stats_type18:
+        id: 18
+        code: Treatments
+        name: 'Total amount of treatments'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_stats_type19:
+        id: 19
+        code: Substitutions
+        name: 'Total amount of substitutions'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_stats_type20:
+        id: 20
+        code: Tackles
+        name: 'Total amount of tackles'
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    match_stats_type21:
+        id: 21
+        code: BallsWon
+        name: 'Total amount of balls won'
+        del: 'no'
+        createdAt: null
+        updatedAt: null

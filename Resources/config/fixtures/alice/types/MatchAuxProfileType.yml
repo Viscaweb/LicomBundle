@@ -1,0 +1,6 @@
+Visca\Bundle\LicomBundle\Entity\MatchAuxProfileType:
+    match_aux_profile_type1:
+        id: 1
+        code: Importance
+        name: Importance
+        del: 'no'

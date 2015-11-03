@@ -1,0 +1,28 @@
+Visca\Bundle\LicomBundle\Entity\LibeSequence:
+  type: entity
+  table: libe_sequence
+  id:
+    id:
+      type: string
+      length: 64
+  fields:
+    cnt:
+      type: bigint
+      length: 20
+      nullable: false
+      options:
+        unsigned: true
+    inc:
+      type: bigint
+      length: 3
+      nullable: true
+      columnDefinition: tinyint(3) unsigned DEFAULT '1'
+      options:
+        default: '1'
+        unsigned: true
+    obs:
+      type: text
+      nullable: true
+      columnDefinition: LONGTEXT
+      options:
+        default: NULL

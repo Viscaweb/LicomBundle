@@ -1,0 +1,14 @@
+Visca\Bundle\LicomBundle\Entity\CompetitionSeasonStage:
+  competition_season_stage_default:
+    __construct: { create: [] }
+    start: <dateTime()>
+    end: <dateTime()>
+    competitionSeason: @competition_season_default
+    competitionStage: @competition_stage_default
+
+  competition_season_stage_1:
+    __construct: { create: [] }
+    start: <dateTime()>
+    end: <dateTime()>
+    competitionSeason: @competition_season_default
+    competitionStage: @competition_stage_default

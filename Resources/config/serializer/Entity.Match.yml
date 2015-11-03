@@ -1,0 +1,17 @@
+Visca\Bundle\LicomBundle\Entity\Match:
+    exclusion_policy: ALL
+    properties:
+      id:
+        expose: true
+      name:
+        expose: true
+      startDate:
+        expose: true
+      matchParticipant:
+        expose: true
+      competitionSeasonStage:
+        expose: true
+      competitionRound:
+        expose: true
+      competitionRound:
+        expose: true

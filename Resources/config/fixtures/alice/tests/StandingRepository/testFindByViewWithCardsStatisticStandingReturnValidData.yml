@@ -1,0 +1,51 @@
+include:
+  - ../../types/CompetitionStageType.yml
+  - ../../types/Sport.yml
+  - ../../types/Entity.yml
+  - ../../types/StandingType.yml
+  - ../../types/StandingColumnScope.yml
+  - ../../types/StandingColumnGroup.yml
+  - ../../types/StandingColumn.yml
+  - ../../types/StandingView.yml
+  - ../../types/StandingViewGraph.yml
+  - ../../types/StandingViewGraphLabel.yml
+  - ../../default/Country.yml
+  - ../../default/CompetitionCategory.yml
+  - ../../default/Competition.yml
+  - ../../default/CompetitionSeason.yml
+  - ../../default/CompetitionStage.yml
+  - ../../default/CompetitionSeasonStage.yml
+  - ../../default/Team.yml
+
+
+Visca\Bundle\LicomBundle\Entity\Standing:
+  standing:
+    __construct: { create: [] }
+    entity: @entity509
+    entityId: 1 # Mhmmm not sure it will be always 1 for the default CompetitionSeasonStage
+    standingType: @standing_type1
+
+Visca\Bundle\LicomBundle\Entity\StandingRow:
+  standing_row-{0..1}:
+    __construct: { create: [] }
+    participant: @team<current()>
+    standing: @standing
+
+Visca\Bundle\LicomBundle\Entity\StandingCell:
+  # Add some yellow cards cells
+  standing_cell_yellow_cards-{0..1}:
+    __construct: { create: [] }
+    standingRow: @standing_row-<current()>
+    standingColumn: @standing_column37
+
+  # Add some red cards cells
+  standing_cell_red_cards-{0..1}:
+    __construct: { create: [] }
+    standingRow: @standing_row-<current()>
+    standingColumn: @standing_column38
+
+  # Add some total matches cells
+  standing_cell_total_matches-{0..1}:
+    __construct: { create: [] }
+    standingRow: @standing_row-<current()>
+    standingColumn: @standing_column24

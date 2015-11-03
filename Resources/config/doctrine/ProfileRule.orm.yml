@@ -1,0 +1,61 @@
+Visca\Bundle\LicomBundle\Entity\ProfileRule:
+  type: entity
+  table: ProfileRule
+  repositoryClass: Visca\Bundle\LicomBundle\Repository\ProfileRuleRepository
+  id:
+    id:
+      type: integer
+      length: 10
+      generator:
+        strategy: AUTO
+      options:
+        unsigned: true
+  fields:
+    value:
+      type: string
+      length: 45
+      nullable: false
+    position:
+      type: smallint
+      length: 5
+      nullable: false
+      options:
+        default: '65535'
+        unsigned: true
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+    createdAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+    updatedAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+  indexes:
+    fk_profile:
+      columns: [Profile]
+    fk_profileRuleType:
+      columns: [ProfileRuleType]
+  manyToOne:
+    profile:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\Profile
+      joinColumns:
+        Profile:
+          referencedColumnName: id
+          nullable: false
+    profileRuleType:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\ProfileRuleType
+      joinColumns:
+        ProfileRuleType:
+          referencedColumnName: id
+          nullable: false
+  cache:
+    region: Profile
+    usage: READ_ONLY

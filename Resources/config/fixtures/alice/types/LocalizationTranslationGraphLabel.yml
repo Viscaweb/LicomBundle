@@ -1,0 +1,5 @@
+Visca\Bundle\LicomBundle\Entity\LocalizationTranslationGraphLabel:
+    localization_translation_graph_label1:
+        id: 1
+        code: default
+        name: Default

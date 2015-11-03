@@ -1,0 +1,606 @@
+Visca\Bundle\LicomBundle\Entity\StandingViewGraph:
+    standing_view_graph1_1_6:
+        position: 50
+        del: 'no'
+        standingView: '@standing_view1'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column6'
+    standing_view_graph1_1_9:
+        position: 90
+        del: 'no'
+        standingView: '@standing_view1'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column9'
+    standing_view_graph1_1_12:
+        position: 80
+        del: 'no'
+        standingView: '@standing_view1'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column12'
+    standing_view_graph1_1_15:
+        position: 70
+        del: 'no'
+        standingView: '@standing_view1'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column15'
+    standing_view_graph1_1_21:
+        position: 60
+        del: 'no'
+        standingView: '@standing_view1'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column21'
+    standing_view_graph1_1_24:
+        position: 30
+        del: 'no'
+        standingView: '@standing_view1'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column24'
+    standing_view_graph1_1_27:
+        position: 20
+        del: 'no'
+        standingView: '@standing_view1'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column27'
+    standing_view_graph1_1_30:
+        position: 10
+        del: 'no'
+        standingView: '@standing_view1'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column30'
+    standing_view_graph1_1_36:
+        position: 40
+        del: 'no'
+        standingView: '@standing_view1'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column36'
+    standing_view_graph1_2_33:
+        position: 10
+        del: 'no'
+        standingView: '@standing_view1'
+        label: '@standing_view_graph_label2'
+        standingColumn: '@standing_column33'
+    standing_view_graph2_1_5:
+        position: 60
+        del: 'no'
+        standingView: '@standing_view2'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column5'
+    standing_view_graph2_1_8:
+        position: 100
+        del: 'no'
+        standingView: '@standing_view2'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column8'
+    standing_view_graph2_1_11:
+        position: 90
+        del: 'no'
+        standingView: '@standing_view2'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column11'
+    standing_view_graph2_1_14:
+        position: 80
+        del: 'no'
+        standingView: '@standing_view2'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column14'
+    standing_view_graph2_1_20:
+        position: 70
+        del: 'no'
+        standingView: '@standing_view2'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column20'
+    standing_view_graph2_1_23:
+        position: 40
+        del: 'no'
+        standingView: '@standing_view2'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column23'
+    standing_view_graph2_1_26:
+        position: 30
+        del: 'no'
+        standingView: '@standing_view2'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column26'
+    standing_view_graph2_1_29:
+        position: 20
+        del: 'no'
+        standingView: '@standing_view2'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column29'
+    standing_view_graph2_1_35:
+        position: 50
+        del: 'no'
+        standingView: '@standing_view2'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column35'
+    standing_view_graph2_2_32:
+        position: 10
+        del: 'no'
+        standingView: '@standing_view2'
+        label: '@standing_view_graph_label2'
+        standingColumn: '@standing_column32'
+    standing_view_graph2_2_30:
+        position: 10
+        del: no
+        standingView: @standing_view2
+        label: @standing_view_graph_label1
+        standingColumn: @standing_column30
+    standing_view_graph3_1_4:
+        position: 60
+        del: 'no'
+        standingView: '@standing_view3'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column4'
+    standing_view_graph3_1_7:
+        position: 100
+        del: 'no'
+        standingView: '@standing_view3'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column7'
+    standing_view_graph3_1_10:
+        position: 90
+        del: 'no'
+        standingView: '@standing_view3'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column10'
+    standing_view_graph3_1_13:
+        position: 80
+        del: 'no'
+        standingView: '@standing_view3'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column13'
+    standing_view_graph3_1_19:
+        position: 70
+        del: 'no'
+        standingView: '@standing_view3'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column19'
+    standing_view_graph3_1_22:
+        position: 40
+        del: 'no'
+        standingView: '@standing_view3'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column22'
+    standing_view_graph3_1_25:
+        position: 30
+        del: 'no'
+        standingView: '@standing_view3'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column25'
+    standing_view_graph3_1_28:
+        position: 10
+        del: 'no'
+        standingView: '@standing_view3'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column28'
+    standing_view_graph3_1_34:
+        position: 50
+        del: 'no'
+        standingView: '@standing_view3'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column34'
+    standing_view_graph3_2_31:
+        position: 10
+        del: 'no'
+        standingView: '@standing_view3'
+        label: '@standing_view_graph_label2'
+        standingColumn: '@standing_column31'
+    standing_view_graph3_1_30:
+        position: 20
+        del: no
+        standingView: @standing_view3
+        label: @standing_view_graph_label1
+        standingColumn: @standing_column30
+
+    standing_view_graph4_1_55:
+        position: 10
+        del: 'no'
+        standingView: '@standing_view4'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column155'
+    standing_view_graph4_1_30:
+        position: 20
+        del: no
+        standingView: @standing_view4
+        label: @standing_view_graph_label1
+        standingColumn: @standing_column30
+    standing_view_graph4_1_15:
+        position: 30
+        del: 'no'
+        standingView: '@standing_view4'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column15'
+    standing_view_graph4_2_58:
+        position: 10
+        del: 'no'
+        standingView: '@standing_view4'
+        label: '@standing_view_graph_label2'
+        standingColumn: '@standing_column158'
+
+    standing_view_graph5_1_56:
+        position: 10
+        del: 'no'
+        standingView: '@standing_view5'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column156'
+    standing_view_graph5_1_30:
+        position: 20
+        del: no
+        standingView: @standing_view5
+        label: @standing_view_graph_label1
+        standingColumn: @standing_column30
+    standing_view_graph5_1_12:
+        position: 30
+        del: 'no'
+        standingView: '@standing_view5'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column12'
+    standing_view_graph5_2_59:
+        position: 10
+        del: 'no'
+        standingView: '@standing_view5'
+        label: '@standing_view_graph_label2'
+        standingColumn: '@standing_column159'
+
+    standing_view_graph6_1_6:
+        position: 50
+        del: 'no'
+        standingView: '@standing_view6'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column6'
+    standing_view_graph6_1_9:
+        position: 90
+        del: 'no'
+        standingView: '@standing_view6'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column9'
+    standing_view_graph6_1_12:
+        position: 80
+        del: 'no'
+        standingView: '@standing_view6'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column12'
+    standing_view_graph6_1_15:
+        position: 70
+        del: 'no'
+        standingView: '@standing_view6'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column15'
+    standing_view_graph6_1_21:
+        position: 60
+        del: 'no'
+        standingView: '@standing_view6'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column21'
+    standing_view_graph6_1_24:
+        position: 30
+        del: 'no'
+        standingView: '@standing_view6'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column24'
+    standing_view_graph6_1_27:
+        position: 20
+        del: 'no'
+        standingView: '@standing_view6'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column27'
+    standing_view_graph6_1_30:
+        position: 10
+        del: 'no'
+        standingView: '@standing_view6'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column30'
+    standing_view_graph6_1_36:
+        position: 40
+        del: 'no'
+        standingView: '@standing_view6'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column36'
+    standing_view_graph6_1_160:
+        position: 9
+        del: no
+        standingView: @standing_view6
+        label: @standing_view_graph_label1
+        standingColumn: @standing_column160
+    standing_view_graph6_2_163:
+        position: 10
+        del: 'no'
+        standingView: '@standing_view6'
+        label: '@standing_view_graph_label2'
+        standingColumn: '@standing_column163'
+
+    standing_view_graph7_1_6:
+        position: 60
+        del: 'no'
+        standingView: '@standing_view7'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column6'
+    standing_view_graph7_1_9:
+        position: 100
+        del: 'no'
+        standingView: '@standing_view7'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column9'
+    standing_view_graph7_1_12:
+        position: 90
+        del: 'no'
+        standingView: '@standing_view7'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column12'
+    standing_view_graph7_1_15:
+        position: 80
+        del: 'no'
+        standingView: '@standing_view7'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column15'
+    standing_view_graph7_1_21:
+        position: 70
+        del: 'no'
+        standingView: '@standing_view7'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column21'
+    standing_view_graph7_1_24:
+        position: 40
+        del: 'no'
+        standingView: '@standing_view7'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column24'
+    standing_view_graph7_1_27:
+        position: 30
+        del: 'no'
+        standingView: '@standing_view7'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column27'
+    standing_view_graph7_1_30:
+        position: 20
+        del: 'no'
+        standingView: '@standing_view7'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column30'
+    standing_view_graph7_1_36:
+        position: 50
+        del: 'no'
+        standingView: '@standing_view7'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column36'
+    standing_view_graph7_2_164:
+        position: 10
+        del: 'no'
+        standingView: '@standing_view7'
+        label: '@standing_view_graph_label2'
+        standingColumn: '@standing_column164'
+    standing_view_graph7_1_161:
+        position: 10
+        del: 'no'
+        standingView: '@standing_view7'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column161'
+
+    standing_view_graph_8_2_33:
+        position: 10
+        del: no
+        standingView: @standing_view8
+        label: @standing_view_graph_label2
+        standingColumn: @standing_column33
+    standing_view_graph_8_1_30:
+        position: 10
+        del: no
+        standingView: @standing_view8
+        label: @standing_view_graph_label1
+        standingColumn: @standing_column30
+    standing_view_graph_8_1_37:
+        position: 20
+        del: no
+        standingView: @standing_view8
+        label: @standing_view_graph_label1
+        standingColumn: @standing_column37
+    standing_view_graph_8_1_38:
+        position: 28
+        del: no
+        standingView: @standing_view8
+        label: @standing_view_graph_label1
+        standingColumn: @standing_column38
+    standing_view_graph9_1_54:
+        position: 10
+        del: 'no'
+        standingView: '@standing_view9'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column154'
+    standing_view_graph9_1_15:
+        position: 20
+        del: 'no'
+        standingView: '@standing_view9'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column15'
+    standing_view_graph9_2_55:
+        position: 11
+        del: 'no'
+        standingView: '@standing_view9'
+        label: '@standing_view_graph_label2'
+        standingColumn: '@standing_column157'
+    standing_view_graph10_1_37:
+        position: 10
+        del: 'no'
+        standingView: '@standing_view10'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column37'
+    standing_view_graph10_1_38:
+        position: 20
+        del: 'no'
+        standingView: '@standing_view10'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column38'
+    standing_view_graph10_1_39:
+        position: 30
+        del: 'no'
+        standingView: '@standing_view10'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column39'
+    standing_view_graph10_2_39:
+        position: 10
+        del: 'no'
+        standingView: '@standing_view10'
+        label: '@standing_view_graph_label2'
+        standingColumn: '@standing_column39'
+    standing_view_graph11_1_6:
+        position: 50
+        del: 'no'
+        standingView: '@standing_view11'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column6'
+    standing_view_graph11_1_9:
+        position: 90
+        del: 'no'
+        standingView: '@standing_view11'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column9'
+    standing_view_graph11_1_12:
+        position: 80
+        del: 'no'
+        standingView: '@standing_view11'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column12'
+    standing_view_graph11_1_15:
+        position: 70
+        del: 'no'
+        standingView: '@standing_view11'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column15'
+    standing_view_graph11_1_21:
+        position: 60
+        del: 'no'
+        standingView: '@standing_view11'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column21'
+    standing_view_graph11_1_24:
+        position: 30
+        del: 'no'
+        standingView: '@standing_view11'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column24'
+    standing_view_graph11_1_27:
+        position: 20
+        del: 'no'
+        standingView: '@standing_view11'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column27'
+    standing_view_graph11_1_30:
+        position: 10
+        del: 'no'
+        standingView: '@standing_view11'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column30'
+    standing_view_graph11_1_36:
+        position: 40
+        del: 'no'
+        standingView: '@standing_view11'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column36'
+    standing_view_graph11_2_33:
+        position: 10
+        del: 'no'
+        standingView: '@standing_view11'
+        label: '@standing_view_graph_label2'
+        standingColumn: '@standing_column33'
+    standing_view_graph12_1_24:
+        position: 12
+        del: 'no'
+        standingView: '@standing_view12'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column24'
+    standing_view_graph12_1_40:
+        position: 10
+        del: 'no'
+        standingView: '@standing_view12'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column40'
+    standing_view_graph12_1_41:
+        position: 11
+        del: 'no'
+        standingView: '@standing_view12'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column41'
+    standing_view_graph13_1_40:
+        position: 0
+        del: 'no'
+        standingView: '@standing_view13'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column40'
+    standing_view_graph13_1_41:
+        position: 1
+        del: 'no'
+        standingView: '@standing_view13'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column41'
+    standing_view_graph13_1_42:
+        position: 2
+        del: 'no'
+        standingView: '@standing_view13'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column42'
+    standing_view_graph13_1_43:
+        position: 3
+        del: 'no'
+        standingView: '@standing_view13'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column43'
+    standing_view_graph13_1_44:
+        position: 4
+        del: 'no'
+        standingView: '@standing_view13'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column44'
+    standing_view_graph13_1_45:
+        position: 5
+        del: 'no'
+        standingView: '@standing_view13'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column45'
+    standing_view_graph13_1_46:
+        position: 6
+        del: 'no'
+        standingView: '@standing_view13'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column46'
+    standing_view_graph13_1_47:
+        position: 7
+        del: 'no'
+        standingView: '@standing_view13'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column47'
+    standing_view_graph13_1_48:
+        position: 8
+        del: 'no'
+        standingView: '@standing_view13'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column48'
+    standing_view_graph13_1_49:
+        position: 9
+        del: 'no'
+        standingView: '@standing_view13'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column49'
+    standing_view_graph13_1_50:
+        position: 10
+        del: 'no'
+        standingView: '@standing_view13'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column50'
+    standing_view_graph13_1_51:
+        position: 11
+        del: 'no'
+        standingView: '@standing_view13'
+        label: '@standing_view_graph_label1'
+        standingColumn: '@standing_column51'
+    standing_view_graph14_2_52:
+        position: 1
+        del: 'no'
+        standingView: '@standing_view14'
+        label: '@standing_view_graph_label2'
+        standingColumn: '@standing_column52'
+    standing_view_graph14_2_53:
+        position: 2
+        del: 'no'
+        standingView: '@standing_view14'
+        label: '@standing_view_graph_label2'
+        standingColumn: '@standing_column53'

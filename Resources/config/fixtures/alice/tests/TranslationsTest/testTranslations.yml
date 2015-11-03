@@ -1,0 +1,9 @@
+include:
+  - ../../default/Country.yml
+  - ../../default/Sport.yml
+  - ../../default/CompetitionCategory.yml
+  - ../../default/Competition.yml
+  - ../../types/CompetitionStageType.yml
+  - ../../default/CompetitionStage.yml
+  - ../../types/MatchStatusDescription.yml
+  - ../../default/Team.yml

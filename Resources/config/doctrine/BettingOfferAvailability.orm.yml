@@ -1,0 +1,67 @@
+Visca\Bundle\LicomBundle\Entity\BettingOfferAvailability:
+  type: entity
+  table: BettingOfferAvailability
+  id:
+    id:
+      type: integer
+      length: 10
+      generator:
+        strategy: AUTO
+      options:
+        unsigned: true
+  fields:
+    entityId:
+      type: integer
+      length: 10
+      nullable: false
+      options:
+        default:
+        unsigned: true
+    bettingOutcomeType:
+      type: integer
+      length: 10
+      nullable: false
+      column: BettingOutcomeType
+      options:
+        unsigned: true
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+    createdAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+    updatedAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+  indexes:
+    idx_entity_entityId:
+      columns: [Entity, entityId]
+    fk_bettingOutcomeType:
+      columns: [BettingOutcomeType]
+    fk_bettingOfferProvider:
+      columns: [BettingOfferProvider]
+    fk_entity:
+      columns: [Entity]
+  uniqueConstraints:
+    uq_entity_entityId_bettingOutcomeType_bettingOfferProvider:
+      columns: [Entity, entityId, BettingOutcomeType, BettingOfferProvider]
+  manyToOne:
+    bettingOfferProvider:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\BettingOfferProvider
+      joinColumns:
+        BettingOfferProvider:
+          referencedColumnName: id
+          nullable: false
+    entity:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\Entity
+      joinColumns:
+        Entity:
+          referencedColumnName: id
+          nullable: false

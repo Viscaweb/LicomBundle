@@ -1,0 +1,8 @@
+Visca\Bundle\LicomBundle\Entity\Athlete:
+  athlete{0..2}:
+    __construct: { create: [] }
+    name: Athlete<current()>
+    country: @country1
+    gender: male
+    toBeConfirmed: 0
+    sport: @sport1

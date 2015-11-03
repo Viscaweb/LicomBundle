@@ -1,0 +1,7 @@
+Visca\Bundle\LicomBundle\Entity\CompetitionRound:
+    exclusion_policy: ALL
+    properties:
+      id:
+        expose: true
+      name:
+        expose: true

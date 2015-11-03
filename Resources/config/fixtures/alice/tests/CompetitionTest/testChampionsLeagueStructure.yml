@@ -1,0 +1,48 @@
+include:
+  - ../../types/Sport.yml
+  - ../../types/Country.yml
+  - ../../types/CompetitionGraphLabel.yml
+  - ../../types/CompetitionSeasonGraphLabel.yml
+  - ../../types/CompetitionSeasonStageGraphLabel.yml
+  - ../../default/CompetitionCategory.yml
+
+Visca\Bundle\LicomBundle\Entity\Competition:
+  competition_champions_league:
+    __construct: { create: [] }
+    name: UEFA Champions League
+    competitionCategory: @competition_category_default
+    gender: undefined
+
+Visca\Bundle\LicomBundle\Entity\CompetitionSeason:
+  competition_season_2013_2014:
+    __construct: { create: [] }
+    name: 13/14
+    start: <dateTime()>
+    end: <dateTime()>
+    competition: @competition_champions_league
+
+  competition_season_2014_2015:
+    __construct: { create: [] }
+    name: 14/15
+    start: <dateTime()>
+    end: <dateTime()>
+    competition: @competition_champions_league
+
+Visca\Bundle\LicomBundle\Entity\CompetitionGraph:
+  competition_graph_current:
+    competition: @competition_champions_league
+    competitionSeason: @competition_season_2014_2015
+    label: @competition_graph_label1
+    del: no
+
+  competition_graph_last:
+    competition: @competition_champions_league
+    competitionSeason: @competition_season_2014_2015
+    label: @competition_graph_label3
+    del: no
+
+  competition_graph_previous:
+    competition: @competition_champions_league
+    competitionSeason: @competition_season_2013_2014
+    label: @competition_graph_label4
+    del: no

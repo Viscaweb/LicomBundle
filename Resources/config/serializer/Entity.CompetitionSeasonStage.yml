@@ -1,0 +1,9 @@
+Visca\Bundle\LicomBundle\Entity\CompetitionSeasonStage:
+    exclusion_policy: ALL
+    properties:
+      id:
+        expose: true
+      competitionSeason:
+        expose: true
+      competitionStage:
+        expose: true

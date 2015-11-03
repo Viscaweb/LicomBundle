@@ -1,0 +1,67 @@
+Visca\Bundle\LicomBundle\Entity\CompetitionRoundGraph:
+  type: entity
+  table: CompetitionRound_graph
+  id:
+    competitionRound:
+      type: integer
+      length: 10
+      associationKey: true
+      column: CompetitionRound
+      options:
+        unsigned: true
+    label:
+      type: smallint
+      length: 5
+      associationKey: true
+      options:
+        unsigned: true
+    competitionLeg:
+      type: integer
+      length: 10
+      associationKey: true
+      column: CompetitionLeg
+  fields:
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+  indexes:
+    fk_competitionLeg:
+      columns: [CompetitionLeg]
+    fk_competitionRound:
+      columns: [CompetitionRound]
+    fk_label:
+      columns: [label]
+  manyToOne:
+    competitionRound:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\CompetitionRound
+      cache:
+        region: Competition
+        usage: READ_ONLY
+      joinColumns:
+        CompetitionRound:
+          referencedColumnName: id
+          nullable: false
+    label:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\CompetitionRoundGraphLabel
+      cache:
+        region: Competition
+        usage: READ_ONLY
+      joinColumns:
+        label:
+          referencedColumnName: id
+          nullable: false
+    competitionLeg:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\CompetitionLeg
+      cache:
+        region: Competition
+        usage: READ_ONLY
+      joinColumns:
+        CompetitionLeg:
+          referencedColumnName: id
+          nullable: false
+  cache:
+    region: Competition
+    usage: READ_ONLY

@@ -1,0 +1,61 @@
+Visca\Bundle\LicomBundle\Entity\StandingRow:
+  type: entity
+  table: StandingRow
+  id:
+    id:
+      type: integer
+      length: 10
+      generator:
+        strategy: AUTO
+      options:
+        unsigned: true
+  fields:
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+    createdAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+    updatedAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+  indexes:
+    fk_standing:
+      columns: [Standing]
+    fk_participant:
+      columns: [Participant]
+    fk_standingPromotion:
+      columns: [StandingPromotion]
+  uniqueConstraints:
+    uq_standing_participant:
+      columns: [Standing, Participant]
+  oneToMany:
+    standingCell:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\StandingCell
+      mappedBy: standingRow
+  manyToOne:
+    standing:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\Standing
+      inversedBy: standingRow
+      joinColumns:
+        Standing:
+          referencedColumnName: id
+          nullable: false
+    participant:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\Participant
+      joinColumns:
+        Participant:
+          referencedColumnName: id
+          nullable: false
+    standingPromotion:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\StandingPromotion
+      joinColumns:
+        StandingPromotion:
+          referencedColumnName: id

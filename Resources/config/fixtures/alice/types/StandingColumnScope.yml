@@ -1,0 +1,57 @@
+Visca\Bundle\LicomBundle\Entity\StandingColumnScope:
+    standing_column_scope1:
+        id: 1
+        code: FirstHalfTime
+        name: FirstHalfTime
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column_scope2:
+        id: 2
+        code: SecondHalfTime
+        name: SecondHalfTime
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column_scope3:
+        id: 3
+        code: From1To15Minute
+        name: From1To15Minute
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column_scope4:
+        id: 4
+        code: From16To30Minute
+        name: From16To30Minute
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column_scope5:
+        id: 5
+        code: From31To45Minute
+        name: From31To45Minute
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column_scope6:
+        id: 6
+        code: From46To60Minute
+        name: From46To60Minute
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column_scope7:
+        id: 7
+        code: From61To75Minute
+        name: From61To75Minute
+        del: 'no'
+        createdAt: null
+        updatedAt: null
+    standing_column_scope8:
+        id: 8
+        code: From76To90Minute
+        name: From76To90Minute
+        del: 'no'
+        createdAt: null
+        updatedAt: null

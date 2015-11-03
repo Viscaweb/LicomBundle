@@ -1,0 +1,41 @@
+include:
+  - ../../types/MatchStatusDescription.yml
+  - ../../types/CompetitionStageType.yml
+  - ../../types/Sport.yml
+  - ../../types/MatchResultType.yml
+  - ../../default/Country.yml
+  - ../../default/CompetitionCategory.yml
+  - ../../default/Competition.yml
+  - ../../default/CompetitionSeason.yml
+  - ../../default/CompetitionStage.yml
+  - ../../default/CompetitionSeasonStage.yml
+  - ../../default/Team.yml
+  - ../../default/Athlete.yml
+
+Visca\Bundle\LicomBundle\Entity\Match:
+  match_default:
+    __construct:
+      create: []
+    competitionSeasonStage: @competition_season_stage_default
+    matchStatusDescription: @match_status_description1
+    name: "Real Madrid - Atletico Madrid"
+    startDate: '1999-06-01 00:00:00'
+
+Visca\Bundle\LicomBundle\Entity\MatchParticipant:
+  match_participant_1:
+    __construct: { create: [] }
+    number: 1
+    participant: @team0
+    match: @match_default
+
+  match_participant_2:
+    __construct: { create: [] }
+    number: 2
+    participant: @team1
+    match: @match_default
+
+Visca\Bundle\LicomBundle\Entity\MatchResult:
+    match_result_{1..2}:
+      __construct: { create: [] }
+      matchParticipant: @match_participant_<current()>
+      matchResultType: @match_result_type1

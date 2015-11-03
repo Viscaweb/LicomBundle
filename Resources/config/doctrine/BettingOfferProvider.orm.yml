@@ -1,0 +1,30 @@
+Visca\Bundle\LicomBundle\Entity\BettingOfferProvider:
+  type: entity
+  table: BettingOfferProvider
+  id:
+    id:
+      type: smallint
+      length: 5
+      options:
+        unsigned: true
+  fields:
+    name:
+      type: string
+      length: 55
+      nullable: false
+    del:
+      type: SoftDeletionType
+      length: 0
+      nullable: false
+      options:
+        default: 'no'
+    createdAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL
+    updatedAt:
+      type: DateTimeUTCType
+      nullable: true
+      options:
+        default: NULL

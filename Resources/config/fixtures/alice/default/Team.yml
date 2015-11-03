@@ -1,0 +1,7 @@
+Visca\Bundle\LicomBundle\Entity\Team:
+  team{0..1}:
+    __construct: { create: [] }
+    name: Team<current()>
+    country: @country1
+    gender: male
+    Sport: @sport1
