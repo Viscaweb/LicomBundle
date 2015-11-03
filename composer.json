@@ -1,6 +1,6 @@
 {
-    "name": "viscaweb/core-bundle",
-    "description": "Viscaweb core bundle",
+    "name": "viscaweb/licom-bundle",
+    "description": "Viscaweb licom bundle",
     "type": "symfony-bundle",
     "license": "proprietary",
     "authors": [
@@ -14,7 +14,7 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "Visca\\Bundle\\CoreBundle\\": ""
+            "Visca\\Bundle\\LicomBundle\\": ""
         }
     }
 }
