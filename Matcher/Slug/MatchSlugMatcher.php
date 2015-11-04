@@ -1,27 +1,42 @@
 <?php
 namespace Visca\Bundle\LicomBundle\Matcher\Slug;
 
+use Doctrine\Tests\ORM\Functional\Ticket\Participant;
 use Visca\Bundle\LicomBundle\Entity\Competition;
 use Visca\Bundle\LicomBundle\Entity\Match;
 use Visca\Bundle\LicomBundle\Exception\NoMatchFoundException;
+use Visca\Bundle\LicomBundle\Matcher\Slug\Helper\FindTeamsCombinationsHelper;
+use Visca\Bundle\LicomBundle\Model\Slug\ParticipantCombinationModel;
 use Visca\Bundle\LicomBundle\Repository\MatchRepository;
 use Visca\Bundle\LicomBundle\Services\Filters\MatchMostRevelantFilter;
 
 /**
  * Class MatchSlugMatcher
  *
+ *
+ * THE PROBLEM
+ * ---
  * Why do we try to match the slug of the Match, and not for the team home and the team away?
  * Simply because sometimes we don't really know which part of the slug is related to
  * the team home and which one to the team away.
  *
- * Imagine the URL: /foot/spain/liga/fc-barcelona-real-madrid.html
+ * Imagine the URL: /foot/spain/liga/fc-barcelona-madrid.html
  * We don't know what's the slug for the team home, it could be:
  *  - fc
  *  - fc-barcelona
- *  - fc-barcelona-real
+ *  - fc-barcelona-madrid
  *
  * You see? There is no way to really detect it.
- * Therefore, it's easier to match the full match slug.
+ *
+ *
+ * OUR SOLUTION
+ * ---
+ * Description:
+ *  - We generate all the combinations that could exists:
+ *      - Combination A: "fc" + "barcelona-madrid"
+ *      - Combination B: "fc-barcelona" + "madrid"
+ *  - Try to match the teams and create a ParticipantCombinationModel object
+ *  - Once found, try to find the related matches.
  */
 class MatchSlugMatcher
 {
@@ -41,6 +56,11 @@ class MatchSlugMatcher
     protected $matchMostRevelantFilter;
 
     /**
+     * @var FindTeamsCombinationsHelper Participant Combination Finder
+     */
+    protected $participantCombinationsHelper;
+
+    /**
      * @var int
      */
     protected $licomProfileId;
@@ -51,17 +71,20 @@ class MatchSlugMatcher
      * @param MatchRepository                   $matchRepository                Match Repository
      * @param ParticipantCombinationSlugMatcher $participantsCombinationMatcher Participant Combination Matcher
      * @param MatchMostRevelantFilter           $matchMostRevelantFilter        Match most revelant filter
+     * @param FindTeamsCombinationsHelper       $participantCombinationsHelper  Participant Combination Finder
      * @param int                               $licomProfileId                 App's profile ID
      */
     public function __construct(
         MatchRepository $matchRepository,
         ParticipantCombinationSlugMatcher $participantsCombinationMatcher,
         MatchMostRevelantFilter $matchMostRevelantFilter,
+        FindTeamsCombinationsHelper $participantCombinationsHelper,
         $licomProfileId
     ) {
         $this->matchRepository = $matchRepository;
         $this->participantsCombinationMatcher = $participantsCombinationMatcher;
         $this->matchMostRevelantFilter = $matchMostRevelantFilter;
+        $this->participantCombinationsHelper = $participantCombinationsHelper;
         $this->licomProfileId = $licomProfileId;
     }
 
@@ -75,17 +98,33 @@ class MatchSlugMatcher
     public function match($matchSlug, Competition $competition)
     {
         /*
+         * Find all possible combinations
+         */
+        $combinations = $this->participantCombinationsHelper->findCombinations(
+            $matchSlug
+        );
+
+        /*
          * Try to find what's the participants related to this slug
          */
-        try {
-            $participantCombination = $this
-                ->participantsCombinationMatcher
-                ->getParticipantCombination(
-                    $this->licomProfileId,
-                    $matchSlug
-                );
-        } catch (NoMatchFoundException $ex) {
-            throw $ex;
+        $participantCombination = null;
+        foreach ($combinations as $combination) {
+            try {
+                $participantCombination = $this
+                    ->participantsCombinationMatcher
+                    ->getParticipantCombination(
+                        $this->licomProfileId,
+                        $combination[0],
+                        $combination[1]
+                    );
+            } catch (NoMatchFoundException $ex) {
+                /*
+                 * Try the next occurrence
+                 */
+            }
+        }
+        if ($participantCombination === null) {
+            throw new NoMatchFoundException();
         }
 
         /*

@@ -6,12 +6,19 @@ services:
              - @visca_licom.repository.competition
              - %licom_profile_id%
 
+    visca_licom.matcher.slug.participant:
+        class: Visca\Bundle\LicomBundle\Matcher\Slug\ParticipantSlugMatcher
+        arguments:
+             - @visca_licom.repository.participant
+             - %licom_profile_id%
+
     visca_licom.matcher.slug.match:
         class: Visca\Bundle\LicomBundle\Matcher\Slug\MatchSlugMatcher
         arguments:
              - @visca_licom.repository.match
              - @visca_licom.matcher.participant_combination
              - @visca_licom.filter.match.most_revelant
+             - @visca_licom.matcher.helper.participant_combination
              - %licom_profile_id%
 
     visca_licom.matcher.slug.country:
@@ -21,9 +28,15 @@ services:
              - %licom_profile_id%
 
     visca_licom.matcher.participant_combination:
-        class: Visca\Bundle\LicomBundle\Matcher\Slug\ParticipantCombinationSlugMatcher
-        arguments:
-            - @doctrine.orm.default_result_cache
-            - @doctrine.orm.licom_entity_manager
-            - @file_locator
-            - @visca_licom.repository.participant
+            class: Visca\Bundle\LicomBundle\Matcher\Slug\ParticipantCombinationSlugMatcher
+            arguments:
+                - @doctrine.orm.default_result_cache
+                - @doctrine.orm.licom_entity_manager
+                - @file_locator
+                - @visca_licom.repository.participant
+                - @visca_licom.repository.localization_translation
+                - @visca_licom.matcher.slug.participant
+
+    # Helper
+    visca_licom.matcher.helper.participant_combination:
+            class: Visca\Bundle\LicomBundle\Matcher\Slug\Helper\FindTeamsCombinationsHelper

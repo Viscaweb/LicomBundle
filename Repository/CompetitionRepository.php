@@ -162,7 +162,7 @@ class CompetitionRepository extends AbstractEntityRepository
     ) {
         $localizationTranslationRepository = $this->repositoryLocalizationTranslation;
         try {
-            $countriesSlugTranslations = $localizationTranslationRepository
+            $competitionsSlugTranslations = $localizationTranslationRepository
                 ->findByProfileAndText(
                     $licomProfileId,
                     LocalizationTranslationTypeCode::COMPETITION_SLUG_CODE,
@@ -174,7 +174,7 @@ class CompetitionRepository extends AbstractEntityRepository
         }
 
         $competitionsIds = [];
-        foreach ($countriesSlugTranslations as $translation) {
+        foreach ($competitionsSlugTranslations as $translation) {
             $competitionsIds[] = $translation->getEntityId();
         }
 

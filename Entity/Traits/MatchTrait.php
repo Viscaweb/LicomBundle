@@ -4,8 +4,12 @@ namespace Visca\Bundle\LicomBundle\Entity\Traits;
 
 use Doctrine\Common\Collections\Collection;
 use Visca\Bundle\LicomBundle\Entity\Code\MatchResultTypeCode;
+use Visca\Bundle\LicomBundle\Entity\Competition;
+use Visca\Bundle\LicomBundle\Entity\CompetitionSeasonStage;
+use Visca\Bundle\LicomBundle\Entity\Country;
 use Visca\Bundle\LicomBundle\Entity\MatchParticipant;
 use Visca\Bundle\LicomBundle\Entity\MatchStatusDescription;
+use Visca\Bundle\LicomBundle\Entity\Sport;
 use Visca\Bundle\LicomBundle\Exception\MatchParticipantNotFoundException;
 
 /**
@@ -13,6 +17,16 @@ use Visca\Bundle\LicomBundle\Exception\MatchParticipantNotFoundException;
  */
 trait MatchTrait
 {
+    /**
+     * @return MatchStatusDescription
+     */
+    abstract public function getMatchStatusDescription();
+
+    /**
+     * @return CompetitionSeasonStage
+     */
+    abstract public function getCompetitionSeasonStage();
+
     /**
      * @return MatchParticipant
      *
@@ -168,7 +182,26 @@ trait MatchTrait
     }
 
     /**
-     * @return MatchStatusDescription
+     * @return Competition
      */
-    abstract public function getMatchStatusDescription();
+    public function getCompetition()
+    {
+        return $this->getCompetitionSeasonStage()->getCompetitionSeason()->getCompetition();
+    }
+
+    /**
+     * @return Sport
+     */
+    public function getSport()
+    {
+        return $this->getCompetition()->getCompetitionCategory()->getSport();
+    }
+
+    /**
+     * @return Country
+     */
+    public function getCountry()
+    {
+        return $this->getCompetition()->getCompetitionCategory()->getCountry();
+    }
 }

@@ -13,7 +13,7 @@ use Visca\Bundle\LicomBundle\Repository\CompetitionRepository;
 class CompetitionSlugMatcher
 {
     /**
-     * @var CompetitionRepository Country Repository
+     * @var CompetitionRepository Competition Repository
      */
     protected $competitionRepository;
 

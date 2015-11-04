@@ -3,9 +3,12 @@
 namespace Visca\Bundle\LicomBundle\Repository;
 
 use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
+use Visca\Bundle\LicomBundle\Entity\Code\LocalizationTranslationTypeCode;
+use Visca\Bundle\LicomBundle\Entity\Code\ProfileTranslationGraphLabelCode;
 use Visca\Bundle\LicomBundle\Entity\Participant;
 use Visca\Bundle\LicomBundle\Entity\ProfileEntityGraph;
 use Visca\Bundle\LicomBundle\Entity\Sport;
+use Visca\Bundle\LicomBundle\Exception\NoTranslationFoundException;
 use Visca\Bundle\LicomBundle\Repository\Traits\GetAndSortByIdTrait;
 
 /**
@@ -29,6 +32,20 @@ class ParticipantRepository extends AbstractEntityRepository
         ProfileEntityGraphRepository $repositoryProfileEntityGraph
     ) {
         $this->repositoryProfileEntityGraph = $repositoryProfileEntityGraph;
+    }
+
+    /**
+     * @var LocalizationTranslationRepository
+     */
+    protected $repositoryLocalizationTranslation;
+
+    /**
+     * @param LocalizationTranslationRepository $repositoryLocalizationTranslation Repository
+     */
+    public function setRepositoryLocalizationTranslation(
+        LocalizationTranslationRepository $repositoryLocalizationTranslation
+    ) {
+        $this->repositoryLocalizationTranslation = $repositoryLocalizationTranslation;
     }
 
     /**
@@ -100,5 +117,36 @@ class ParticipantRepository extends AbstractEntityRepository
         }
 
         return $queryBuilder->getQuery()->getArrayResult();
+    }
+
+    /**
+     * @param int    $licomProfileId  App's profile ID
+     * @param string $participantSlug Participant slug
+     *
+     * @return Participant[]
+     */
+    public function findBySlug(
+        $licomProfileId,
+        $participantSlug
+    ) {
+        $localizationTranslationRepository = $this->repositoryLocalizationTranslation;
+        try {
+            $participantsSlugTranslations = $localizationTranslationRepository
+                ->findByProfileAndText(
+                    $licomProfileId,
+                    LocalizationTranslationTypeCode::PARTICIPANT_SLUG_CODE,
+                    ProfileTranslationGraphLabelCode::SLUG_CODE,
+                    [$participantSlug]
+                );
+        } catch (NoTranslationFoundException $ex) {
+            return null;
+        }
+
+        $participantsIds = [];
+        foreach ($participantsSlugTranslations as $translation) {
+            $participantsIds[] = $translation->getEntityId();
+        }
+
+        return $this->findBy(['id' => $participantsIds]);
     }
 }

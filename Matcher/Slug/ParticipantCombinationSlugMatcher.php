@@ -2,13 +2,16 @@
 namespace Visca\Bundle\LicomBundle\Matcher\Slug;
 
 use Doctrine\Common\Cache\Cache;
-use Doctrine\DBAL\Cache\QueryCacheProfile;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Config\FileLocatorInterface;
 use Visca\Bundle\LicomBundle\Entity\Code\LocalizationTranslationTypeCode;
 use Visca\Bundle\LicomBundle\Entity\Code\ProfileTranslationGraphLabelCode;
+use Visca\Bundle\LicomBundle\Entity\LocalizationTranslation;
+use Visca\Bundle\LicomBundle\Entity\Participant;
 use Visca\Bundle\LicomBundle\Exception\NoMatchFoundException;
+use Visca\Bundle\LicomBundle\Exception\NoTranslationFoundException;
 use Visca\Bundle\LicomBundle\Model\Slug\ParticipantCombinationModel;
+use Visca\Bundle\LicomBundle\Repository\LocalizationTranslationRepository;
 use Visca\Bundle\LicomBundle\Repository\ParticipantRepository;
 
 /**
@@ -37,68 +40,66 @@ class ParticipantCombinationSlugMatcher
     protected $participantRepository;
 
     /**
+     * @var LocalizationTranslationRepository
+     */
+    protected $localizationTranslationRepository;
+
+    /**
      * ParticipantCombinationSlugMatcher constructor.
      *
-     * @param Cache                  $doctrineCache         Doctrine Cache
-     * @param EntityManagerInterface $entityManager         Licom Entity Manager
-     * @param FileLocatorInterface   $fileLocator           File Locator
-     * @param ParticipantRepository  $participantRepository Participant Repository
+     * @param Cache                             $doctrineCache                     Doctrine Cache
+     * @param EntityManagerInterface            $entityManager                     Licom Entity Manager
+     * @param FileLocatorInterface              $fileLocator                       File Locator
+     * @param ParticipantRepository             $participantRepository             Participant Repository
+     * @param LocalizationTranslationRepository $localizationTranslationRepository Loc. Trans Repository
      */
     public function __construct(
         Cache $doctrineCache,
         EntityManagerInterface $entityManager,
         FileLocatorInterface $fileLocator,
-        ParticipantRepository $participantRepository
+        ParticipantRepository $participantRepository,
+        LocalizationTranslationRepository $localizationTranslationRepository
     ) {
         $this->doctrineCache = $doctrineCache;
         $this->entityManager = $entityManager;
         $this->fileLocator = $fileLocator;
         $this->participantRepository = $participantRepository;
+        $this->localizationTranslationRepository = $localizationTranslationRepository;
     }
 
     /**
      * @param int    $licomProfileId App's Profile ID
-     * @param string $matchSlug      Match Slug (i.e. 'fc-barcelona-madrid')
+     * @param string $homeTeamSlug   Supposed Home Team Slug
+     * @param string $awayTeamSlug   Supposed Away Team Slug
      *
      * @return ParticipantCombinationModel
-     * @throws \Doctrine\DBAL\DBALException
      * @throws NoMatchFoundException
      */
     public function getParticipantCombination(
         $licomProfileId,
-        $matchSlug
+        $homeTeamSlug,
+        $awayTeamSlug
     ) {
         /*
-         * Get the home/away participant IDs from a custom query
+         * Get the home/away participant IDs from translations
          */
-        $stmt = $this->prepareQuery($licomProfileId, $matchSlug);
-        $results = $stmt->fetchAll();
-        if (!isset($results[0])) {
-            throw new NoMatchFoundException();
+        try {
+            $homeParticipant = $this->findParticipant(
+                $licomProfileId,
+                $homeTeamSlug
+            );
+            $awayParticipant = $this->findParticipant(
+                $licomProfileId,
+                $awayTeamSlug
+            );
+        } catch (NoMatchFoundException $ex) {
+            throw new $ex();
         }
-
-        $result = $results[0];
-        $stmt->closeCursor();
-
-        $homeParticipantID = $result['homeParticipantID'];
-        $awayParticipantID = $result['awayParticipantID'];
-
-        /*
-         * Find the related Participant object
-         */
-        $participants = $this->participantRepository->getAndSortById(
-            [$homeParticipantID, $awayParticipantID]
-        );
-        if (count($participants) !== 2) {
-            throw new NoMatchFoundException();
-        }
-
-        $homeParticipant = reset($participants);
-        $awayParticipant = next($participants);
 
         /*
          * Create the custom combination model
          */
+        $matchSlug = sprintf('%s-%s', $homeTeamSlug, $awayTeamSlug);
         $participantCombinationModel = new ParticipantCombinationModel(
             $homeParticipant,
             $awayParticipant,
@@ -109,67 +110,44 @@ class ParticipantCombinationSlugMatcher
     }
 
     /**
-     * @param int    $licomProfileId App's Profile ID
-     * @param string $matchSlug      Match Slug (i.e. 'fc-barcelona-madrid')
+     * @param int    $licomProfileId  App's Profile ID
+     * @param string $participantSlug Supposed Participant Slug
      *
-     * @return \Doctrine\DBAL\Driver\ResultStatement
+     * @return Participant
      *
-     * @throws \Doctrine\DBAL\DBALException
      * @throws NoMatchFoundException
      */
-    private function prepareQuery(
+    private function findParticipant(
         $licomProfileId,
-        $matchSlug
+        $participantSlug
     ) {
-        /*
-         * Please note that this query works ONLY if the FROM statement are completely
-         * isolated (using parentheses) (in order to make the following LEFT JOIN).
-         *
-         * I couldn't reproduce it using a query builder.
-         * It does not seems to be available yet.
-         * More information: \Doctrine\DBAL\Query\QueryBuilder::getSQLForSelect
-         *
-         * I tried as well to create a DQL query but it's being execute by Doctrine
-         * who tried to associate the first table of the FROM statement using the "(".
-         * It's throwing an exception saying that '(ProfileTranslation_graph' is not a valid table name...
-         */
-        $sqlQueryLocation = $this->fileLocator->locate(
-            '@ViscaLicomBundle/Resources/queries/ParticipantsCombinationQuery.sql'
-        );
-        $queryString = file_get_contents($sqlQueryLocation);
+        $profileGraphLabelId = ProfileTranslationGraphLabelCode::SLUG_CODE;
+        $localizationTranslationTypeId = (int) LocalizationTranslationTypeCode::PARTICIPANT_SLUG_CODE;
 
-        $queryParameters = $this->prepareQueryParameters(
-            $licomProfileId,
-            $matchSlug
-        );
+        try {
+            $participantTranslationSlugs = $this
+                ->localizationTranslationRepository
+                ->findByProfileAndText(
+                    $licomProfileId,
+                    $localizationTranslationTypeId,
+                    $profileGraphLabelId,
+                    [$participantSlug]
+                );
+        } catch (NoTranslationFoundException $ex) {
+            throw new NoMatchFoundException();
+        }
 
-        $connection = $this->entityManager->getConnection();
+        /** @var LocalizationTranslation $participantTranslationSlug */
+        $participantTranslationSlug = $participantTranslationSlugs[0];
 
-        return $connection->executeCacheQuery(
-            $queryString,
-            $queryParameters,
-            [],
-            new QueryCacheProfile(0, 'test', $this->doctrineCache)
-        );
-    }
+        $participant = $this
+            ->participantRepository
+            ->findOneBy(['id' => $participantTranslationSlug->getEntityId()]);
 
-    /**
-     * @param $licomProfileId
-     * @param $matchSlug
-     *
-     * @return array
-     */
-    private function prepareQueryParameters(
-        $licomProfileId,
-        $matchSlug
-    ) {
-        $parameters = [
-            'profileTranslationLabel' => (int) ProfileTranslationGraphLabelCode::SLUG_CODE,
-            'profileId' => (int) $licomProfileId,
-            'localizationTranslationType' => (int) LocalizationTranslationTypeCode::PARTICIPANT_SLUG_CODE,
-            'matchSlug' => $matchSlug,
-        ];
+        if ($participant === null) {
+            throw new NoMatchFoundException();
+        }
 
-        return $parameters;
+        return $participant;
     }
 }

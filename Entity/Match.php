@@ -590,10 +590,19 @@ class Match implements EntityWithAuxInterface
     {
         $isFinal = false;
         $competitionSeasonStage = $this->getCompetitionSeasonStage();
-        $stageTypeCode = $competitionSeasonStage
-            ->getCompetitionStage()
-            ->getCompetitionStageType1()
-            ->getCode();
+
+        $matchCompetitionStage = $competitionSeasonStage->getCompetitionStage();
+        if (!($matchCompetitionStage instanceof CompetitionStage)) {
+            return false;
+        }
+
+        $matchCompetitionStageType = $matchCompetitionStage->getCompetitionStageType1(
+        );
+        if (!($matchCompetitionStage instanceof CompetitionStageType)) {
+            return false;
+        }
+
+        $stageTypeCode = $matchCompetitionStageType->getCode();
 
         if ($stageTypeCode === CompetitionStageTypeCode::FINAL_CODE) {
             // Check if last round
