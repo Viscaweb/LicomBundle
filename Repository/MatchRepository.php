@@ -812,16 +812,16 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param CompetitionSeason $competitionSeason
-     * @param int               $competitionStageType1Id
-     * @param int|null          $competitionStageType2Id
-     * @param int[]|null        $competitionRoundId
-     * @param int[]|null        $competitionLegId
+     * @param int        $competitionSeasonId     CompetitionSeason entity ID
+     * @param int        $competitionStageType1Id CompetitionStageType1 entity ID
+     * @param int|null   $competitionStageType2Id CompetitionStageType2 entity ID
+     * @param int[]|null $competitionRoundId      CompetitionRound entity ID
+     * @param int[]|null $competitionLegId        CompetitionLeg entity ID
      *
      * @return mixed
      */
     public function findBySeasonStageTypeRoundAndLeg(
-        CompetitionSeason $competitionSeason,
+        $competitionSeasonId,
         $competitionStageType1Id,
         $competitionStageType2Id = null,
         $competitionRoundId = null,
@@ -860,7 +860,7 @@ class MatchRepository extends AbstractEntityRepository
         }
 
         $queryBuilder
-            ->setParameter('competitionSeason', $competitionSeason->getId())
+            ->setParameter('competitionSeason', $competitionSeasonId)
             ->setParameter('cstype1', $competitionStageType1Id);
 
         return $queryBuilder->getQuery()->execute();
@@ -869,10 +869,10 @@ class MatchRepository extends AbstractEntityRepository
     /**
      * Find matches by an Athlete and a IncidentType
      *
-     * @param Athlete $athlete               Athlete entity
-     * @param int     $matchIncidentTypeCode MatchIncidentTypeCode value
+     * @param Athlete  $athlete               Athlete entity
+     * @param int      $matchIncidentTypeCode MatchIncidentTypeCode value
      *
-     * @param null|int $year Year to filter
+     * @param null|int $year                  Year to filter
      *
      * @return mixed
      */

@@ -60,7 +60,14 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
             )
             ->getQuery()->getOneOrNullResult();
 
-        return $this->findCurrentByCompetitionSeason($competitionSeason);
+        $competitionSeasonStage = null;
+        if ($competitionSeason instanceof CompetitionSeason) {
+            $competitionSeasonStage = $this->findCurrentByCompetitionSeason(
+                $competitionSeason
+            );
+        }
+
+        return $competitionSeasonStage;
     }
 
     /**
@@ -72,6 +79,51 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
      */
     public function findCurrentByCompetitionSeason(
         CompetitionSeason $competitionSeason
+    ) {
+        return $this->findLabeledByCompetitionSeason(
+            $competitionSeason,
+            CompetitionSeasonGraphLabelCode::CURRENT_CODE
+        );
+    }
+
+    /**
+     * @param CompetitionSeason $competitionSeason
+     *
+     * @return CompetitionSeasonStage
+     */
+    public function findLastByCompetitionSeason(
+        CompetitionSeason $competitionSeason
+    ) {
+        return $this->findLabeledByCompetitionSeason(
+            $competitionSeason,
+            CompetitionSeasonGraphLabelCode::LAST_CODE
+        );
+    }
+
+    /**
+     * @param CompetitionSeason $competitionSeason
+     *
+     * @return CompetitionSeasonStage
+     */
+    public function findNextByCompetitionSeason(
+        CompetitionSeason $competitionSeason
+    ) {
+        return $this->findLabeledByCompetitionSeason(
+            $competitionSeason,
+            CompetitionSeasonGraphLabelCode::NEXT_CODE
+        );
+    }
+
+    /**
+     * @param CompetitionSeason $competitionSeason
+     * @param                   $labelCode
+     *
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findLabeledByCompetitionSeason(
+        CompetitionSeason $competitionSeason,
+        $labelCode
     ) {
         // First we get the CompetitionStageType of the CompetitionSeason
         $qb = $this->entityManager->createQueryBuilder();
@@ -88,7 +140,7 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
             ->setParameters(
                 [
                     'sid' => $competitionSeason->getId(),
-                    'label' => CompetitionSeasonGraphLabelCode::CURRENT_CODE,
+                    'label' => $labelCode,
                 ]
             )
             ->getQuery()->getOneOrNullResult();

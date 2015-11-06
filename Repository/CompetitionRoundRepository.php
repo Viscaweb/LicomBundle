@@ -77,6 +77,36 @@ class CompetitionRoundRepository extends AbstractEntityRepository
     }
 
     /**
+     * Finds the current CompetitionRound by a given CompetitionSeasonStage.
+     *
+     * @param CompetitionSeasonStage $competitionSeasonStage
+     *
+     * @return CompetitionRound
+     */
+    public function findCurrentByCompetitionSeasonStage(CompetitionSeasonStage $competitionSeasonStage)
+    {
+        // Get current CompetitionSeasonStage
+        $queryBuilder = $this->entityManager->createQueryBuilder();
+
+        $queryBuilder->select('Round')
+            ->from('ViscaLicomBundle:CompetitionRound', 'Round')
+            ->join(
+                'ViscaLicomBundle:CompetitionSeasonStageGraph',
+                'SeasonStageGraph',
+                Join::INNER_JOIN,
+                'SeasonStageGraph.competitionRound = Round.id'
+            )
+            ->andWhere('SeasonStageGraph.competitionSeasonStage = :competitionSeasonStage')
+            ->andWhere('SeasonStageGraph.label = :label')
+            ->setParameters([
+                'competitionSeasonStage' => $competitionSeasonStage,
+                'label' => CompetitionSeasonStageGraphLabelCode::CURRENT_CODE
+            ]);
+
+        return $queryBuilder->getQuery()->getOneOrNullResult();
+    }
+
+    /**
      * @param int|null $limit Limit
      *
      * @return array
