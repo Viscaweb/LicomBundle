@@ -1,0 +1,7 @@
+services:
+    visca_licom.validator.odds_formatter:
+        class: Visca\Bundle\LicomBundle\Validator\Constraints\OddsFormatterValidator
+        arguments:
+            - @visca_licom.chain.formatter.odds
+        tags:
+            - { name: validator.constraint_validator, alias: OddsFormatterValidator }
