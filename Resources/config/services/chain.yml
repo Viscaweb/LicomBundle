@@ -1,0 +1,4 @@
+services:
+    # Chain
+    visca_licom.chain.formatter.odds:
+        class: Visca\Bundle\LicomBundle\Services\Chain\OddsFormatterChain
