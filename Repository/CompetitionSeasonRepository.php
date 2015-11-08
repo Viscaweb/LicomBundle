@@ -49,7 +49,7 @@ class CompetitionSeasonRepository extends AbstractEntityRepository
      *
      * @return CompetitionSeason
      */
-    public function findCurrentFromCompetition(Competition $competition)
+    public function findCurrentByCompetition(Competition $competition)
     {
         // Get current Competition Season for Competition
         return $this
