@@ -93,6 +93,14 @@ class TranslationCacheManager
     }
 
     /**
+     * @return array|null
+     */
+    public function getStats()
+    {
+        return $this->cache->getStats();
+    }
+
+    /**
      * @param int $id
      * @param int $profile
      * @param int $property
