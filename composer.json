@@ -11,7 +11,20 @@
     ],
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "require": {},
+    "require": {
+        "viscaweb/doctrine-bundle"      : "dev-develop",
+        "viscaweb/core-bundle"          : "dev-develop"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "git@bitbucket.org:viscaweb/doctrine-bundle.git"
+        },
+        {
+            "type": "vcs",
+            "url":  "git@bitbucket.org:viscaweb/core-bundle.git"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Visca\\Bundle\\LicomBundle\\": ""
