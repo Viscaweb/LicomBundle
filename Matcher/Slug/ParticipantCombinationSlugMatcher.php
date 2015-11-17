@@ -20,21 +20,6 @@ use Visca\Bundle\LicomBundle\Repository\ParticipantRepository;
 class ParticipantCombinationSlugMatcher
 {
     /**
-     * @var Cache
-     */
-    protected $doctrineCache;
-
-    /**
-     * @var EntityManagerInterface
-     */
-    protected $entityManager;
-
-    /**
-     * @var FileLocatorInterface
-     */
-    protected $fileLocator;
-
-    /**
      * @var ParticipantRepository
      */
     protected $participantRepository;
@@ -47,22 +32,13 @@ class ParticipantCombinationSlugMatcher
     /**
      * ParticipantCombinationSlugMatcher constructor.
      *
-     * @param Cache                             $doctrineCache                     Doctrine Cache
-     * @param EntityManagerInterface            $entityManager                     Licom Entity Manager
-     * @param FileLocatorInterface              $fileLocator                       File Locator
      * @param ParticipantRepository             $participantRepository             Participant Repository
      * @param LocalizationTranslationRepository $localizationTranslationRepository Loc. Trans Repository
      */
     public function __construct(
-        Cache $doctrineCache,
-        EntityManagerInterface $entityManager,
-        FileLocatorInterface $fileLocator,
         ParticipantRepository $participantRepository,
         LocalizationTranslationRepository $localizationTranslationRepository
     ) {
-        $this->doctrineCache = $doctrineCache;
-        $this->entityManager = $entityManager;
-        $this->fileLocator = $fileLocator;
         $this->participantRepository = $participantRepository;
         $this->localizationTranslationRepository = $localizationTranslationRepository;
     }
