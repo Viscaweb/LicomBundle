@@ -214,6 +214,14 @@ services:
             - @visca_licom.entity_manager
             - Visca\Bundle\LicomBundle\Entity\Standing
 
+    visca_licom.repository.standing_comment:
+        class: Visca\Bundle\LicomBundle\Repository\StandingCommentRepository
+        factory_service: visca_doctrine.repository.factory
+        factory_method: getRepository
+        arguments:
+            - @visca_licom.entity_manager
+            - Visca\Bundle\LicomBundle\Entity\StandingComment
+
     visca_licom.repository.standing_view_graph:
         class: Visca\Bundle\LicomBundle\Repository\StandingViewGraphRepository
         factory_service: visca_doctrine.repository.factory

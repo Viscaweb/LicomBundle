@@ -1,6 +1,7 @@
 Visca\Bundle\LicomBundle\Entity\StandingComment:
   type: entity
   table: StandingComment
+  repositoryClass: Visca\Bundle\LicomBundle\Repository\StandingCommentRepository
   id:
     id:
       type: integer
