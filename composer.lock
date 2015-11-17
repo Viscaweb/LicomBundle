@@ -1,0 +1,74 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "f2af0ca478a41564a3167c3aed269244",
+    "content-hash": "222bf04caca29427d0cc16af0b68bf57",
+    "packages": [
+        {
+            "name": "viscaweb/core-bundle",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "git@bitbucket.org:viscaweb/core-bundle.git",
+                "reference": "dfbe91cf08c936004b15c8bb458da6c9a13a24e5"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Visca\\Bundle\\CoreBundle\\": ""
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Damien Gavard",
+                    "email": "damien@viscaweb.com"
+                }
+            ],
+            "description": "Viscaweb core bundle",
+            "time": "2015-11-04 14:28:44"
+        },
+        {
+            "name": "viscaweb/doctrine-bundle",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "git@bitbucket.org:viscaweb/doctrine-bundle.git",
+                "reference": "cff4d56fab620aa38d0f769aa6e0d9a77b25a00d"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Visca\\Bundle\\DoctrineBundle\\": ""
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Damien Gavard",
+                    "email": "damien@viscaweb.com"
+                }
+            ],
+            "description": "Viscaweb doctrine bundle",
+            "time": "2015-11-04 14:28:57"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "viscaweb/doctrine-bundle": 20,
+        "viscaweb/core-bundle": 20
+    },
+    "prefer-stable": true,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
