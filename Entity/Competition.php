@@ -4,8 +4,9 @@ namespace Visca\Bundle\LicomBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Visca\Bundle\CoreBundle\Entity\Traits\OptionalDateTimeTrait;
 use Visca\Bundle\CoreBundle\Entity\Traits\DeletableTrait;
+use Visca\Bundle\CoreBundle\Entity\Traits\OptionalDateTimeTrait;
+use Visca\Bundle\LicomBundle\Entity\Traits\ToStringNameAndIdTrait;
 use Visca\Bundle\LicomBundle\Factory\CompetitionFactory;
 
 /**
@@ -26,6 +27,7 @@ class Competition
 {
     use OptionalDateTimeTrait;
     use DeletableTrait;
+    use ToStringNameAndIdTrait;
 
     /**
      * @var int

@@ -11,6 +11,7 @@ use Visca\Bundle\LicomBundle\Entity\Code\CompetitionStageTypeCode;
 use Visca\Bundle\LicomBundle\Entity\Interfaces\EntityWithAuxInterface;
 use Visca\Bundle\LicomBundle\Entity\Traits\EntityWithAuxTrait;
 use Visca\Bundle\LicomBundle\Entity\Traits\MatchTrait;
+use Visca\Bundle\LicomBundle\Entity\Traits\ToStringNameAndIdTrait;
 use Visca\Bundle\LicomBundle\Factory\MatchFactory;
 
 /**
@@ -34,6 +35,7 @@ class Match implements EntityWithAuxInterface
     use DeletableTrait;
     use EntityWithAuxTrait;
     use MatchTrait;
+    use ToStringNameAndIdTrait;
 
     const COVERAGE_LIVE = 'live';
     const COVERAGE_COMMENT = 'comment';

@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Visca\Bundle\CoreBundle\Entity\Traits\OptionalDateTimeTrait;
 use Visca\Bundle\CoreBundle\Entity\Traits\DeletableTrait;
 use Visca\Bundle\LicomBundle\Entity\Traits\OptionalPeriodTrait;
+use Visca\Bundle\LicomBundle\Entity\Traits\ToStringNameAndIdTrait;
 
 /**
  * CompetitionRound.
@@ -16,6 +17,7 @@ class CompetitionRound
     use OptionalDateTimeTrait;
     use DeletableTrait;
     use OptionalPeriodTrait;
+    use ToStringNameAndIdTrait;
 
     /**
      * @var int
