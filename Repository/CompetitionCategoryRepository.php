@@ -25,14 +25,18 @@ class CompetitionCategoryRepository extends AbstractEntityRepository
 
         return $queryBuilder->getQuery()->getArrayResult();
     }
+
     /**
      * Returns all the CompetitionCategory in the array given
      *
-     * @param  array|null            $competitionCategoriesIds ids to search
+     * @param  array|null $competitionCategoriesIds ids to search
+     * @param string|null $orderBy                  Field to order by
+     *
      * @return CompetitionCategory[]
      */
     public function findByIds(
-        $competitionCategoriesIds = null
+        $competitionCategoriesIds = null,
+        $orderBy = null
     ) {
         $queryBuilder = $this
             ->entityManager
@@ -41,6 +45,10 @@ class CompetitionCategoryRepository extends AbstractEntityRepository
             ->select('cc')
             ->where('cc.id IN (:ccIds)')
             ->setParameter('ccIds', $competitionCategoriesIds);
+        if (!is_null($orderBy)) {
+            $queryBuilder
+                ->orderBy('cc.'.$orderBy, 'ASC');
+        }
 
         return $queryBuilder->getQuery()->execute();
     }

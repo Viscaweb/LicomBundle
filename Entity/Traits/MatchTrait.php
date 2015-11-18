@@ -3,13 +3,16 @@
 namespace Visca\Bundle\LicomBundle\Entity\Traits;
 
 use Doctrine\Common\Collections\Collection;
+use Visca\Bundle\LicomBundle\Entity\Code\MatchAuxProfileTypeCode;
 use Visca\Bundle\LicomBundle\Entity\Code\MatchResultTypeCode;
 use Visca\Bundle\LicomBundle\Entity\Competition;
 use Visca\Bundle\LicomBundle\Entity\CompetitionSeasonStage;
 use Visca\Bundle\LicomBundle\Entity\Country;
+use Visca\Bundle\LicomBundle\Entity\Match;
 use Visca\Bundle\LicomBundle\Entity\MatchParticipant;
 use Visca\Bundle\LicomBundle\Entity\MatchStatusDescription;
 use Visca\Bundle\LicomBundle\Entity\Sport;
+use Visca\Bundle\LicomBundle\Entity\Value\MatchAuxProfileValue;
 use Visca\Bundle\LicomBundle\Exception\MatchParticipantNotFoundException;
 
 /**
@@ -203,5 +206,31 @@ trait MatchTrait
     public function getCountry()
     {
         return $this->getCompetition()->getCompetitionCategory()->getCountry();
+    }
+
+    /**
+     * Returns true if the Match is Top
+     *
+     * @return bool
+     */
+    public function isMatchTop(){
+        $auxProfiles = $this->getMatchAuxProfile();
+        // if we have aux data
+        if ($auxProfiles->count() > 0) {
+            // for eax aux data look if it's a Importance field
+            foreach ($auxProfiles as $aux) {
+                $auxTypeId = $aux->getMatchAuxProfileType()->getId();
+                // if its a importance field
+                if ($auxTypeId === MatchAuxProfileTypeCode::IMPORTANCE_CODE) {
+                    // And its value is TOP, return true
+                    if($aux->getValue() === MatchAuxProfileValue::TOP){
+                        return true;
+                    }
+                    break;
+                }
+            }
+        }
+
+        return false;
     }
 }
