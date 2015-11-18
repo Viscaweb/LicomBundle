@@ -31,8 +31,8 @@ class MatchCommentRepository extends AbstractEntityRepository
                     'localizationProfile' => $localizationProfile,
                 ]
             )
-            ->addOrderBy('mc.timeElapsed', 'ASC')
-            ->addOrderBy('mc.timeElapsedExtra', 'ASC')
+            ->addOrderBy('mc.timeElapsed', 'DESC')
+            ->addOrderBy('mc.timeElapsedExtra', 'DESC')
             ->getQuery()
             ->getResult();
     }
