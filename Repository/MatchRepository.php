@@ -420,16 +420,11 @@ class MatchRepository extends AbstractEntityRepository
         return $this
             ->createQueryBuilder('m')
             ->select(
-                'm, mp1, mp2, match_result1, match_result2, '.
-                'match_incident1, match_incident2, matchStatusDescription'
+                'm, mp1, mp2, matchStatusDescription'
             )
             ->join('m.matchParticipant', 'mp1')
             ->join('m.matchParticipant', 'mp2')
             ->leftJoin('m.matchStatusDescription', 'matchStatusDescription')
-            ->leftJoin('mp1.matchResult', 'match_result1')
-            ->leftJoin('mp2.matchResult', 'match_result2')
-            ->leftJoin('mp1.matchIncident', 'match_incident1')
-            ->leftJoin('mp2.matchIncident', 'match_incident2')
             ->join(
                 'ViscaLicomBundle:MatchAuxProfile',
                 'matchAuxProfile',
