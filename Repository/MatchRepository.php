@@ -536,15 +536,17 @@ class MatchRepository extends AbstractEntityRepository
      *
      * @param DateTime    $dateFrom
      * @param DateTime    $dateTo
-     * @param string|null $status        Any of the valid MatchStatusDescriptionCategoryType
+     * @param string|null $status Any of the valid MatchStatusDescriptionCategoryType
+     * @param null        $sportId
      * @param bool        $eagerFetching
      *
      * @return \Visca\Bundle\LicomBundle\Entity\Match[]
      */
-    public function findByDateAndStatus(
+    public function findByDateAndStatusAndSport(
         DateTime $dateFrom,
         DateTime $dateTo,
         $status = null,
+        $sportId = null,
         $eagerFetching = false
     ) {
         if ($eagerFetching) {
@@ -612,6 +614,17 @@ class MatchRepository extends AbstractEntityRepository
                 )
                 ->andWhere('s.category IN (:categories)')
                 ->setParameter('categories', $statusCategories);
+        }
+
+
+        /*
+         * if we have the sport id
+         */
+        if (!is_null($sportId) && is_numeric($sportId)) {
+            $queryBuilder
+                // Where sport
+                ->andWhere('p.sport = :sportId')
+                ->setParameter('sportId', $sportId);
         }
 
         /*
@@ -918,6 +931,7 @@ class MatchRepository extends AbstractEntityRepository
      * Returns the number of LIVE matches for the given sport for all the countries grouped by Contry.
      *
      * @param Sport          $sport                  Sport Entity
+     * @param null|int[]     $competitionsListed     Ids to avoid
      * @param \DateTime|null $dateFrom               DateTime
      * @param \DateTime|null $dateTo                 DateTime
      * @param string|null    $status                 Status
@@ -927,36 +941,34 @@ class MatchRepository extends AbstractEntityRepository
      */
     public function countMatchesByCompetitionCategorySportAndStatus(
         Sport $sport,
+        $competitionsListed = null,
         \DateTime $dateFrom = null,
         \DateTime $dateTo = null,
         $status = null,
         $competitionCategoryIds = null
     ) {
+        // Gets the custom query builder
+        $queryBuilder = $this->getCompetitionCategoryBuilder($sport);
+
         /*
-         * Join to get the Country and MatchStatusDescription
-         * To get the countries and the status of the matches.
-         *
-         * Also is adding the filter by sport.
+         * If we have some listed categories, remove them from the listing
          */
-        $queryBuilder = $this
-            ->entityManager
-            ->createQueryBuilder()
-            ->select('competitionCategory.id', 'count(m.id) as total')
-            ->from($this->entityName, 'm')
-            // Join with all the classes to get all the data.
-            ->join('m.competitionSeasonStage', 'stage')
-            ->join('stage.competitionSeason', 'season')
-            ->join('season.competition', 'competition')
-            ->join('competition.competitionCategory', 'competitionCategory')
-            ->join('m.matchStatusDescription', 'matchStatusDescription')
-            // Where sport
-            ->where('competitionCategory.sport = :sportId')
-            ->setParameter('sportId', $sport->getId())
-            // Group by Country
-            ->addGroupBy('competitionCategory.id');
+        if (!is_null($competitionsListed) && is_array(
+                $competitionsListed
+            )
+        ) {
+            $queryBuilder
+                ->andWhere(
+                    'competitionCategory.id NOT IN (:competitionsListed)'
+                )
+                ->setParameter(
+                    'competitionsListed',
+                    $competitionsListed
+                );
+        }
 
         // Add the status filter
-        if ($status !== null) {
+        if (!is_null($status)) {
             // Prepare the $status key filter
             switch ($status) {
                 case MatchStatusDescriptionCategoryType::INPROGRESS:
@@ -1018,5 +1030,39 @@ class MatchRepository extends AbstractEntityRepository
         }
 
         return $totalByCompetitionCategory;
+    }
+
+    /**
+     * Returns the prepared query builder
+     *
+     * @param Sport $sport
+     *
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    private function getCompetitionCategoryBuilder(Sport $sport)
+    {
+        /*
+         * Join to get the Country and MatchStatusDescription
+         * To get the countries and the status of the matches.
+         *
+         * Also is adding the filter by sport.
+         */
+
+        return $this
+            ->entityManager
+            ->createQueryBuilder()
+            ->select('competitionCategory.id', 'count(m.id) as total')
+            ->from($this->entityName, 'm')
+            // Join with all the classes to get all the data.
+            ->join('m.competitionSeasonStage', 'stage')
+            ->join('stage.competitionSeason', 'season')
+            ->join('season.competition', 'competition')
+            ->join('competition.competitionCategory', 'competitionCategory')
+            ->join('m.matchStatusDescription', 'matchStatusDescription')
+            // Where sport
+            ->where('competitionCategory.sport = :sportId')
+            ->setParameter('sportId', $sport->getId())
+            // Group by Country
+            ->addGroupBy('competitionCategory.id');
     }
 }
