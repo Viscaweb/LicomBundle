@@ -466,8 +466,9 @@ class MatchRepository extends AbstractEntityRepository
      * And will add the limit if provided.
      *
      * @param string $importance top|important|2nd.
-     * @param int    $fromDays   First day where the match can play.
-     * @param int    $toDays     Day limit of the match can play.
+     * @param int    $fromDays   Starting date the match can take place.
+     *                           Specified in number of relative days from today.
+     * @param int    $toDays     Limit date the match can take place. Specified in number of relative days from today.
      * @param int    $limit      Limit the number of matches returned. Default 3.
      *
      * @return Match[]
@@ -494,7 +495,7 @@ class MatchRepository extends AbstractEntityRepository
         $dateFrom = new \DateTime('+'.$fromDays.' days');
         $this->alterDateObjects($dateFrom);
 
-        $fromTimeFormat = ($fromDays === 1) ? 'H:i:s' : '00:00:00';
+        $fromTimeFormat = ($fromDays === 0) ? 'H:i:s' : '00:00:00';
 
         $queryBuilder = parent::createQueryBuilder('m');
         $queryBuilder
@@ -536,7 +537,7 @@ class MatchRepository extends AbstractEntityRepository
      *
      * @param DateTime    $dateFrom
      * @param DateTime    $dateTo
-     * @param string|null $status        Any of the valid MatchStatusDescriptionCategoryType
+     * @param string|null $status Any of the valid MatchStatusDescriptionCategoryType
      * @param bool        $eagerFetching
      *
      * @return \Visca\Bundle\LicomBundle\Entity\Match[]
@@ -576,7 +577,7 @@ class MatchRepository extends AbstractEntityRepository
          */
         $this->alterDateObjects($dateFrom, $dateTo);
         $queryBuilder
-            ->where('m.startDate BETWEEN :dateFrom AND :dateTo')
+            ->andWhere('m.startDate BETWEEN :dateFrom AND :dateTo')
             ->setParameter('dateFrom', $dateFrom->format('Y-m-d H:i'))
             ->setParameter('dateTo', $dateTo->format('Y-m-d H:i'));
 
@@ -990,6 +991,9 @@ class MatchRepository extends AbstractEntityRepository
         // Add the filter by date if needed.
         if (!is_null($dateFrom)) {
             $this->alterDateObjects($dateFrom);
+
+
+
             $queryBuilder
                 ->andWhere('m.startDate >= :from')
                 ->setParameter('from', $dateFrom->format('Y-m-d 00:00:00'));
