@@ -542,8 +542,7 @@ class MatchRepository extends AbstractEntityRepository
         DateTime $dateTo,
         $status = null,
         $sportId = null,
-        $eagerFetching = false,
-        $correctTimezone = false
+        $eagerFetching = false
     ) {
         $queryBuilder = $queryBuilder = parent::createQueryBuilder('m')
             ->select('m');
@@ -571,9 +570,8 @@ class MatchRepository extends AbstractEntityRepository
         /*
          * Filter by date
          */
-        if ($correctTimezone) {
-            $this->alterDateObjects($dateFrom, $dateTo);
-        }
+        $this->alterDateObjects($dateFrom, $dateTo);
+        
         $queryBuilder
             ->andWhere('m.startDate BETWEEN :dateFrom AND :dateTo')
             ->setParameter('dateFrom', $dateFrom->format('Y-m-d H:i'))
@@ -890,7 +888,6 @@ class MatchRepository extends AbstractEntityRepository
      * @param \DateTime|null $dateTo                 DateTime
      * @param string|null    $status                 Status
      * @param array|null     $competitionCategoryIds Status
-     * @param bool|false     $useTimeZone            Use the time zone or not on the date search
      *
      * @return array
      */
@@ -900,8 +897,7 @@ class MatchRepository extends AbstractEntityRepository
         \DateTime $dateFrom = null,
         \DateTime $dateTo = null,
         $status = null,
-        $competitionCategoryIds = null,
-        $useTimeZone = false
+        $competitionCategoryIds = null
     ) {
         // Gets the custom query builder
         $queryBuilder = $this->getCompetitionCategoryBuilder($sport);
@@ -941,17 +937,13 @@ class MatchRepository extends AbstractEntityRepository
 
         // Add the filter by date if needed.
         if (!is_null($dateFrom)) {
-            if ($useTimeZone) {
-                $this->alterDateObjects($dateFrom);
-            }
+            $this->alterDateObjects($dateFrom);
             $queryBuilder
                 ->andWhere('m.startDate >= :from')
                 ->setParameter('from', $dateFrom->format('Y-m-d 00:00:00'));
         }
         if (!is_null($dateTo)) {
-            if ($useTimeZone) {
-                $this->alterDateObjects($dateTo);
-            }
+            $this->alterDateObjects($dateTo);
             $queryBuilder
                 ->andWhere('m.startDate < :to')
                 ->setParameter('to', $dateTo->format('Y-m-d 23:59:59'));
