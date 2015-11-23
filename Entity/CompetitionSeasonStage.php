@@ -3,11 +3,11 @@
 namespace Visca\Bundle\LicomBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Visca\Bundle\CoreBundle\Entity\Traits\OptionalDateTimeTrait;
+use Doctrine\Common\Collections\Collection;
 use Visca\Bundle\CoreBundle\Entity\Traits\DeletableTrait;
+use Visca\Bundle\CoreBundle\Entity\Traits\OptionalDateTimeTrait;
 use Visca\Bundle\LicomBundle\Entity\Traits\OptionalPeriodTrait;
 use Visca\Bundle\LicomBundle\Factory\CompetitionSeasonStageFactory;
-use Doctrine\Common\Collections\Collection;
 
 /**
  * CompetitionSeasonStage.
@@ -193,6 +193,11 @@ class CompetitionSeasonStage
      */
     public function __toString()
     {
-        return sprintf('%s', $this->getId());
+        return sprintf(
+            '%s %s (%s)',
+            $this->getCompetitionStage()->getName(),
+            $this->getCompetitionSeason()->getName(),
+            $this->getId()
+        );
     }
 }

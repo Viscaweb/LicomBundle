@@ -12,6 +12,16 @@ trait ToStringNameAndIdTrait
      */
     public function __toString()
     {
-        return sprintf('%s(%s)', $this->getName(), $this->getId());
+        return sprintf('%s (%s)', $this->getName(), $this->getId());
     }
+
+    /**
+     * @return string
+     */
+    abstract function getName();
+
+    /**
+     * @return int
+     */
+    abstract function getId();
 }

@@ -5,6 +5,7 @@ namespace Visca\Bundle\LicomBundle\Entity;
 use Visca\Bundle\CoreBundle\Entity\Traits\OptionalDateTimeTrait;
 use Visca\Bundle\CoreBundle\Entity\Traits\DeletableTrait;
 use Visca\Bundle\LicomBundle\Entity\Traits\OptionalPeriodTrait;
+use Visca\Bundle\LicomBundle\Entity\Traits\ToStringNameAndIdTrait;
 
 /**
  * CompetitionLeg.
@@ -14,6 +15,7 @@ class CompetitionLeg
     use OptionalDateTimeTrait;
     use DeletableTrait;
     use OptionalPeriodTrait;
+    use ToStringNameAndIdTrait;
 
     /**
      * @var int
