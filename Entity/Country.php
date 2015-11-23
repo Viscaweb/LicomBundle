@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Visca\Bundle\CoreBundle\Entity\Traits\OptionalDateTimeTrait;
 use Visca\Bundle\CoreBundle\Entity\Traits\DeletableTrait;
+use Visca\Bundle\LicomBundle\Entity\Traits\ToStringNameAndIdTrait;
 use Visca\Bundle\LicomBundle\Factory\CountryFactory;
 
 /**
@@ -23,6 +24,7 @@ class Country
 {
     use OptionalDateTimeTrait;
     use DeletableTrait;
+    use ToStringNameAndIdTrait;
 
     /**
      * @var int

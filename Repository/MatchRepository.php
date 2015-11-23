@@ -420,16 +420,11 @@ class MatchRepository extends AbstractEntityRepository
         return $this
             ->createQueryBuilder('m')
             ->select(
-                'm, mp1, mp2, match_result1, match_result2, '.
-                'match_incident1, match_incident2, matchStatusDescription'
+                'm, mp1, mp2, matchStatusDescription'
             )
             ->join('m.matchParticipant', 'mp1')
             ->join('m.matchParticipant', 'mp2')
             ->leftJoin('m.matchStatusDescription', 'matchStatusDescription')
-            ->leftJoin('mp1.matchResult', 'match_result1')
-            ->leftJoin('mp2.matchResult', 'match_result2')
-            ->leftJoin('mp1.matchIncident', 'match_incident1')
-            ->leftJoin('mp2.matchIncident', 'match_incident2')
             ->join(
                 'ViscaLicomBundle:MatchAuxProfile',
                 'matchAuxProfile',
@@ -538,19 +533,23 @@ class MatchRepository extends AbstractEntityRepository
      * @param DateTime    $dateFrom
      * @param DateTime    $dateTo
      * @param string|null $status Any of the valid MatchStatusDescriptionCategoryType
+     * @param null        $sportId
      * @param bool        $eagerFetching
      *
      * @return \Visca\Bundle\LicomBundle\Entity\Match[]
      */
-    public function findByDateAndStatus(
+    public function findByDateAndStatusAndSport(
         DateTime $dateFrom,
         DateTime $dateTo,
         $status = null,
+        $sportId = null,
         $eagerFetching = false
     ) {
+        $queryBuilder = $queryBuilder = parent::createQueryBuilder('m')
+            ->select('m');
+
         if ($eagerFetching) {
-            $queryBuilder = $this
-                ->createQueryBuilder('m')
+            $queryBuilder
                 ->join(
                     'ViscaLicomBundle:MatchParticipant',
                     'mp1',
@@ -567,15 +566,13 @@ class MatchRepository extends AbstractEntityRepository
                 ->andWhere('mp2.id IS NOT NULL')
                 ->setParameter('homeNumber', MatchParticipant::HOME)
                 ->setParameter('awayNumber', MatchParticipant::AWAY);
-        } else {
-            $queryBuilder = $queryBuilder = parent::createQueryBuilder('m')
-                ->select('m');
         }
 
         /*
          * Filter by date
          */
         $this->alterDateObjects($dateFrom, $dateTo);
+        
         $queryBuilder
             ->andWhere('m.startDate BETWEEN :dateFrom AND :dateTo')
             ->setParameter('dateFrom', $dateFrom->format('Y-m-d H:i'))
@@ -585,24 +582,7 @@ class MatchRepository extends AbstractEntityRepository
          * Filter the status
          */
         if ($status !== null) {
-            switch ($status) {
-                case MatchStatusDescriptionCategoryType::INPROGRESS:
-                    $statusCategories = [MatchStatusDescriptionCategoryType::INPROGRESS];
-                    break;
-
-                case MatchStatusDescriptionCategoryType::NOTSTARTED:
-                    $statusCategories = [MatchStatusDescriptionCategoryType::NOTSTARTED];
-                    break;
-
-                case MatchStatusDescriptionCategoryType::FINISHED:
-                default:
-                    $statusCategories = [
-                        MatchStatusDescriptionCategoryType::FINISHED,
-                        MatchStatusDescriptionCategoryType::CANCELLED,
-                        MatchStatusDescriptionCategoryType::UNKNOWN,
-                    ];
-                    break;
-            }
+            $statusCategories = $this->prepareStatusCategories($status);
 
             $queryBuilder
                 ->leftJoin(
@@ -613,6 +593,21 @@ class MatchRepository extends AbstractEntityRepository
                 )
                 ->andWhere('s.category IN (:categories)')
                 ->setParameter('categories', $statusCategories);
+        }
+
+
+        /*
+         * if we have the sport id
+         */
+        if (!is_null($sportId) && is_numeric($sportId)) {
+            $queryBuilder
+                // Where sport
+                ->join(
+                    "mp1.participant",
+                    'p'
+                )
+                ->andWhere('p.sport = :sportId')
+                ->setParameter('sportId', $sportId);
         }
 
         /*
@@ -674,24 +669,7 @@ class MatchRepository extends AbstractEntityRepository
          * Filter the status
          */
         if ($status !== null) {
-            switch ($status) {
-                case MatchStatusDescriptionCategoryType::INPROGRESS:
-                    $statusCategories = [MatchStatusDescriptionCategoryType::INPROGRESS];
-                    break;
-
-                case MatchStatusDescriptionCategoryType::NOTSTARTED:
-                    $statusCategories = [MatchStatusDescriptionCategoryType::NOTSTARTED];
-                    break;
-
-                case MatchStatusDescriptionCategoryType::FINISHED:
-                default:
-                    $statusCategories = [
-                        MatchStatusDescriptionCategoryType::FINISHED,
-                        MatchStatusDescriptionCategoryType::CANCELLED,
-                        MatchStatusDescriptionCategoryType::UNKNOWN,
-                    ];
-                    break;
-            }
+            $statusCategories = $this->prepareStatusCategories($status);
 
             $queryBuilder
                 ->leftJoin(
@@ -778,20 +756,7 @@ class MatchRepository extends AbstractEntityRepository
             ->setMaxResults($limit)
             ->setParameter('start', $date->format($dateFormat));
 
-        switch ($status) {
-            case MatchStatusDescriptionCategoryType::INPROGRESS:
-                $statusCategories = [MatchStatusDescriptionCategoryType::INPROGRESS];
-                break;
-
-            case MatchStatusDescriptionCategoryType::FINISHED:
-            default:
-                $statusCategories = [
-                    MatchStatusDescriptionCategoryType::FINISHED,
-                    MatchStatusDescriptionCategoryType::CANCELLED,
-                    MatchStatusDescriptionCategoryType::UNKNOWN,
-                ];
-                break;
-        }
+        $statusCategories = $this->prepareStatusCategories($status);
 
         $queryBuilder
             ->leftJoin(
@@ -919,6 +884,7 @@ class MatchRepository extends AbstractEntityRepository
      * Returns the number of LIVE matches for the given sport for all the countries grouped by Contry.
      *
      * @param Sport          $sport                  Sport Entity
+     * @param null|int[]     $competitionsListed     Ids to avoid
      * @param \DateTime|null $dateFrom               DateTime
      * @param \DateTime|null $dateTo                 DateTime
      * @param string|null    $status                 Status
@@ -928,53 +894,35 @@ class MatchRepository extends AbstractEntityRepository
      */
     public function countMatchesByCompetitionCategorySportAndStatus(
         Sport $sport,
+        $competitionsListed = null,
         \DateTime $dateFrom = null,
         \DateTime $dateTo = null,
         $status = null,
         $competitionCategoryIds = null
     ) {
+        // Gets the custom query builder
+        $queryBuilder = $this->getCompetitionCategoryBuilder($sport);
+
         /*
-         * Join to get the Country and MatchStatusDescription
-         * To get the countries and the status of the matches.
-         *
-         * Also is adding the filter by sport.
+         * If we have some listed categories, remove them from the listing
          */
-        $queryBuilder = $this
-            ->entityManager
-            ->createQueryBuilder()
-            ->select('competitionCategory.id', 'count(m.id) as total')
-            ->from($this->entityName, 'm')
-            // Join with all the classes to get all the data.
-            ->join('m.competitionSeasonStage', 'stage')
-            ->join('stage.competitionSeason', 'season')
-            ->join('season.competition', 'competition')
-            ->join('competition.competitionCategory', 'competitionCategory')
-            ->join('m.matchStatusDescription', 'matchStatusDescription')
-            // Where sport
-            ->where('competitionCategory.sport = :sportId')
-            ->setParameter('sportId', $sport->getId())
-            // Group by Country
-            ->addGroupBy('competitionCategory.id');
+        if (!is_null($competitionsListed)
+            && is_array($competitionsListed) && !empty($competitionsListed)
+        ) {
+            $queryBuilder
+                ->andWhere(
+                    'competitionCategory.id NOT IN (:competitionsListed)'
+                )
+                ->setParameter(
+                    'competitionsListed',
+                    $competitionsListed
+                );
+        }
 
         // Add the status filter
-        if ($status !== null) {
+        if (!is_null($status)) {
             // Prepare the $status key filter
-            switch ($status) {
-                case MatchStatusDescriptionCategoryType::INPROGRESS:
-                    $statusCategories = [
-                        MatchStatusDescriptionCategoryType::INPROGRESS,
-                    ];
-                    break;
-
-                case MatchStatusDescriptionCategoryType::FINISHED:
-                default:
-                    $statusCategories = [
-                        MatchStatusDescriptionCategoryType::FINISHED,
-                        MatchStatusDescriptionCategoryType::CANCELLED,
-                        MatchStatusDescriptionCategoryType::UNKNOWN,
-                    ];
-                    break;
-            }
+            $statusCategories = $this->prepareStatusCategories($status);
 
             $queryBuilder
                 ->andWhere('matchStatusDescription.category IN (:categories)')
@@ -1022,5 +970,86 @@ class MatchRepository extends AbstractEntityRepository
         }
 
         return $totalByCompetitionCategory;
+    }
+
+    /**
+     * Returns the prepared query builder
+     *
+     * @param Sport $sport
+     *
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    private function getCompetitionCategoryBuilder(Sport $sport)
+    {
+        /*
+         * Join to get the Country and MatchStatusDescription
+         * To get the countries and the status of the matches.
+         *
+         * Also is adding the filter by sport.
+         */
+
+        return $this
+            ->entityManager
+            ->createQueryBuilder()
+            ->select('competitionCategory.id', 'count(m.id) as total')
+            ->from($this->entityName, 'm')
+            ->join(
+                'ViscaLicomBundle:MatchParticipant',
+                'mp1',
+                'WITH',
+                'mp1.match = m AND mp1.number = :homeNumber'
+            )
+            ->join(
+                'ViscaLicomBundle:MatchParticipant',
+                'mp2',
+                'WITH',
+                'mp2.match = m AND mp2.number = :awayNumber'
+            )
+            ->andWhere('mp1.id IS NOT NULL')
+            ->andWhere('mp2.id IS NOT NULL')
+            ->setParameter('homeNumber', MatchParticipant::HOME)
+            ->setParameter('awayNumber', MatchParticipant::AWAY)
+            // Join with all the classes to get all the data.
+            ->join('m.competitionSeasonStage', 'stage')
+            ->join('stage.competitionSeason', 'season')
+            ->join('season.competition', 'competition')
+            ->join('competition.competitionCategory', 'competitionCategory')
+            ->join('m.matchStatusDescription', 'matchStatusDescription')
+            // Where sport
+            ->andWhere('competitionCategory.sport = :sportId')
+            ->setParameter('sportId', $sport->getId())
+            // Group by Country
+            ->addGroupBy('competitionCategory.id');
+    }
+
+    /**
+     * Returns the array of status to search based on the status given
+     *
+     * @param string $status Status of matches to search
+     *
+     * @return array
+     */
+    private function prepareStatusCategories($status)
+    {
+        switch ($status) {
+            case MatchStatusDescriptionCategoryType::INPROGRESS:
+                $statusCategories = [MatchStatusDescriptionCategoryType::INPROGRESS];
+                break;
+
+            case MatchStatusDescriptionCategoryType::NOTSTARTED:
+                $statusCategories = [MatchStatusDescriptionCategoryType::NOTSTARTED];
+                break;
+
+            case MatchStatusDescriptionCategoryType::FINISHED:
+            default:
+                $statusCategories = [
+                    MatchStatusDescriptionCategoryType::FINISHED,
+                    MatchStatusDescriptionCategoryType::CANCELLED,
+                    MatchStatusDescriptionCategoryType::UNKNOWN,
+                ];
+                break;
+        }
+
+        return $statusCategories;
     }
 }
