@@ -488,9 +488,18 @@ class MatchRepository extends AbstractEntityRepository
          * Also, order the result set by startDate, olders first.
          */
         $dateFrom = new \DateTime('+'.$fromDays.' days');
-        $this->alterDateObjects($dateFrom);
 
-        $fromTimeFormat = ($fromDays === 0) ? 'H:i:s' : '00:00:00';
+        /*
+         * $fromDays = 0 means that we accept matches playing today.
+         * Therefore, we could get some matches that are finished.
+         *
+         * To avoid this behaviour, we must say that we accept only
+         * the matches are that playing in future.
+         */
+        if ($fromDays !== 0) {
+            $dateFrom->setTime(0, 0, 0);
+        }
+        $this->alterDateObjects($dateFrom);
 
         $queryBuilder = parent::createQueryBuilder('m');
         $queryBuilder
@@ -502,7 +511,7 @@ class MatchRepository extends AbstractEntityRepository
             ->andWhere('m.startDate >= :start')
             ->andWhere('ma.value = :importance')
             ->orderBy('m.startDate', 'ASC')
-            ->setParameter('start', $dateFrom->format('Y-m-d '.$fromTimeFormat))
+            ->setParameter('start', $dateFrom->format('Y-m-d H:i:s'))
             ->setParameter('importance', $importance)
             ->groupBy('m.id');
 
@@ -510,11 +519,12 @@ class MatchRepository extends AbstractEntityRepository
          * If we don't have any "to date", dont add it to the query
          */
         if ($toDays !== null) {
-            $dateEnd = new \DateTime('+'.$toDays.' days');
+            $dateEnd = new \DateTime('+'.$toDays.' days, 23:59:59');
             $this->alterDateObjects($dateEnd);
+
             $queryBuilder
                 ->andWhere('m.startDate <= :end')
-                ->setParameter('end', $dateEnd->format('Y-m-d 23:59:59'));
+                ->setParameter('end', $dateEnd->format('Y-m-d H:i:s'));
         }
 
         if ($limit !== null) {
