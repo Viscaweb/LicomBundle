@@ -1014,16 +1014,17 @@ class MatchRepository extends AbstractEntityRepository
                 'WITH',
                 'mp2.match = m AND mp2.number = :awayNumber'
             )
-            ->andWhere('mp1.id IS NOT NULL')
-            ->andWhere('mp2.id IS NOT NULL')
-            ->setParameter('homeNumber', MatchParticipant::HOME)
-            ->setParameter('awayNumber', MatchParticipant::AWAY)
             // Join with all the classes to get all the data.
             ->join('m.competitionSeasonStage', 'stage')
             ->join('stage.competitionSeason', 'season')
             ->join('season.competition', 'competition')
             ->join('competition.competitionCategory', 'competitionCategory')
             ->join('m.matchStatusDescription', 'matchStatusDescription')
+            // To be sure we have the two participants
+            ->where('mp1.id IS NOT NULL')
+            ->andWhere('mp2.id IS NOT NULL')
+            ->setParameter('homeNumber', MatchParticipant::HOME)
+            ->setParameter('awayNumber', MatchParticipant::AWAY)
             // Where sport
             ->andWhere('competitionCategory.sport = :sportId')
             ->setParameter('sportId', $sport->getId())
