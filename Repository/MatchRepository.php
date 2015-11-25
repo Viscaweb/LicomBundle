@@ -194,15 +194,17 @@ class MatchRepository extends AbstractEntityRepository
             $qb->setMaxResults($limit);
         }
 
+        $dateNow = new DateTime('now');
+        $this->alterDateObjects($dateNow);
         if (is_numeric($offset) && $offset >= 0) {
             $qb->andWhere('m.startDate >= :now')
-                ->setParameter('now', new DateTime('now'))
+                ->setParameter('now', $dateNow)
                 ->setFirstResult($offset);
         }
 
         if (is_numeric($offset) && $offset < 0) {
             $qb->andWhere('m.startDate < :now')
-                ->setParameter('now', new DateTime('now'))
+                ->setParameter('now', $dateNow)
                 ->setFirstResult(abs($offset));
         }
 
@@ -1068,17 +1070,15 @@ class MatchRepository extends AbstractEntityRepository
         // Add the filter by date if needed.
         if (!is_null($dateFrom)) {
             $this->alterDateObjects($dateFrom);
-
-
             $queryBuilder
                 ->andWhere('m.startDate >= :from')
-                ->setParameter('from', $dateFrom->format('Y-m-d 00:00:00'));
+                ->setParameter('from', $dateFrom->format('Y-m-d H:i:s'));
         }
         if (!is_null($dateTo)) {
             $this->alterDateObjects($dateTo);
             $queryBuilder
                 ->andWhere('m.startDate < :to')
-                ->setParameter('to', $dateTo->format('Y-m-d 23:59:59'));
+                ->setParameter('to', $dateTo->format('Y-m-d H:i:s'));
         }
 
         // gets the results in an Array
@@ -1133,16 +1133,17 @@ class MatchRepository extends AbstractEntityRepository
                 'WITH',
                 'mp2.match = m AND mp2.number = :awayNumber'
             )
-            ->andWhere('mp1.id IS NOT NULL')
-            ->andWhere('mp2.id IS NOT NULL')
-            ->setParameter('homeNumber', MatchParticipant::HOME)
-            ->setParameter('awayNumber', MatchParticipant::AWAY)
             // Join with all the classes to get all the data.
             ->join('m.competitionSeasonStage', 'stage')
             ->join('stage.competitionSeason', 'season')
             ->join('season.competition', 'competition')
             ->join('competition.competitionCategory', 'competitionCategory')
             ->join('m.matchStatusDescription', 'matchStatusDescription')
+            // To be sure we have the two participants
+            ->where('mp1.id IS NOT NULL')
+            ->andWhere('mp2.id IS NOT NULL')
+            ->setParameter('homeNumber', MatchParticipant::HOME)
+            ->setParameter('awayNumber', MatchParticipant::AWAY)
             // Where sport
             ->andWhere('competitionCategory.sport = :sportId')
             ->setParameter('sportId', $sport->getId())
