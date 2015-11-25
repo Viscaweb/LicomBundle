@@ -1,0 +1,26 @@
+<skipper-configuration>
+    <orm-configuration name="Doctrine2">
+        <data-types>
+            <data-type name="ParticipantGenderType"/>
+            <data-type name="ParticipantType"/>
+            <data-type name="MatchStatusDescriptionCategoryType"/>
+            <data-type name="BettingOutcomeStatusType"/>
+            <data-type name="CompetitionGenderType"/>
+            <data-type name="MatchIncidentTypeCategory"/>
+            <data-type name="MatchStatusDescriptionCategoryType"/>
+            <data-type name="MediaLegalType"/>
+            <data-type name="MediaUsageType"/>
+            <data-type name="ParticipantMembershipParticipantType"/>
+            <data-type name="SoftDeletionType"/>
+			<data-type name="MatchWinnerType"/>
+        </data-types>
+		<attribute-types>
+	        <struct name="Entity">
+	            <struct name="cache" help-text= "" help-url="http://doctrine-orm.readthedocs.org/en/latest/reference/second-level-cache.html">
+	                <attribute name="usage" type="enum" enum-values="READ_ONLY|NONSTRICT_READ_WRITE|READ_WRITE" help-text=""/>
+	                <attribute name="region" type="string" help-text=""/>
+	            </struct>
+	        </struct>
+	    </attribute-types>
+    </orm-configuration>
+</skipper-configuration>
