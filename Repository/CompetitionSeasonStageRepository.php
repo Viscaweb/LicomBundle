@@ -12,7 +12,9 @@ use Visca\Bundle\LicomBundle\Entity\Competition;
 use Visca\Bundle\LicomBundle\Entity\CompetitionSeason;
 use Visca\Bundle\LicomBundle\Entity\CompetitionSeasonStage;
 use Visca\Bundle\LicomBundle\Entity\CompetitionStageType;
+use Visca\Bundle\LicomBundle\Entity\Country;
 use Visca\Bundle\LicomBundle\Entity\Participant;
+use Visca\Bundle\LicomBundle\Entity\Sport;
 
 /**
  * CompetitionSeasonStageRepository.
@@ -40,7 +42,6 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
         // Get current Competition Season for Competition
         $qb = $this->entityManager->createQueryBuilder();
         $qb->select('cs');
-//        $qb = $this->createQueryBuilder('cs');
 
         $competitionSeason = $qb
             ->from('ViscaLicomBundle:CompetitionSeason', 'cs')
@@ -68,6 +69,82 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
         }
 
         return $competitionSeasonStage;
+    }
+
+    /**
+     * Finds current CompetitionSeasonStage by Country and Sport.
+     *
+     * @param Country $country Country entity
+     * @param Sport   $sport   Sport entity
+     *
+     * @return null|CompetitionSeasonStage
+     */
+    public function findCurrentByCountryAndSport(Country $country, Sport $sport)
+    {
+        /**
+         * SELECT c.name, cs.name, cstage.name
+         * FROM CompetitionSeasonStage AS css
+         * JOIN CompetitionStage AS cstage ON cstage.id = css.competitionStage
+         * JOIN CompetitionSeason AS cs ON cs.id = css.CompetitionSeason
+         * JOIN Competition_Graph AS cg ON (cg.label = 1 AND cg.CompetitionSeason = cs.id)
+         * JOIN Competition AS c ON (c.id = cg.competition)
+         * JOIN CompetitionCategory AS cc ON cc.id = c.CompetitionCategory
+         * JOIN CompetitionSeason_graph AS csg ON (csg.CompetitionSeason = cs.id AND csg.label = 1)
+         * WHERE cc.Country = 8 AND cc.Sport = 1
+         */
+        $qb = $this->entityManager->createQueryBuilder();
+        $qb->select('css');
+        $query = $qb
+            ->from('ViscaLicomBundle:CompetitionSeasonStage', 'css')
+            ->join(
+                'ViscaLicomBundle:CompetitionStage',
+                'cstage',
+                Join::WITH,
+                'cstage.id = css.competitionStage'
+            )
+            ->join(
+                'ViscaLicomBundle:CompetitionSeason',
+                'cs',
+                Join::WITH,
+                'cs.id = css.competitionSeason'
+            )
+            ->join(
+                'ViscaLicomBundle:CompetitionGraph',
+                'cg',
+                Join::WITH,
+                'cg.label = :cgLabel AND cg.competitionSeason = cs.id'
+            )
+            ->join(
+                'ViscaLicomBundle:Competition',
+                'c',
+                Join::WITH,
+                'c.id = cg.competition'
+            )
+            ->join(
+                'ViscaLicomBundle:CompetitionCategory',
+                'cc',
+                Join::WITH,
+                'cc.id = c.competitionCategory'
+            )
+            ->join(
+                'ViscaLicomBundle:CompetitionSeasonGraph',
+                'csg',
+                Join::WITH,
+                'csg.competitionSeason = cs.id AND csg.label = :csgLabel'
+            )
+            ->where('cc.country = :country')
+            ->andWhere('cc.sport = :sport')
+            ->setParameters(
+                [
+                    'country' => $country,
+                    'sport' => $sport,
+                    'cgLabel' => CompetitionGraphLabelCode::CURRENT_CODE,
+                    'csgLabel' => CompetitionSeasonGraphLabelCode::CURRENT_CODE
+                ]
+            )
+            ->getQuery();
+
+        return $query->getResult();
     }
 
     /**

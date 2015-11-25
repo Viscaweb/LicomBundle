@@ -582,7 +582,7 @@ class MatchRepository extends AbstractEntityRepository
          * Filter by date
          */
         $this->alterDateObjects($dateFrom, $dateTo);
-        
+
         $queryBuilder
             ->andWhere('m.startDate BETWEEN :dateFrom AND :dateTo')
             ->setParameter('dateFrom', $dateFrom->format('Y-m-d H:i'))
@@ -628,24 +628,23 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param \DateTime              $dateFrom
-     * @param \DateTime              $dateTo
-     * @param CompetitionSeasonStage $competitionSeasonStage
-     * @param null                   $status
+     * @param \DateTime $dateFrom                  Initial date.
+     * @param \DateTime $dateTo                    End date.
+     * @param int[]     $competitionSeasonStageIds List of CompetitionSeasonStages.
+     * @param null      $status                    Match status.
      *
      * @return array
      */
     public function findByDateAndStatusAndCompetitionSeasonStage(
-        $dateFrom,
-        $dateTo,
-        CompetitionSeasonStage $competitionSeasonStage,
-        $hour = null,
+        DateTime $dateFrom,
+        DateTime $dateTo,
+        $competitionSeasonStageIds,
         $status = null
     ) {
-        $timeFormat = 'H:i';
-        if ($hour !== null) {
-            $timeFormat = $hour;
-        }
+//        $timeFormat = 'H:i';
+//        if ($hour !== null) {
+//            $timeFormat = $hour;
+//        }
 
         /*
          * Filter by date
@@ -666,14 +665,19 @@ class MatchRepository extends AbstractEntityRepository
                 'mp2.match = m AND mp2.number = :awayNumber'
             )
             ->where('m.startDate BETWEEN :dateFrom AND :dateTo')
-            ->andWhere('m.competitionSeasonStage = :competitionSeasonStage')
+            ->andWhere(
+                'm.competitionSeasonStage IN (:competitionSeasonStageIds)'
+            )
             ->andWhere('mp1.id IS NOT NULL')
             ->andWhere('mp2.id IS NOT NULL')
             ->setParameter('homeNumber', MatchParticipant::HOME)
             ->setParameter('awayNumber', MatchParticipant::AWAY)
-            ->setParameter('dateFrom', $dateFrom->format('Y-m-d '.$timeFormat))
-            ->setParameter('dateTo', $dateTo->format('Y-m-d '.$timeFormat))
-            ->setParameter('competitionSeasonStage', $competitionSeasonStage);
+            ->setParameter('dateFrom', $dateFrom->format('Y-m-d H:i:s'))
+            ->setParameter('dateTo', $dateTo->format('Y-m-d H:i:s'))
+            ->setParameter(
+                'competitionSeasonStageIds',
+                $competitionSeasonStageIds
+            );
 
         /*
          * Filter the status
@@ -753,18 +757,23 @@ class MatchRepository extends AbstractEntityRepository
         $before = true,
         $limit = null
     ) {
-        $this->alterDateObjects($date);
 
         $symbol = $before ? '<' : '>=';
         $order = $before ? 'DESC' : 'ASC';
-        $dateFormat = $before ? 'Y-m-d 23:59:59' : 'Y-m-d 00:00:00';
+        if ($before) {
+            $date->setTime(23, 59, 59);
+        } else {
+            $date->setTime(0, 0, 0);
+        }
+
+        $this->alterDateObjects($date);
 
         $queryBuilder = $this->createQueryBuilder('m');
         $queryBuilder
             ->andWhere('m.startDate '.$symbol.' :start')
             ->orderBy('m.startDate', $order)
             ->setMaxResults($limit)
-            ->setParameter('start', $date->format($dateFormat));
+            ->setParameter('start', $date->format('Y-m-d H:i:s'));
 
         $statusCategories = $this->prepareStatusCategories($status);
 
@@ -786,6 +795,116 @@ class MatchRepository extends AbstractEntityRepository
             ->getQuery()
             ->execute();
     }
+
+    /**
+     * @param string            $status Match Status description.
+     * @param DateTimeInterface $date   A date.
+     * @param int[]             $competitionSeasonStageIds
+     * @param int|null          $limit  How many matches we want.
+     *
+     * @return \Visca\Bundle\LicomBundle\Entity\Match[]
+     */
+    public function findMatchesByStatusBeforeDateAndCompetitionSeasonStage(
+        $status,
+        DateTimeInterface $date,
+        $competitionSeasonStageIds,
+        $limit = null
+    ) {
+        return $this->findMatchesByStatusAndDateIntervalAndCompetitionSeasonStage(
+            $status,
+            $date,
+            $competitionSeasonStageIds,
+            true,
+            $limit
+        );
+    }
+
+    /**
+     * @param                   $status
+     * @param DateTimeInterface $date
+     * @param                   $competitionSeasonStageIds
+     * @param null              $limit
+     *
+     * @return \Visca\Bundle\LicomBundle\Entity\Match[]
+     */
+    public function findMatchesByStatusAfterDateAndCompetitionSeasonStage(
+        $status,
+        DateTimeInterface $date,
+        $competitionSeasonStageIds,
+        $limit = null
+    ) {
+        return $this->findMatchesByStatusAndDateIntervalAndCompetitionSeasonStage(
+            $status,
+            $date,
+            $competitionSeasonStageIds,
+            false,
+            $limit
+        );
+    }
+
+    /**
+     * @param string            $status
+     * @param DateTimeInterface $date
+     * @param int[]             $competitionSeasonStageIds
+     * @param bool|true         $before
+     * @param null              $limit
+     *
+     * @return Match[]
+     */
+    public function findMatchesByStatusAndDateIntervalAndCompetitionSeasonStage(
+        $status,
+        DateTimeInterface $date,
+        $competitionSeasonStageIds,
+        $before = true,
+        $limit = null
+    ) {
+        $dateOperator = $before ? '<' : '>=';
+        $order = $before ? 'DESC' : 'ASC';
+        if ($before) {
+            $date->setTime(23, 59, 59);
+        } else {
+            $date->setTime(0, 0, 0);
+        }
+
+        $this->alterDateObjects($date);
+
+        $queryBuilder = $this->createQueryBuilder('m');
+        $queryBuilder
+            ->andWhere('m.startDate '.$dateOperator.' :start')
+            ->andWhere(
+                'm.competitionSeasonStage IN (:competitionSeasonStageIds)'
+            )
+            ->orderBy('m.startDate', $order)
+            ->setMaxResults($limit)
+            ->setParameter('start', $date->format('Y-m-d H:i:s'))
+            ->setParameter(
+                'competitionSeasonStageIds',
+                $competitionSeasonStageIds
+            );
+
+        if ($status !== null) {
+            $statusCategories = $this->prepareStatusCategories($status);
+
+            $queryBuilder
+                ->leftJoin(
+                    'Visca\Bundle\LicomBundle\Entity\MatchStatusDescription',
+                    's',
+                    Join::WITH,
+                    's.id = m.matchStatusDescription'
+                )
+                ->andWhere('s.category IN (:categories)')
+                ->setParameter('categories', $statusCategories);
+        }
+
+        if ($limit !== null) {
+            $queryBuilder->setMaxResults($limit);
+        }
+
+        return $queryBuilder
+            ->getQuery()
+            ->execute();
+    }
+
 
     /**
      * @param int        $competitionSeasonId     CompetitionSeason entity ID
@@ -949,7 +1068,6 @@ class MatchRepository extends AbstractEntityRepository
         // Add the filter by date if needed.
         if (!is_null($dateFrom)) {
             $this->alterDateObjects($dateFrom);
-
 
 
             $queryBuilder
