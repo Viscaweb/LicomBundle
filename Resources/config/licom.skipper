@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<skipper version="3.2.3.1247" mvc="Symfony2" orm="Doctrine2" name="Licom" uuid="4fbd6e18-aabc-4751-bcd9-bae36ed1129c">
-  <module name="\ViscaLicomBundle" local-name="ViscaLicomBundle" namespace="\Visca\Bundle\LicomBundle\Entity" local-namespace="Visca\Bundle\LicomBundle\Entity" export-format="Doctrine2Yml" export-path="../life/src/Visca/Bundle/LicomBundle/Resources/config/doctrine" uuid="7efdf1ad-6dda-4293-bad8-8c9bd8031365">
+<skipper version="3.2.4.1256" mvc="Symfony2" orm="Doctrine2" name="Licom" uuid="4fbd6e18-aabc-4751-bcd9-bae36ed1129c">
+  <module name="\ViscaLicomBundle" local-name="ViscaLicomBundle" namespace="\Visca\Bundle\LicomBundle\Entity" local-namespace="Visca\Bundle\LicomBundle\Entity" export-format="Doctrine2Yml" export-path="doctrine" uuid="7efdf1ad-6dda-4293-bad8-8c9bd8031365">
     <region namespace="\Visca\Bundle\LicomBundle\Entity" caption="Competition" uuid="e1ad4b82-6ebe-4a4f-926d-8ad6932585fb">
       <entity name="\Visca\Bundle\LicomBundle\Entity\CompetitionSeasonGraph" local-name="CompetitionSeasonGraph" namespace="\Visca\Bundle\LicomBundle\Entity" uuid="8a6772c3-3cfd-4469-bae6-61af69cacbe3">
         <field name="competitionSeason" type="integer" size="10" required="true" primary="true" unsigned="true" uuid="4c005cb3-fd66-4412-bae1-0adfe1a01132">
@@ -3061,7 +3061,7 @@
     <inheritance-child uuid="4813700f-5cb0-4a3c-a7f9-8226af6a0288" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
     <inheritance-child uuid="4d28e400-a309-429c-90ef-74b60f19c86e" color="4288059030"/>
     <inheritance-child uuid="f12a7779-07de-4db9-adc3-41dbbda3fd60" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
-    <module uuid="7efdf1ad-6dda-4293-bad8-8c9bd8031365" bg-color="4293391869" position-x="88" position-y="191" size-x="38" size-x2="4548" size-y="141" size-y2="2092"/>
+    <module uuid="7efdf1ad-6dda-4293-bad8-8c9bd8031365" bg-color="#E7F5FD" position-x="88" position-y="191" size-x="38" size-x2="4548" size-y="141" size-y2="2092"/>
     <project uuid="4fbd6e18-aabc-4751-bcd9-bae36ed1129c" size-x="67" size-x2="4686" size-y="0" size-y2="2333"/>
     <region uuid="2a61a41f-ff2e-4937-af6f-863bb9b00756" bg-color="4293584113" position-x="12" position-y="148" size-x="0" size-x2="952" size-y="34" size-y2="616"/>
     <region uuid="3d6a7e4a-0cae-40fe-98aa-f735bedabcec" bg-color="4293458655" position-x="2670" position-y="1242" size-x="0" size-x2="1064" size-y="0" size-y2="647"/>
