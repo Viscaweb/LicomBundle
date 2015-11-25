@@ -72,6 +72,71 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
     }
 
     /**
+     * Finds CompetitionSeasonStage by Country and Sport.
+     *
+     * @param Country $country Country entity
+     * @param Sport   $sport   Sport entity
+     *
+     * @return null|CompetitionSeasonStage
+     */
+    public function findByCountryAndSport(Country $country, Sport $sport)
+    {
+        $qb = $this->entityManager->createQueryBuilder();
+        $qb->select('css');
+        $query = $qb
+            ->from('ViscaLicomBundle:CompetitionSeasonStage', 'css')
+            ->join(
+                'ViscaLicomBundle:CompetitionStage',
+                'cstage',
+                Join::WITH,
+                'cstage.id = css.competitionStage'
+            )
+            ->join(
+                'ViscaLicomBundle:CompetitionSeason',
+                'cs',
+                Join::WITH,
+                'cs.id = css.competitionSeason'
+            )
+            ->join(
+                'ViscaLicomBundle:CompetitionGraph',
+                'cg',
+                Join::WITH,
+                'cg.competitionSeason = cs.id'
+            )
+            ->join(
+                'ViscaLicomBundle:Competition',
+                'c',
+                Join::WITH,
+                'c.id = cg.competition'
+            )
+            ->join(
+                'ViscaLicomBundle:CompetitionCategory',
+                'cc',
+                Join::WITH,
+                'cc.id = c.competitionCategory'
+            )
+//            ->join(
+//                'ViscaLicomBundle:CompetitionSeasonGraph',
+//                'csg',
+//                Join::WITH,
+//                'csg.competitionSeason = cs.id AND csg.label = :csgLabel'
+//            )
+            ->where('cc.country = :country')
+            ->andWhere('cc.sport = :sport')
+            ->setParameters(
+                [
+                    'country' => $country,
+                    'sport' => $sport,
+//                    'cgLabel' => CompetitionGraphLabelCode::CURRENT_CODE,
+//                    'csgLabel' => CompetitionSeasonGraphLabelCode::CURRENT_CODE
+                ]
+            )
+            ->getQuery();
+
+        return $query->getResult();
+    }
+
+    /**
      * Finds current CompetitionSeasonStage by Country and Sport.
      *
      * @param Country $country Country entity
