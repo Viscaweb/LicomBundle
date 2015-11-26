@@ -305,12 +305,10 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
                         'cs' => $competitionSeason,
                     ]
                 )
-                ->getQuery()->getFirstResult();
+                ->getQuery()->getOneOrNullResult();
 
             return $competitionSeasonStage;
         }
-
-        return null;
     }
 
     /**
