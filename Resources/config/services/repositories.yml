@@ -155,6 +155,7 @@ services:
             - Visca\Bundle\LicomBundle\Entity\Participant
         calls:
             - ['setRepositoryProfileEntityGraph', [@visca_licom.repository.profile_entity_graph]]
+            - ['setRepositoryLocalizationTranslation', [@visca_licom.repository.localization_translation]]
 
     visca_licom.repository.team:
         class: Visca\Bundle\LicomBundle\Repository\TeamRepository
