@@ -1023,7 +1023,7 @@ class MatchRepository extends AbstractEntityRepository
      *
      * @return array
      */
-    public function countMatchesByCompetitionCategorySportAndStatus(
+    public function countMatchesByCompetitionSportAndStatus(
         Sport $sport,
         $competitionsListed = null,
         \DateTime $dateFrom = null,
@@ -1042,7 +1042,7 @@ class MatchRepository extends AbstractEntityRepository
         ) {
             $queryBuilder
                 ->andWhere(
-                    'competitionCategory.id NOT IN (:competitionsListed)'
+                    'season.competition NOT IN (:competitionsListed)'
                 )
                 ->setParameter(
                     'competitionsListed',
@@ -1063,7 +1063,7 @@ class MatchRepository extends AbstractEntityRepository
         // if we have the $competitionCategoryIds filter by id's
         if (!is_null($competitionCategoryIds)) {
             $queryBuilder
-                ->andWhere('competitionCategory.id IN (:ccIds)')
+                ->andWhere('season.competition IN (:ccIds)')
                 ->setParameter('ccIds', $competitionCategoryIds);
         }
 
