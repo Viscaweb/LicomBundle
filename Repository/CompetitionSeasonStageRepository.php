@@ -98,16 +98,10 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
                 'cs.id = css.competitionSeason'
             )
             ->join(
-                'ViscaLicomBundle:CompetitionGraph',
-                'cg',
-                Join::WITH,
-                'cg.competitionSeason = cs.id'
-            )
-            ->join(
                 'ViscaLicomBundle:Competition',
                 'c',
                 Join::WITH,
-                'c.id = cg.competition'
+                'c.id = cs.competition'
             )
             ->join(
                 'ViscaLicomBundle:CompetitionCategory',
@@ -115,20 +109,12 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
                 Join::WITH,
                 'cc.id = c.competitionCategory'
             )
-//            ->join(
-//                'ViscaLicomBundle:CompetitionSeasonGraph',
-//                'csg',
-//                Join::WITH,
-//                'csg.competitionSeason = cs.id AND csg.label = :csgLabel'
-//            )
             ->where('cc.country = :country')
             ->andWhere('cc.sport = :sport')
             ->setParameters(
                 [
                     'country' => $country,
                     'sport' => $sport,
-//                    'cgLabel' => CompetitionGraphLabelCode::CURRENT_CODE,
-//                    'csgLabel' => CompetitionSeasonGraphLabelCode::CURRENT_CODE
                 ]
             )
             ->getQuery();

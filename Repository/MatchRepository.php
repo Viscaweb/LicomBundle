@@ -518,7 +518,7 @@ class MatchRepository extends AbstractEntityRepository
             ->groupBy('m.id');
 
         /*
-         * If we don't have any "to date", dont add it to the query
+         * If we don't have any "to date", don't add it to the query
          */
         if ($toDays !== null) {
             $dateEnd = new \DateTime('+'.$toDays.' days, 23:59:59');
