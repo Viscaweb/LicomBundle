@@ -336,6 +336,8 @@ class MatchRepository extends AbstractEntityRepository
                 );
         }
 
+        $query->groupBy('m.id');
+
         return $query->getQuery()->getResult();
     }
 
