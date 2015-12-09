@@ -1,0 +1,3 @@
+services:
+  visca_licom.factory.athlete:
+    class: Visca\Bundle\LicomBundle\Factory\AthleteFactory
