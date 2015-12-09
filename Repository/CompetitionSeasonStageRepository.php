@@ -310,52 +310,53 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
     public function findCurrentByParticipant(
         $participantId
     ) {
-        // First we get the CompetitionStageType of the CompetitionSeason
         $qb = $this->entityManager->createQueryBuilder();
-        $competitionStageType = $qb->select('cst')
-            ->from('ViscaLicomBundle:Standing', 's')
+
+        $qb
+            ->select('css')
+            ->from('ViscaLicomBundle:MatchParticipant', 'mp')
+            ->join(
+                'ViscaLicomBundle:Match',
+                'm',
+                Join::WITH,
+                'm.id = mp.match'
+            )
             ->join(
                 'ViscaLicomBundle:CompetitionSeasonStage',
-                'cst',
+                'css',
                 Join::WITH,
-                'cst.id = s.entityId'
-            )
-            ->join(
-                'ViscaLicomBundle:CompetitionStage',
-                'cstg',
-                Join::WITH,
-                'cstg.id = cst.competitionStage'
-            )
-            ->join(
-                'ViscaLicomBundle:CompetitionSeason',
-                'cs',
-                Join::WITH,
-                'cs.id = cst.competitionSeason'
+                'css.id = m.competitionSeasonStage'
             )
             ->join(
                 'ViscaLicomBundle:CompetitionSeasonGraph',
                 'csg',
                 Join::WITH,
-                'csg.competitionStageType = cstg.competitionStageType1 AND csg.label = :label'
+                'csg.competitionSeason = css.competitionSeason'
             )
             ->join(
-                'ViscaLicomBundle:StandingRow',
-                'sr',
+                'ViscaLicomBundle:CompetitionGraph',
+                'cg',
                 Join::WITH,
-                'sr.standing = s.id'
+                'cg.competitionSeason = css.competitionSeason'
             )
-            ->where('s.entity = :sentity')
-            ->andWhere('s.standingType = :stype')
-            ->andWhere('sr.participant = :participant')
-            ->setParameters(
-                [
-                    'sentity' => EntityCode::COMPETITION_SEASON_STAGE_CODE,
-                    'stype' => StandingTypeCode::LEAGUE_TABLE_CODE,
-                    'label' => CompetitionSeasonGraphLabelCode::CURRENT_CODE,
-                    'participant' => $participantId,
-                ]
+            ->join(
+                'ViscaLicomBundle:Competition',
+                'c',
+                Join::WITH,
+                'c.id = cg.competition'
             )
-            ->getQuery()->getResult();
+            ->where(
+                'mp.participant = :participant',
+                'cg.label = :competitionGraphLabel',
+                'csg.label = :competitionSeasonGraphLabel'
+            )
+            ->setParameters([
+                'participant' => $participantId,
+                'competitionGraphLabel' => CompetitionGraphLabelCode::CURRENT_CODE,
+                'competitionSeasonGraphLabel' => CompetitionSeasonGraphLabelCode::CURRENT_CODE
+            ]);
+
+        $competitionStageType = $qb->getQuery()->getResult();
 
         return $competitionStageType;
     }
