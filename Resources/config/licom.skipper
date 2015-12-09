@@ -1100,6 +1100,9 @@
         <index name="fk_sport">
           <index-field name="sport"/>
         </index>
+        <index name="idx_name">
+          <index-field name="name"/>
+        </index>
         <inheritance-parent discriminator-field="type" type="SINGLE_TABLE" uuid="5c82fa2d-11a9-4f78-a23f-37da4ca57965"/>
         <orm-attributes>
           <attribute name="table">Participant</attribute>

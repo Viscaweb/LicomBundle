@@ -51,6 +51,8 @@ Visca\Bundle\LicomBundle\Entity\Participant:
       columns: [Country]
     fk_sport:
       columns: [Sport]
+    idx_name:
+      columns: [name]
   oneToMany:
     matchParticipant:
       targetEntity: Visca\Bundle\LicomBundle\Entity\MatchParticipant
