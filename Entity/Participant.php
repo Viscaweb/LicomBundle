@@ -33,57 +33,57 @@ abstract class Participant implements EntityWithAuxInterface, MatchIncidentAutho
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      */
-    private $name;
+    protected $name;
 
     /**
      * @var string
      */
-    private $gender;
+    protected $gender;
 
     /**
      * @var Country
      */
-    private $country;
+    protected $country;
 
     /**
      * @var Sport
      */
-    private $sport;
+    protected $sport;
 
     /**
      * @var bool
      */
-    private $toBeConfirmed;
+    protected $toBeConfirmed;
 
     /**
      * @var string
      */
-    private $type;
+    protected $type;
 
     /**
      * @var Collection
      */
-    private $matchParticipant;
+    protected $matchParticipant;
 
     /**
      * @var Collection
      */
-    private $aux;
+    protected $aux;
 
     /**
      * @var Collection
      */
-    private $matchIncident;
+    protected $matchIncident;
 
     /**
      * @var Collection
      */
-    private $participantMembership;
+    protected $participantMembership;
 
     /**
      * Constructor.
