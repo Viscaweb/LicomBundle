@@ -559,7 +559,7 @@ class MatchRepository extends AbstractEntityRepository
         $sportId = null,
         $eagerFetching = false
     ) {
-        $queryBuilder = $queryBuilder = parent::createQueryBuilder('m')
+        $queryBuilder = parent::createQueryBuilder('m')
             ->select('m');
 
         if ($eagerFetching) {
@@ -1151,6 +1151,53 @@ class MatchRepository extends AbstractEntityRepository
             ->setParameter('sportId', $sport->getId())
             // Group by Country
             ->addGroupBy('competitionCategory.id');
+    }
+
+
+    /**
+     * Gets the list of Matches for a Participant and status given
+     *
+     * @param string $status        Status to find
+     * @param int    $participantId Participant to find
+     *
+     * @return array
+     */
+    public function findByStatusAndParticipant(
+        $status,
+        $participantId
+    ) {
+        $queryBuilder = $this->entityManager->createQueryBuilder();
+        $queryBuilder
+            ->select('m')
+            ->from('Visca\Bundle\LicomBundle\Entity\Match', 'm');
+        /*
+         * Filter the status
+         */
+        $statusCategories = $this->prepareStatusCategories($status);
+
+        $queryBuilder
+            ->leftJoin(
+                'ViscaLicomBundle:MatchStatusDescription',
+                's',
+                Join::WITH,
+                's.id = m.matchStatusDescription'
+            )
+            ->join(
+                'ViscaLicomBundle:MatchParticipant',
+                'mp',
+                Join::WITH,
+                'mp.match = m'
+            )
+            ->andWhere('s.category IN (:categories)')
+            ->andWhere('mp.id = :participant')
+            ->setParameter('categories', $statusCategories)
+            ->setParameter('participant', $participantId);
+
+        /*
+         * Return the results
+         */
+
+        return $queryBuilder->getQuery()->getResult();
     }
 
     /**

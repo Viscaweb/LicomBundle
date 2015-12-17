@@ -1,0 +1,5 @@
+services:
+  visca_licom.factory.athlete:
+    class: Visca\Bundle\LicomBundle\Factory\AthleteFactory
+  visca_licom.factory.competition_season:
+    class: Visca\Bundle\LicomBundle\Factory\CompetitionSeasonFactory
