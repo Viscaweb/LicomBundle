@@ -51,6 +51,7 @@ Visca\Bundle\LicomBundle\Entity\Competition:
     competitionSeason:
       targetEntity: Visca\Bundle\LicomBundle\Entity\CompetitionSeason
       mappedBy: competition
+      orderBy: {'start': 'DESC'}
     competitionStage:
       targetEntity: Visca\Bundle\LicomBundle\Entity\CompetitionStage
       mappedBy: competition
