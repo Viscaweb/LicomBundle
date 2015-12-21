@@ -330,3 +330,11 @@ services:
         class: Visca\Bundle\LicomBundle\Repository\Counter\MatchCounterRepository
         arguments:
           - @visca_licom.repository.match
+
+    visca_licom.repository.standing_type:
+        class: Visca\Bundle\LicomBundle\Repository\StandingTypeRepository
+        factory_service: visca_doctrine.repository.factory
+        factory_method: getRepository
+        arguments:
+            - @visca_licom.entity_manager
+            - Visca\Bundle\LicomBundle\Entity\StandingRepository

@@ -1,6 +1,7 @@
 Visca\Bundle\LicomBundle\Entity\StandingType:
   type: entity
   table: StandingType
+  repositoryClass: Visca\Bundle\LicomBundle\Repository\StandingTypeRepository
   id:
     id:
       type: smallint
