@@ -5,3 +5,5 @@ services:
     class: Visca\Bundle\LicomBundle\Factory\CompetitionSeasonFactory
   visca_licom.factory.competition_season_stage:
     class: Visca\Bundle\LicomBundle\Factory\CompetitionSeasonStageFactory
+  visca_licom.factory.standing:
+    class: Visca\Bundle\LicomBundle\Factory\StandingFactory
