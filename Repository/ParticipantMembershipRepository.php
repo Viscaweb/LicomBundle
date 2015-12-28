@@ -3,6 +3,8 @@
 namespace Visca\Bundle\LicomBundle\Repository;
 
 use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
+use Visca\Bundle\LicomBundle\Entity\Athlete;
+use Visca\Bundle\LicomBundle\Entity\Code\EntityCode;
 use Visca\Bundle\LicomBundle\Entity\Participant;
 
 /**
@@ -10,8 +12,6 @@ use Visca\Bundle\LicomBundle\Entity\Participant;
  */
 class ParticipantMembershipRepository extends AbstractEntityRepository
 {
-    const COMPETITION_SEASON_ID = 505;
-
     /**
      * @param Participant $participant Participant
      *
@@ -31,7 +31,33 @@ class ParticipantMembershipRepository extends AbstractEntityRepository
             )
             ->join('pm.entity', 'entity', 'WITH', 'entity.id = :entityId')
             ->setParameter('participantId', $participant->getId())
-            ->setParameter('entityId', self::COMPETITION_SEASON_ID)
+            ->setParameter('entityId', EntityCode::COMPETITION_SEASON_CODE)
+            ->getQuery()
+            ->getArrayResult();
+    }
+
+    /**
+     * @param Athlete $athlete Athlete
+     *
+     * @return array
+     */
+    public function getArrayParticipantIdsByAthlete(
+        Athlete $athlete
+    ) {
+        return $this
+            ->createQueryBuilder('pm')
+            ->select('pm.entityId')
+            ->join(
+                'pm.participant',
+                'participant',
+                'WITH',
+                'participant.id = :participantId'
+            )
+            ->join('pm.entity', 'entity', 'WITH', 'entity.id = :entityId')
+            ->Where('pm.active = true')
+            ->orderBy('pm.start', 'DESC')
+            ->setParameter('participantId', $athlete->getId())
+            ->setParameter('entityId', EntityCode::PARTICIPANT_CODE)
             ->getQuery()
             ->getArrayResult();
     }

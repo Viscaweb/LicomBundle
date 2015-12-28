@@ -29,3 +29,8 @@ Visca\Bundle\LicomBundle\Entity\ParticipantAuxType:
         code: Position
         name: 'Athlete position (forward, etc)'
         del: 'no'
+    participant_aux_type7:
+        id: 7
+        code: isNationalTeam
+        name: 'Is National Team ?'
+        del: 'no'

@@ -15,4 +15,5 @@ class ParticipantAuxTypeCode
     const HEIGHT_CODE = 4;
     const WEIGHT_CODE = 5;
     const POSITION_CODE = 6;
+    const IS_NATIONAL_TEAM_CODE = 7;
 }
