@@ -166,6 +166,10 @@
         <index name="fk_competition">
           <index-field name="competition"/>
         </index>
+        <index name="uq_competition_name" unique="true">
+          <index-field name="name"/>
+          <index-field name="competition"/>
+        </index>
         <orm-attributes>
           <attribute name="table">CompetitionSeason</attribute>
           <attribute name="repository-class">Visca\Bundle\LicomBundle\Repository\CompetitionSeasonRepository</attribute>
@@ -248,6 +252,10 @@
         </index>
         <index name="fk_competitionStageType2">
           <index-field name="competitionStageType2"/>
+        </index>
+        <index name="uq_competition_name" unique="true">
+          <index-field name="competition"/>
+          <index-field name="name"/>
         </index>
         <orm-attributes>
           <attribute name="table">CompetitionStage</attribute>
@@ -2983,7 +2991,7 @@
     <entity uuid="249cab20-8b12-41d8-b0db-e4e70ba3f5ac" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="699" position-y="14" size-x="0" size-x2="98" size-y="0" size-y2="73"/>
     <entity uuid="2513AC3E-97C1-4353-B3FE-7738A7DB48CE" bg-color="4294967295" hdr-color="4292006610" position-x="286" position-y="275" size-x="0" size-x2="149" size-y="0" size-y2="115"/>
     <entity uuid="2818DC2C-751F-4F97-BCD4-3755CA566DC0" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="781" position-y="420" size-x="0" size-x2="150" size-y="0" size-y2="87"/>
-    <entity uuid="2FD1504A-6C3E-4041-A53C-5EBFD8DC1228" bg-color="4294967295" hdr-color="4292006610" position-x="34" position-y="424" size-x="0" size-x2="181" size-y="0" size-y2="115"/>
+    <entity uuid="2FD1504A-6C3E-4041-A53C-5EBFD8DC1228" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="34" position-y="424" size-x="0" size-x2="181" size-y="0" size-y2="115"/>
     <entity uuid="30A7A26A-C704-4811-A024-2479F3C88EE0" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="317" position-y="519" size-x="0" size-x2="108" size-y="0" size-y2="115"/>
     <entity uuid="339309C9-D633-49A8-9445-C7FDFA4CD221" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="882" position-y="-122" size-x="0" size-x2="110" size-y="0" size-y2="73"/>
     <entity uuid="347EBF05-3A93-474F-BB71-8941430EFDFC" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="222" position-y="21" size-x="0" size-x2="108" size-y="0" size-y2="101"/>
@@ -3004,7 +3012,7 @@
     <entity uuid="5705218C-9B3A-4E01-9C9C-17220A69BB02" bg-color="4294967295" hdr-color="4292006610" position-x="21" position-y="38" size-x="0" size-x2="108" size-y="0" size-y2="87"/>
     <entity uuid="5BC23A6D-956F-41A9-9E74-ECB0AE861644" bg-color="4294967295" hdr-color="4292006610" position-x="506" position-y="381" size-x="0" size-x2="139" size-y="0" size-y2="115"/>
     <entity uuid="5BF5387C-BD35-45D7-82EA-E13C83BB8063" bg-color="4294967295" hdr-color="4292006610" position-x="220" position-y="-147" size-x="0" size-x2="154" size-y="0" size-y2="129"/>
-    <entity uuid="62D2F171-0938-495A-9B90-52AA1143D31A" bg-color="4294967295" hdr-color="4292006610" position-x="415" position-y="-140" size-x="0" size-x2="123" size-y="0" size-y2="129"/>
+    <entity uuid="62D2F171-0938-495A-9B90-52AA1143D31A" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="415" position-y="-140" size-x="0" size-x2="123" size-y="0" size-y2="129"/>
     <entity uuid="678D227A-A125-41C1-9FFD-19540115236A" bg-color="4294967295" hdr-color="4292006610" position-x="31" position-y="43" size-x="0" size-x2="125" size-y="0" size-y2="129"/>
     <entity uuid="67feff19-6989-4a43-b8bf-ec9680f15675" bg-color="4294967295" hdr-color="4292006610" position-x="518" position-y="186" size-x="0" size-x2="38" size-y="0" size-y2="20"/>
     <entity uuid="6B0E05A7-90C1-4888-B734-2242D3AB84B9" bg-color="4294967295" hdr-color="4292006610" position-x="185" position-y="79" size-x="0" size-x2="145" size-y="0" size-y2="143"/>
