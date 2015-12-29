@@ -10,6 +10,9 @@ use Visca\Bundle\LicomBundle\Entity\Interfaces\AuxInterface;
  */
 class ParticipantAux implements AuxInterface
 {
+    const YES = 'yes';
+    const NO = 'no';
+    
     use DeletableTrait;
 
     /**

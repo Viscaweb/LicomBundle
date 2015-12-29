@@ -149,4 +149,21 @@ class ParticipantRepository extends AbstractEntityRepository
 
         return $this->findBy(['id' => $participantsIds]);
     }
+
+    /**
+     * @param array $ids Ids
+     *
+     * @return Participant[]
+     */
+    public function findByIds(array $ids)
+    {
+        return $this
+            ->createQueryBuilder('p')
+            ->select('p')
+            ->where('p.id IN (:ids)')
+            ->setParameter('ids', $ids)
+            ->getQuery()
+            ->getResult();
+    }
+
 }
