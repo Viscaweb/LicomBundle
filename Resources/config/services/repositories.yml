@@ -337,4 +337,4 @@ services:
         factory_method: getRepository
         arguments:
             - @visca_licom.entity_manager
-            - Visca\Bundle\LicomBundle\Entity\StandingRepository
+            - Visca\Bundle\LicomBundle\Entity\StandingType
