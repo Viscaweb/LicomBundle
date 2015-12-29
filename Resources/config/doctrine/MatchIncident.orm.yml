@@ -36,7 +36,7 @@ Visca\Bundle\LicomBundle\Entity\MatchIncident:
     time:
       type: DateTimeUTCType
       nullable: false
-      column: time
+      column: `time`
     del:
       type: SoftDeletionType
       length: 0
