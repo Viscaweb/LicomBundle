@@ -1065,6 +1065,7 @@
             <attribute name="region">Type</attribute>
             <attribute name="usage">READ_ONLY</attribute>
           </attribute>
+          <attribute name="repository-class">Visca\Bundle\LicomBundle\Repository\ParticipantAuxTypeRepository</attribute>
         </orm-attributes>
       </entity>
       <entity name="\Visca\Bundle\LicomBundle\Entity\Participant" local-name="Participant" namespace="\Visca\Bundle\LicomBundle\Entity" uuid="C53EB8AE-FD85-4727-922F-738187AFF7CE">

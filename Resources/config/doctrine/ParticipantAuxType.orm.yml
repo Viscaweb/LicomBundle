@@ -1,6 +1,7 @@
 Visca\Bundle\LicomBundle\Entity\ParticipantAuxType:
   type: entity
   table: Participant_auxType
+  repositoryClass: Visca\Bundle\LicomBundle\Repository\ParticipantAuxTypeRepository
   id:
     id:
       type: smallint
