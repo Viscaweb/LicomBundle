@@ -6,6 +6,6 @@ use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
 /**
  * Class ParticipantAuxTypeRepository
  */
-final class ParticipantAuxTypeRepository extends AbstractEntityRepository
+class ParticipantAuxTypeRepository extends AbstractEntityRepository
 {
 }
