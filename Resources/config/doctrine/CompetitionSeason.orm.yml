@@ -46,7 +46,7 @@ Visca\Bundle\LicomBundle\Entity\CompetitionSeason:
       columns: [Competition]
   uniqueConstraints:
     uq_competition_name:
-      columns: [name, Competition]
+      columns: [Competition, name]
   oneToMany:
     competitionSeasonStage:
       targetEntity: Visca\Bundle\LicomBundle\Entity\CompetitionSeasonStage

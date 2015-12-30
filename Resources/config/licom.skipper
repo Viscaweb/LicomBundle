@@ -167,8 +167,8 @@
           <index-field name="competition"/>
         </index>
         <index name="uq_competition_name" unique="true">
-          <index-field name="name"/>
           <index-field name="competition"/>
+          <index-field name="name"/>
         </index>
         <orm-attributes>
           <attribute name="table">CompetitionSeason</attribute>
