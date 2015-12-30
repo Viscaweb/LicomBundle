@@ -99,8 +99,8 @@
             <attribute name="column">CompetitionCategory</attribute>
           </orm-attributes>
         </field>
-        <field name="createdAt" type="datetime" default="NULL" uuid="17fce8c6-cf16-440f-8919-cbd70e8c248f"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="2c3ae58b-6fae-4160-ae26-e4defd09e8c0"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="17fce8c6-cf16-440f-8919-cbd70e8c248f"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="2c3ae58b-6fae-4160-ae26-e4defd09e8c0"/>
         <index name="fk_competitionCategory">
           <index-field name="competitionCategory"/>
         </index>
@@ -127,8 +127,8 @@
             <attribute name="column">Sport</attribute>
           </orm-attributes>
         </field>
-        <field name="createdAt" type="datetime" default="NULL" uuid="811755b9-b0f2-4c93-853e-3dddfd2b2ae9"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="5fead6d4-9d58-4beb-a14c-9d63edd261c9"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="811755b9-b0f2-4c93-853e-3dddfd2b2ae9"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="5fead6d4-9d58-4beb-a14c-9d63edd261c9"/>
         <index name="fk_country">
           <index-field name="country"/>
         </index>
@@ -153,16 +153,16 @@
           </orm-attributes>
         </field>
         <field name="name" type="string" size="45" required="true" uuid="b90ae255-9ecc-4b9a-bf77-6b9e8d23c4fa"/>
-        <field name="start" type="datetime" default="NULL" uuid="6607f936-9a5c-46a0-b8d0-67430d0eef82"/>
-        <field name="end" type="datetime" default="NULL" uuid="a11b1b73-7a65-4509-8dfe-0249afce0c1f"/>
+        <field name="start" type="DateTimeUTCType" default="NULL" uuid="6607f936-9a5c-46a0-b8d0-67430d0eef82"/>
+        <field name="end" type="DateTimeUTCType" default="NULL" uuid="a11b1b73-7a65-4509-8dfe-0249afce0c1f"/>
         <field name="competition" type="integer" size="11" required="true" uuid="c0e6bb40-b2c2-415e-83fa-1a50878a3d5e">
           <orm-attributes>
             <attribute name="column">Competition</attribute>
           </orm-attributes>
         </field>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="874ac5eb-0604-4ae2-87fa-f9f64122f4a0"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="53b10b6d-96b5-4f8c-a96e-bc574353664f"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="1161313c-8941-4b2d-bf81-9e8e65a2766a"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="53b10b6d-96b5-4f8c-a96e-bc574353664f"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="1161313c-8941-4b2d-bf81-9e8e65a2766a"/>
         <index name="fk_competition">
           <index-field name="competition"/>
         </index>
@@ -187,8 +187,8 @@
             </attribute>
           </orm-attributes>
         </field>
-        <field name="start" type="datetime" default="NULL" uuid="ac8562e6-b0fa-43dc-9a6d-0396664449b0"/>
-        <field name="end" type="datetime" default="NULL" uuid="756e0750-5a50-4b11-b5eb-b59119c022d9"/>
+        <field name="start" type="DateTimeUTCType" default="NULL" uuid="ac8562e6-b0fa-43dc-9a6d-0396664449b0"/>
+        <field name="end" type="DateTimeUTCType" default="NULL" uuid="756e0750-5a50-4b11-b5eb-b59119c022d9"/>
         <field name="competitionSeason" type="integer" size="10" required="true" unsigned="true" uuid="14cd7b6e-b589-4307-8de5-4fd3e399041c">
           <orm-attributes>
             <attribute name="column">CompetitionSeason</attribute>
@@ -200,8 +200,8 @@
           </orm-attributes>
         </field>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="02053897-ba55-4c9e-95bb-80d77fc5e3e4"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="1fdc2846-f9bf-44f1-9bb2-f12404bb4371"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="9fd4c00a-48a8-4e3a-9a11-ea58f2d5b623"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="1fdc2846-f9bf-44f1-9bb2-f12404bb4371"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="9fd4c00a-48a8-4e3a-9a11-ea58f2d5b623"/>
         <index name="fk_competitionSeason">
           <index-field name="competitionSeason"/>
         </index>
@@ -242,8 +242,8 @@
         </field>
         <field name="name" type="string" size="100" required="true" uuid="af023be3-dcab-4970-95f8-87ba62b1e01d"/>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="c66124e4-35ae-4aa7-ab7f-3598eabeb637"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="344c1eb5-4ac3-4769-8718-5da388efb344"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="fc09e94f-e8aa-4bfe-88b9-c6844ea6b0b6"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="344c1eb5-4ac3-4769-8718-5da388efb344"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="fc09e94f-e8aa-4bfe-88b9-c6844ea6b0b6"/>
         <index name="fk_competition">
           <index-field name="competition"/>
         </index>
@@ -270,8 +270,8 @@
         <field name="code" type="string" size="45" required="true" unique="true" uuid="26a849c6-e7b5-4e5a-ab85-704cb8855660"/>
         <field name="name" description="sorted order for label" type="string" size="45" required="true" uuid="0c209097-1aec-4e8c-bf10-dbaace673ec2"/>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="dfab805b-7236-4e52-a2a0-e9ca56bbda82"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="fb05ebf5-0150-4201-a7a1-95253d98b7c6"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="dfda6526-87d3-40fe-b25e-e86965f731af"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="fb05ebf5-0150-4201-a7a1-95253d98b7c6"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="dfda6526-87d3-40fe-b25e-e86965f731af"/>
         <orm-attributes>
           <attribute name="table">CompetitionStageType</attribute>
           <attribute name="cache">
@@ -289,8 +289,8 @@
           </orm-attributes>
         </field>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="e4bba702-87d6-463f-bc84-aa9d14d241ba"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="a415329a-935c-499e-9098-7d0d4da16432"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="d734a8d1-7d02-4eb7-8c5c-1f69f4b5285c"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="a415329a-935c-499e-9098-7d0d4da16432"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="d734a8d1-7d02-4eb7-8c5c-1f69f4b5285c"/>
         <orm-attributes>
           <attribute name="table">Country</attribute>
           <attribute name="repository-class">Visca\Bundle\LicomBundle\Repository\CountryRepository</attribute>
@@ -304,8 +304,8 @@
         <field name="id" type="smallint" size="5" required="true" primary="true" unsigned="true" uuid="6891f7fa-0e90-4622-81d9-91418844f261"/>
         <field name="name" type="string" size="45" required="true" uuid="5d1d01b2-0e84-4c49-bfc2-37b6a2ded3f9"/>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="723b1f6d-31bb-45ea-b1ea-e8337c023083"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="4bea2f63-56fd-4ce1-9eda-b04550b5c188"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="bee6fd24-1e6e-478a-8b56-fb78939b54cc"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="4bea2f63-56fd-4ce1-9eda-b04550b5c188"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="bee6fd24-1e6e-478a-8b56-fb78939b54cc"/>
         <orm-attributes>
           <attribute name="table">Sport</attribute>
           <attribute name="repository-class">Visca\Bundle\LicomBundle\Repository\SportRepository</attribute>
@@ -318,16 +318,16 @@
       <entity name="\Visca\Bundle\LicomBundle\Entity\CompetitionLeg" local-name="CompetitionLeg" namespace="\Visca\Bundle\LicomBundle\Entity" uuid="BBE3F2ED-78E3-4959-9282-10E5E7230864">
         <field name="id" type="integer" size="10" required="true" primary="true" unsigned="true" auto-increment="true" uuid="2ab812c8-30e1-43b6-a372-0b9a8c12a198"/>
         <field name="name" type="string" size="45" required="true" uuid="3d989dae-d0c7-4736-af91-71d911041e12"/>
-        <field name="start" type="datetime" default="NULL" uuid="61d9a539-d4b8-433c-b74b-e3c1019c7422"/>
-        <field name="end" type="datetime" default="NULL" uuid="5ac0fd90-41bf-428a-8330-f9b76c420542"/>
+        <field name="start" type="DateTimeUTCType" default="NULL" uuid="61d9a539-d4b8-433c-b74b-e3c1019c7422"/>
+        <field name="end" type="DateTimeUTCType" default="NULL" uuid="5ac0fd90-41bf-428a-8330-f9b76c420542"/>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="93691394-713a-45f2-8173-9938d624fd16"/>
         <field name="competitionRound" type="integer" size="10" required="true" unsigned="true" uuid="38183848-f214-4832-8cc3-3feb8843bbd6">
           <orm-attributes>
             <attribute name="column">CompetitionRound</attribute>
           </orm-attributes>
         </field>
-        <field name="createdAt" type="datetime" default="NULL" uuid="4d9d34d7-6622-4098-8318-f007f9deb543"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="ce5bd9b3-8cd4-4f9f-b61b-cfd8380f42ec"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="4d9d34d7-6622-4098-8318-f007f9deb543"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="ce5bd9b3-8cd4-4f9f-b61b-cfd8380f42ec"/>
         <index name="uq_competitionRound_name" unique="true">
           <index-field name="competitionRound"/>
           <index-field name="name"/>
@@ -354,11 +354,11 @@
           </orm-attributes>
         </field>
         <field name="name" type="string" size="45" required="true" uuid="4cd6afa0-731b-4440-9346-96092300f550"/>
-        <field name="start" type="datetime" default="NULL" uuid="ba5cd658-641d-4520-80ea-2bf11605e0a7"/>
-        <field name="end" type="datetime" default="NULL" uuid="858546e5-8e2e-4901-9d72-04157755fcd6"/>
+        <field name="start" type="DateTimeUTCType" default="NULL" uuid="ba5cd658-641d-4520-80ea-2bf11605e0a7"/>
+        <field name="end" type="DateTimeUTCType" default="NULL" uuid="858546e5-8e2e-4901-9d72-04157755fcd6"/>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="59a9a98c-20f6-4456-a436-bd3434038c01"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="56481491-e1a6-4221-98ee-9b27737ec4d1"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="58b694ee-5c50-4c96-810a-f0aef9047923"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="56481491-e1a6-4221-98ee-9b27737ec4d1"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="58b694ee-5c50-4c96-810a-f0aef9047923"/>
         <index name="uq_competitionSeasonStage_name" unique="true">
           <index-field name="competitionSeasonStage"/>
           <index-field name="name"/>
@@ -766,7 +766,7 @@
           </orm-attributes>
         </field>
         <field name="name" type="string" size="45" required="true" uuid="4ea7eea2-6d9c-40c2-871a-d1b0284ce042"/>
-        <field name="startDate" description="start date in UTC" type="datetime" required="true" uuid="69ba9133-982b-4cf2-9d0e-8dca18d344f3">
+        <field name="startDate" description="start date in UTC" type="DateTimeUTCType" required="true" uuid="69ba9133-982b-4cf2-9d0e-8dca18d344f3">
           <orm-attributes>
             <attribute name="column">startDate</attribute>
           </orm-attributes>
@@ -801,8 +801,8 @@
             <attribute name="column">CompetitionLeg</attribute>
           </orm-attributes>
         </field>
-        <field name="createdAt" type="datetime" default="NULL" uuid="08bcde89-4abc-4651-b40f-5557801002a4"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="5be5da0f-6515-4528-b5d7-51e14f73768c"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="08bcde89-4abc-4651-b40f-5557801002a4"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="5be5da0f-6515-4528-b5d7-51e14f73768c"/>
         <index name="idx_startDate">
           <index-field name="startDate"/>
         </index>
@@ -847,8 +847,8 @@
             <attribute name="column">Participant</attribute>
           </orm-attributes>
         </field>
-        <field name="createdAt" type="datetime" default="NULL" uuid="9e087c5f-4a34-4e84-92e3-3121de39dc17"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="913b7278-c0bb-404e-8011-2bb19db96844"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="9e087c5f-4a34-4e84-92e3-3121de39dc17"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="913b7278-c0bb-404e-8011-2bb19db96844"/>
         <index name="idx_match_participant">
           <index-field name="match"/>
           <index-field name="participant"/>
@@ -882,8 +882,8 @@
         <field name="name" type="string" size="255" default="" required="true" uuid="f197b15e-ff9d-44a8-9c44-b5b922abb955"/>
         <field name="category" type="MatchStatusDescriptionCategoryType" size="0" required="true" uuid="24ebbbe5-5964-4c19-9ac9-f08ccfed0a1b"/>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="ed5986c6-9017-4476-9e5b-317ffff85431"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="ccda6c4b-70ab-4d84-9d45-02ba7a5f4d0c"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="9f878dfb-51ae-4406-8e9c-8ca92ac74c4b"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="ccda6c4b-70ab-4d84-9d45-02ba7a5f4d0c"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="9f878dfb-51ae-4406-8e9c-8ca92ac74c4b"/>
         <orm-attributes>
           <attribute name="table">MatchStatusDescription</attribute>
           <attribute name="repository-class">Visca\Bundle\LicomBundle\Repository\MatchStatusDescriptionRepository</attribute>
@@ -901,11 +901,11 @@
             <attribute name="column">MatchStatusDescription</attribute>
           </orm-attributes>
         </field>
-        <field name="start" type="datetime" default="NULL" uuid="489bef8a-9956-4846-bfce-6d5d734d0d6a"/>
-        <field name="end" type="datetime" default="NULL" uuid="7dc7638d-888d-4cfb-a9a3-7bd8b6e06ae3"/>
+        <field name="start" type="DateTimeUTCType" default="NULL" uuid="489bef8a-9956-4846-bfce-6d5d734d0d6a"/>
+        <field name="end" type="DateTimeUTCType" default="NULL" uuid="7dc7638d-888d-4cfb-a9a3-7bd8b6e06ae3"/>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="3eb83f58-8355-4a46-ba21-ed31fba9c3ae"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="cbcb29cc-8dfc-45fb-b747-f2d0d8d95f16"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="3b633487-fbcd-4d01-a4ac-bdca9f75007d"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="cbcb29cc-8dfc-45fb-b747-f2d0d8d95f16"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="3b633487-fbcd-4d01-a4ac-bdca9f75007d"/>
         <index name="fk_match">
           <index-field name="match"/>
         </index>
@@ -1101,8 +1101,8 @@
           </orm-attributes>
         </field>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="78f66ba7-db00-4b5c-852f-c9e91a482a54"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="68ae1dcd-73ec-4118-bd06-18c4f5bdf9bc"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="d0a1b959-435a-4da6-8d61-736ca5b704d4"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="68ae1dcd-73ec-4118-bd06-18c4f5bdf9bc"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="d0a1b959-435a-4da6-8d61-736ca5b704d4"/>
         <index name="fk_country">
           <index-field name="country"/>
         </index>
@@ -1156,8 +1156,8 @@
           </orm-attributes>
         </field>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="5d83b4f9-6ac8-4be3-b632-22167ebee97d"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="14773d30-6956-4df6-8a54-185fd37edff1"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="05fef486-7839-4cd6-9aa2-50c5b7cdd0cc"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="14773d30-6956-4df6-8a54-185fd37edff1"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="05fef486-7839-4cd6-9aa2-50c5b7cdd0cc"/>
         <index name="fk_entity">
           <index-field name="entity"/>
         </index>
@@ -1227,8 +1227,8 @@
           </orm-attributes>
         </field>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="e1a279a2-43f5-46ce-ae63-8daa79a0e037"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="96fb642d-7cce-4f39-9e8d-4d8d3831aa29"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="a90b8532-8e5c-435a-99f8-fef463403297"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="96fb642d-7cce-4f39-9e8d-4d8d3831aa29"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="a90b8532-8e5c-435a-99f8-fef463403297"/>
         <orm-attributes>
           <attribute name="table">Localization</attribute>
         </orm-attributes>
@@ -1247,8 +1247,8 @@
           </orm-attributes>
         </field>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="5a1ab424-369f-475d-89aa-96ccfdd23fa3"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="877ce696-40cc-4bca-b201-117115bc3fec"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="6e23869c-ac0e-4fc0-a79b-ff5a32d3a3e7"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="877ce696-40cc-4bca-b201-117115bc3fec"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="6e23869c-ac0e-4fc0-a79b-ff5a32d3a3e7"/>
         <index name="idx_entityId">
           <index-field name="entityId"/>
         </index>
@@ -1273,8 +1273,8 @@
             <attribute name="column">Entity</attribute>
           </orm-attributes>
         </field>
-        <field name="createdAt" type="datetime" default="NULL" uuid="e7a936f7-7f2b-43bf-91d3-6a7cda226b83"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="c9d2f7e8-dfcf-4b3a-8f3d-609236edebf4"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="e7a936f7-7f2b-43bf-91d3-6a7cda226b83"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="c9d2f7e8-dfcf-4b3a-8f3d-609236edebf4"/>
         <index name="uq_code_entity" unique="true">
           <index-field name="code"/>
           <index-field name="entity"/>
@@ -1349,8 +1349,8 @@
         <field name="code" type="string" size="32" required="true" unique="true" uuid="cd60c176-1f29-41e3-8dc9-ff6ea19b0e86"/>
         <field name="name" type="string" size="128" default="" required="true" uuid="5b3250a5-3470-4852-9d59-1d0832541a1d"/>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="2ad62f71-2b38-424d-9bdf-0000bf0449fb"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="62ad87da-6e99-4e7a-86db-c23e13d7d384"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="2914a176-ddba-4f48-a860-092384d80fd2"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="62ad87da-6e99-4e7a-86db-c23e13d7d384"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="2914a176-ddba-4f48-a860-092384d80fd2"/>
         <orm-attributes>
           <attribute name="table">Profile</attribute>
           <attribute name="repository-class">Visca\Bundle\LicomBundle\Repository\ProfileRepository</attribute>
@@ -1433,8 +1433,8 @@
         <field name="value" type="string" size="45" required="true" uuid="3da95f29-8070-4af9-afb0-8a76deff8f53"/>
         <field name="position" description="sorted position" type="smallint" size="5" default="'65535'" required="true" unsigned="true" uuid="920018e8-d019-4cfd-bb7e-69bcf545b3f7"/>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="00e78e3c-06fd-4da8-b0da-f5ae4cf52bb8"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="2b088311-4293-401e-a4e7-cd844e336d38"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="5e0fd258-feec-4da9-a231-edc01da0b935"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="2b088311-4293-401e-a4e7-cd844e336d38"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="5e0fd258-feec-4da9-a231-edc01da0b935"/>
         <index name="fk_profile">
           <index-field name="profile"/>
         </index>
@@ -1454,8 +1454,8 @@
         <field name="code" type="string" size="45" required="true" unique="true" uuid="e5b9ed2c-9921-47c6-aaea-fd61b955d083"/>
         <field name="name" type="string" size="45" default="" required="true" uuid="c2c760cb-a403-44a3-ba4f-bfa0f0496b68"/>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="c6003c52-04b2-46fd-a680-9a45eaaeb7ab"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="eb2028ae-23b5-4f0b-89ec-4e78e3098cad"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="b324b7b4-791a-42fd-902f-cb3ca967887d"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="eb2028ae-23b5-4f0b-89ec-4e78e3098cad"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="b324b7b4-791a-42fd-902f-cb3ca967887d"/>
         <orm-attributes>
           <attribute name="table">ProfileRuleType</attribute>
           <attribute name="cache">
@@ -1591,8 +1591,8 @@
         <field name="code" description="Licom Entity. Must have unique PK Id field" type="string" size="64" required="true" unique="true" uuid="addd0b46-a22b-46bb-aabf-dcc0fecd0738"/>
         <field name="name" description="Description" type="string" size="128" default="" required="true" uuid="a0262404-5075-40b3-b213-f27033b26f48"/>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="979603e7-622d-4934-8c67-53a4a214838a"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="8c3dfa11-3bb7-46b5-bcb6-9542a8936f0d"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="c94d5fed-47b8-4af3-a7fd-a6f002750206"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="8c3dfa11-3bb7-46b5-bcb6-9542a8936f0d"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="c94d5fed-47b8-4af3-a7fd-a6f002750206"/>
         <orm-attributes>
           <attribute name="table">Entity</attribute>
           <attribute name="repository-class">Visca\Bundle\LicomBundle\Repository\EntityLicomRepository</attribute>
@@ -1613,13 +1613,13 @@
             <attribute name="column">delta_set</attribute>
           </orm-attributes>
         </field>
-        <field name="startDate" type="datetime" required="true" uuid="2e135a27-86bb-4993-aacf-dea8c2e6a377">
+        <field name="startDate" type="DateTimeUTCType" required="true" uuid="2e135a27-86bb-4993-aacf-dea8c2e6a377">
           <orm-attributes>
             <attribute name="column-definition">timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP</attribute>
             <attribute name="column">start_dt</attribute>
           </orm-attributes>
         </field>
-        <field name="completeDate" type="datetime" default="NULL" uuid="28a11ba9-c682-4ddc-915f-190d9290fe8f">
+        <field name="completeDate" type="DateTimeUTCType" default="NULL" uuid="28a11ba9-c682-4ddc-915f-190d9290fe8f">
           <orm-attributes>
             <attribute name="column-definition">timestamp NULL DEFAULT NULL</attribute>
             <attribute name="column">complete_dt</attribute>
@@ -1663,7 +1663,7 @@
             <attribute name="column-definition">TINYINT(3) UNSIGNED NOT NULL DEFAULT '255' COMMENT 'sorted position'</attribute>
           </orm-attributes>
         </field>
-        <field name="time" description="Date when this happen in UTC" type="datetime" required="true" uuid="31f6ba50-1cb3-4bec-be8e-201bceafc235">
+        <field name="time" description="Date when this happen in UTC" type="DateTimeUTCType" required="true" uuid="31f6ba50-1cb3-4bec-be8e-201bceafc235">
           <orm-attributes>
             <attribute name="column">`time`</attribute>
           </orm-attributes>
@@ -1684,8 +1684,8 @@
             <attribute name="column">Participant</attribute>
           </orm-attributes>
         </field>
-        <field name="createdAt" type="datetime" default="NULL" uuid="d2b7f488-fdb0-4ada-9cf3-216d6fae0765"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="0967c848-c679-4205-acbe-3a9bbcf06dc7"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="d2b7f488-fdb0-4ada-9cf3-216d6fae0765"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="0967c848-c679-4205-acbe-3a9bbcf06dc7"/>
         <index name="fk_matchParticipant">
           <index-field name="matchParticipant"/>
         </index>
@@ -1711,8 +1711,8 @@
           </orm-attributes>
         </field>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="d9191e51-f8a8-4d26-942e-b6d288b83535"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="f94b94f2-4350-4fbd-a568-6f976db94ee2"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="a896720f-f081-4f7a-9a21-35f0e311020b"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="f94b94f2-4350-4fbd-a568-6f976db94ee2"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="a896720f-f081-4f7a-9a21-35f0e311020b"/>
         <index name="fk_sport">
           <index-field name="sport"/>
         </index>
@@ -1805,8 +1805,8 @@
             <attribute name="column">MatchResultType</attribute>
           </orm-attributes>
         </field>
-        <field name="createdAt" type="datetime" default="NULL" uuid="1d67da75-7598-4e28-937d-30529e1c08c7"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="8b49da83-447f-4315-a120-a3421ab7420b"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="1d67da75-7598-4e28-937d-30529e1c08c7"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="8b49da83-447f-4315-a120-a3421ab7420b"/>
         <index name="fk_matchParticipant">
           <index-field name="matchParticipant"/>
         </index>
@@ -1822,8 +1822,8 @@
         <field name="code" type="string" size="45" required="true" unique="true" uuid="ec43031e-7390-4191-a5c6-0977a5fc23cb"/>
         <field name="name" type="string" size="255" default="" required="true" uuid="82567b84-e1cd-456c-83c9-ef237c7ef738"/>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="2891fa07-03ce-4a42-b4ea-0b7027fdf527"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="31637243-3f22-4ac9-867d-0fa13a36854c"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="e16fcff2-c4b7-4df9-bba2-094e80f5ebad"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="31637243-3f22-4ac9-867d-0fa13a36854c"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="e16fcff2-c4b7-4df9-bba2-094e80f5ebad"/>
         <orm-attributes>
           <attribute name="table">MatchResultType</attribute>
           <attribute name="cache">
@@ -1854,8 +1854,8 @@
             <attribute name="column">MatchParticipant</attribute>
           </orm-attributes>
         </field>
-        <field name="createdAt" type="datetime" default="NULL" uuid="e0930f95-cfad-4a19-8a08-3b20f50d833c"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="93921f68-f8bd-4e10-ad9e-b54036fc6ef3"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="e0930f95-cfad-4a19-8a08-3b20f50d833c"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="93921f68-f8bd-4e10-ad9e-b54036fc6ef3"/>
         <index name="uq_matchParticipant_matchStatsType" unique="true">
           <index-field name="matchParticipant"/>
           <index-field name="matchStatsType"/>
@@ -1876,8 +1876,8 @@
         <field name="code" type="string" size="45" required="true" unique="true" uuid="0cf7c160-3554-4995-8728-213eee69ad2c"/>
         <field name="name" type="string" size="255" default="" required="true" uuid="70bfa3e7-fbaf-4e6c-ac20-9dc55fcd2788"/>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="6b036e27-232e-4d17-ac5d-7372e3a7b6bb"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="189c2ef1-2d39-4716-8a94-1c922f90c40f"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="2452245c-195a-4ff1-a9c0-b58a28ee5bca"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="189c2ef1-2d39-4716-8a94-1c922f90c40f"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="2452245c-195a-4ff1-a9c0-b58a28ee5bca"/>
         <orm-attributes>
           <attribute name="table">MatchStatsType</attribute>
           <attribute name="repository-class">Visca\Bundle\LicomBundle\Repository\MatchStatsTypeRepository</attribute>
@@ -1924,8 +1924,8 @@
           </orm-attributes>
         </field>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="8f43185b-9fef-481e-8a93-bf7d28dc5f06"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="d36cecf4-3603-4b5b-b9a9-4f577743cd2e"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="ab129110-c85f-40fa-a43b-de98865ad539"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="d36cecf4-3603-4b5b-b9a9-4f577743cd2e"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="ab129110-c85f-40fa-a43b-de98865ad539"/>
         <index name="uq_bettingOutcome_bettingOfferProvider" unique="true">
           <index-field name="bettingOutcome"/>
           <index-field name="bettingOfferProvider"/>
@@ -1959,8 +1959,8 @@
           </orm-attributes>
         </field>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="b65de0b9-cee7-4f5a-864d-40ff3634c7a6"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="e6103b7e-fd04-4bcb-b078-6ca2a82a9258"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="edacd08c-7ec9-400f-b369-b880d3d1a810"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="e6103b7e-fd04-4bcb-b078-6ca2a82a9258"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="edacd08c-7ec9-400f-b369-b880d3d1a810"/>
         <index name="idx_entity_entityId">
           <index-field name="entity"/>
           <index-field name="entityId"/>
@@ -2009,8 +2009,8 @@
         </field>
         <field name="status" type="BettingOutcomeStatusType" size="0" default="NULL" uuid="e148fa8d-ade4-45ea-b435-021b471c8e3e"/>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="5d324e5c-bbf7-44c8-84d5-ad8ac7951b83"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="ca1283ab-e84e-45ca-b389-1fb437f37f00"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="0a6bc267-f9cd-43b8-a61b-b95b79988959"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="ca1283ab-e84e-45ca-b389-1fb437f37f00"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="0a6bc267-f9cd-43b8-a61b-b95b79988959"/>
         <index name="fk_entity">
           <index-field name="entity"/>
         </index>
@@ -2031,8 +2031,8 @@
         <field name="code" type="string" size="45" required="true" unique="true" uuid="ea3bd624-944c-4bc2-844b-8850c0204d0f"/>
         <field name="description" type="string" size="255" default="" required="true" uuid="5d7314e7-b9d9-4458-8d53-7ee3f99720a7"/>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="278c63d6-074f-4af6-946e-46df72ad88f8"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="7ddd7e9b-9dcd-4791-a021-c6aab1644810"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="ba825850-1567-429a-9765-0380c0fdc835"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="7ddd7e9b-9dcd-4791-a021-c6aab1644810"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="ba825850-1567-429a-9765-0380c0fdc835"/>
         <orm-attributes>
           <attribute name="table">BettingOutcomeScopeType</attribute>
           <attribute name="cache">
@@ -2046,8 +2046,8 @@
         <field name="code" type="string" size="45" required="true" unique="true" uuid="7b8ad4e8-fa69-4905-81d8-738137c30b8e"/>
         <field name="description" type="string" size="255" default="" required="true" uuid="fe29d522-e9f8-413f-bfc1-0918f6a2cfa8"/>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="a82cfe41-2e28-48bc-a2f9-d76860eb3184"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="456b54fd-2051-43f5-9bc0-e37d86546958"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="1c86b6cb-a643-44a3-a827-5178c616ba65"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="456b54fd-2051-43f5-9bc0-e37d86546958"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="1c86b6cb-a643-44a3-a827-5178c616ba65"/>
         <orm-attributes>
           <attribute name="table">BettingOutcomeSubType</attribute>
           <attribute name="cache">
@@ -2060,8 +2060,8 @@
         <field name="id" type="smallint" size="5" required="true" unique="true" primary="true" unsigned="true" uuid="814e90eb-7d8f-44e9-aeec-91c65c0e2b1e"/>
         <field name="name" type="string" size="55" default="" required="true" uuid="ccaa0b90-4996-4659-9a53-1231ea93a9ac"/>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="b8d12e8c-8269-4604-8bb4-f1ea17787ec0"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="ed78a7a2-ec5f-4c4f-a0b4-1c15b6245922"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="8ca8f253-6417-46d9-9bbb-a92709bd5caf"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="ed78a7a2-ec5f-4c4f-a0b4-1c15b6245922"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="8ca8f253-6417-46d9-9bbb-a92709bd5caf"/>
         <orm-attributes>
           <attribute name="table">BettingOfferProvider</attribute>
         </orm-attributes>
@@ -2097,8 +2097,8 @@
         <field name="name" type="string" size="45" default="" required="true" uuid="82e33d9d-ec57-4e62-8b38-e5585679f013"/>
         <field name="url" type="string" size="255" default="" required="true" uuid="ec081144-a43e-4e74-94f0-b073d29bdeba"/>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="815fce0a-03e6-4ff2-b825-3cbeff420d1f"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="a3e63173-d4f1-4c9a-bada-71a953cf33d9"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="248a5853-eb86-4110-a1f6-dcf27a646181"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="a3e63173-d4f1-4c9a-bada-71a953cf33d9"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="248a5853-eb86-4110-a1f6-dcf27a646181"/>
         <orm-attributes>
           <attribute name="table">Bookmaker</attribute>
         </orm-attributes>
@@ -2197,14 +2197,14 @@
             <attribute name="column-definition">TINYINT(4) DEFAULT NULL</attribute>
           </orm-attributes>
         </field>
-        <field name="time" type="datetime" default="NULL" uuid="c4ac6232-c037-410c-8e2c-887f2de82bce">
+        <field name="time" type="DateTimeUTCType" default="NULL" uuid="c4ac6232-c037-410c-8e2c-887f2de82bce">
           <orm-attributes>
             <attribute name="column">`time`</attribute>
           </orm-attributes>
         </field>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="40121e5a-fae9-4e2f-a1fd-5daad006f56e"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="ffae862e-be41-4298-bec9-86a0bff7933a"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="12c6defd-cbae-4cce-abaf-b2e5e7105229"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="ffae862e-be41-4298-bec9-86a0bff7933a"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="12c6defd-cbae-4cce-abaf-b2e5e7105229"/>
         <index name="fk_match">
           <index-field name="match"/>
         </index>
@@ -2229,8 +2229,8 @@
           </orm-attributes>
         </field>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="94521545-5d65-44bd-bc4f-481f0b81a82c"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="32ac80d2-07f4-46c0-904c-a49326d98b23"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="74f529ae-57d4-4e52-b47d-bffe4522ba8e"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="32ac80d2-07f4-46c0-904c-a49326d98b23"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="74f529ae-57d4-4e52-b47d-bffe4522ba8e"/>
         <index name="fk_sport">
           <index-field name="sport"/>
         </index>
@@ -2265,8 +2265,8 @@
         </field>
         <field name="formation" type="string" size="10" default="NULL" uuid="559bda76-77ee-4865-863a-e6dc156b8fad"/>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="88bf9e51-dfaa-4022-a694-67461f4bcfaa"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="ba95ed5e-6cfe-47a8-913f-103b8f833783"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="48e583b6-59f7-4f24-830d-ebc8c5f02e51"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="ba95ed5e-6cfe-47a8-913f-103b8f833783"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="48e583b6-59f7-4f24-830d-ebc8c5f02e51"/>
         <index name="fk_matchParticipant">
           <index-field name="matchParticipant"/>
         </index>
@@ -2303,8 +2303,8 @@
           </orm-attributes>
         </field>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="084a2aa4-45b3-4093-8458-b36a9eeda030"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="8c8e8c9b-72ab-4a43-ad07-0e4c800f72d6"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="353e16bd-5fa4-4ddd-8a34-4f33e6684513"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="8c8e8c9b-72ab-4a43-ad07-0e4c800f72d6"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="353e16bd-5fa4-4ddd-8a34-4f33e6684513"/>
         <index name="fk_matchLineup">
           <index-field name="matchLineup"/>
         </index>
@@ -2324,8 +2324,8 @@
         <field name="code" type="string" size="45" required="true" unique="true" uuid="55d4e99b-ae59-490d-a19f-0b1046a8e494"/>
         <field name="name" type="string" size="255" default="" required="true" uuid="4ac4477a-3d6c-4db0-b334-881eab08235f"/>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="23cd80c8-7374-4f31-a540-35a0559308ad"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="048d67ed-73e4-41c5-beb7-65ad438ccf48"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="26284dbf-2e4c-4697-a5fb-9330bab01280"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="048d67ed-73e4-41c5-beb7-65ad438ccf48"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="26284dbf-2e4c-4697-a5fb-9330bab01280"/>
         <orm-attributes>
           <attribute name="table">MatchLineupParticipantType</attribute>
           <attribute name="cache">
@@ -2369,8 +2369,8 @@
           </orm-attributes>
         </field>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="7c6fe230-b8e7-4436-b9b6-2558ac7e09e7"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="808f2644-ec80-4d2b-9811-c47413526a02"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="cfdcd3e6-deb0-47f2-9e83-554c7f3782b7"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="808f2644-ec80-4d2b-9811-c47413526a02"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="cfdcd3e6-deb0-47f2-9e83-554c7f3782b7"/>
         <index name="fk_mediaTheme">
           <index-field name="mediaTheme"/>
         </index>
@@ -2386,8 +2386,8 @@
         <field name="code" type="string" size="45" default="NULL" required="true" unique="true" uuid="6343af75-71a3-4f53-b68e-c9027b46e542"/>
         <field name="name" type="string" size="45" default="" required="true" uuid="49d69bea-9a21-4743-bfb2-31557f3dd634"/>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="fb265434-599a-4f7f-b244-efed4a06901f"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="23624177-a1f8-4c62-9bc4-72cf2d1ed5f2"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="44c488e7-a9a9-4ffb-8118-5dea511a6875"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="23624177-a1f8-4c62-9bc4-72cf2d1ed5f2"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="44c488e7-a9a9-4ffb-8118-5dea511a6875"/>
         <orm-attributes>
           <attribute name="table">MediaTheme</attribute>
         </orm-attributes>
@@ -2402,8 +2402,8 @@
         <field name="code" type="string" size="45" default="NULL" required="true" unique="true" uuid="067a2173-9764-421b-94f0-827f8f4dc48f"/>
         <field name="name" type="string" size="45" default="" required="true" uuid="79974759-ef15-4180-996d-7cb9fd09bc24"/>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="85f3819f-b511-4391-800b-6b3ff6302d22"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="e9b6c1fe-81a2-4d1f-af37-55d566476618"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="487f75f6-10a1-4a91-848f-8a6a17455368"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="e9b6c1fe-81a2-4d1f-af37-55d566476618"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="487f75f6-10a1-4a91-848f-8a6a17455368"/>
         <index name="fk_entity">
           <index-field name="entity"/>
         </index>
@@ -2442,8 +2442,8 @@
         <field name="round" type="string" size="8" default="NULL" uuid="30495ea4-3e4e-4ef8-9c8b-d28fb9a397ec"/>
         <field name="name" type="string" size="64" default="NULL" uuid="50d69bb6-b403-4ae8-8cfa-79f6e006cd17"/>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="ad027e98-bb73-4243-96ad-e3d33b88b17f"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="5dece5dc-3d17-4275-ae8d-077c3bd2cc2d"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="69e90928-7898-4911-af97-60db8b7334b5"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="5dece5dc-3d17-4275-ae8d-077c3bd2cc2d"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="69e90928-7898-4911-af97-60db8b7334b5"/>
         <index name="uq_entity_entityId_standingType_round_name" unique="true">
           <index-field name="entity"/>
           <index-field name="entityId"/>
@@ -2480,8 +2480,8 @@
           </orm-attributes>
         </field>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="7a91795e-974b-4c6a-b745-f338ee3114ba"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="244931a4-7413-4138-bcf4-a7bb154e10e1"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="a28d6ee5-d3f6-4554-b3f0-6f27d3f2551b"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="244931a4-7413-4138-bcf4-a7bb154e10e1"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="a28d6ee5-d3f6-4554-b3f0-6f27d3f2551b"/>
         <index name="uq_standingRow_standingColumn" unique="true">
           <index-field name="standingRow"/>
           <index-field name="standingColumn"/>
@@ -2511,8 +2511,8 @@
           </orm-attributes>
         </field>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="274c5fee-e49f-4f03-93c6-6b9449a00e04"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="a0dc6023-4487-4371-b0eb-538792728d40"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="50b6bc18-dd17-4723-b849-8cacc39a1232"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="a0dc6023-4487-4371-b0eb-538792728d40"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="50b6bc18-dd17-4723-b849-8cacc39a1232"/>
         <index name="fk_standingColumnScope">
           <index-field name="standingColumnScope"/>
         </index>
@@ -2528,8 +2528,8 @@
         <field name="id" type="integer" size="10" required="true" primary="true" unsigned="true" auto-increment="true" uuid="373c258d-3096-4331-b5da-9f37b6d6e701"/>
         <field name="text" type="string" size="255" default="" required="true" uuid="be917155-42ba-4409-b164-b9afcf7e8e58"/>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="afca1292-0d2b-4df6-83ef-b08cb1718e19"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="a7ca32d3-a1e3-450a-a6dc-faf54853bc72"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="e5b5369f-ca95-437b-8229-8fc427e47f44"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="a7ca32d3-a1e3-450a-a6dc-faf54853bc72"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="e5b5369f-ca95-437b-8229-8fc427e47f44"/>
         <orm-attributes>
           <attribute name="table">StandingComment</attribute>
         </orm-attributes>
@@ -2574,8 +2574,8 @@
           </orm-attributes>
         </field>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="bc2d8ff7-c9e8-4b39-8afd-1a1228603c16"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="a2ec4f9d-387c-4cc7-86c5-48a1556626ae"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="dd81eac9-e3eb-44b4-8e89-0034fd22a4a6"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="a2ec4f9d-387c-4cc7-86c5-48a1556626ae"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="dd81eac9-e3eb-44b4-8e89-0034fd22a4a6"/>
         <orm-attributes>
           <attribute name="table">StandingPromotion</attribute>
         </orm-attributes>
@@ -2598,8 +2598,8 @@
           </orm-attributes>
         </field>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="dec32623-b343-432f-80ac-33a5ddfa5a77"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="f2c8d3cc-2af1-41f0-bff6-48dcb634c2a5"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="c7fdcb98-7164-4fab-9c63-cb192f3a99b2"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="f2c8d3cc-2af1-41f0-bff6-48dcb634c2a5"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="c7fdcb98-7164-4fab-9c63-cb192f3a99b2"/>
         <index name="uq_standing_participant" unique="true">
           <index-field name="standing"/>
           <index-field name="participant"/>
@@ -2622,8 +2622,8 @@
         <field name="code" type="string" size="32" required="true" unique="true" uuid="55ede3b2-42dd-45a1-96ad-f8bc56573157"/>
         <field name="name" type="string" size="255" default="" required="true" uuid="86e6fef7-378b-4c70-9a33-5fd9f08407ce"/>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="034ae387-31be-4010-bdb1-4f89c80f5533"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="69d1d35a-091e-4bc6-827b-33a2e8c61b0f"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="f1c2cc38-c796-4daa-8f19-d4928f46ca2c"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="69d1d35a-091e-4bc6-827b-33a2e8c61b0f"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="f1c2cc38-c796-4daa-8f19-d4928f46ca2c"/>
         <orm-attributes>
           <attribute name="table">StandingType</attribute>
           <attribute name="cache">
@@ -2655,8 +2655,8 @@
         <field name="position" description="sorted position" type="smallint" size="5" default="'255'" unsigned="true" uuid="e05ec078-3af4-4a0c-908f-7fca93bd8ada"/>
         <field name="extraMethod" description="Default method to execute with _extra argument" type="string" size="64" default="NULL" uuid="5ee51828-353a-4645-9ca8-a1180b7435fa"/>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="465f220d-eec9-4f4a-ba6e-e3d0af9bc458"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="451e7277-8eff-48d5-ab88-1141f2bbfe54"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="41da61a7-0528-4437-a4f5-af13b32b435b"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="451e7277-8eff-48d5-ab88-1141f2bbfe54"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="41da61a7-0528-4437-a4f5-af13b32b435b"/>
         <index name="fk_standingType">
           <index-field name="standingType"/>
         </index>
@@ -2709,16 +2709,16 @@
         <field name="code" type="string" size="32" required="true" unique="true" uuid="42a9a58c-f7b1-475a-b136-d60fa6db5199"/>
         <field name="name" type="string" size="255" required="true" uuid="e82b2510-1215-4662-a727-71c9cecd739b"/>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="00d759bb-3afa-4a1d-b1ee-931712d98522"/>
-        <field name="createdAt" type="datetime" uuid="3fc94ce5-0409-4ff2-9228-b2501a15aa84"/>
-        <field name="updatedAt" type="datetime" uuid="4a0d3d07-2d37-4cab-821f-f4401cde753c"/>
+        <field name="createdAt" type="DateTimeUTCType" uuid="3fc94ce5-0409-4ff2-9228-b2501a15aa84"/>
+        <field name="updatedAt" type="DateTimeUTCType" uuid="4a0d3d07-2d37-4cab-821f-f4401cde753c"/>
       </entity>
       <entity name="\Visca\Bundle\LicomBundle\Entity\StandingColumnGroup" local-name="StandingColumnGroup" namespace="\Visca\Bundle\LicomBundle\Entity" uuid="4975e234-4c1f-4938-a4f6-cdf1b4664652">
         <field name="id" type="smallint" size="5" required="true" unique="true" primary="true" unsigned="true" uuid="ea181788-1db1-49ce-8533-2544a0bf6a2d"/>
         <field name="code" type="string" size="32" required="true" unique="true" uuid="0ad49f61-13df-40c2-9bb8-c78ab2f6596b"/>
         <field name="name" type="string" size="255" required="true" uuid="80a14805-8a72-4098-a34c-1d4374cfc4f1"/>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="fe111784-76b6-46f2-b1ba-d48c4e8d4f53"/>
-        <field name="createdAt" type="datetime" uuid="3bd8d0e4-db99-4609-bf49-ca04270a5e0a"/>
-        <field name="updatedAt" type="datetime" uuid="f8ee4adf-9682-439b-8fe8-cd641395df00"/>
+        <field name="createdAt" type="DateTimeUTCType" uuid="3bd8d0e4-db99-4609-bf49-ca04270a5e0a"/>
+        <field name="updatedAt" type="DateTimeUTCType" uuid="f8ee4adf-9682-439b-8fe8-cd641395df00"/>
       </entity>
       <entity name="\Visca\Bundle\LicomBundle\Entity\StandingViewGraphLabel" local-name="StandingViewGraphLabel" namespace="\Visca\Bundle\LicomBundle\Entity" uuid="a0665548-cfad-4dec-8a87-199720cfa0ad">
         <field name="id" type="smallint" size="5" required="true" unique="true" primary="true" unsigned="true" uuid="9b809a4c-77ef-4dce-8508-febea0393561"/>
@@ -2733,8 +2733,8 @@
         <field name="code" type="string" size="32" required="true" unique="true" uuid="7f3d4478-9bc7-4b77-a35d-c43f565da4b4"/>
         <field name="name" type="string" size="128" required="true" uuid="dea22082-16b6-4935-896f-37e8cbdfdcd7"/>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="0df6b91d-2d3c-4d7d-9da6-ebb3a12d8a4a"/>
-        <field name="createdAt" type="datetime" uuid="0d53ea7f-4af2-4653-8054-58e75bdceb93"/>
-        <field name="updatedAt" type="datetime" uuid="a2eedf5a-a0a3-4ff3-b327-85d52a85e82b"/>
+        <field name="createdAt" type="DateTimeUTCType" uuid="0d53ea7f-4af2-4653-8054-58e75bdceb93"/>
+        <field name="updatedAt" type="DateTimeUTCType" uuid="a2eedf5a-a0a3-4ff3-b327-85d52a85e82b"/>
         <orm-attributes>
           <attribute name="cache">
             <attribute name="region">Type</attribute>
@@ -2816,8 +2816,8 @@
         </field>
         <field name="property" type="json_array" uuid="55f777a8-a76f-498f-807b-614daef64cc0"/>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="3baf4392-2bf3-4255-9fa5-9cb12e262fba"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="268a6169-8a33-4c01-a1dd-7809f3196694"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="8cdf4c7d-bdd8-4fae-affa-017309048ab2"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="268a6169-8a33-4c01-a1dd-7809f3196694"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="8cdf4c7d-bdd8-4fae-affa-017309048ab2"/>
         <index name="uq_entity_entityId_eventType_del_createdAt" unique="true">
           <index-field name="entity"/>
           <index-field name="entityId"/>
@@ -2840,8 +2840,8 @@
         <field name="code" type="string" size="45" required="true" unique="true" uuid="a79c5504-6651-41a0-a760-82a76e75ab70"/>
         <field name="description" type="string" size="255" default="" required="true" uuid="8428814e-77b3-4124-a788-87430a79e86c"/>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="d0a93e31-9205-4945-aa36-e59a3a939a57"/>
-        <field name="createdAt" type="datetime" default="NULL" uuid="82079187-c270-4967-af98-6b9a50669f98"/>
-        <field name="updatedAt" type="datetime" default="NULL" uuid="90529433-2b75-4f25-a670-b54ed0f75095"/>
+        <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="82079187-c270-4967-af98-6b9a50669f98"/>
+        <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="90529433-2b75-4f25-a670-b54ed0f75095"/>
         <orm-attributes>
           <attribute name="table">EventType</attribute>
           <attribute name="cache">
