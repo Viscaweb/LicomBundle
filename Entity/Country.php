@@ -47,6 +47,16 @@ class Country
     private $competitionCategory;
 
     /**
+     * @var string
+     */
+    private $alpha2Code;
+
+    /**
+     * @var string
+     */
+    private $alpha3Code;
+
+    /**
      * Constructor.
      */
     public function __construct()
@@ -166,5 +176,45 @@ class Country
     public function getCompetitionCategory()
     {
         return $this->competitionCategory;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAlpha2Code()
+    {
+        return $this->alpha2Code;
+    }
+
+    /**
+     * @param string $alpha2Code
+     *
+     * @return $this
+     */
+    public function setAlpha2Code($alpha2Code)
+    {
+        $this->alpha2Code = $alpha2Code;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAlpha3Code()
+    {
+        return $this->alpha3Code;
+    }
+
+    /**
+     * @param string $alpha3Code
+     *
+     * @return $this
+     */
+    public function setAlpha3Code($alpha3Code)
+    {
+        $this->alpha3Code = $alpha3Code;
+
+        return $this;
     }
 }

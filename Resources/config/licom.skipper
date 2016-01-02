@@ -288,6 +288,16 @@
             <attribute name="column-definition">VARCHAR(10) NULL DEFAULT NULL</attribute>
           </orm-attributes>
         </field>
+        <field name="alpha2Code" type="string" size="2" default="NULL" unique="true" uuid="0e3de36b-30ab-4bb8-a547-d3c11936e97b">
+          <orm-attributes>
+            <attribute name="column-definition">CHAR(2) NULL DEFAULT NULL</attribute>
+          </orm-attributes>
+        </field>
+        <field name="alpha3Code" type="string" size="3" default="NULL" unique="true" uuid="188dc034-b174-4a75-a1e0-92461f11391b">
+          <orm-attributes>
+            <attribute name="column-definition">CHAR(3) NULL DEFAULT NULL</attribute>
+          </orm-attributes>
+        </field>
         <field name="del" type="SoftDeletionType" size="0" default="'no'" required="true" uuid="e4bba702-87d6-463f-bc84-aa9d14d241ba"/>
         <field name="createdAt" type="DateTimeUTCType" default="NULL" uuid="a415329a-935c-499e-9098-7d0d4da16432"/>
         <field name="updatedAt" type="DateTimeUTCType" default="NULL" uuid="d734a8d1-7d02-4eb7-8c5c-1f69f4b5285c"/>
@@ -3004,7 +3014,7 @@
     <entity uuid="3ac0ab77-0133-4e3f-ae06-99873846453b" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="270" position-y="335" size-x="0" size-x2="158" size-y="0" size-y2="59"/>
     <entity uuid="3ee74ed9-536e-4ad3-a075-a8ad5fe52403" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="518" position-y="134" size-x="0" size-x2="35" size-y="0" size-y2="20"/>
     <entity uuid="4450aa46-f9eb-4fac-8ca7-61f04b6cf603" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="548" position-y="433" size-x="0" size-x2="176" size-y="0" size-y2="87"/>
-    <entity uuid="44E4ADD5-49D3-4F4D-98BA-2056274BCC67" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="1053" position-y="-23" size-x="0" size-x2="108" size-y="0" size-y2="87"/>
+    <entity uuid="44E4ADD5-49D3-4F4D-98BA-2056274BCC67" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="1098" position-y="-69" size-x="0" size-x2="150" size-y="0" size-y2="101"/>
     <entity uuid="4975e234-4c1f-4938-a4f6-cdf1b4664652" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="716" position-y="326" size-x="0" size-x2="108" size-y="0" size-y2="101"/>
     <entity uuid="4B148BD2-7353-414A-8EDD-A4FB3C684F8F" bg-color="4294967295" hdr-color="4292006610" position-x="571" position-y="15" size-x="0" size-x2="158" size-y="0" size-y2="129"/>
     <entity uuid="4D738209-417C-4E69-921C-025A07C4FBDD" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="120" position-y="33" size-x="0" size-x2="164" size-y="0" size-y2="73"/>

@@ -18,6 +18,22 @@ Visca\Bundle\LicomBundle\Entity\Country:
       length: 2
       nullable: false
       columnDefinition: VARCHAR(10) NULL DEFAULT NULL
+    alpha2Code:
+      type: string
+      unique: true
+      length: 2
+      nullable: true
+      columnDefinition: CHAR(2) NULL DEFAULT NULL
+      options:
+        default: NULL
+    alpha3Code:
+      type: string
+      unique: true
+      length: 3
+      nullable: true
+      columnDefinition: CHAR(3) NULL DEFAULT NULL
+      options:
+        default: NULL
     del:
       type: SoftDeletionType
       length: 0
