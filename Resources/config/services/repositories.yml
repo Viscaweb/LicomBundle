@@ -175,6 +175,14 @@ services:
             - @visca_licom.entity_manager
             - Visca\Bundle\LicomBundle\Entity\Athlete
 
+    visca_licom.repository.official:
+        class: Visca\Bundle\LicomBundle\Repository\OfficialRepository
+        factory_service: visca_doctrine.repository.factory
+        factory_method: getRepository
+        arguments:
+            - @visca_licom.entity_manager
+            - Visca\Bundle\LicomBundle\Entity\Official
+
     visca_licom.repository.participant_aux_type:
         class: Visca\Bundle\LicomBundle\Repository\ParticipantAuxTypeRepository
         factory_service: visca_doctrine.repository.factory
