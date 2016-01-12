@@ -2,7 +2,7 @@ services:
     visca_licom.listener.date_time_alterer:
         class: Visca\Bundle\LicomBundle\Listener\DateTimeAltererListener
         arguments:
-            - @visca_licom.alterer.utc_date
+            - '@visca_licom.alterer.utc_date'
             - %kernel.cache_dir%
         tags:
             - { name: doctrine.event_listener, connection: licom, event: postLoad }

@@ -2,7 +2,7 @@ services:
     visca_licom.field.odds_formatter:
         class: Visca\Bundle\LicomBundle\Form\Type\OddsFormatterType
         arguments:
-            - @visca_licom.chain.formatter.odds
-            - @translator.default
+            - '@visca_licom.chain.formatter.odds'
+            - '@translator.default'
         tags:
             - { name: form.type, alias: odds_formatter }
