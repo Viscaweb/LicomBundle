@@ -180,7 +180,7 @@ services:
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\Official
 
     visca_licom.repository.participant_aux_type:
