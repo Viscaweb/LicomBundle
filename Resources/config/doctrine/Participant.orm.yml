@@ -87,6 +87,7 @@ Visca\Bundle\LicomBundle\Entity\Participant:
     team: Visca\Bundle\LicomBundle\Entity\Team
     athlete: Visca\Bundle\LicomBundle\Entity\Athlete
     coach: Visca\Bundle\LicomBundle\Entity\Coach
+    official: Visca\Bundle\LicomBundle\Entity\Official
   cache:
     region: Participant
     usage: READ_ONLY

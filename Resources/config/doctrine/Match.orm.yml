@@ -1,6 +1,6 @@
 Visca\Bundle\LicomBundle\Entity\Match:
   type: entity
-  table: `Match`
+  table: '`Match`'
   repositoryClass: Visca\Bundle\LicomBundle\Repository\MatchRepository
   id:
     id:

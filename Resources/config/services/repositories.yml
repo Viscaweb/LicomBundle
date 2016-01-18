@@ -5,17 +5,17 @@ services:
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\Match
         calls:
-            - ['setUtcDateAlterer', [@visca_licom.alterer.utc_date]]
+            - ['setUtcDateAlterer', ['@visca_licom.alterer.utc_date']]
 
     visca_licom.repository.match_lineup:
         class: Visca\Bundle\LicomBundle\Repository\MatchLineupRepository
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\MatchLineup
 
     visca_licom.repository.match_lineup_participant:
@@ -23,7 +23,7 @@ services:
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\MatchLineupParticipant
 
     visca_licom.repository.match_incident:
@@ -31,7 +31,7 @@ services:
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\MatchIncident
 
     visca_licom.repository.match_incident_type:
@@ -39,7 +39,7 @@ services:
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\MatchIncidentType
 
     visca_licom.repository.match_statusdescription:
@@ -47,7 +47,7 @@ services:
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\MatchStatusDescription
 
     visca_licom.repository.sport:
@@ -55,7 +55,7 @@ services:
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\Sport
 
     visca_licom.repository.country:
@@ -63,39 +63,39 @@ services:
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\Country
         calls:
-            - ['setRepositoryProfileEntityGraph', [@visca_licom.repository.profile_entity_graph]]
-            - ['setRepositoryLocalizationTranslation', [@visca_licom.repository.localization_translation]]
+            - ['setRepositoryProfileEntityGraph', ['@visca_licom.repository.profile_entity_graph']]
+            - ['setRepositoryLocalizationTranslation', ['@visca_licom.repository.localization_translation']]
 
     visca_licom.repository.competition:
         class: Visca\Bundle\LicomBundle\Repository\CompetitionRepository
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\Competition
         calls:
-            - ['setRepositoryProfileEntityGraph', [@visca_licom.repository.profile_entity_graph]]
-            - ['setRepositoryLocalizationTranslation', [@visca_licom.repository.localization_translation]]
+            - ['setRepositoryProfileEntityGraph', ['@visca_licom.repository.profile_entity_graph']]
+            - ['setRepositoryLocalizationTranslation', ['@visca_licom.repository.localization_translation']]
 
     visca_licom.repository.competition_leg:
         class: Visca\Bundle\LicomBundle\Repository\CompetitionLegRepository
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\CompetitionLeg
         calls:
-            - ['setRepositoryProfileEntityGraph', [@visca_licom.repository.profile_entity_graph]]
+            - ['setRepositoryProfileEntityGraph', ['@visca_licom.repository.profile_entity_graph']]
 
     visca_licom.repository.entity:
         class: Visca\Bundle\LicomBundle\Repository\EntityLicomRepository
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\Entity
 
     visca_licom.repository.competition_round:
@@ -103,7 +103,7 @@ services:
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\CompetitionRound
 
     visca_licom.repository.competition_category:
@@ -111,7 +111,7 @@ services:
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\CompetitionCategory
 
     visca_licom.repository.competition_stage:
@@ -119,7 +119,7 @@ services:
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\CompetitionStage
 
     visca_licom.repository.competition_season:
@@ -127,7 +127,7 @@ services:
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\CompetitionSeason
 
     visca_licom.repository.competition_stage_type_repository:
@@ -135,7 +135,7 @@ services:
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\CompetitionStageType
 
     visca_licom.repository.competition_season_stage:
@@ -143,7 +143,7 @@ services:
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\CompetitionSeasonStage
 
     visca_licom.repository.participant:
@@ -151,36 +151,44 @@ services:
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\Participant
         calls:
-            - ['setRepositoryProfileEntityGraph', [@visca_licom.repository.profile_entity_graph]]
-            - ['setRepositoryLocalizationTranslation', [@visca_licom.repository.localization_translation]]
+            - ['setRepositoryProfileEntityGraph', ['@visca_licom.repository.profile_entity_graph']]
+            - ['setRepositoryLocalizationTranslation', ['@visca_licom.repository.localization_translation']]
 
     visca_licom.repository.team:
         class: Visca\Bundle\LicomBundle\Repository\TeamRepository
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\Team
         calls:
-            - ['setRepositoryProfileEntityGraph', [@visca_licom.repository.profile_entity_graph]]
+            - ['setRepositoryProfileEntityGraph', ['@visca_licom.repository.profile_entity_graph']]
 
     visca_licom.repository.athlete:
         class: Visca\Bundle\LicomBundle\Repository\AthleteRepository
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\Athlete
+
+    visca_licom.repository.official:
+        class: Visca\Bundle\LicomBundle\Repository\OfficialRepository
+        factory_service: visca_doctrine.repository.factory
+        factory_method: getRepository
+        arguments:
+            - '@visca_licom.entity_manager'
+            - Visca\Bundle\LicomBundle\Entity\Official
 
     visca_licom.repository.participant_aux_type:
         class: Visca\Bundle\LicomBundle\Repository\ParticipantAuxTypeRepository
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\ParticipantAuxType
 
     visca_licom.repository.match_comment:
@@ -188,7 +196,7 @@ services:
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\MatchComment
 
     visca_licom.repository.match_participant:
@@ -196,7 +204,7 @@ services:
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\MatchParticipant
 
     visca_licom.repository.match_stats:
@@ -204,7 +212,7 @@ services:
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\MatchStats
 
     visca_licom.repository.match_statstype:
@@ -212,7 +220,7 @@ services:
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\MatchStatsType
 
     visca_licom.repository.standing:
@@ -220,7 +228,7 @@ services:
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\Standing
 
     visca_licom.repository.standing_comment:
@@ -228,7 +236,7 @@ services:
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\StandingComment
 
     visca_licom.repository.standing_view_graph:
@@ -236,7 +244,7 @@ services:
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\StandingViewGraph
 
     visca_licom.repository.profile:
@@ -244,7 +252,7 @@ services:
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\Profile
 
     visca_licom.repository.profile_rule:
@@ -252,7 +260,7 @@ services:
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\ProfileRule
 
     visca_licom.repository.profile_entity_graph:
@@ -260,18 +268,18 @@ services:
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\ProfileEntityGraph
         calls:
             - ['setLicomProfileId', ['%licom_profile_id%']]
-            - ['setRepositoryLabel', [@visca_licom.repository.profile_entity_graph_label]]
+            - ['setRepositoryLabel', ['@visca_licom.repository.profile_entity_graph_label']]
 
     visca_licom.repository.profile_entity_graph_label:
         class: Visca\Bundle\LicomBundle\Repository\ProfileEntityGraphLabelRepository
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\ProfileEntityGraphLabel
 
     visca_licom.repository.participant_membership:
@@ -279,7 +287,7 @@ services:
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\ParticipantMembership
 
     visca_licom.repository.standing_view:
@@ -287,7 +295,7 @@ services:
       factory_service: visca_doctrine.repository.factory
       factory_method: getRepository
       arguments:
-          - @visca_licom.entity_manager
+          - '@visca_licom.entity_manager'
           - Visca\Bundle\LicomBundle\Entity\StandingView
 
     visca_licom.repository.standing_column:
@@ -295,7 +303,7 @@ services:
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\StandingColumn
 
     visca_licom.repository.localization:
@@ -303,7 +311,7 @@ services:
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\Localization
 
     visca_licom.repository.localization_translation:
@@ -311,18 +319,18 @@ services:
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\LocalizationTranslation
         calls:
-            - ['setRepositoryLocalization', [@visca_licom.repository.localization]]
-            - ['setRepositoryProfileRule', [@visca_licom.repository.profile_rule]]
+            - ['setRepositoryLocalization', ['@visca_licom.repository.localization']]
+            - ['setRepositoryProfileRule', ['@visca_licom.repository.profile_rule']]
 
     visca_licom.repository.localization_translation_type:
         class: Visca\Bundle\LicomBundle\Repository\LocalizationTranslationTypeRepository
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\LocalizationTranslationType
 
     visca_licom.repository.localization_translation_graph_label:
@@ -330,19 +338,35 @@ services:
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\LocalizationTranslationGraphLabel
 
     # Custom repositories
     visca_licom.provider.match_counter:
         class: Visca\Bundle\LicomBundle\Repository\Counter\MatchCounterRepository
         arguments:
-          - @visca_licom.repository.match
+          - '@visca_licom.repository.match'
 
     visca_licom.repository.standing_type:
         class: Visca\Bundle\LicomBundle\Repository\StandingTypeRepository
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:
-            - @visca_licom.entity_manager
+            - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\StandingType
+
+    visca_licom.repository.match_result:
+        class: Visca\Bundle\LicomBundle\Repository\MatchResultRepository
+        factory_service: visca_doctrine.repository.factory
+        factory_method: getRepository
+        arguments:
+            - '@visca_licom.entity_manager'
+            - Visca\Bundle\LicomBundle\Entity\MatchResult
+
+    visca_licom.repository.match_result_type:
+        class: Visca\Bundle\LicomBundle\Repository\MatchResultTypeRepository
+        factory_service: visca_doctrine.repository.factory
+        factory_method: getRepository
+        arguments:
+            - '@visca_licom.entity_manager'
+            - Visca\Bundle\LicomBundle\Entity\MatchResultType

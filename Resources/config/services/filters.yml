@@ -3,10 +3,10 @@ services:
         class: Visca\Bundle\LicomBundle\Services\Filters\MatchMostRevelantFilter
         arguments:
             -
-                - @visca_licom.filter.match.rule.in_progress
-                - @visca_licom.filter.match.rule.last_played_recently
-                - @visca_licom.filter.match.rule.next_to_come
-                - @visca_licom.filter.match.rule.last_played
+                - '@visca_licom.filter.match.rule.in_progress'
+                - '@visca_licom.filter.match.rule.last_played_recently'
+                - '@visca_licom.filter.match.rule.next_to_come'
+                - '@visca_licom.filter.match.rule.last_played'
 
     visca_licom.filter.match.rule.in_progress:
         class: Visca\Bundle\LicomBundle\Services\Filters\Rules\MatchInProgressRule

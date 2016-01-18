@@ -9,3 +9,5 @@ services:
     class: Visca\Bundle\LicomBundle\Factory\MatchFactory
   visca_licom.factory.standing:
     class: Visca\Bundle\LicomBundle\Factory\StandingFactory
+  visca_licom.factory.match_result:
+    class: Visca\Bundle\LicomBundle\Factory\MatchResultFactory

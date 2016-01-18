@@ -1186,6 +1186,9 @@
       <entity name="\Visca\Bundle\LicomBundle\Entity\Coach" local-name="Coach" namespace="\Visca\Bundle\LicomBundle\Entity" uuid="3ee74ed9-536e-4ad3-a075-a8ad5fe52403">
         <inheritance-child derived-from="\Visca\Bundle\LicomBundle\Entity\Participant" discriminator-value="coach" uuid="f12a7779-07de-4db9-adc3-41dbbda3fd60"/>
       </entity>
+      <entity name="\Visca\Bundle\LicomBundle\Entity\Official" local-name="Official" namespace="\Visca\Bundle\LicomBundle\Entity" uuid="e7c8b744-f384-4fd9-93bd-e94ae5e63b19">
+        <inheritance-child derived-from="\Visca\Bundle\LicomBundle\Entity\Participant" discriminator-value="official" uuid="82117f82-62fd-4ab6-b694-128c25ae7575"/>
+      </entity>
     </region>
     <association from="\Visca\Bundle\LicomBundle\Entity\ParticipantAux" to="\Visca\Bundle\LicomBundle\Entity\Participant" owner-alias="aux" inverse-alias="participant" many-owner="true" many-inverse="false" parent-required="true" uuid="aff17a91-529a-43b2-861c-76986fe5cf7d">
       <association-field from="participant" to="id"/>
@@ -3077,11 +3080,13 @@
     <entity uuid="d0273445-1498-4218-b7e4-ae1e5c292b50" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="562" position-y="-47" size-x="0" size-x2="147" size-y="0" size-y2="59"/>
     <entity uuid="e4bc421e-5622-4ed7-b4bb-1fabfb55301c" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="299" position-y="39" size-x="0" size-x2="98" size-y="0" size-y2="73"/>
     <entity uuid="e7bc0c5d-7b81-4590-a77b-a6dbb5237944" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="228" position-y="19" size-x="0" size-x2="119" size-y="0" size-y2="101"/>
+    <entity uuid="e7c8b744-f384-4fd9-93bd-e94ae5e63b19" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="520" position-y="101" size-x="0" size-x2="38" size-y="0" size-y2="20"/>
     <entity uuid="ed1dd7a2-1f33-4b6d-a360-0551a43048ae" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="459" position-y="536" size-x="0" size-x2="112" size-y="0" size-y2="59"/>
     <inheritance-child uuid="037e5e54-fd3a-4934-a4cb-9f56adb3c1f4" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
     <inheritance-child uuid="152d7687-09f7-490f-816e-8563a9d0a603" color="4288059030"/>
     <inheritance-child uuid="4813700f-5cb0-4a3c-a7f9-8226af6a0288" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
     <inheritance-child uuid="4d28e400-a309-429c-90ef-74b60f19c86e" color="4288059030"/>
+    <inheritance-child uuid="82117f82-62fd-4ab6-b694-128c25ae7575" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
     <inheritance-child uuid="f12a7779-07de-4db9-adc3-41dbbda3fd60" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
     <module uuid="7efdf1ad-6dda-4293-bad8-8c9bd8031365" bg-color="#E7F5FD" position-x="88" position-y="191" size-x="38" size-x2="4548" size-y="141" size-y2="2092"/>
     <project uuid="4fbd6e18-aabc-4751-bcd9-bae36ed1129c" size-x="67" size-x2="4686" size-y="0" size-y2="2333"/>

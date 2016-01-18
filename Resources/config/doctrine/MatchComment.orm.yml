@@ -34,7 +34,7 @@ Visca\Bundle\LicomBundle\Entity\MatchComment:
     time:
       type: DateTimeUTCType
       nullable: true
-      column: `time`
+      column: '`time`'
       options:
         default: NULL
     del:
