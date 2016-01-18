@@ -269,7 +269,7 @@ class MatchRepository extends AbstractEntityRepository
      * @param null      $offset                  Limit offset
      * @param null      $orderField              Order field
      * @param string    $orderType               Order type
-     * @param bool      $preloadBothParticipants ?????
+     * @param bool      $preloadBothParticipants Preload both participants in the resultset
      * @param null      $participantPosition     Specify if the Participant is HOME|AWAY
      *
      * @return \Visca\Bundle\LicomBundle\Entity\Match[]
