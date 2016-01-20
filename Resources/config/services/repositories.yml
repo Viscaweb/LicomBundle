@@ -355,6 +355,14 @@ services:
             - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\StandingType
 
+    visca_licom.repository.match_result:
+        class: Visca\Bundle\LicomBundle\Repository\MatchResultRepository
+        factory_service: visca_doctrine.repository.factory
+        factory_method: getRepository
+        arguments:
+            - '@visca_licom.entity_manager'
+            - Visca\Bundle\LicomBundle\Entity\MatchResult
+
     visca_licom.repository.match_result_type:
         class: Visca\Bundle\LicomBundle\Repository\MatchResultTypeRepository
         factory_service: visca_doctrine.repository.factory
