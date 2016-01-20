@@ -10,6 +10,7 @@ use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
 use Visca\Bundle\LicomBundle\Entity\Athlete;
 use Visca\Bundle\LicomBundle\Entity\CompetitionSeason;
 use Visca\Bundle\LicomBundle\Entity\CompetitionSeasonStage;
+use Visca\Bundle\LicomBundle\Entity\Country;
 use Visca\Bundle\LicomBundle\Entity\Enum\MatchStatusDescriptionCategoryType;
 use Visca\Bundle\LicomBundle\Entity\Match;
 use Visca\Bundle\LicomBundle\Entity\MatchParticipant;
@@ -517,6 +518,111 @@ class MatchRepository extends AbstractEntityRepository
             ->orderBy('m.startDate', 'ASC')
             ->setParameter('start', $dateFrom->format('Y-m-d H:i:s'))
             ->setParameter('importance', $importance)
+            ->groupBy('m.id');
+
+        /*
+         * If we don't have any "to date", don't add it to the query
+         */
+        if ($toDays !== null) {
+            $dateEnd = new \DateTime('+'.$toDays.' days, 23:59:59');
+            $this->alterDateObjects($dateEnd);
+
+            $queryBuilder
+                ->andWhere('m.startDate <= :end')
+                ->setParameter('end', $dateEnd->format('Y-m-d H:i:s'));
+        }
+
+        if ($limit !== null) {
+            $queryBuilder->setMaxResults($limit);
+        }
+
+        return $queryBuilder
+            ->getQuery()
+            ->execute();
+    }
+
+    /**
+     * Finds Matches that has a given importance and are going to be played in $days days.
+     * If the toDays is not set, the query will return all the results biggers than the fromDate
+     * And will add the limit if provided.
+     *
+     * @param int    $country     Country entity.
+     * @param string $importance  top|important|2nd.
+     * @param int    $fromDays    Starting date the match can take place.
+     *                            Specified in number of relative days from today.
+     * @param int    $toDays      Limit date the match can take place. Specified in number of relative days from today.
+     * @param int    $limit       Limit the number of matches returned. Default 3.
+     *
+     * @return \Visca\Bundle\LicomBundle\Entity\Match[]
+     */
+    public function findByCountryImportanceInDays(
+        $countryId,
+        $importance,
+        $fromDays,
+        $toDays = null,
+        $limit = null
+    ) {
+        /*
+         * DQL does not implement DATE() mysql function.
+         * Here's how to implement it:
+         * http://stackoverflow.com/questions/13272224/use-a-date-function-in-a-where-clause-with-dql
+         * But it also does not implement INTERVAL neither,
+         * So I can't do
+         * SELECT * FROM Match WHERE DATE(m.startDate) = (CURDATE() - INTERVAL :days DAY)
+         * easily...
+         *
+         * So I end up constructing a PHP object that holds the date of
+         * X days ago, and get those matches that start after (>=) that date.
+         * Also, order the result set by startDate, olders first.
+         */
+        $dateFrom = new \DateTime('+'.$fromDays.' days');
+
+        /*
+         * $fromDays = 0 means that we accept matches playing today.
+         * Therefore, we could get some matches that are finished.
+         *
+         * To avoid this behaviour, we must say that we accept only
+         * the matches are that playing in future.
+         */
+        if ($fromDays !== 0) {
+            $dateFrom->setTime(0, 0, 0);
+        }
+        $this->alterDateObjects($dateFrom);
+
+        $queryBuilder = parent::createQueryBuilder('m');
+        $queryBuilder
+            ->select('m')
+            ->setCacheable(false);
+
+        $queryBuilder
+            ->join('m.matchAuxProfile', 'ma', Join::WITH)
+            ->join(
+                'm.competitionSeasonStage',
+                'css',
+                Join::WITH
+            )
+            ->join(
+                'css.competitionSeason',
+                'cs',
+                Join::WITH
+            )
+            ->join(
+                'cs.competition',
+                'c',
+                Join::WITH
+            )
+            ->join(
+                'c.competitionCategory',
+                'cc',
+                Join::WITH,
+                'cc.country = :country'
+            )
+            ->andWhere('m.startDate >= :start')
+            ->andWhere('ma.value = :importance')
+            ->orderBy('m.startDate', 'ASC')
+            ->setParameter('start', $dateFrom->format('Y-m-d H:i:s'))
+            ->setParameter('importance', $importance)
+            ->setParameter('country', $countryId)
             ->groupBy('m.id');
 
         /*

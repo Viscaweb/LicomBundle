@@ -61,4 +61,29 @@ class ParticipantMembershipRepository extends AbstractEntityRepository
             ->getQuery()
             ->getArrayResult();
     }
+
+    /**
+     * @param int $athleteId AthleteId
+     *
+     * @return array
+     */
+    public function getParticipantIdsByAthleteId(
+        $athleteId
+    ) {
+        return $this
+            ->createQueryBuilder('pm')
+            ->select('pm')
+            ->join(
+                'pm.participant',
+                'participant',
+                'WITH',
+                'participant.id = :participantId'
+            )
+            ->join('pm.entity', 'entity', 'WITH', 'entity.id = :entityId')
+            ->andWhere('pm.active = true')
+            ->setParameter('participantId', $athleteId)
+            ->setParameter('entityId', EntityCode::PARTICIPANT_CODE)
+            ->getQuery()
+            ->getArrayResult();
+    }
 }
