@@ -854,7 +854,7 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param string            $status Match Status description.
+     * @param string|null            $status Match Status description.
      * @param DateTimeInterface $date   A date.
      * @param bool|true         $before Do we want matches before the date?
      * @param null              $limit  How many matches we want.
@@ -885,17 +885,19 @@ class MatchRepository extends AbstractEntityRepository
             ->setMaxResults($limit)
             ->setParameter('start', $date->format('Y-m-d H:i:s'));
 
-        $statusCategories = $this->prepareStatusCategories($status);
+        if(!is_null($status)){
+            $statusCategories = $this->prepareStatusCategories($status);
 
-        $queryBuilder
-            ->leftJoin(
-                'Visca\Bundle\LicomBundle\Entity\MatchStatusDescription',
-                's',
-                Join::WITH,
-                's.id = m.matchStatusDescription'
-            )
-            ->andWhere('s.category IN (:categories)')
-            ->setParameter('categories', $statusCategories);
+            $queryBuilder
+                ->leftJoin(
+                    'Visca\Bundle\LicomBundle\Entity\MatchStatusDescription',
+                    's',
+                    Join::WITH,
+                    's.id = m.matchStatusDescription'
+                )
+                ->andWhere('s.category IN (:categories)')
+                ->setParameter('categories', $statusCategories);
+        }
 
         if ($limit !== null) {
             $queryBuilder->setMaxResults($limit);
@@ -1317,11 +1319,17 @@ class MatchRepository extends AbstractEntityRepository
     {
         switch ($status) {
             case MatchStatusDescriptionCategoryType::INPROGRESS:
-                $statusCategories = [MatchStatusDescriptionCategoryType::INPROGRESS];
+                $statusCategories = [
+                    MatchStatusDescriptionCategoryType::INPROGRESS
+                ];
                 break;
 
             case MatchStatusDescriptionCategoryType::NOTSTARTED:
-                $statusCategories = [MatchStatusDescriptionCategoryType::NOTSTARTED];
+                $statusCategories = [
+                    MatchStatusDescriptionCategoryType::NOTSTARTED,
+                    MatchStatusDescriptionCategoryType::CANCELLED,
+                    MatchStatusDescriptionCategoryType::UNKNOWN,
+                ];
                 break;
 
             case MatchStatusDescriptionCategoryType::FINISHED:
