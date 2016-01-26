@@ -9,6 +9,7 @@ use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
 use Visca\Bundle\LicomBundle\Entity\Code\CompetitionGraphLabelCode;
 use Visca\Bundle\LicomBundle\Entity\Competition;
 use Visca\Bundle\LicomBundle\Entity\CompetitionSeason;
+use Visca\Bundle\LicomBundle\Entity\Team;
 
 /**
  * Class CompetitionSeasonRepository.
@@ -63,6 +64,43 @@ class CompetitionSeasonRepository extends AbstractEntityRepository
             ])
             ->getQuery()->getOneOrNullResult();
     }
+
+    /**
+     * @param Team $team Team entity
+     *
+     * @return CompetitionSeason[]
+     */
+    public function findCurrentByTeam(Team $team)
+    {
+//        SELECT cs.name, cg.*, m.*
+//        FROM `Match` as `m`
+//        INNER JOIN MatchParticipant as mp ON (m.id = mp.`Match_id`)
+//        INNER JOIN CompetitionSeasonStage as css ON(css.id = m.competitionSeasonStage)
+//        INNER JOIN CompetitionSeason as cs ON(cs.id = css.CompetitionSeason)
+//        INNER JOIN Competition_graph as cg ON (cg.Competition=cs.Competition)
+//        WHERE mp.participant = 50 AND cg.label = 1
+//        ORDER BY startDate DESC
+//        LIMIT 10
+        return $this
+                ->entityManager
+                ->createQueryBuilder()
+                ->select('cs')
+          //  ->select('cs')
+            ->from('ViscaLicomBundle:Match', 'm')
+            ->join('ViscaLicomBundle:MatchParticipant', 'mp', Join::WITH, 'm.id = mp.match')
+            ->join('ViscaLicomBundle:CompetitionSeasonStage', 'css', Join::WITH, 'css.id = m.competitionSeasonStage')
+            ->join('ViscaLicomBundle:CompetitionSeason', 'cs', Join::WITH, 'cs.id = css.competitionSeason')
+            ->join('ViscaLicomBundle:CompetitionGraph', 'cg', Join::WITH, 'cg.competition = cs.competition')
+            ->where('mp.participant = :participant')
+            ->andWhere('cg.label = :label')
+            ->setParameters([
+                'participant' => $team->getId(),
+                'label' => CompetitionGraphLabelCode::CURRENT_CODE
+            ])
+            ->getQuery()
+            ->getResult();
+    }
+
 
     /**
      * @param array $ids Ids

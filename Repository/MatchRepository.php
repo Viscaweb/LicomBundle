@@ -854,7 +854,7 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param string|null            $status Match Status description.
+     * @param string|null       $status Match Status description.
      * @param DateTimeInterface $date   A date.
      * @param bool|true         $before Do we want matches before the date?
      * @param null              $limit  How many matches we want.
@@ -885,7 +885,7 @@ class MatchRepository extends AbstractEntityRepository
             ->setMaxResults($limit)
             ->setParameter('start', $date->format('Y-m-d H:i:s'));
 
-        if(!is_null($status)){
+        if (!is_null($status)) {
             $statusCategories = $this->prepareStatusCategories($status);
 
             $queryBuilder
