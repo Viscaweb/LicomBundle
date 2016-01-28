@@ -72,20 +72,10 @@ class CompetitionSeasonRepository extends AbstractEntityRepository
      */
     public function findCurrentByTeam(Team $team)
     {
-//        SELECT cs.name, cg.*, m.*
-//        FROM `Match` as `m`
-//        INNER JOIN MatchParticipant as mp ON (m.id = mp.`Match_id`)
-//        INNER JOIN CompetitionSeasonStage as css ON(css.id = m.competitionSeasonStage)
-//        INNER JOIN CompetitionSeason as cs ON(cs.id = css.CompetitionSeason)
-//        INNER JOIN Competition_graph as cg ON (cg.Competition=cs.Competition)
-//        WHERE mp.participant = 50 AND cg.label = 1
-//        ORDER BY startDate DESC
-//        LIMIT 10
         return $this
                 ->entityManager
                 ->createQueryBuilder()
                 ->select('cs')
-          //  ->select('cs')
             ->from('ViscaLicomBundle:Match', 'm')
             ->join('ViscaLicomBundle:MatchParticipant', 'mp', Join::WITH, 'm.id = mp.match')
             ->join('ViscaLicomBundle:CompetitionSeasonStage', 'css', Join::WITH, 'css.id = m.competitionSeasonStage')
