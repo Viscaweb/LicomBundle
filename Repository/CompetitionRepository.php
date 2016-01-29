@@ -6,10 +6,12 @@ use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
 use Visca\Bundle\LicomBundle\Entity\Code\LocalizationTranslationTypeCode;
 use Visca\Bundle\LicomBundle\Entity\Code\ProfileTranslationGraphLabelCode;
 use Visca\Bundle\LicomBundle\Entity\Competition;
+use Visca\Bundle\LicomBundle\Entity\Country;
 use Visca\Bundle\LicomBundle\Entity\ProfileEntityGraph;
 use Visca\Bundle\LicomBundle\Entity\Sport;
 use Visca\Bundle\LicomBundle\Exception\NoTranslationFoundException;
 use Visca\Bundle\LicomBundle\Repository\Traits\GetAndSortByIdTrait;
+use Doctrine\ORM\Query\Expr\Join;
 
 /**
  * Class CompetitionRepository.
@@ -179,5 +181,43 @@ class CompetitionRepository extends AbstractEntityRepository
         }
 
         return $this->findBy(['id' => $competitionsIds]);
+    }
+
+    /**
+     * @param Country $country
+     * @param Sport   $sport
+     *
+     * @return Competition|null
+     */
+    public function findMainCompetitionByCountryAndSport(Country $country, Sport $sport)
+    {
+        $competitionCategory = $this->entityManager
+            ->createQueryBuilder()
+            ->select('competition_category.id')
+            ->from('ViscaLicomBundle:CompetitionCategory', 'competition_category')
+            ->join('competition_category.sport', 'sport', Join::WITH, 'sport.id = :sportId')
+            ->join('competition_category.country', 'country', Join::WITH, 'country.id = :countryId')
+            ->setParameter('sportId', $sport->getId())
+            ->setParameter('countryId', $country->getId())
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        if (!$competitionCategory) {
+            return null;
+        }
+
+        return  $this->createQueryBuilder('competition')
+            ->join(
+                'competition.competitionCategory',
+                'competitionCategory',
+                Join::WITH,
+                'competitionCategory.id = :competitionCategoryId'
+            )
+            ->where('competition.level = 1')
+            ->setParameter('competitionCategoryId', $competitionCategory['id'])
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 }
