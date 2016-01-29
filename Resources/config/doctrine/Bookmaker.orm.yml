@@ -1,6 +1,7 @@
 Visca\Bundle\LicomBundle\Entity\Bookmaker:
   type: entity
   table: Bookmaker
+  repositoryClass: Visca\Bundle\LicomBundle\Repository\BookmakerRepository
   id:
     id:
       type: smallint
