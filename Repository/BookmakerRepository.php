@@ -22,13 +22,13 @@ class BookmakerRepository extends AbstractEntityRepository
     /**
      * @return null|Bookmaker
      */
-  protected function getMain()
-  {
-      return $this->createQueryBuilder('bookmaker')
-          ->select('bookmaker')
-          ->orderBy('bookmaker.id', 'ASC')
-          ->setMaxResults(1)
-          ->getQuery()
-          ->getOneOrNullResult();
-  }
+    public function getMain()
+    {
+        return $this->createQueryBuilder('bookmaker')
+            ->select('bookmaker')
+            ->orderBy('bookmaker.id', 'ASC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }
