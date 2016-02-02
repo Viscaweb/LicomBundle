@@ -1194,7 +1194,7 @@ class MatchRepository extends AbstractEntityRepository
             ->andWhere('css.competitionStage = cs.id')
             ->andWhere('m.competitionSeasonStage = css.id');
 
-        if ($competitionRoundId !== null) {
+        if ($competitionRoundId !== null && count($competitionRoundId) > 0) {
             //            if (is_array($competitionRoundId)) {
             $queryBuilder->andWhere('m.competitionRound IN (:rids)')
                 ->setParameter('rids', $competitionRoundId);
@@ -1204,7 +1204,7 @@ class MatchRepository extends AbstractEntityRepository
 //            }
         }
 
-        if ($competitionLegId !== null) {
+        if ($competitionLegId !== null && count($competitionLegId) > 0) {
             $queryBuilder->andWhere('m.competitionLeg IN (:lid)')
                 ->setParameter('lid', $competitionLegId);
         }
