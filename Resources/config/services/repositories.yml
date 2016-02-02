@@ -370,3 +370,11 @@ services:
         arguments:
             - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\MatchResultType
+
+    visca_licom.repository.bookmaker:
+        class: Visca\Bundle\LicomBundle\Repository\BookmakerRepository
+        factory_service: visca_doctrine.repository.factory
+        factory_method: getRepository
+        arguments:
+            - '@visca_licom.entity_manager'
+            - Visca\Bundle\LicomBundle\Entity\Bookmaker
