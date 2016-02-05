@@ -68,6 +68,7 @@ Visca\Bundle\LicomBundle\Entity\ParticipantMembership:
           nullable: false
     participant:
       targetEntity: Visca\Bundle\LicomBundle\Entity\Participant
+      inversedBy: participantMembership
       joinColumns:
         Participant:
           referencedColumnName: id
