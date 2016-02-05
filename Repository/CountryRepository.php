@@ -111,6 +111,29 @@ class CountryRepository extends AbstractEntityRepository
     }
 
     /**
+     * @param null $limit Number of country we need
+     *
+     * @return Country[]
+     */
+    public function findWithCompetitionOrderedByName($limit = null)
+    {
+        $queryBuilder = $this
+            ->createQueryBuilder('c')
+            ->join('c.competitionCategory', 'competitionCategory')
+            ->join('competitionCategory.competition', 'competition')
+            ->orderBy('c.name', 'ASC');
+
+        if (is_numeric($limit)) {
+            $queryBuilder->setMaxResults($limit);
+        }
+
+        $query = $queryBuilder->getQuery();
+        $this->setCacheStrategy($query);
+
+        return $query->getResult();
+    }
+
+    /**
      * @param int    $licomProfileId App's profile ID
      * @param string $countrySlug    Country's slug
      *
