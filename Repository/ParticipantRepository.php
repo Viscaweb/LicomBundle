@@ -166,4 +166,27 @@ class ParticipantRepository extends AbstractEntityRepository
             ->getResult();
     }
 
+    /**
+     * @param int[] $teamsIds
+     *
+     * @return Participant[]
+     */
+    public function findAtheleteByTeamIds($teamsIds)
+    {
+        return $this
+            ->createQueryBuilder('participant')
+            ->join(
+                'ViscaLicomBundle:ParticipantMembership',
+                'participantMembership',
+                'WITH',
+                'participantMembership.participant = participant.id'
+            )
+            ->where('participantMembership.entity = :membershipEntity')
+            ->andWhere('participantMembership.entityId IN (:membershipsTeamsIds)')
+            ->setParameter('membershipEntity', '401')
+            ->setParameter('membershipsTeamsIds', $teamsIds)
+            ->getQuery()
+            ->getResult();
+    }
+
 }
