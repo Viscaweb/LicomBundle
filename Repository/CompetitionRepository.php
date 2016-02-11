@@ -234,28 +234,10 @@ class CompetitionRepository extends AbstractEntityRepository
             ->join('c.competitionCategory', 'cc')
             ->where('c.id IN (:ids)')
             ->andWhere('cc.sport = :sportId')
+            ->orderBy('FIELD(c.id, :ids)')
             ->setParameter('ids', $ids)
             ->setParameter('sportId', $sport->getId());
 
-        $entities = $queryBuilder->getQuery()->getResult();
-
-        usort(
-            $entities,
-            function ($firstEntity, $secondEntity) use ($ids) {
-                $firstEntityPosition = array_search(
-                    $firstEntity->getId(),
-                    $ids
-                );
-                $secondEntityPosition = array_search(
-                    $secondEntity->getId(),
-                    $ids
-                );
-
-                return $firstEntityPosition > $secondEntityPosition;
-
-            }
-        );
-
-        return $entities;
+        return $queryBuilder->getQuery()->getResult();
     }
 }
