@@ -220,4 +220,42 @@ class CompetitionRepository extends AbstractEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
+
+    /**
+     * @param array $ids
+     * @param Sport $sport
+     *
+     * @return array
+     */
+    public function getAndSortByIdsAndSport(array $ids, Sport $sport)
+    {
+        $queryBuilder = $this
+            ->createQueryBuilder('c')
+            ->join('c.competitionCategory', 'cc')
+            ->where('c.id IN (:ids)')
+            ->andWhere('cc.sport = :sportId')
+            ->setParameter('ids', $ids)
+            ->setParameter('sportId', $sport->getId());
+
+        $entities = $queryBuilder->getQuery()->getResult();
+
+        usort(
+            $entities,
+            function ($firstEntity, $secondEntity) use ($ids) {
+                $firstEntityPosition = array_search(
+                    $firstEntity->getId(),
+                    $ids
+                );
+                $secondEntityPosition = array_search(
+                    $secondEntity->getId(),
+                    $ids
+                );
+
+                return $firstEntityPosition > $secondEntityPosition;
+
+            }
+        );
+
+        return $entities;
+    }
 }
