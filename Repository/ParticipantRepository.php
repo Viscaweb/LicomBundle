@@ -10,6 +10,7 @@ use Visca\Bundle\LicomBundle\Entity\ProfileEntityGraph;
 use Visca\Bundle\LicomBundle\Entity\Sport;
 use Visca\Bundle\LicomBundle\Exception\NoTranslationFoundException;
 use Visca\Bundle\LicomBundle\Repository\Traits\GetAndSortByIdTrait;
+use Doctrine\ORM\Query\Expr\Join;
 
 /**
  * Class ParticipantRepository.
@@ -219,7 +220,6 @@ class ParticipantRepository extends AbstractEntityRepository
                 );
 
                 return $firstEntityPosition > $secondEntityPosition;
-
             }
         );
 
