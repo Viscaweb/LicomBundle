@@ -189,4 +189,40 @@ class ParticipantRepository extends AbstractEntityRepository
             ->getResult();
     }
 
+    /**
+     * @param array $ids
+     * @param Sport $sport
+     *
+     * @return array
+     */
+    public function getAndSortByIdsAndSport(array $ids, Sport $sport)
+    {
+        $queryBuilder = $this
+            ->createQueryBuilder('p')
+            ->join('p.sport', 's', Join::WITH, 's.id = :sportId')
+            ->where('p.id IN (:ids)')
+            ->setParameter('ids', $ids)
+            ->setParameter('sportId', $sport->getId());
+
+        $entities = $queryBuilder->getQuery()->getResult();
+
+        usort(
+            $entities,
+            function ($firstEntity, $secondEntity) use ($ids) {
+                $firstEntityPosition = array_search(
+                    $firstEntity->getId(),
+                    $ids
+                );
+                $secondEntityPosition = array_search(
+                    $secondEntity->getId(),
+                    $ids
+                );
+
+                return $firstEntityPosition > $secondEntityPosition;
+
+            }
+        );
+
+        return $entities;
+    }
 }
