@@ -10,6 +10,7 @@ use Visca\Bundle\LicomBundle\Entity\ProfileEntityGraph;
 use Visca\Bundle\LicomBundle\Entity\Sport;
 use Visca\Bundle\LicomBundle\Exception\NoTranslationFoundException;
 use Visca\Bundle\LicomBundle\Repository\Traits\GetAndSortByIdTrait;
+use Doctrine\ORM\Query\Expr\Join;
 
 /**
  * Class ParticipantRepository.
@@ -166,4 +167,62 @@ class ParticipantRepository extends AbstractEntityRepository
             ->getResult();
     }
 
+    /**
+     * @param int[] $teamsIds
+     *
+     * @return Participant[]
+     */
+    public function findAtheleteByTeamIds($teamsIds)
+    {
+        return $this
+            ->createQueryBuilder('participant')
+            ->join(
+                'ViscaLicomBundle:ParticipantMembership',
+                'participantMembership',
+                'WITH',
+                'participantMembership.participant = participant.id'
+            )
+            ->where('participantMembership.entity = :membershipEntity')
+            ->andWhere('participantMembership.entityId IN (:membershipsTeamsIds)')
+            ->setParameter('membershipEntity', '401')
+            ->setParameter('membershipsTeamsIds', $teamsIds)
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @param array $ids
+     * @param Sport $sport
+     *
+     * @return array
+     */
+    public function getAndSortByIdsAndSport(array $ids, Sport $sport)
+    {
+        $queryBuilder = $this
+            ->createQueryBuilder('p')
+            ->join('p.sport', 's', Join::WITH, 's.id = :sportId')
+            ->where('p.id IN (:ids)')
+            ->setParameter('ids', $ids)
+            ->setParameter('sportId', $sport->getId());
+
+        $entities = $queryBuilder->getQuery()->getResult();
+
+        usort(
+            $entities,
+            function ($firstEntity, $secondEntity) use ($ids) {
+                $firstEntityPosition = array_search(
+                    $firstEntity->getId(),
+                    $ids
+                );
+                $secondEntityPosition = array_search(
+                    $secondEntity->getId(),
+                    $ids
+                );
+
+                return $firstEntityPosition > $secondEntityPosition;
+            }
+        );
+
+        return $entities;
+    }
 }
