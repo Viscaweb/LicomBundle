@@ -51,7 +51,7 @@ class CompetitionRepository extends AbstractEntityRepository
     /**
      * @param int $countryId Id of the country to get
      *
-     * @returns Competition[]
+     * @return Competition[]
      */
     public function findByCountry($countryId)
     {
@@ -184,19 +184,34 @@ class CompetitionRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param Country $country
-     * @param Sport   $sport
+     * @param Country $country Country entity
+     * @param Sport   $sport   Sport entity
      *
      * @return Competition|null
      */
-    public function findMainCompetitionByCountryAndSport(Country $country, Sport $sport)
-    {
+    public function findMainCompetitionByCountryAndSport(
+        Country $country,
+        Sport $sport
+    ) {
         $competitionCategory = $this->entityManager
             ->createQueryBuilder()
             ->select('competition_category.id')
-            ->from('ViscaLicomBundle:CompetitionCategory', 'competition_category')
-            ->join('competition_category.sport', 'sport', Join::WITH, 'sport.id = :sportId')
-            ->join('competition_category.country', 'country', Join::WITH, 'country.id = :countryId')
+            ->from(
+                'ViscaLicomBundle:CompetitionCategory',
+                'competition_category'
+            )
+            ->join(
+                'competition_category.sport',
+                'sport',
+                Join::WITH,
+                'sport.id = :sportId'
+            )
+            ->join(
+                'competition_category.country',
+                'country',
+                Join::WITH,
+                'country.id = :countryId'
+            )
             ->setParameter('sportId', $sport->getId())
             ->setParameter('countryId', $country->getId())
             ->setMaxResults(1)
@@ -207,7 +222,7 @@ class CompetitionRepository extends AbstractEntityRepository
             return null;
         }
 
-        return  $this->createQueryBuilder('competition')
+        return $this->createQueryBuilder('competition')
             ->join(
                 'competition.competitionCategory',
                 'competitionCategory',

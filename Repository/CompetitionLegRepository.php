@@ -150,7 +150,7 @@ class CompetitionLegRepository extends AbstractEntityRepository
                 ]
             );
 
-        return $queryBuilder->getQuery()->getOneOrNullResult();
+        return $queryBuilder->getQuery()->getResult();
     }
 
     /**
