@@ -7,6 +7,7 @@ use Visca\Bundle\LicomBundle\Entity\Code\LocalizationTranslationTypeCode;
 use Visca\Bundle\LicomBundle\Entity\Code\ProfileTranslationGraphLabelCode;
 use Visca\Bundle\LicomBundle\Entity\Competition;
 use Visca\Bundle\LicomBundle\Entity\Country;
+use Visca\Bundle\LicomBundle\Entity\Match;
 use Visca\Bundle\LicomBundle\Entity\ProfileEntityGraph;
 use Visca\Bundle\LicomBundle\Entity\Sport;
 use Visca\Bundle\LicomBundle\Exception\NoTranslationFoundException;
@@ -272,5 +273,46 @@ class CompetitionRepository extends AbstractEntityRepository
         );
 
         return $entities;
+    }
+
+    /**
+     * @param Match[] $matches
+     *
+     * @return Competition[]|null
+     */
+    public function findByMatchesIds(
+        $matches = array()
+    ) {
+        $competitions = $this->entityManager
+            ->createQueryBuilder()
+            ->select('competition')
+            ->from(
+                'ViscaLicomBundle:Competition',
+                'competition'
+            )
+            ->join(
+                'ViscaLicomBundle:CompetitionSeason',
+                'cs',
+                Join::WITH,
+                'cs.competition = competition.id'
+            )
+            ->join(
+                'ViscaLicomBundle:CompetitionSeasonStage',
+                'css',
+                Join::WITH,
+                'css.competitionSeason = cs.id'
+            )->join(
+                'ViscaLicomBundle:Match',
+                'match',
+                Join::WITH,
+                'match.competitionSeasonStage = css.id'
+            )
+            ->where('match.id in (:matches)')
+            ->setParameter('matches', $matches)
+            ->groupBy('competition.id')
+            ->getQuery()
+            ->getResult();
+
+        return $competitions;
     }
 }
