@@ -8,9 +8,7 @@ use Doctrine\ORM\Query\Expr;
 use Doctrine\ORM\Query\Expr\Join;
 use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
 use Visca\Bundle\LicomBundle\Entity\Athlete;
-use Visca\Bundle\LicomBundle\Entity\CompetitionSeason;
 use Visca\Bundle\LicomBundle\Entity\CompetitionSeasonStage;
-use Visca\Bundle\LicomBundle\Entity\Country;
 use Visca\Bundle\LicomBundle\Entity\Enum\MatchStatusDescriptionCategoryType;
 use Visca\Bundle\LicomBundle\Entity\Match;
 use Visca\Bundle\LicomBundle\Entity\MatchParticipant;
@@ -921,7 +919,6 @@ class MatchRepository extends AbstractEntityRepository
                 )
                 ->andWhere('mp1.id IS NOT NULL')
                 ->setParameter('homeNumber', MatchParticipant::HOME)
-
                 // Where sport
                 ->join(
                     "mp1.participant",
@@ -1450,6 +1447,57 @@ class MatchRepository extends AbstractEntityRepository
 
         return $queryBuilder->getQuery()->getResult();
     }
+
+    /**
+     * Returns the matches ids where the competition is the given one
+     *
+     * @param array    $matchesIds
+     * @param int|null $competitionId
+     *
+     * @return array
+     */
+    public function filterMatchesIdsByCompetition(
+        $matchesIds = array(),
+        $competitionId = null
+    ) {
+        $queryBuilder = $this->entityManager->createQueryBuilder();
+
+        /**
+         * If no copmpetition, return all the matches id's
+         */
+        if (is_null($competitionId)) {
+            return $matchesIds;
+        }
+
+        /**
+         * Filter by match ids and competition
+         */
+        if (is_array($matchesIds) && !empty($matchesIds)) {
+            $queryBuilder
+                ->select('m.id')
+                ->from('Visca\Bundle\LicomBundle\Entity\Match', 'm')
+                ->join('m.competitionSeasonStage', 'stage')
+                ->join('stage.competitionSeason', 'season')
+                ->join('season.competition', 'competition')
+                ->join('competition.competitionCategory', 'competitionCategory')
+                ->andWhere('m.id IN (:matchesIds)')
+                ->andWhere('season.competition = :competitionId')
+                ->setParameter('matchesIds', $matchesIds)
+                ->setParameter('competitionId', $competitionId);
+
+            /*
+             * Return the results
+             */
+
+            $results = $queryBuilder->getQuery()->getResult();
+
+            return $results;
+        }
+
+
+        return array();
+    }
+
 
     /**
      * Returns the array of status to search based on the status given
