@@ -174,4 +174,40 @@ class CompetitionRoundRepository extends AbstractEntityRepository
 
         return $queryBuilder->getQuery()->getArrayResult();
     }
+
+    /**
+     * @param CompetitionSeasonStage $competitionSeasonStage
+     * @param                        $label
+     *
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findLabeledByCompetitionSeasonStage(
+        CompetitionSeasonStage $competitionSeasonStage,
+        $label
+    ) {
+        // Get current CompetitionSeasonStage
+        $queryBuilder = $this->entityManager->createQueryBuilder();
+
+        $queryBuilder->select('Round')
+            ->from('ViscaLicomBundle:CompetitionRound', 'Round')
+            ->join(
+                'ViscaLicomBundle:CompetitionSeasonStageGraph',
+                'SeasonStageGraph',
+                Join::INNER_JOIN,
+                'SeasonStageGraph.competitionRound = Round.id'
+            )
+            ->andWhere(
+                'SeasonStageGraph.competitionSeasonStage = :competitionSeasonStage'
+            )
+            ->andWhere('SeasonStageGraph.label = :label')
+            ->setParameters(
+                [
+                    'competitionSeasonStage' => $competitionSeasonStage,
+                    'label' => $label,
+                ]
+            );
+
+        return $queryBuilder->getQuery()->getOneOrNullResult();
+    }
 }

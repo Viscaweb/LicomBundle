@@ -25,10 +25,12 @@ class MatchCommentRepository extends AbstractEntityRepository
             ->createQueryBuilder('mc')
             ->where('mc.match = :matchId')
             ->andWhere('mc.localization = :localizationProfile')
+            ->andWhere('mc.del = :del')
             ->setParameters(
                 [
                     'matchId' => $matchId,
                     'localizationProfile' => $localizationProfile,
+                    'del' => 'no',
                 ]
             )
             ->addOrderBy('mc.timeElapsed', 'DESC')

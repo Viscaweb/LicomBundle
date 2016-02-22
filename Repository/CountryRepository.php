@@ -111,6 +111,34 @@ class CountryRepository extends AbstractEntityRepository
     }
 
     /**
+     * @param null $limit Number of country we need
+     *
+     * @return Country[]
+     */
+    public function findWithCompetitionAndCountryExistsOrderedByName($limit = null)
+    {
+        // The ids of countries that not exists currently.
+        $notExistsIds = [96, 673, 671, 672, 670, 669, 675, 665];
+
+        $queryBuilder = $this
+            ->createQueryBuilder('c')
+            ->join('c.competitionCategory', 'competitionCategory')
+            ->join('competitionCategory.competition', 'competition')
+            ->Where('c.id NOT IN (:notExistsIds)')
+            ->setParameter('notExistsIds',$notExistsIds)
+            ->orderBy('c.name', 'ASC');
+
+        if (is_numeric($limit)) {
+            $queryBuilder->setMaxResults($limit);
+        }
+
+        $query = $queryBuilder->getQuery();
+        $this->setCacheStrategy($query);
+
+        return $query->getResult();
+    }
+
+    /**
      * @param int    $licomProfileId App's profile ID
      * @param string $countrySlug    Country's slug
      *

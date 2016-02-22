@@ -9,6 +9,7 @@ use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
 use Visca\Bundle\LicomBundle\Entity\Code\CompetitionGraphLabelCode;
 use Visca\Bundle\LicomBundle\Entity\Competition;
 use Visca\Bundle\LicomBundle\Entity\CompetitionSeason;
+use Visca\Bundle\LicomBundle\Entity\Team;
 
 /**
  * Class CompetitionSeasonRepository.
@@ -57,12 +58,44 @@ class CompetitionSeasonRepository extends AbstractEntityRepository
             ->join('ViscaLicomBundle:CompetitionGraph', 'cg', Join::WITH, 'cs.id = cg.competitionSeason')
             ->where('cg.label = :label')
             ->andWhere('cg.competition = :cid')
-            ->setParameters([
-                'cid' => $competition->getId(),
-                'label' => CompetitionGraphLabelCode::CURRENT_CODE,
-            ])
+            ->setParameters(
+                [
+                    'cid' => $competition->getId(),
+                    'label' => CompetitionGraphLabelCode::CURRENT_CODE,
+                ]
+            )
             ->getQuery()->getOneOrNullResult();
     }
+
+    /**
+     * @param Team $team Team entity
+     *
+     * @return CompetitionSeason[]
+     */
+    public function findCurrentByTeam(Team $team)
+    {
+        return $this
+            ->entityManager
+            ->createQueryBuilder()
+            ->select('cs, competition')
+            ->from('ViscaLicomBundle:Match', 'm')
+            ->join('ViscaLicomBundle:MatchParticipant', 'mp', Join::WITH, 'm.id = mp.match')
+            ->join('ViscaLicomBundle:CompetitionSeasonStage', 'css', Join::WITH, 'css.id = m.competitionSeasonStage')
+            ->join('ViscaLicomBundle:CompetitionSeason', 'cs', Join::WITH, 'cs.id = css.competitionSeason')
+            ->join('ViscaLicomBundle:CompetitionGraph', 'cg', Join::WITH, 'cg.competition = cs.competition')
+            ->join('cs.competition', 'competition')
+            ->where('mp.participant = :participant')
+            ->andWhere('cg.label = :label')
+            ->setParameters(
+                [
+                    'participant' => $team->getId(),
+                    'label' => CompetitionGraphLabelCode::CURRENT_CODE
+                ]
+            )
+            ->getQuery()
+            ->getResult();
+    }
+
 
     /**
      * @param array $ids Ids

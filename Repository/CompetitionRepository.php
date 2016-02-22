@@ -6,10 +6,13 @@ use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
 use Visca\Bundle\LicomBundle\Entity\Code\LocalizationTranslationTypeCode;
 use Visca\Bundle\LicomBundle\Entity\Code\ProfileTranslationGraphLabelCode;
 use Visca\Bundle\LicomBundle\Entity\Competition;
+use Visca\Bundle\LicomBundle\Entity\Country;
+use Visca\Bundle\LicomBundle\Entity\Match;
 use Visca\Bundle\LicomBundle\Entity\ProfileEntityGraph;
 use Visca\Bundle\LicomBundle\Entity\Sport;
 use Visca\Bundle\LicomBundle\Exception\NoTranslationFoundException;
 use Visca\Bundle\LicomBundle\Repository\Traits\GetAndSortByIdTrait;
+use Doctrine\ORM\Query\Expr\Join;
 
 /**
  * Class CompetitionRepository.
@@ -49,7 +52,7 @@ class CompetitionRepository extends AbstractEntityRepository
     /**
      * @param int $countryId Id of the country to get
      *
-     * @returns Competition[]
+     * @return Competition[]
      */
     public function findByCountry($countryId)
     {
@@ -179,5 +182,137 @@ class CompetitionRepository extends AbstractEntityRepository
         }
 
         return $this->findBy(['id' => $competitionsIds]);
+    }
+
+    /**
+     * @param Country $country Country entity
+     * @param Sport   $sport   Sport entity
+     *
+     * @return Competition|null
+     */
+    public function findMainCompetitionByCountryAndSport(
+        Country $country,
+        Sport $sport
+    ) {
+        $competitionCategory = $this->entityManager
+            ->createQueryBuilder()
+            ->select('competition_category.id')
+            ->from(
+                'ViscaLicomBundle:CompetitionCategory',
+                'competition_category'
+            )
+            ->join(
+                'competition_category.sport',
+                'sport',
+                Join::WITH,
+                'sport.id = :sportId'
+            )
+            ->join(
+                'competition_category.country',
+                'country',
+                Join::WITH,
+                'country.id = :countryId'
+            )
+            ->setParameter('sportId', $sport->getId())
+            ->setParameter('countryId', $country->getId())
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        if (!$competitionCategory) {
+            return null;
+        }
+
+        return $this->createQueryBuilder('competition')
+            ->join(
+                'competition.competitionCategory',
+                'competitionCategory',
+                Join::WITH,
+                'competitionCategory.id = :competitionCategoryId'
+            )
+            ->where('competition.level = 1')
+            ->setParameter('competitionCategoryId', $competitionCategory['id'])
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    /**
+     * @param array $ids
+     * @param Sport $sport
+     *
+     * @return array
+     */
+    public function getAndSortByIdsAndSport(array $ids, Sport $sport)
+    {
+        $queryBuilder = $this
+            ->createQueryBuilder('c')
+            ->join('c.competitionCategory', 'cc')
+            ->where('c.id IN (:ids)')
+            ->andWhere('cc.sport = :sportId')
+            ->setParameter('ids', $ids)
+            ->setParameter('sportId', $sport->getId());
+
+        $entities = $queryBuilder->getQuery()->getResult();
+
+        usort(
+            $entities,
+            function ($firstEntity, $secondEntity) use ($ids) {
+                $firstEntityPosition = array_search(
+                    $firstEntity->getId(),
+                    $ids
+                );
+                $secondEntityPosition = array_search(
+                    $secondEntity->getId(),
+                    $ids
+                );
+
+                return $firstEntityPosition > $secondEntityPosition;
+
+            }
+        );
+
+        return $entities;
+    }
+
+    /**
+     * @param Match[] $matches
+     *
+     * @return Competition[]|null
+     */
+    public function findByMatchesIds(
+        $matches = array()
+    ) {
+        $competitions = $this->entityManager
+            ->createQueryBuilder()
+            ->select('competition')
+            ->from(
+                'ViscaLicomBundle:Competition',
+                'competition'
+            )
+            ->join(
+                'ViscaLicomBundle:CompetitionSeason',
+                'cs',
+                Join::WITH,
+                'cs.competition = competition.id'
+            )
+            ->join(
+                'ViscaLicomBundle:CompetitionSeasonStage',
+                'css',
+                Join::WITH,
+                'css.competitionSeason = cs.id'
+            )->join(
+                'ViscaLicomBundle:Match',
+                'match',
+                Join::WITH,
+                'match.competitionSeasonStage = css.id'
+            )
+            ->where('match.id in (:matches)')
+            ->setParameter('matches', $matches)
+            ->groupBy('competition.id')
+            ->getQuery()
+            ->getResult();
+
+        return $competitions;
     }
 }

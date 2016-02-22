@@ -10,6 +10,7 @@ use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
 use Visca\Bundle\LicomBundle\Entity\Athlete;
 use Visca\Bundle\LicomBundle\Entity\CompetitionSeason;
 use Visca\Bundle\LicomBundle\Entity\CompetitionSeasonStage;
+use Visca\Bundle\LicomBundle\Entity\Country;
 use Visca\Bundle\LicomBundle\Entity\Enum\MatchStatusDescriptionCategoryType;
 use Visca\Bundle\LicomBundle\Entity\Match;
 use Visca\Bundle\LicomBundle\Entity\MatchParticipant;
@@ -269,7 +270,7 @@ class MatchRepository extends AbstractEntityRepository
      * @param null      $offset                  Limit offset
      * @param null      $orderField              Order field
      * @param string    $orderType               Order type
-     * @param bool      $preloadBothParticipants ?????
+     * @param bool      $preloadBothParticipants Preload both participants in the resultset
      * @param null      $participantPosition     Specify if the Participant is HOME|AWAY
      *
      * @return \Visca\Bundle\LicomBundle\Entity\Match[]
@@ -541,6 +542,111 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
+     * Finds Matches that has a given importance and are going to be played in $days days.
+     * If the toDays is not set, the query will return all the results biggers than the fromDate
+     * And will add the limit if provided.
+     *
+     * @param int    $country     Country entity.
+     * @param string $importance  top|important|2nd.
+     * @param int    $fromDays    Starting date the match can take place.
+     *                            Specified in number of relative days from today.
+     * @param int    $toDays      Limit date the match can take place. Specified in number of relative days from today.
+     * @param int    $limit       Limit the number of matches returned. Default 3.
+     *
+     * @return \Visca\Bundle\LicomBundle\Entity\Match[]
+     */
+    public function findByCountryImportanceInDays(
+        $countryId,
+        $importance,
+        $fromDays,
+        $toDays = null,
+        $limit = null
+    ) {
+        /*
+         * DQL does not implement DATE() mysql function.
+         * Here's how to implement it:
+         * http://stackoverflow.com/questions/13272224/use-a-date-function-in-a-where-clause-with-dql
+         * But it also does not implement INTERVAL neither,
+         * So I can't do
+         * SELECT * FROM Match WHERE DATE(m.startDate) = (CURDATE() - INTERVAL :days DAY)
+         * easily...
+         *
+         * So I end up constructing a PHP object that holds the date of
+         * X days ago, and get those matches that start after (>=) that date.
+         * Also, order the result set by startDate, olders first.
+         */
+        $dateFrom = new \DateTime('+'.$fromDays.' days');
+
+        /*
+         * $fromDays = 0 means that we accept matches playing today.
+         * Therefore, we could get some matches that are finished.
+         *
+         * To avoid this behaviour, we must say that we accept only
+         * the matches are that playing in future.
+         */
+        if ($fromDays !== 0) {
+            $dateFrom->setTime(0, 0, 0);
+        }
+        $this->alterDateObjects($dateFrom);
+
+        $queryBuilder = parent::createQueryBuilder('m');
+        $queryBuilder
+            ->select('m')
+            ->setCacheable(false);
+
+        $queryBuilder
+            ->join('m.matchAuxProfile', 'ma', Join::WITH)
+            ->join(
+                'm.competitionSeasonStage',
+                'css',
+                Join::WITH
+            )
+            ->join(
+                'css.competitionSeason',
+                'cs',
+                Join::WITH
+            )
+            ->join(
+                'cs.competition',
+                'c',
+                Join::WITH
+            )
+            ->join(
+                'c.competitionCategory',
+                'cc',
+                Join::WITH,
+                'cc.country = :country'
+            )
+            ->andWhere('m.startDate >= :start')
+            ->andWhere('ma.value = :importance')
+            ->orderBy('m.startDate', 'ASC')
+            ->setParameter('start', $dateFrom->format('Y-m-d H:i:s'))
+            ->setParameter('importance', $importance)
+            ->setParameter('country', $countryId)
+            ->groupBy('m.id');
+
+        /*
+         * If we don't have any "to date", don't add it to the query
+         */
+        if ($toDays !== null) {
+            $dateEnd = new \DateTime('+'.$toDays.' days, 23:59:59');
+            $this->alterDateObjects($dateEnd);
+
+            $queryBuilder
+                ->andWhere('m.startDate <= :end')
+                ->setParameter('end', $dateEnd->format('Y-m-d H:i:s'));
+        }
+
+        if ($limit !== null) {
+            $queryBuilder->setMaxResults($limit);
+        }
+
+        return $queryBuilder
+            ->getQuery()
+            ->execute();
+    }
+
+    /**
      * Gets list of matches that happen in a given day and optionally has a given
      * state.
      *
@@ -720,10 +826,12 @@ class MatchRepository extends AbstractEntityRepository
         $limit = null
     ) {
         return $this->findMatchesByStatusAndDateInterval(
-            $status,
             $date,
+            $status,
             true,
-            $limit
+            $limit,
+            null,
+            null
         );
     }
 
@@ -740,26 +848,32 @@ class MatchRepository extends AbstractEntityRepository
         $limit = null
     ) {
         return $this->findMatchesByStatusAndDateInterval(
-            $status,
             $date,
+            $status,
             false,
-            $limit
+            $limit,
+            null,
+            null
         );
     }
 
     /**
-     * @param string            $status Match Status description.
+     * @param string|null       $status Match Status description.
      * @param DateTimeInterface $date   A date.
      * @param bool|true         $before Do we want matches before the date?
      * @param null              $limit  How many matches we want.
+     * @param int|null          $sportId
+     * @param array             $competitionSeasonStageIds
      *
      * @return Match[]
      */
     public function findMatchesByStatusAndDateInterval(
-        $status,
         DateTimeInterface $date,
+        $status,
         $before = true,
-        $limit = null
+        $limit = null,
+        $sportId = null,
+        $competitionSeasonStageIds = array()
     ) {
 
         $symbol = $before ? '<' : '>=';
@@ -779,25 +893,65 @@ class MatchRepository extends AbstractEntityRepository
             ->setMaxResults($limit)
             ->setParameter('start', $date->format('Y-m-d H:i:s'));
 
-        $statusCategories = $this->prepareStatusCategories($status);
+        if (!is_null($status)) {
+            $statusCategories = $this->prepareStatusCategories($status);
 
-        $queryBuilder
-            ->leftJoin(
-                'Visca\Bundle\LicomBundle\Entity\MatchStatusDescription',
-                's',
-                Join::WITH,
-                's.id = m.matchStatusDescription'
-            )
-            ->andWhere('s.category IN (:categories)')
-            ->setParameter('categories', $statusCategories);
+            $queryBuilder
+                ->leftJoin(
+                    'Visca\Bundle\LicomBundle\Entity\MatchStatusDescription',
+                    's',
+                    Join::WITH,
+                    's.id = m.matchStatusDescription'
+                )
+                ->andWhere('s.category IN (:categories)')
+                ->setParameter('categories', $statusCategories);
+        }
+
+        /*
+        * if we have the sport id
+        */
+        if (!is_null($sportId) && is_numeric($sportId)) {
+            $queryBuilder
+                // join the participant to filter by sport
+                ->join(
+                    'ViscaLicomBundle:MatchParticipant',
+                    'mp1',
+                    'WITH',
+                    'mp1.match = m AND mp1.number = :homeNumber'
+                )
+                ->andWhere('mp1.id IS NOT NULL')
+                ->setParameter('homeNumber', MatchParticipant::HOME)
+
+                // Where sport
+                ->join(
+                    "mp1.participant",
+                    'p1'
+                )
+                ->andWhere('p1.sport = :sportId')
+                ->setParameter('sportId', $sportId);
+        }
+
+        if (!is_null($competitionSeasonStageIds)) {
+            $queryBuilder
+                // Where CompetitionSeasonStages
+                ->andWhere(
+                    'm.competitionSeasonStage IN (:competitionSeasonStageIds)'
+                )
+                ->setParameter(
+                    'competitionSeasonStageIds',
+                    $competitionSeasonStageIds
+                );
+        }
 
         if ($limit !== null) {
             $queryBuilder->setMaxResults($limit);
         }
 
-        return $queryBuilder
+        $results = $queryBuilder
             ->getQuery()
             ->execute();
+
+        return $results;
     }
 
     /**
@@ -843,6 +997,103 @@ class MatchRepository extends AbstractEntityRepository
             $competitionSeasonStageIds,
             false,
             $limit
+        );
+    }
+
+    /**
+     * @param DateTimeInterface $date    A date.
+     * @param string            $status  Match Status description.
+     * @param int|null          $sportId The sport Id.
+     * @param int|null          $limit   How many matches we want.
+     *
+     * @return Match[]
+     */
+    public function findByDateAndStatusAndSportBeforeDate(
+        DateTimeInterface $date,
+        $status,
+        $sportId,
+        $limit = null
+    ) {
+        return $this->findMatchesByStatusAndDateInterval(
+            $date,
+            $status,
+            true,
+            $limit,
+            $sportId,
+            null
+        );
+    }
+
+    /**
+     * @param DateTimeInterface $date    A date.
+     * @param string            $status  Match Status description.
+     * @param int|null          $sportId The sport Id.
+     * @param int|null          $limit   How many matches we want.
+     *
+     * @return Match[]
+     */
+    public function findByDateAndStatusAndSportAfterDate(
+        DateTimeInterface $date,
+        $status,
+        $sportId,
+        $limit = null
+    ) {
+        return $this->findMatchesByStatusAndDateInterval(
+            $date,
+            $status,
+            false,
+            $limit,
+            $sportId,
+            null
+        );
+    }
+
+
+    /**
+     * @param DateTimeInterface $date                     A date.
+     * @param string            $status                   Match Status description.
+     * @param array|null        $competitionSeasonStageId The sport Id.
+     * @param int|null          $limit                    How many matches we want.
+     *
+     * @return Match[]
+     */
+    public function findByDateAndStatusAndCompetitionSeasonStageBeforeDate(
+        DateTimeInterface $date,
+        $status,
+        $competitionSeasonStageId,
+        $limit = null
+    ) {
+        return $this->findMatchesByStatusAndDateInterval(
+            $date,
+            $status,
+            true,
+            $limit,
+            null,
+            $competitionSeasonStageId
+        );
+    }
+
+    /**
+     * @param DateTimeInterface $date                     A date.
+     * @param string            $status                   Match Status description.
+     * @param array|null        $competitionSeasonStageId The Competition Season Stage Id.
+     * @param int|null          $limit                    How many matches we want.
+     *
+     * @return Match[]
+     */
+    public function findMatchesByStatusAndCompetitionSeasonStageAfterDate(
+        DateTimeInterface $date,
+        $status,
+        $competitionSeasonStageId,
+        $limit = null
+    ) {
+        return $this->findMatchesByStatusAndDateInterval(
+            $date,
+            $status,
+            false,
+            $limit,
+            null,
+            $competitionSeasonStageId
         );
     }
 
@@ -943,7 +1194,7 @@ class MatchRepository extends AbstractEntityRepository
             ->andWhere('css.competitionStage = cs.id')
             ->andWhere('m.competitionSeasonStage = css.id');
 
-        if ($competitionRoundId !== null) {
+        if ($competitionRoundId !== null && count($competitionRoundId) > 0) {
             //            if (is_array($competitionRoundId)) {
             $queryBuilder->andWhere('m.competitionRound IN (:rids)')
                 ->setParameter('rids', $competitionRoundId);
@@ -953,7 +1204,7 @@ class MatchRepository extends AbstractEntityRepository
 //            }
         }
 
-        if ($competitionLegId !== null) {
+        if ($competitionLegId !== null && count($competitionLegId) > 0) {
             $queryBuilder->andWhere('m.competitionLeg IN (:lid)')
                 ->setParameter('lid', $competitionLegId);
         }
@@ -1211,23 +1462,32 @@ class MatchRepository extends AbstractEntityRepository
     {
         switch ($status) {
             case MatchStatusDescriptionCategoryType::INPROGRESS:
-                $statusCategories = [MatchStatusDescriptionCategoryType::INPROGRESS];
+                $statusCategories = [
+                    MatchStatusDescriptionCategoryType::INPROGRESS,
+                ];
                 break;
 
             case MatchStatusDescriptionCategoryType::NOTSTARTED:
-                $statusCategories = [MatchStatusDescriptionCategoryType::NOTSTARTED];
+                $statusCategories = [
+                    MatchStatusDescriptionCategoryType::NOTSTARTED,
+                    MatchStatusDescriptionCategoryType::CANCELLED,
+                    MatchStatusDescriptionCategoryType::UNKNOWN,
+                ];
                 break;
 
             case MatchStatusDescriptionCategoryType::FINISHED:
             default:
                 $statusCategories = [
-                    MatchStatusDescriptionCategoryType::FINISHED,
-                    MatchStatusDescriptionCategoryType::CANCELLED,
                     MatchStatusDescriptionCategoryType::UNKNOWN,
+                    MatchStatusDescriptionCategoryType::FINISHED,
+                    MatchStatusDescriptionCategoryType::INPROGRESS,
+                    MatchStatusDescriptionCategoryType::CANCELLED,
+                    MatchStatusDescriptionCategoryType::NOTSTARTED,
                 ];
                 break;
         }
 
         return $statusCategories;
     }
+
 }
