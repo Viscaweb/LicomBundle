@@ -342,7 +342,7 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param        $participantId
+     * @param int    $participantId
      * @param array  $whereConditions
      * @param array  $whereArguments
      * @param null   $limit
@@ -367,15 +367,23 @@ class MatchRepository extends AbstractEntityRepository
     ) {
         $query = $this->createQueryBuilder('m');
         $query
-            ->select('m', 'mp', 'mp2', 'mr',  'mr2')
+            ->select('m', 'mp', 'mp2', 'mr', 'mr2')
             ->leftJoin('m.matchParticipant', 'mp2')
-            ->leftJoin('mp.matchResult', 'mr', Join::WITH, 'mr.matchResultType = :resultType')
-            ->leftJoin('mp2.matchResult', 'mr2', Join::WITH, 'mr2.matchResultType = :resultType')
+            ->leftJoin(
+                'mp.matchResult',
+                'mr',
+                Join::WITH,
+                'mr.matchResultType = :resultType'
+            )
+            ->leftJoin(
+                'mp2.matchResult',
+                'mr2',
+                Join::WITH,
+                'mr2.matchResultType = :resultType'
+            )
             ->where(
                 '(mp.number=:home and mp2.number=:away) OR (mp.number=:away and mp2.number=:home)'
             );
-
-
 
         if (is_array($participantId)) {
             $query
