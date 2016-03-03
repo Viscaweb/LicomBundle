@@ -1,6 +1,7 @@
 Visca\Bundle\LicomBundle\Entity\MatchResult:
   type: entity
   table: MatchResult
+  repositoryClass: Visca\Bundle\LicomBundle\Repository\MatchResultRepository
   id:
     id:
       type: integer
