@@ -2,8 +2,10 @@
 
 namespace Visca\Bundle\LicomBundle\Repository;
 
+use Doctrine\ORM\Query\Expr\Join;
 use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
 use Visca\Bundle\LicomBundle\Entity\MatchLineupParticipant;
+use Visca\Bundle\LicomBundle\Entity\MatchParticipant;
 
 /**
  * Class MatchLineupRepository.
@@ -19,10 +21,39 @@ class MatchLineupParticipantRepository extends AbstractEntityRepository
      */
     public function findByMatchLineup($matchLineupId)
     {
-        $queryBuilder = $this->createQueryBuilder('m');
+        $queryBuilder = $this->createQueryBuilder('ml');
         $queryBuilder
-            ->where('m.matchLineup = :matchLineupId')
+            ->select('ml', 'p', 'px')
+            ->where('ml.matchLineup = :matchLineupId')
+            ->leftJoin('ml.participant', 'p')
+            ->leftJoin('p.aux', 'px')
             ->setParameter('matchLineupId', $matchLineupId);
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+    /**
+     * Get MatchLineup by MatchLineup. Preloads MatchIncidents
+     *
+     * @param int              $matchLineupId MatchLineup ID.
+     *
+     * @param MatchParticipant $matchParticipant
+     *
+     * @return \Visca\Bundle\LicomBundle\Entity\MatchLineupParticipant[]
+     */
+    public function findByMatchLineupWithIncidents($matchLineupId, MatchParticipant $matchParticipant)
+    {
+        $queryBuilder = $this->createQueryBuilder('ml');
+        $queryBuilder
+            ->select('ml', 'p', 'px', 'mi')
+            ->where('ml.matchLineup = :matchLineupId')
+            ->leftJoin('ml.participant', 'p')
+            ->leftJoin('p.aux', 'px')
+            ->leftJoin('p.matchIncident', 'mi', Join::WITH, 'mi.matchParticipant = :matchParticipant')
+            ->setParameters([
+                'matchLineupId' => $matchLineupId,
+                'matchParticipant' => $matchParticipant
+            ]);
 
         return $queryBuilder->getQuery()->getResult();
     }

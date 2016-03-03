@@ -53,27 +53,40 @@ class MatchIncidentRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param MatchParticipant    $matchParticipant MatchParticipant
-     * @param MatchIncidentType[] $typeList         MatchIncidentType[]
+     * Gets the incidents of a MatchParticipant
+     *
+     * @param MatchParticipant    $matchParticipant   MatchParticipant
+     * @param MatchIncidentType[] $matchIncidentTypes MatchIncidentType[]
      *
      * @return array
      */
     public function findByMatchParticipantAndTypeList(
         MatchParticipant $matchParticipant,
-        $typeList
+        $matchIncidentTypes = array()
     ) {
         $queryBuilder = $this
-            ->createQueryBuilder('m');
+            ->createQueryBuilder('mi');
 
-        return $queryBuilder
-            ->from('ViscaLicomBundle:MatchIncident', 'm')
-            ->where('m.matchParticipant = :matchParticipant')
-            ->andWhere(
-                $queryBuilder->expr()->in('m.matchIncidentType', $typeList)
-            )
-            ->setParameter('matchParticipant', $matchParticipant)
-            ->getQuery()
-            ->getResult();
+        $queryBuilder
+            ->select('mi', 'aux', 'mt', 'p')
+            ->leftJoin('mi.matchIncidentAux', 'aux')
+            ->leftJoin('mi.participant', 'p')
+            ->join('mi.matchIncidentType', 'mt')
+            ->where('mi.matchParticipant = :matchParticipant');
+
+        if (!empty($matchIncidentTypes)) {
+            $queryBuilder
+                ->andWhere(
+                    $queryBuilder->expr()->in(
+                        'mi.matchIncidentType',
+                        $matchIncidentTypes
+                    )
+                );
+        }
+
+        $queryBuilder->setParameter('matchParticipant', $matchParticipant);
+
+        return $queryBuilder->getQuery()->getResult();
     }
 
     /**
