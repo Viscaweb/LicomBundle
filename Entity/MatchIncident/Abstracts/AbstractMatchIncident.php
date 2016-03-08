@@ -2,11 +2,20 @@
 
 namespace Visca\Bundle\LicomBundle\Entity\MatchIncident\Abstracts;
 
+use Visca\Bundle\LicomBundle\Entity\MatchIncident\Interfaces\MatchIncidentAuthorInterface;
+use Visca\Bundle\LicomBundle\Entity\MatchIncident\Interfaces\MatchIncidentViewInterface;
+use Visca\Bundle\LicomBundle\Entity\MatchIncident\MatchIncidentPeriod;
+
 /**
  * Class AbstractMatchIncident.
  */
-abstract class AbstractMatchIncident
+abstract class AbstractMatchIncident implements MatchIncidentViewInterface
 {
+    /**
+     * @var MatchIncidentAuthorInterface
+     */
+    protected $author;
+
     /**
      * Relative time in the Match.
      *
@@ -60,6 +69,21 @@ abstract class AbstractMatchIncident
     protected $ordinalPeriod;
 
     /**
+     * @var MatchIncidentPeriod
+     */
+    protected $period;
+
+    /**
+     * @var string
+     */
+    protected $referenceCode;
+
+    /**
+     * @var int
+     */
+    protected $matchIncidentTypeCode;
+
+    /**
      * @return int
      */
     public function getTimeElapsed()
@@ -70,7 +94,7 @@ abstract class AbstractMatchIncident
     /**
      * @param int $timeElapsed
      *
-     * @return AbstractMatchIncident
+     * @return $this
      */
     public function setTimeElapsed($timeElapsed)
     {
@@ -90,7 +114,7 @@ abstract class AbstractMatchIncident
     /**
      * @param int $timeElapsedExtra
      *
-     * @return AbstractMatchIncident
+     * @return $this
      */
     public function setTimeElapsedExtra($timeElapsedExtra)
     {
@@ -110,7 +134,7 @@ abstract class AbstractMatchIncident
     /**
      * @param int $position
      *
-     * @return AbstractMatchIncident
+     * @return $this
      */
     public function setPosition($position)
     {
@@ -130,7 +154,7 @@ abstract class AbstractMatchIncident
     /**
      * @param \DateTime $time
      *
-     * @return AbstractMatchIncident
+     * @return $this
      */
     public function setTime($time)
     {
@@ -150,7 +174,7 @@ abstract class AbstractMatchIncident
     /**
      * @param string $iconHTML
      *
-     * @return AbstractMatchIncident
+     * @return $this
      */
     public function setIconHTML($iconHTML)
     {
@@ -170,7 +194,7 @@ abstract class AbstractMatchIncident
     /**
      * @param bool|null $isHome
      *
-     * @return AbstractMatchIncident
+     * @return $this
      */
     public function setIsHome($isHome)
     {
@@ -190,11 +214,87 @@ abstract class AbstractMatchIncident
     /**
      * @param int $ordinalPeriod
      *
-     * @return AbstractMatchIncident
+     * @return $this
      */
     public function setOrdinalPeriod($ordinalPeriod)
     {
         $this->ordinalPeriod = $ordinalPeriod;
+
+        return $this;
+    }
+
+    /**
+     * @return MatchIncidentPeriod
+     */
+    public function getPeriod()
+    {
+        return $this->period;
+    }
+
+    /**
+     * @param MatchIncidentPeriod $period
+     *
+     * @return $this
+     */
+    public function setPeriod(MatchIncidentPeriod $period)
+    {
+        $this->period = $period;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setAuthor(MatchIncidentAuthorInterface $author)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getReferenceCode()
+    {
+        return $this->referenceCode;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setReferenceCode($referenceCode)
+    {
+        $this->referenceCode = $referenceCode;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMatchIncidentTypeCode()
+    {
+        return $this->matchIncidentTypeCode;
+    }
+
+    /**
+     * @param int $matchIncidentType
+     *
+     * @return $this
+     */
+    public function setMatchIncidentTypeCode($matchIncidentType)
+    {
+        $this->matchIncidentTypeCode = $matchIncidentType;
 
         return $this;
     }

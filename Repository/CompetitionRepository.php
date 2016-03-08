@@ -285,16 +285,16 @@ class CompetitionRepository extends AbstractEntityRepository
     ) {
         $competitions = $this->entityManager
             ->createQueryBuilder()
-            ->select('competition')
+            ->select('c as competition, count(match.id) as matchesNumber')
             ->from(
                 'ViscaLicomBundle:Competition',
-                'competition'
+                'c'
             )
             ->join(
                 'ViscaLicomBundle:CompetitionSeason',
                 'cs',
                 Join::WITH,
-                'cs.competition = competition.id'
+                'cs.competition = c.id'
             )
             ->join(
                 'ViscaLicomBundle:CompetitionSeasonStage',
@@ -309,7 +309,7 @@ class CompetitionRepository extends AbstractEntityRepository
             )
             ->where('match.id in (:matches)')
             ->setParameter('matches', $matches)
-            ->groupBy('competition.id')
+            ->groupBy('c.id')
             ->getQuery()
             ->getResult();
 

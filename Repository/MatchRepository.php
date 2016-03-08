@@ -8,9 +8,8 @@ use Doctrine\ORM\Query\Expr;
 use Doctrine\ORM\Query\Expr\Join;
 use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
 use Visca\Bundle\LicomBundle\Entity\Athlete;
-use Visca\Bundle\LicomBundle\Entity\CompetitionSeason;
+use Visca\Bundle\LicomBundle\Entity\Code\MatchResultTypeCode;
 use Visca\Bundle\LicomBundle\Entity\CompetitionSeasonStage;
-use Visca\Bundle\LicomBundle\Entity\Country;
 use Visca\Bundle\LicomBundle\Entity\Enum\MatchStatusDescriptionCategoryType;
 use Visca\Bundle\LicomBundle\Entity\Match;
 use Visca\Bundle\LicomBundle\Entity\MatchParticipant;
@@ -287,7 +286,7 @@ class MatchRepository extends AbstractEntityRepository
         $participantPosition = null
     ) {
         $query = $this->createQueryBuilder('m');
-        $query->select('m');
+        $query->select('m', 'mp');
 
         if (is_array($participantId)) {
             $query
@@ -338,6 +337,98 @@ class MatchRepository extends AbstractEntityRepository
         }
 
         $query->groupBy('m.id');
+
+        return $query->getQuery()->getResult();
+    }
+
+    /**
+     * @param int    $participantId
+     * @param array  $whereConditions
+     * @param array  $whereArguments
+     * @param null   $limit
+     * @param null   $offset
+     * @param null   $orderField
+     * @param string $orderType
+     * @param int    $matchResultType
+     * @param null   $participantPosition
+     *
+     * @return array
+     */
+    public function findMatchByParticipantPreloadResults(
+        $participantId,
+        array $whereConditions = [],
+        array $whereArguments = [],
+        $limit = null,
+        $offset = null,
+        $orderField = null,
+        $orderType = 'ASC',
+        $matchResultType = MatchResultTypeCode::RUNNING_SCORE_CODE,
+        $participantPosition = null
+    ) {
+        $query = $this->createQueryBuilder('m');
+        $query
+            ->select('m', 'mp', 'mp2', 'mr', 'mr2')
+            ->leftJoin('m.matchParticipant', 'mp2')
+            ->leftJoin(
+                'mp.matchResult',
+                'mr',
+                Join::WITH,
+                'mr.matchResultType = :resultType'
+            )
+            ->leftJoin(
+                'mp2.matchResult',
+                'mr2',
+                Join::WITH,
+                'mr2.matchResultType = :resultType'
+            )
+            ->where(
+                '(mp.number=:home and mp2.number=:away) OR (mp.number=:away and mp2.number=:home)'
+            );
+
+        if (is_array($participantId)) {
+            $query
+                ->andWhere('mp.participant in (:participant)')
+                ->setParameter('participant', implode(',', $participantId));
+        } else {
+            $query
+                ->andWhere('mp.participant = :participant')
+                ->setParameter('participant', $participantId);
+        }
+
+        foreach ($whereConditions as $condition) {
+            $query->andWhere($condition);
+        }
+
+        foreach ($whereArguments as $key => $value) {
+            $query->setParameter($key, $value);
+        }
+
+        if (is_numeric($limit)) {
+            $query->setMaxResults($limit);
+        }
+
+        if (is_numeric($offset)) {
+            $query->setFirstResult($offset);
+        }
+
+        if (!is_null($orderField)) {
+            $query->orderBy('m.'.$orderField, $orderType);
+        }
+
+        if (!is_null($participantPosition)) {
+            $query
+                ->andWhere('mp.number = :position')
+                ->setParameter(
+                    'position',
+                    $participantPosition
+                );
+        }
+
+        $query
+            ->setParameter('home', MatchParticipant::HOME)
+            ->setParameter('away', MatchParticipant::AWAY)
+            ->setParameter('resultType', $matchResultType)
+            ->groupBy('m.id');
 
         return $query->getQuery()->getResult();
     }
@@ -921,7 +1012,6 @@ class MatchRepository extends AbstractEntityRepository
                 )
                 ->andWhere('mp1.id IS NOT NULL')
                 ->setParameter('homeNumber', MatchParticipant::HOME)
-
                 // Where sport
                 ->join(
                     "mp1.participant",
@@ -1450,6 +1540,57 @@ class MatchRepository extends AbstractEntityRepository
 
         return $queryBuilder->getQuery()->getResult();
     }
+
+    /**
+     * Returns the matches ids where the competition is the given one
+     *
+     * @param array    $matchesIds
+     * @param int|null $competitionId
+     *
+     * @return array
+     */
+    public function filterMatchesIdsByCompetition(
+        $matchesIds = array(),
+        $competitionId = null
+    ) {
+        $queryBuilder = $this->entityManager->createQueryBuilder();
+
+        /**
+         * If no copmpetition, return all the matches id's
+         */
+        if (is_null($competitionId)) {
+            return $matchesIds;
+        }
+
+        /**
+         * Filter by match ids and competition
+         */
+        if (is_array($matchesIds) && !empty($matchesIds)) {
+            $queryBuilder
+                ->select('m.id')
+                ->from('Visca\Bundle\LicomBundle\Entity\Match', 'm')
+                ->join('m.competitionSeasonStage', 'stage')
+                ->join('stage.competitionSeason', 'season')
+                ->join('season.competition', 'competition')
+                ->join('competition.competitionCategory', 'competitionCategory')
+                ->andWhere('m.id IN (:matchesIds)')
+                ->andWhere('season.competition = :competitionId')
+                ->setParameter('matchesIds', $matchesIds)
+                ->setParameter('competitionId', $competitionId);
+
+            /*
+             * Return the results
+             */
+
+            $results = $queryBuilder->getQuery()->getResult();
+
+            return $results;
+        }
+
+
+        return array();
+    }
+
 
     /**
      * Returns the array of status to search based on the status given

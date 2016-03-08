@@ -1,6 +1,6 @@
 <?php
 
-namespace Visca\Bundle\LicomBundle\Model\MatchIncident\Interfaces;
+namespace Visca\Bundle\LicomBundle\Entity\MatchIncident\Interfaces;
 
 /**
  * Class MatchIncidentAuthorInterface.
