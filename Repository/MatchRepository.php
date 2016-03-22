@@ -1631,4 +1631,27 @@ class MatchRepository extends AbstractEntityRepository
         return $statusCategories;
     }
 
+    /**
+     * @param string[] $participantNames
+     * @return Match[]
+     */
+    public function findAllByParticipantNames(array $participantNames)
+    {
+        $query = parent::createQueryBuilder('m')->select('m');
+
+        foreach ($participantNames as $key => $name) {
+            $number = $key + 1;
+            $query->join(
+                    MatchParticipant::class,
+                    "mp{$number}",
+                    Join::WITH,
+                    "mp{$number}.number = {$number} and mp{$number}.match = m.id"
+                )
+                ->join(Participant::class, "p{$number}", Join::WITH, "p{$number}.id = mp{$number}.participant")
+                ->andWhere("p{$number}.name = :p{$number}Name")
+                ->setParameter("p{$number}Name", $name);
+        }
+
+        return $query->getQuery()->getResult();
+    }
 }
