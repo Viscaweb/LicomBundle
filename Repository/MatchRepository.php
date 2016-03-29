@@ -1637,7 +1637,9 @@ class MatchRepository extends AbstractEntityRepository
      */
     public function findAllByParticipantNames(array $participantNames)
     {
-        $query = parent::createQueryBuilder('m')->select('m');
+        $query = parent::createQueryBuilder('m')
+            ->select('m', 'aux')
+            ->leftJoin('m.aux', 'aux');
 
         foreach ($participantNames as $key => $name) {
             $number = $key + 1;
