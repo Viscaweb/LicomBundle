@@ -325,6 +325,7 @@ class MatchRepository extends AbstractEntityRepository
                 )
                 ->setParameter('home', MatchParticipant::HOME)
                 ->setParameter('away', MatchParticipant::AWAY);
+            $query->addSelect('mp2');
         }
 
         if (!is_null($participantPosition)) {
