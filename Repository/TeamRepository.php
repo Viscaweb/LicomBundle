@@ -103,19 +103,20 @@ class TeamRepository extends AbstractEntityRepository
     {
         $profileGraphRepository = $this->repositoryProfileEntityGraph;
 
-        $profileTopEntries = $profileGraphRepository->findByLabel(
+        $profileTopEntriesIds = $profileGraphRepository->findByLabel(
             $sport,
-            'top-teams'
+            'top-teams',
+            true
         );
 
-        $topTeamsIds = [];
-        /** @var ProfileEntityGraph $profileEntityGraph */
-        foreach ($profileTopEntries as $profileEntityGraph) {
-            $topTeamsIds[] = $profileEntityGraph->getEntityId();
-        }
+        $queryBuilder = $this->createQueryBuilder('c')
+            ->where('c.id IN (:ids)')
+            ->orderBy('FIELD(c.id, :ids)')
+            ->setParameter('ids', $profileTopEntriesIds);
 
-        $topTeams = $this->getAndSortById($topTeamsIds);
+        $query = $queryBuilder->getQuery();
+        $this->setCacheStrategy($query);
 
-        return $topTeams;
+        return $query->getResult();
     }
 }

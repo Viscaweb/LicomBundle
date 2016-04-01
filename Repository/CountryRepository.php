@@ -73,20 +73,21 @@ class CountryRepository extends AbstractEntityRepository
     {
         $profileGraphRepository = $this->repositoryProfileEntityGraph;
 
-        $profileTopEntries = $profileGraphRepository->findByLabel(
+        $profileTopEntriesIds = $profileGraphRepository->findByLabel(
             $sport,
-            'top-countries'
+            'top-countries',
+            true
         );
 
-        $topCountriesIds = [];
-        /** @var ProfileEntityGraph $profileEntityGraph */
-        foreach ($profileTopEntries as $profileEntityGraph) {
-            $topCountriesIds[] = $profileEntityGraph->getEntityId();
-        }
+        $queryBuilder = $this->createQueryBuilder('c')
+            ->where('c.id IN (:ids)')
+            ->orderBy('FIELD(c.id, :ids)')
+            ->setParameter('ids', $profileTopEntriesIds);
 
-        $topCountries = $this->getAndSortById($topCountriesIds);
+        $query = $queryBuilder->getQuery();
+        $this->setCacheStrategy($query);
 
-        return $topCountries;
+        return $query->getResult();
     }
 
     /**

@@ -87,21 +87,22 @@ class ParticipantRepository extends AbstractEntityRepository
     {
         $profileGraphRepository = $this->repositoryProfileEntityGraph;
 
-        $profileTopEntries = $profileGraphRepository->findByLabel(
+        $profileTopEntriesIds = $profileGraphRepository->findByLabel(
             $sport,
             'top-teams',
+            true,
             $limit
         );
 
-        $topParticipantsIds = [];
-        /** @var ProfileEntityGraph $profileEntityGraph */
-        foreach ($profileTopEntries as $profileEntityGraph) {
-            $topParticipantsIds[] = $profileEntityGraph->getEntityId();
-        }
+        $queryBuilder = $this->createQueryBuilder('c')
+            ->where('c.id IN (:ids)')
+            ->orderBy('FIELD(c.id, :ids)')
+            ->setParameter('ids', $profileTopEntriesIds);
 
-        $topParticipants = $this->getAndSortById($topParticipantsIds);
+        $query = $queryBuilder->getQuery();
+        $this->setCacheStrategy($query);
 
-        return $topParticipants;
+        return $query->getResult();
     }
 
     /**
@@ -202,27 +203,10 @@ class ParticipantRepository extends AbstractEntityRepository
             ->createQueryBuilder('p')
             ->join('p.sport', 's', Join::WITH, 's.id = :sportId')
             ->where('p.id IN (:ids)')
+            ->orderBy('FIELD(p.id, :ids)')
             ->setParameter('ids', $ids)
             ->setParameter('sportId', $sport->getId());
 
-        $entities = $queryBuilder->getQuery()->getResult();
-
-        usort(
-            $entities,
-            function ($firstEntity, $secondEntity) use ($ids) {
-                $firstEntityPosition = array_search(
-                    $firstEntity->getId(),
-                    $ids
-                );
-                $secondEntityPosition = array_search(
-                    $secondEntity->getId(),
-                    $ids
-                );
-
-                return $firstEntityPosition > $secondEntityPosition;
-            }
-        );
-
-        return $entities;
+       return $queryBuilder->getQuery()->getResult();
     }
 }
