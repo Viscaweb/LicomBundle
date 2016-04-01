@@ -30,5 +30,11 @@
         "psr-4": {
             "Visca\\Bundle\\LicomBundle\\": ""
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\Unit\\"                      : "tests/unit",
+            "Tests\\Functional\\"                : "tests/functional"
+        }
     }
 }
