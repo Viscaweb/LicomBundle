@@ -1655,4 +1655,19 @@ class MatchRepository extends AbstractEntityRepository
 
         return $query->getQuery()->getResult();
     }
+
+    /**
+     * @param int $ids Ids
+     *
+     * @return Match[]
+     */
+    public function getAndSortByIds($ids)
+    {
+        $queryBuilder = $this->createQueryBuilder('m')
+            ->where('m.id IN (:ids)')
+            ->orderBy('FIELD(m.id, :ids)')
+            ->setParameter('ids', $ids);
+
+        return $queryBuilder->getQuery()->getResult();
+    }
 }
