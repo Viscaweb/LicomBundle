@@ -2,6 +2,7 @@
 
 namespace Visca\Bundle\LicomBundle\Entity\MatchIncident;
 
+use Visca\Bundle\LicomBundle\Entity\MatchIncident\Interfaces\MatchIncidentAuthorInterface;
 use Visca\Bundle\LicomBundle\Entity\Participant;
 use Visca\Bundle\LicomBundle\Entity\MatchIncident\Abstracts\AbstractMatchIncident;
 
@@ -16,6 +17,11 @@ class Goal extends AbstractMatchIncident
      * @var Participant
      */
     protected $participant;
+
+    /**
+     * @var MatchIncidentAuthorInterface
+     */
+    protected $assistant;
 
     /**
      * @return Participant
@@ -33,6 +39,26 @@ class Goal extends AbstractMatchIncident
     public function setParticipant($participant)
     {
         $this->participant = $participant;
+
+        return $this;
+    }
+
+    /**
+     * @return MatchIncidentAuthorInterface
+     */
+    public function getAssistant()
+    {
+        return $this->assistant;
+    }
+
+    /**
+     * @param MatchIncidentAuthorInterface $assistant
+     *
+     * @return Goal
+     */
+    public function setAssistant($assistant)
+    {
+        $this->assistant = $assistant;
 
         return $this;
     }

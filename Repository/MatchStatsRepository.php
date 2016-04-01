@@ -20,8 +20,9 @@ class MatchStatsRepository extends AbstractEntityRepository
     {
         return $this
             ->createQueryBuilder('match_stats')
-            ->select('match_stats', 'match_participant')
+            ->select('match_stats', 'match_participant', 'mt')
             ->join('match_stats.matchParticipant', 'match_participant')
+            ->join('match_stats.matchStatsType', 'mt')
             ->where('match_participant.match = :matchId')
             ->setParameter('matchId', $match->getId())
             ->getQuery()

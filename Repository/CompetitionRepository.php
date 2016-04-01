@@ -7,6 +7,7 @@ use Visca\Bundle\LicomBundle\Entity\Code\LocalizationTranslationTypeCode;
 use Visca\Bundle\LicomBundle\Entity\Code\ProfileTranslationGraphLabelCode;
 use Visca\Bundle\LicomBundle\Entity\Competition;
 use Visca\Bundle\LicomBundle\Entity\Country;
+use Visca\Bundle\LicomBundle\Entity\Match;
 use Visca\Bundle\LicomBundle\Entity\ProfileEntityGraph;
 use Visca\Bundle\LicomBundle\Entity\Sport;
 use Visca\Bundle\LicomBundle\Exception\NoTranslationFoundException;
@@ -51,7 +52,7 @@ class CompetitionRepository extends AbstractEntityRepository
     /**
      * @param int $countryId Id of the country to get
      *
-     * @returns Competition[]
+     * @return Competition[]
      */
     public function findByCountry($countryId)
     {
@@ -184,19 +185,34 @@ class CompetitionRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param Country $country
-     * @param Sport   $sport
+     * @param Country $country Country entity
+     * @param Sport   $sport   Sport entity
      *
      * @return Competition|null
      */
-    public function findMainCompetitionByCountryAndSport(Country $country, Sport $sport)
-    {
+    public function findMainCompetitionByCountryAndSport(
+        Country $country,
+        Sport $sport
+    ) {
         $competitionCategory = $this->entityManager
             ->createQueryBuilder()
             ->select('competition_category.id')
-            ->from('ViscaLicomBundle:CompetitionCategory', 'competition_category')
-            ->join('competition_category.sport', 'sport', Join::WITH, 'sport.id = :sportId')
-            ->join('competition_category.country', 'country', Join::WITH, 'country.id = :countryId')
+            ->from(
+                'ViscaLicomBundle:CompetitionCategory',
+                'competition_category'
+            )
+            ->join(
+                'competition_category.sport',
+                'sport',
+                Join::WITH,
+                'sport.id = :sportId'
+            )
+            ->join(
+                'competition_category.country',
+                'country',
+                Join::WITH,
+                'country.id = :countryId'
+            )
             ->setParameter('sportId', $sport->getId())
             ->setParameter('countryId', $country->getId())
             ->setMaxResults(1)
@@ -207,7 +223,7 @@ class CompetitionRepository extends AbstractEntityRepository
             return null;
         }
 
-        return  $this->createQueryBuilder('competition')
+        return $this->createQueryBuilder('competition')
             ->join(
                 'competition.competitionCategory',
                 'competitionCategory',
@@ -239,5 +255,46 @@ class CompetitionRepository extends AbstractEntityRepository
             ->setParameter('sportId', $sport->getId());
 
         return $queryBuilder->getQuery()->getResult();
+    }
+
+    /**
+     * @param Match[] $matches
+     *
+     * @return Competition[]|null
+     */
+    public function findByMatchesIds(
+        $matches = array()
+    ) {
+        $competitions = $this->entityManager
+            ->createQueryBuilder()
+            ->select('c as competition, count(match.id) as matchesNumber')
+            ->from(
+                'ViscaLicomBundle:Competition',
+                'c'
+            )
+            ->join(
+                'ViscaLicomBundle:CompetitionSeason',
+                'cs',
+                Join::WITH,
+                'cs.competition = c.id'
+            )
+            ->join(
+                'ViscaLicomBundle:CompetitionSeasonStage',
+                'css',
+                Join::WITH,
+                'css.competitionSeason = cs.id'
+            )->join(
+                'ViscaLicomBundle:Match',
+                'match',
+                Join::WITH,
+                'match.competitionSeasonStage = css.id'
+            )
+            ->where('match.id in (:matches)')
+            ->setParameter('matches', $matches)
+            ->groupBy('c.id')
+            ->getQuery()
+            ->getResult();
+
+        return $competitions;
     }
 }

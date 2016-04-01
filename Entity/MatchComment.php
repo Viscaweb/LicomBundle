@@ -95,7 +95,7 @@ class MatchComment
     /**
      * Get Localization.
      *
-     * @return int
+     * @return Localization
      */
     public function getLocalization()
     {

@@ -7,8 +7,8 @@ use Doctrine\Common\Collections\Collection;
 use Visca\Bundle\CoreBundle\Entity\Traits\DeletableTrait;
 use Visca\Bundle\CoreBundle\Entity\Traits\OptionalDateTimeTrait;
 use Visca\Bundle\LicomBundle\Entity\Interfaces\EntityWithAuxInterface;
+use Visca\Bundle\LicomBundle\Entity\MatchIncident\Interfaces\MatchIncidentAuthorInterface;
 use Visca\Bundle\LicomBundle\Entity\Traits\EntityWithAuxTrait;
-use Visca\Bundle\LicomBundle\Model\MatchIncident\Interfaces\MatchIncidentAuthorInterface;
 
 /**
  * Participant.

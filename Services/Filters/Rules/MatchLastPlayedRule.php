@@ -89,6 +89,8 @@ class MatchLastPlayedRule implements FilterMatchRuleInterface
     }
 
     /**
+     * Sorts matches by Date descending.
+     *
      * @param Match $matchA First match to compare
      * @param Match $matchB Second match to compare
      *

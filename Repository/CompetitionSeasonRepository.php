@@ -55,7 +55,7 @@ class CompetitionSeasonRepository extends AbstractEntityRepository
         // Get current Competition Season for Competition
         return $this
             ->createQueryBuilder('cs')
-            ->join('ViscaLicomBundle:CompetitionGraph', 'cg', Join::WITH, 'cs.id = cg.competitionSeason')
+            ->join('cs.competitionGraph', 'cg')
             ->where('cg.label = :label')
             ->andWhere('cg.competition = :cid')
             ->setParameters(
@@ -75,15 +75,13 @@ class CompetitionSeasonRepository extends AbstractEntityRepository
     public function findCurrentByTeam(Team $team)
     {
         return $this
-            ->entityManager
-            ->createQueryBuilder()
-            ->select('cs, competition')
-            ->from('ViscaLicomBundle:Match', 'm')
-            ->join('ViscaLicomBundle:MatchParticipant', 'mp', Join::WITH, 'm.id = mp.match')
-            ->join('ViscaLicomBundle:CompetitionSeasonStage', 'css', Join::WITH, 'css.id = m.competitionSeasonStage')
-            ->join('ViscaLicomBundle:CompetitionSeason', 'cs', Join::WITH, 'cs.id = css.competitionSeason')
-            ->join('ViscaLicomBundle:CompetitionGraph', 'cg', Join::WITH, 'cg.competition = cs.competition')
+            ->createQueryBuilder('cs')
+            ->addSelect(['competition', 'css'])
             ->join('cs.competition', 'competition')
+            ->join('cs.competitionSeasonStage', 'css')
+            ->join('cs.competitionGraph', 'cg')
+            ->join('css.match', 'm')
+            ->join('m.matchParticipant', 'mp')
             ->where('mp.participant = :participant')
             ->andWhere('cg.label = :label')
             ->setParameters(

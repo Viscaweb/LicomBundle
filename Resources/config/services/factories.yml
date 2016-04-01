@@ -11,3 +11,14 @@ services:
     class: Visca\Bundle\LicomBundle\Factory\StandingFactory
   visca_licom.factory.match_result:
     class: Visca\Bundle\LicomBundle\Factory\MatchResultFactory
+
+  visca_licom.factory.goal:
+    class: Visca\Bundle\LicomBundle\Factory\MatchIncident\GoalFactory
+  visca_licom.factory.yellow_card:
+    class: Visca\Bundle\LicomBundle\Factory\MatchIncident\YellowCardFactory
+  visca_licom.factory.red_card:
+    class: Visca\Bundle\LicomBundle\Factory\MatchIncident\RedCardFactory
+  visca_licom.factory.penalty_goal:
+    class: Visca\Bundle\LicomBundle\Factory\MatchIncident\PenaltyGoalFactory
+  visca_licom.factory.player_change:
+    class: Visca\Bundle\LicomBundle\Factory\MatchIncident\PlayerChangeFactory

@@ -243,10 +243,10 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param CompetitionSeason $competitionSeason
-     * @param                   $labelCode
+     * @param CompetitionSeason $competitionSeason CompetitionSeason entity
+     * @param int               $labelCode         Label code.
      *
-     * @return mixed
+     * @return CompetitionSeasonStage|null
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function findLabeledByCompetitionSeason(
@@ -350,11 +350,13 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
                 'cg.label = :competitionGraphLabel',
                 'csg.label = :competitionSeasonGraphLabel'
             )
-            ->setParameters([
-                'participant' => $participantId,
-                'competitionGraphLabel' => CompetitionGraphLabelCode::CURRENT_CODE,
-                'competitionSeasonGraphLabel' => CompetitionSeasonGraphLabelCode::CURRENT_CODE
-            ]);
+            ->setParameters(
+                [
+                    'participant' => $participantId,
+                    'competitionGraphLabel' => CompetitionGraphLabelCode::CURRENT_CODE,
+                    'competitionSeasonGraphLabel' => CompetitionSeasonGraphLabelCode::CURRENT_CODE
+                ]
+            );
 
         $competitionStageType = $qb->getQuery()->getResult();
 

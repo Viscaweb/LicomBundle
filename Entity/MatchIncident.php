@@ -192,7 +192,7 @@ class MatchIncident implements EntityWithAuxInterface
      *
      * @return MatchIncident
      */
-    public function setTime($time)
+    public function setTime(DateTime $time)
     {
         $this->time = $time;
 

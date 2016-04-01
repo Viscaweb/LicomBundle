@@ -147,16 +147,24 @@ class MatchSlugMatcher
             $matchCollection,
             $competition
         );
-        if (empty($competitionMatchCollection)) {
-            throw new NoMatchFoundException();
-        }
 
+        return $this->getBestMatch($competitionMatchCollection);
+    }
+
+    /**
+     * @param array $matches
+     *
+     * @return Match
+     * @throws NoMatchFoundException
+     */
+    public function getBestMatch(array $matches)
+    {
         /**
          * Take the best match to display in this list
          */
         try {
             $bestMatch = $this->matchMostRevelantFilter->filter(
-                $competitionMatchCollection
+                $matches
             );
         } catch (NoMatchFoundException $ex) {
             throw $ex;
@@ -186,7 +194,7 @@ class MatchSlugMatcher
      *
      * @return Match[]
      */
-    private function filterByGivenCompetition(
+    public function filterByGivenCompetition(
         array $matchCollection,
         Competition $competition
     ) {
@@ -199,6 +207,10 @@ class MatchSlugMatcher
             if ($matchCompetition->getId() == $competition->getId()) {
                 $competitionMatchCollection[] = $match;
             }
+        }
+
+        if (empty($competitionMatchCollection)) {
+            throw new NoMatchFoundException();
         }
 
         return $competitionMatchCollection;
