@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <phpunit
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.8/phpunit.xsd"
+        xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/5.0/phpunit.xsd"
         colors="true"
         bootstrap="tests/bootstrap.php"
         convertErrorsToExceptions="true"
         convertNoticesToExceptions="true"
         convertWarningsToExceptions="true"
-        beStrictAboutTestSize="false"
         beStrictAboutTestsThatDoNotTestAnything="true"
         timeoutForSmallTests="9"
         timeoutForMediumTests="19"
         timeoutForLargeTests="69">
-    <php>
-        <server name="KERNEL_DIR" value="app" />
-    </php>
     <testsuites>
         <testsuite name="All">
             <directory>tests</directory>
