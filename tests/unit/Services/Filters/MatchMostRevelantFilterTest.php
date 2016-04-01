@@ -13,7 +13,7 @@ class MatchMostRelevantFilterTest extends \PHPUnit_Framework_TestCase
 {
 
     /** @test */
-    public function given_a_collection_of_matches_return_first_in_list_if_any_rule_is_set()
+    public function given_a_collection_of_matches_return_first_in_list_if_no_one_rule_is_set()
     {
         $trendingMatch = new MatchMostRelevantFilter($filters = []);
         $expectedMatch = (new Match())->setName('foo-vs-bar');
