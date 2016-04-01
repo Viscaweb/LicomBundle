@@ -1,40 +1,44 @@
 {
-    "name": "viscaweb/licom-bundle",
-    "description": "Viscaweb licom bundle",
-    "type": "symfony-bundle",
-    "license": "proprietary",
-    "authors": [
-        {
-            "name": "Damien Gavard",
-            "email": "damien@viscaweb.com"
-        }
-    ],
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "require": {
-        "viscaweb/doctrine-bundle"      : "dev-develop",
-        "viscaweb/core-bundle"          : "dev-develop",
-        "beberlei/DoctrineExtensions"   : "v1.0.9"
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url":  "git@bitbucket.org:viscaweb/doctrine-bundle.git"
-        },
-        {
-            "type": "vcs",
-            "url":  "git@bitbucket.org:viscaweb/core-bundle.git"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "Visca\\Bundle\\LicomBundle\\": ""
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Tests\\Unit\\"                      : "tests/unit",
-            "Tests\\Functional\\"                : "tests/functional"
-        }
+  "name": "viscaweb/licom-bundle",
+  "description": "Viscaweb licom bundle",
+  "type": "symfony-bundle",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Damien Gavard",
+      "email": "damien@viscaweb.com"
     }
+  ],
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "viscaweb/doctrine-bundle": "dev-develop",
+    "viscaweb/core-bundle": "dev-develop",
+    "beberlei/DoctrineExtensions": "v1.0.9"
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "git@bitbucket.org:viscaweb/doctrine-bundle.git"
+    },
+    {
+      "type": "vcs",
+      "url": "git@bitbucket.org:viscaweb/core-bundle.git"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Visca\\Bundle\\LicomBundle\\": ""
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\Unit\\": "tests/unit",
+      "Tests\\Functional\\": "tests/functional"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "5.0.*",
+    "doctrine/orm": "~2.5"
+  }
 }
