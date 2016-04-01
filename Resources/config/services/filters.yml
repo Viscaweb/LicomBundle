@@ -1,6 +1,6 @@
 services:
     visca_licom.filter.match.most_revelant:
-        class: Visca\Bundle\LicomBundle\Services\Filters\MatchMostRevelantFilter
+        class: Visca\Bundle\LicomBundle\Services\Filters\MatchMostRelevantFilter
         arguments:
             -
                 - '@visca_licom.filter.match.rule.in_progress'

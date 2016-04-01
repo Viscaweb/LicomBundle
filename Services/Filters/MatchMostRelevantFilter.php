@@ -18,9 +18,9 @@ use Visca\Bundle\LicomBundle\Services\Filters\Rules\Interfaces\FilterMatchRuleIn
  *  4. If not, the last match played,
  *  5. If not, the first match of the list.
  *
- * Class MatchMostRevelantFilter
+ * Class MatchMostRelevantFilter
  */
-class MatchMostRevelantFilter
+class MatchMostRelevantFilter
 {
     /**
      * @var FilterMatchRuleInterface[]
@@ -28,7 +28,7 @@ class MatchMostRevelantFilter
     protected $rules;
 
     /**
-     * MatchMostRevelantFilter constructor.
+     * MatchMostRelevantFilter constructor.
      *
      * @param FilterMatchRuleInterface[] $rules Rules to use
      */
