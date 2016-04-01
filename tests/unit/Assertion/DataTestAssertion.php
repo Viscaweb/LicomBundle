@@ -1,6 +1,6 @@
 <?php
 
-namespace Visca\Bundle\LicomBundle\Test\Assertion;
+namespace Visca\Bundle\LicomBundle\Tests\Assertion;
 
 use PHPUnit_Framework_Assert;
 use Visca\Bundle\LicomBundle\Entity\Competition;
