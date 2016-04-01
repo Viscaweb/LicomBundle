@@ -15,7 +15,6 @@ use Visca\Bundle\LicomBundle\Entity\Match;
 use Visca\Bundle\LicomBundle\Entity\MatchParticipant;
 use Visca\Bundle\LicomBundle\Entity\Participant;
 use Visca\Bundle\LicomBundle\Entity\Sport;
-use Visca\Bundle\LicomBundle\Repository\Traits\GetAndSortByIdTrait;
 use Visca\Bundle\LicomBundle\Repository\Traits\UTCAltererTrait;
 
 /**
@@ -23,7 +22,6 @@ use Visca\Bundle\LicomBundle\Repository\Traits\UTCAltererTrait;
  */
 class MatchRepository extends AbstractEntityRepository
 {
-    use GetAndSortByIdTrait;
     use UTCAltererTrait;
 
     /**

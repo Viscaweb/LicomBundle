@@ -9,7 +9,6 @@ use Visca\Bundle\LicomBundle\Entity\Participant;
 use Visca\Bundle\LicomBundle\Entity\ProfileEntityGraph;
 use Visca\Bundle\LicomBundle\Entity\Sport;
 use Visca\Bundle\LicomBundle\Exception\NoTranslationFoundException;
-use Visca\Bundle\LicomBundle\Repository\Traits\GetAndSortByIdTrait;
 use Doctrine\ORM\Query\Expr\Join;
 
 /**
@@ -18,8 +17,6 @@ use Doctrine\ORM\Query\Expr\Join;
 class ParticipantRepository extends AbstractEntityRepository
 {
     const COMPETITION_SEASON_CODE = 'CompetitionSeason';
-
-    use GetAndSortByIdTrait;
 
     /**
      * @var ProfileEntityGraphRepository

@@ -11,7 +11,6 @@ use Visca\Bundle\LicomBundle\Entity\Match;
 use Visca\Bundle\LicomBundle\Entity\ProfileEntityGraph;
 use Visca\Bundle\LicomBundle\Entity\Sport;
 use Visca\Bundle\LicomBundle\Exception\NoTranslationFoundException;
-use Visca\Bundle\LicomBundle\Repository\Traits\GetAndSortByIdTrait;
 use Doctrine\ORM\Query\Expr\Join;
 
 /**
@@ -19,8 +18,6 @@ use Doctrine\ORM\Query\Expr\Join;
  */
 class CompetitionRepository extends AbstractEntityRepository
 {
-    use GetAndSortByIdTrait;
-
     /**
      * @var ProfileEntityGraphRepository
      */

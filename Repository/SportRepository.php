@@ -4,15 +4,12 @@ namespace Visca\Bundle\LicomBundle\Repository;
 
 use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
 use Visca\Bundle\LicomBundle\Entity\Sport;
-use Visca\Bundle\LicomBundle\Repository\Traits\GetAndSortByIdTrait;
 
 /**
  * Class SportRepository.
  */
 class SportRepository extends AbstractEntityRepository
 {
-    use GetAndSortByIdTrait;
-
     /**
      * @param int|null $limit Limit
      *

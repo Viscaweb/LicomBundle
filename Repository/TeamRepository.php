@@ -7,7 +7,6 @@ use Visca\Bundle\LicomBundle\Entity\Athlete;
 use Visca\Bundle\LicomBundle\Entity\Code\EntityCode;
 use Visca\Bundle\LicomBundle\Entity\Sport;
 use Visca\Bundle\LicomBundle\Entity\Team;
-use Visca\Bundle\LicomBundle\Repository\Traits\GetAndSortByIdTrait;
 use Visca\Bundle\LicomBundle\Entity\ProfileEntityGraph;
 
 /**
@@ -15,8 +14,6 @@ use Visca\Bundle\LicomBundle\Entity\ProfileEntityGraph;
  */
 class TeamRepository extends AbstractEntityRepository
 {
-    use GetAndSortByIdTrait;
-
     /**
      * @var ProfileEntityGraphRepository
      */
