@@ -1657,7 +1657,7 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param int $ids Ids
+     * @param array $ids Ids
      *
      * @return Match[]
      */
