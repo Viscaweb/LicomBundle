@@ -76,17 +76,4 @@ class MatchMostRelevantFilterTest extends \PHPUnit_Framework_TestCase
     {
         return (new MatchStatusDescription())->setCategory($name);
     }
-
-//    /**
-//     * @param object $object
-//     * @param string $property
-//     * @param mixed $value
-//     */
-//    private function setPrivateProperty($object, $property, $value)
-//    {
-//        $rClass = new \ReflectionClass($object);
-//        $rProperty = $rClass->getProperty($property);
-//        $rProperty->setAccessible(true);
-//        $rProperty->setValue($object, $value);
-//    }
 }
