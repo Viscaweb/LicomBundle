@@ -14,7 +14,7 @@
   "require": {
     "viscaweb/doctrine-bundle": "dev-develop",
     "viscaweb/core-bundle": "dev-develop",
-    "beberlei/DoctrineExtensions": "v1.0.9"
+    "beberlei/DoctrineExtensions": "~1.0.9"
   },
   "repositories": [
     {
