@@ -8,6 +8,7 @@ use Visca\Bundle\LicomBundle\Entity\MatchStatusDescription;
 use Visca\Bundle\LicomBundle\Exception\NoMatchFoundException;
 use Visca\Bundle\LicomBundle\Services\Filters\MatchMostRelevantFilter;
 use Visca\Bundle\LicomBundle\Services\Filters\Rules\MatchInProgressRule;
+use Visca\Bundle\LicomBundle\Services\Filters\Rules\MatchLastPlayedRule;
 
 class MatchMostRelevantFilterTest extends \PHPUnit_Framework_TestCase
 {
@@ -30,6 +31,15 @@ class MatchMostRelevantFilterTest extends \PHPUnit_Framework_TestCase
     }
 
     /** @test */
+    public function given_a_collection_of_matches_return_one_match_played_in_the_last_four_days()
+    {
+        $trendingMatch = new MatchMostRelevantFilter([new MatchLastPlayedRule(4)]);
+        $expectedMatch = $this->getLastPlayedMatch();
+        $collectionOfMatchesToSearch = $this->getCollectionOfMatchesForLastPlayed();
+        $this->assertEquals($trendingMatch->filter($collectionOfMatchesToSearch), $expectedMatch);
+    }
+
+    /** @test */
     public function given_a_collection_of_matches_throw_exception_if_any_match_is_provided()
     {
         $trendingMatch = new MatchMostRelevantFilter($filters = []);
@@ -45,11 +55,7 @@ class MatchMostRelevantFilterTest extends \PHPUnit_Framework_TestCase
      */
     protected function getInLiveMatch()
     {
-        return (new Match())
-            ->setName('foo-vs-bar')
-            ->setMatchStatusDescription(
-                $this->createMatchStatusDescriptionWithCategoryName(MatchStatusDescription::IN_PROGRESS_KEY)
-            );
+        return $this->getCollectionOfMatchesForInLive()[2];
     }
 
     /**
@@ -64,7 +70,9 @@ class MatchMostRelevantFilterTest extends \PHPUnit_Framework_TestCase
             (new Match())->setName('bar')->setMatchStatusDescription(
                 $this->createMatchStatusDescriptionWithCategoryName('baz')
             ),
-            $this->getInLiveMatch(),
+            (new Match())->setName('foo-vs-bar')->setMatchStatusDescription(
+                $this->createMatchStatusDescriptionWithCategoryName(MatchStatusDescription::IN_PROGRESS_KEY)
+            ),
         ];
     }
 
@@ -75,5 +83,51 @@ class MatchMostRelevantFilterTest extends \PHPUnit_Framework_TestCase
     private function createMatchStatusDescriptionWithCategoryName($name)
     {
         return (new MatchStatusDescription())->setCategory($name);
+    }
+
+    /**
+     * @return Match
+     */
+    private function getLastPlayedMatch()
+    {
+        return $this->getCollectionOfMatchesForLastPlayed()[2];
+    }
+
+    /**
+     * @return Match[]
+     */
+    private function getCollectionOfMatchesForLastPlayed()
+    {
+        return [
+            $this->setPrivateProperty(new Match(), 'id', 1)->setName('foo-vs-bar')->setMatchStatusDescription(
+                $this->createMatchStatusDescriptionWithCategoryName(MatchStatusDescription::FINISHED_KEY)
+            )->setStartDate(new \DateTime("-15 days")),
+            $this->setPrivateProperty(new Match(), 'id', 2)->setName('foo-vs-bar')->setMatchStatusDescription(
+                $this->createMatchStatusDescriptionWithCategoryName(MatchStatusDescription::FINISHED_KEY)
+            )->setStartDate(new \DateTime("-10 days")),
+            $this->setPrivateProperty(new Match(), 'id', 3)->setName('foo-vs-bar')->setMatchStatusDescription(
+                $this->createMatchStatusDescriptionWithCategoryName(MatchStatusDescription::FINISHED_KEY)
+            )->setStartDate(new \DateTime("-3 days")),
+            $this->setPrivateProperty(new Match(), 'id', 4)->setName('foo-vs-bar')->setMatchStatusDescription(
+                $this->createMatchStatusDescriptionWithCategoryName(MatchStatusDescription::FINISHED_KEY)
+            )->setStartDate(new \DateTime("-5 days")),
+        ];
+    }
+
+    /**
+     * @param object $object
+     * @param string $property
+     * @param mixed $value
+     *
+     * @return object
+     */
+    private function setPrivateProperty($object, $property, $value)
+    {
+        $rClass = new \ReflectionClass($object);
+        $rProperty = $rClass->getProperty($property);
+        $rProperty->setAccessible(true);
+        $rProperty->setValue($object, $value);
+
+        return $object;
     }
 }
