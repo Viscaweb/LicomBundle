@@ -113,6 +113,10 @@ class Match implements EntityWithAuxInterface
      * @var CompetitionSeasonStage
      */
     private $competitionSeasonStage;
+    /**
+     * @var bool
+     */
+    private $mostRelevant;
 
     /**
      * Constructor.
@@ -122,6 +126,33 @@ class Match implements EntityWithAuxInterface
         $this->aux = new ArrayCollection();
         $this->matchParticipant = new ArrayCollection();
         $this->matchAuxProfile = new ArrayCollection();
+        $this->mostRelevant = false;
+    }
+
+    /**
+     * @return Match
+     */
+    public static function create()
+    {
+        $factory = new MatchFactory();
+
+        return $factory->create();
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isMostRelevant()
+    {
+        return $this->mostRelevant;
+    }
+
+    /**
+     * @param boolean $mostRelevant
+     */
+    public function setMostRelevant($mostRelevant)
+    {
+        $this->mostRelevant = $mostRelevant;
     }
 
     /**
@@ -486,16 +517,6 @@ class Match implements EntityWithAuxInterface
     }
 
     /**
-     * @return Match
-     */
-    public static function create()
-    {
-        $factory = new MatchFactory();
-
-        return $factory->create();
-    }
-
-    /**
      * Add matchAuxProfile.
      *
      * @param MatchAuxProfile $matchAuxProfile
@@ -596,8 +617,7 @@ class Match implements EntityWithAuxInterface
             return false;
         }
 
-        $matchCompetitionStageType = $matchCompetitionStage->getCompetitionStageType1(
-        );
+        $matchCompetitionStageType = $matchCompetitionStage->getCompetitionStageType1();
         if (!($matchCompetitionStage instanceof CompetitionStageType)) {
             return false;
         }
