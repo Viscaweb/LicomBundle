@@ -49,6 +49,12 @@ Visca\Bundle\LicomBundle\Entity\Match:
       nullable: true
       options:
         default: NULL
+    mostRelevant:
+      type: boolean
+      nullable: true
+      column: most_relevant
+      options:
+        default: '0'
     del:
       type: SoftDeletionType
       nullable: false
