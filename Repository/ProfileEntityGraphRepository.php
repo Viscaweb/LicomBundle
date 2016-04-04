@@ -55,11 +55,12 @@ class ProfileEntityGraphRepository extends AbstractEntityRepository
     /**
      * @param Sport    $sport Sport
      * @param string   $code  Code
+     * @param bool     $arrayIds ArrayIDs
      * @param int|null $limit Limit of results
      *
-     * @return ProfileEntityGraph[]
+     * @return \Visca\Bundle\LicomBundle\Entity\ProfileEntityGraph[]
      */
-    public function findByLabel(Sport $sport, $code, $limit = null)
+    public function findByLabel(Sport $sport, $code, $arrayIds = false, $limit = null)
     {
         $repositoryGraphLabel = $this->getRepositoryLabel();
         $labelData = $repositoryGraphLabel->findOneBy(
@@ -83,6 +84,10 @@ class ProfileEntityGraphRepository extends AbstractEntityRepository
 
         if (is_numeric($limit)) {
             $queryBuilder->setMaxResults($limit);
+        }
+
+        if ($arrayIds) {
+            $queryBuilder->select('pe.entityId');
         }
 
         $query = $queryBuilder->getQuery();

@@ -6,15 +6,12 @@ namespace Visca\Bundle\LicomBundle\Repository;
 use Doctrine\ORM\Query\Expr\Join;
 use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
 use Visca\Bundle\LicomBundle\Entity\CompetitionLeg;
-use Visca\Bundle\LicomBundle\Repository\Traits\GetAndSortByIdTrait;
 
 /**
  * Class CompetitionLegRepository
  */
 class CompetitionLegRepository extends AbstractEntityRepository
 {
-    use GetAndSortByIdTrait;
-
     /**
      * @var ProfileEntityGraphRepository
      */

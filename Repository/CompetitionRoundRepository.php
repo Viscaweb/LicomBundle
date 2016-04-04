@@ -9,14 +9,12 @@ use Visca\Bundle\LicomBundle\Entity\CompetitionRound;
 use Visca\Bundle\LicomBundle\Entity\CompetitionSeason;
 use Visca\Bundle\LicomBundle\Entity\CompetitionSeasonStage;
 use Visca\Bundle\LicomBundle\Entity\CompetitionStageType;
-use Visca\Bundle\LicomBundle\Repository\Traits\GetAndSortByIdTrait;
 
 /**
  * Class CompetitionRepository.
  */
 class CompetitionRoundRepository extends AbstractEntityRepository
 {
-    use GetAndSortByIdTrait;
 
     /**
      * @param CompetitionSeason    $competitionSeason         CompetitionSeason entity

@@ -15,7 +15,6 @@ use Visca\Bundle\LicomBundle\Entity\Match;
 use Visca\Bundle\LicomBundle\Entity\MatchParticipant;
 use Visca\Bundle\LicomBundle\Entity\Participant;
 use Visca\Bundle\LicomBundle\Entity\Sport;
-use Visca\Bundle\LicomBundle\Repository\Traits\GetAndSortByIdTrait;
 use Visca\Bundle\LicomBundle\Repository\Traits\UTCAltererTrait;
 
 /**
@@ -23,7 +22,6 @@ use Visca\Bundle\LicomBundle\Repository\Traits\UTCAltererTrait;
  */
 class MatchRepository extends AbstractEntityRepository
 {
-    use GetAndSortByIdTrait;
     use UTCAltererTrait;
 
     /**
@@ -325,6 +323,7 @@ class MatchRepository extends AbstractEntityRepository
                 )
                 ->setParameter('home', MatchParticipant::HOME)
                 ->setParameter('away', MatchParticipant::AWAY);
+            $query->addSelect('mp2');
         }
 
         if (!is_null($participantPosition)) {
@@ -1655,5 +1654,20 @@ class MatchRepository extends AbstractEntityRepository
         }
 
         return $query->getQuery()->getResult();
+    }
+
+    /**
+     * @param array $ids Ids
+     *
+     * @return Match[]
+     */
+    public function getAndSortByIds($ids)
+    {
+        $queryBuilder = $this->createQueryBuilder('m')
+            ->where('m.id IN (:ids)')
+            ->orderBy('FIELD(m.id, :ids)')
+            ->setParameter('ids', $ids);
+
+        return $queryBuilder->getQuery()->getResult();
     }
 }

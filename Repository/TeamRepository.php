@@ -7,7 +7,6 @@ use Visca\Bundle\LicomBundle\Entity\Athlete;
 use Visca\Bundle\LicomBundle\Entity\Code\EntityCode;
 use Visca\Bundle\LicomBundle\Entity\Sport;
 use Visca\Bundle\LicomBundle\Entity\Team;
-use Visca\Bundle\LicomBundle\Repository\Traits\GetAndSortByIdTrait;
 use Visca\Bundle\LicomBundle\Entity\ProfileEntityGraph;
 
 /**
@@ -15,8 +14,6 @@ use Visca\Bundle\LicomBundle\Entity\ProfileEntityGraph;
  */
 class TeamRepository extends AbstractEntityRepository
 {
-    use GetAndSortByIdTrait;
-
     /**
      * @var ProfileEntityGraphRepository
      */
@@ -103,19 +100,20 @@ class TeamRepository extends AbstractEntityRepository
     {
         $profileGraphRepository = $this->repositoryProfileEntityGraph;
 
-        $profileTopEntries = $profileGraphRepository->findByLabel(
+        $profileTopEntriesIds = $profileGraphRepository->findByLabel(
             $sport,
-            'top-teams'
+            'top-teams',
+            true
         );
 
-        $topTeamsIds = [];
-        /** @var ProfileEntityGraph $profileEntityGraph */
-        foreach ($profileTopEntries as $profileEntityGraph) {
-            $topTeamsIds[] = $profileEntityGraph->getEntityId();
-        }
+        $queryBuilder = $this->createQueryBuilder('c')
+            ->where('c.id IN (:ids)')
+            ->orderBy('FIELD(c.id, :ids)')
+            ->setParameter('ids', $profileTopEntriesIds);
 
-        $topTeams = $this->getAndSortById($topTeamsIds);
+        $query = $queryBuilder->getQuery();
+        $this->setCacheStrategy($query);
 
-        return $topTeams;
+        return $query->getResult();
     }
 }

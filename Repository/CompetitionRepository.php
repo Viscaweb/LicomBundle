@@ -11,7 +11,6 @@ use Visca\Bundle\LicomBundle\Entity\Match;
 use Visca\Bundle\LicomBundle\Entity\ProfileEntityGraph;
 use Visca\Bundle\LicomBundle\Entity\Sport;
 use Visca\Bundle\LicomBundle\Exception\NoTranslationFoundException;
-use Visca\Bundle\LicomBundle\Repository\Traits\GetAndSortByIdTrait;
 use Doctrine\ORM\Query\Expr\Join;
 
 /**
@@ -19,8 +18,6 @@ use Doctrine\ORM\Query\Expr\Join;
  */
 class CompetitionRepository extends AbstractEntityRepository
 {
-    use GetAndSortByIdTrait;
-
     /**
      * @var ProfileEntityGraphRepository
      */
@@ -137,20 +134,22 @@ class CompetitionRepository extends AbstractEntityRepository
     {
         $profileGraphRepository = $this->repositoryProfileEntityGraph;
 
-        $profileTopEntries = $profileGraphRepository->findByLabel(
+        $profileTopEntriesIds = $profileGraphRepository->findByLabel(
             $sport,
             'top-competitions',
+            true,
             $limit
         );
-        $topCompetitionsIds = [];
-        /** @var ProfileEntityGraph $profileEntityGraph */
-        foreach ($profileTopEntries as $profileEntityGraph) {
-            $topCompetitionsIds[] = $profileEntityGraph->getEntityId();
-        }
 
-        $topCompetitions = $this->getAndSortById($topCompetitionsIds);
+        $queryBuilder = $this->createQueryBuilder('c')
+            ->where('c.id IN (:ids)')
+            ->orderBy('FIELD(c.id, :ids)')
+            ->setParameter('ids', $profileTopEntriesIds);
 
-        return $topCompetitions;
+        $query = $queryBuilder->getQuery();
+        $this->setCacheStrategy($query);
+
+        return $query->getResult();
     }
 
     /**
@@ -250,29 +249,11 @@ class CompetitionRepository extends AbstractEntityRepository
             ->join('c.competitionCategory', 'cc')
             ->where('c.id IN (:ids)')
             ->andWhere('cc.sport = :sportId')
+            ->orderBy('FIELD(c.id, :ids)')
             ->setParameter('ids', $ids)
             ->setParameter('sportId', $sport->getId());
 
-        $entities = $queryBuilder->getQuery()->getResult();
-
-        usort(
-            $entities,
-            function ($firstEntity, $secondEntity) use ($ids) {
-                $firstEntityPosition = array_search(
-                    $firstEntity->getId(),
-                    $ids
-                );
-                $secondEntityPosition = array_search(
-                    $secondEntity->getId(),
-                    $ids
-                );
-
-                return $firstEntityPosition > $secondEntityPosition;
-
-            }
-        );
-
-        return $entities;
+        return $queryBuilder->getQuery()->getResult();
     }
 
     /**
