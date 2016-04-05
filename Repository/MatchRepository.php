@@ -9,6 +9,7 @@ use Doctrine\ORM\Query\Expr\Join;
 use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
 use Visca\Bundle\LicomBundle\Entity\Athlete;
 use Visca\Bundle\LicomBundle\Entity\Code\MatchResultTypeCode;
+use Visca\Bundle\LicomBundle\Entity\Competition;
 use Visca\Bundle\LicomBundle\Entity\CompetitionSeasonStage;
 use Visca\Bundle\LicomBundle\Entity\Enum\MatchStatusDescriptionCategoryType;
 use Visca\Bundle\LicomBundle\Entity\Match;
@@ -1669,5 +1670,46 @@ class MatchRepository extends AbstractEntityRepository
             ->setParameter('ids', $ids);
 
         return $queryBuilder->getQuery()->getResult();
+    }
+
+    /**
+     * @param Competition $competition
+     * @param Participant $home
+     * @param Participant $away
+     * @return Match[]
+     */
+    public function findByCompetitionAndHomeAndAwayParticipants(
+        Competition $competition,
+        Participant $home,
+        Participant $away
+    ) {
+        $query = parent::createQueryBuilder('m')
+            ->join(
+                'm.matchParticipant',
+                'homeParticipant',
+                Join::WITH,
+                'homeParticipant.participant = :homeParticipant and homeParticipant.number = :home'
+            )
+            ->join(
+                'm.matchParticipant',
+                'awayParticipant',
+                Join::WITH,
+                'awayParticipant.participant = :awayParticipant and awayParticipant.number = :away'
+            )
+            ->join('m.competitionSeasonStage', 'stage')
+            ->join('stage.competitionSeason', 'season')
+            ->join('season.competition', 'competition')
+            ->where('competition = :competition')
+            ->setParameters(
+                [
+                    'homeParticipant' => $home,
+                    'awayParticipant' => $away,
+                    'home' => MatchParticipant::HOME,
+                    'away' => MatchParticipant::AWAY,
+                    'competition' => $competition,
+                ]
+            );
+
+        return $query->getQuery()->getResult();
     }
 }
