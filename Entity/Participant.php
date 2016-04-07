@@ -325,7 +325,7 @@ abstract class Participant implements EntityWithAuxInterface, MatchIncidentAutho
     /**
      * Get matchIncident[].
      *
-     * @return MatchIncident
+     * @return MatchIncident[]
      */
     public function getMatchIncident()
     {
