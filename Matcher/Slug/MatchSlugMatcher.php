@@ -8,7 +8,7 @@ use Visca\Bundle\LicomBundle\Exception\NoMatchFoundException;
 use Visca\Bundle\LicomBundle\Matcher\Slug\Helper\FindTeamsCombinationsHelper;
 use Visca\Bundle\LicomBundle\Model\Slug\ParticipantCombinationModel;
 use Visca\Bundle\LicomBundle\Repository\MatchRepository;
-use Visca\Bundle\LicomBundle\Services\Filters\MatchMostRevelantFilter;
+use Visca\Bundle\LicomBundle\Services\Filters\MatchMostRelevantFilter;
 
 /**
  * Class MatchSlugMatcher
@@ -51,9 +51,9 @@ class MatchSlugMatcher
     protected $participantsCombinationMatcher;
 
     /**
-     * @var MatchMostRevelantFilter Match most revelant filter
+     * @var MatchMostRelevantFilter Match most revelant filter
      */
-    protected $matchMostRevelantFilter;
+    protected $matchMostRelevantFilter;
 
     /**
      * @var FindTeamsCombinationsHelper Participant Combination Finder
@@ -70,20 +70,20 @@ class MatchSlugMatcher
      *
      * @param MatchRepository                   $matchRepository                Match Repository
      * @param ParticipantCombinationSlugMatcher $participantsCombinationMatcher Participant Combination Matcher
-     * @param MatchMostRevelantFilter           $matchMostRevelantFilter        Match most revelant filter
+     * @param MatchMostRelevantFilter           $matchMostRelevantFilter        Match most revelant filter
      * @param FindTeamsCombinationsHelper       $participantCombinationsHelper  Participant Combination Finder
      * @param int                               $licomProfileId                 App's profile ID
      */
     public function __construct(
         MatchRepository $matchRepository,
         ParticipantCombinationSlugMatcher $participantsCombinationMatcher,
-        MatchMostRevelantFilter $matchMostRevelantFilter,
+        MatchMostRelevantFilter $matchMostRelevantFilter,
         FindTeamsCombinationsHelper $participantCombinationsHelper,
         $licomProfileId
     ) {
         $this->matchRepository = $matchRepository;
         $this->participantsCombinationMatcher = $participantsCombinationMatcher;
-        $this->matchMostRevelantFilter = $matchMostRevelantFilter;
+        $this->matchMostRelevantFilter = $matchMostRelevantFilter;
         $this->participantCombinationsHelper = $participantCombinationsHelper;
         $this->licomProfileId = $licomProfileId;
     }
@@ -163,7 +163,7 @@ class MatchSlugMatcher
          * Take the best match to display in this list
          */
         try {
-            $bestMatch = $this->matchMostRevelantFilter->filter(
+            $bestMatch = $this->matchMostRelevantFilter->filter(
                 $matches
             );
         } catch (NoMatchFoundException $ex) {

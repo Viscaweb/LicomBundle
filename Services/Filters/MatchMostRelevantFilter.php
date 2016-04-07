@@ -8,7 +8,7 @@ use Visca\Bundle\LicomBundle\Services\Filters\Rules\Interfaces\FilterMatchRuleIn
 
 /**
  * The aim of this service is to extract from a Match collection the match
- * the most revelant to be displayed using basic rules.
+ * the most relevant to be displayed using basic rules.
  *
  * We usually give a collection of Match from the same MatchParticipant,
  * and this class has to filter the matches to find, in the order:
@@ -18,9 +18,11 @@ use Visca\Bundle\LicomBundle\Services\Filters\Rules\Interfaces\FilterMatchRuleIn
  *  4. If not, the last match played,
  *  5. If not, the first match of the list.
  *
- * Class MatchMostRevelantFilter
+ * @TODO This class will be deprecated, when LIVE team implements it inside LIVE
+ *
+ * Class MatchMostRelevantFilter
  */
-class MatchMostRevelantFilter
+class MatchMostRelevantFilter
 {
     /**
      * @var FilterMatchRuleInterface[]
@@ -28,7 +30,7 @@ class MatchMostRevelantFilter
     protected $rules;
 
     /**
-     * MatchMostRevelantFilter constructor.
+     * MatchMostRelevantFilter constructor.
      *
      * @param FilterMatchRuleInterface[] $rules Rules to use
      */
