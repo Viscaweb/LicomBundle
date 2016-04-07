@@ -52,7 +52,6 @@ Visca\Bundle\LicomBundle\Entity\Match:
     mostRelevant:
       type: boolean
       nullable: true
-      column: most_relevant
       options:
         default: '0'
     del:
