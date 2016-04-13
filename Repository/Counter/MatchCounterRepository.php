@@ -60,7 +60,7 @@ class MatchCounterRepository
     private function getScalarResult(QueryBuilder $queryBuilder)
     {
         $query = $queryBuilder->getQuery();
-//        $query->useResultCache(true, $this->resultCacheLifetime);
+        $query->useResultCache(true, $this->resultCacheLifetime);
 
         return intval($query->getSingleScalarResult());
     }
