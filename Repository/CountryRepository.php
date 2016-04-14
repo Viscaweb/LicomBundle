@@ -165,4 +165,19 @@ class CountryRepository extends AbstractEntityRepository
 
         return $this->findBy(['id' => $countriesIds]);
     }
+
+    /**
+     * @param array $ids Ids
+     *
+     * @return Country[]
+     */
+    public function getAndSortByIds($ids)
+    {
+        $queryBuilder = $this->createQueryBuilder('c')
+            ->where('c.id IN (:ids)')
+            ->orderBy('FIELD(c.id, :ids)')
+            ->setParameter('ids', $ids);
+
+        return $queryBuilder->getQuery()->getResult();
+    }
 }
