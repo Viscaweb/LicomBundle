@@ -411,6 +411,9 @@ class MatchRepository extends AbstractEntityRepository
         }
 
         foreach ($whereArguments as $key => $value) {
+            if ($key === 'startDate') {
+                $this->alterDateObjects($value);
+            }
             $query->setParameter($key, $value);
         }
 
