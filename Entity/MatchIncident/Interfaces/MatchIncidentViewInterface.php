@@ -111,11 +111,11 @@ interface MatchIncidentViewInterface
     public function getPeriod();
 
     /**
-     * @param MatchIncidentPeriod $period
+     * @param MatchIncidentPeriod|null $period
      *
      * @return $this
      */
-    public function setPeriod(MatchIncidentPeriod $period);
+    public function setPeriod($period);
 
     /**
      * @param MatchIncidentAuthorInterface $matchIncidentAuthor
