@@ -342,17 +342,20 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param int    $participantId
-     * @param array  $whereConditions
-     * @param array  $whereArguments
-     * @param null   $limit
-     * @param null   $offset
-     * @param null   $orderField
-     * @param string $orderType
-     * @param int    $matchResultType
-     * @param null   $participantPosition
+     * Finds a match by one of its participants.
      *
-     * @return array
+     * @param int    $participantId       Participant entity ID.
+     * @param array  $whereConditions     Where conditions.
+     * @param array  $whereArguments      Where condition arguments.
+     * @param null   $limit               Limit the number of results.
+     * @param null   $offset              Offset of the results.
+     * @param null   $orderField          Order field name
+     * @param string $orderType           Order type (ASC, DESC)
+     * @param int    $matchResultType     Type of match results we want to preload.
+     * @param null   $matchStatusCategory
+     * @param null   $participantPosition Force the participant position (HOME|AWAY)
+     *
+     * @return \Visca\Bundle\LicomBundle\Entity\Match[]
      */
     public function findMatchByParticipantPreloadResults(
         $participantId,
@@ -363,6 +366,7 @@ class MatchRepository extends AbstractEntityRepository
         $orderField = null,
         $orderType = 'ASC',
         $matchResultType = MatchResultTypeCode::RUNNING_SCORE_CODE,
+        $matchStatusCategory = null,
         $participantPosition = null
     ) {
         $query = $this->createQueryBuilder('m');
@@ -373,17 +377,24 @@ class MatchRepository extends AbstractEntityRepository
                 'mp.matchResult',
                 'mr',
                 Join::WITH,
-                'mr.matchResultType = :resultType'
+                'mr.matchResultType IN (:resultType)'
             )
             ->leftJoin(
                 'mp2.matchResult',
                 'mr2',
                 Join::WITH,
-                'mr2.matchResultType = :resultType'
+                'mr2.matchResultType IN (:resultType)'
             )
             ->where(
                 '(mp.number=:home and mp2.number=:away) OR (mp.number=:away and mp2.number=:home)'
             );
+
+        if ($matchStatusCategory !== null) {
+            $query
+                ->addSelect('msd')
+                ->join('m.matchStatusDescription', 'msd', Join::WITH, 'msd.category = :category')
+                ->setParameter('category', $matchStatusCategory);
+        }
 
         if (is_array($participantId)) {
             $query
@@ -1633,6 +1644,7 @@ class MatchRepository extends AbstractEntityRepository
 
     /**
      * @param string[] $participantNames
+     *
      * @return Match[]
      */
     public function findAllByParticipantNames(array $participantNames)
@@ -1644,12 +1656,17 @@ class MatchRepository extends AbstractEntityRepository
         foreach ($participantNames as $key => $name) {
             $number = $key + 1;
             $query->join(
-                    MatchParticipant::class,
-                    "mp{$number}",
+                MatchParticipant::class,
+                "mp{$number}",
+                Join::WITH,
+                "mp{$number}.number = {$number} and mp{$number}.match = m.id"
+            )
+                ->join(
+                    Participant::class,
+                    "p{$number}",
                     Join::WITH,
-                    "mp{$number}.number = {$number} and mp{$number}.match = m.id"
+                    "p{$number}.id = mp{$number}.participant"
                 )
-                ->join(Participant::class, "p{$number}", Join::WITH, "p{$number}.id = mp{$number}.participant")
                 ->andWhere("p{$number}.name = :p{$number}Name")
                 ->setParameter("p{$number}Name", $name);
         }
@@ -1676,6 +1693,7 @@ class MatchRepository extends AbstractEntityRepository
      * @param Competition $competition
      * @param Participant $home
      * @param Participant $away
+     *
      * @return Match[]
      */
     public function findByCompetitionAndHomeAndAwayParticipants(
