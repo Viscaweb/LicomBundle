@@ -280,20 +280,27 @@ class MatchRepository extends AbstractEntityRepository
         $limit = null,
         $offset = null,
         $orderField = null,
-        $orderType = 'ASC',
-        $preloadBothParticipants = false,
-        $participantPosition = null
+        $orderType = 'ASC'
     ) {
         $query = $this->createQueryBuilder('m');
         $query->select('m', 'mp');
 
+        $query->leftJoin('m.matchParticipant', 'mp2')
+            ->addSelect('mp2')
+            ->where(
+                '(mp.number=:home and mp2.number=:away) OR (mp.number=:away and mp2.number=:home)'
+            )
+            ->setParameter('home', MatchParticipant::HOME)
+            ->setParameter('away', MatchParticipant::AWAY);
+
+
         if (is_array($participantId)) {
             $query
-                ->where('mp.participant in (:participant)')
+                ->andWhere('mp.participant in (:participant)')
                 ->setParameter('participant', implode(',', $participantId));
         } else {
             $query
-                ->where('mp.participant = :participant')
+                ->andWhere('mp.participant = :participant')
                 ->setParameter('participant', $participantId);
         }
 
@@ -315,25 +322,6 @@ class MatchRepository extends AbstractEntityRepository
 
         if (!is_null($orderField)) {
             $query->orderBy('m.'.$orderField, $orderType);
-        }
-
-        if ($preloadBothParticipants) {
-            $query->leftJoin('m.matchParticipant', 'mp2')
-                ->andWhere(
-                    '(mp.number=:home and mp2.number=:away) OR (mp.number=:away and mp2.number=:home)'
-                )
-                ->setParameter('home', MatchParticipant::HOME)
-                ->setParameter('away', MatchParticipant::AWAY);
-            $query->addSelect('mp2');
-        }
-
-        if (!is_null($participantPosition)) {
-            $query
-                ->andWhere('mp.number = :position')
-                ->setParameter(
-                    'position',
-                    $participantPosition
-                );
         }
 
         $query->groupBy('m.id');
