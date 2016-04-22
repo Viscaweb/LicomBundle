@@ -359,19 +359,13 @@ class MatchRepository extends AbstractEntityRepository
     ) {
         $query = $this->createQueryBuilder('m');
         $query
-            ->select('m', 'mp', 'mp2', 'mr', 'mr2')
+            ->select('m', 'mp', 'mp2', 'mr')
             ->leftJoin('m.matchParticipant', 'mp2')
             ->leftJoin(
                 'mp.matchResult',
                 'mr',
                 Join::WITH,
                 'mr.matchResultType IN (:resultType)'
-            )
-            ->leftJoin(
-                'mp2.matchResult',
-                'mr2',
-                Join::WITH,
-                'mr2.matchResultType IN (:resultType)'
             )
             ->where(
                 '(mp.number=:home and mp2.number=:away) OR (mp.number=:away and mp2.number=:home)'
