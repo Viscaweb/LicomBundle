@@ -764,21 +764,9 @@ class MatchRepository extends AbstractEntityRepository
         if ($eagerFetching) {
             $queryBuilder
                 ->join(
-                    'ViscaLicomBundle:MatchParticipant',
-                    'mp1',
-                    'WITH',
-                    'mp1.match = m AND mp1.number = :homeNumber'
-                )
-                ->join(
-                    'ViscaLicomBundle:MatchParticipant',
-                    'mp2',
-                    'WITH',
-                    'mp2.match = m AND mp2.number = :awayNumber'
-                )
-                ->where('mp1.id IS NOT NULL')
-                ->andWhere('mp2.id IS NOT NULL')
-                ->setParameter('homeNumber', MatchParticipant::HOME)
-                ->setParameter('awayNumber', MatchParticipant::AWAY);
+                    'm.matchParticipant',
+                    'mp'
+                );
         }
 
         /*
@@ -787,7 +775,7 @@ class MatchRepository extends AbstractEntityRepository
         $this->alterDateObjects($dateFrom, $dateTo);
 
         $queryBuilder
-            ->andWhere('m.startDate BETWEEN :dateFrom AND :dateTo')
+            ->where('m.startDate BETWEEN :dateFrom AND :dateTo')
             ->setParameter('dateFrom', $dateFrom->format('Y-m-d H:i'))
             ->setParameter('dateTo', $dateTo->format('Y-m-d H:i'));
 
@@ -816,7 +804,7 @@ class MatchRepository extends AbstractEntityRepository
             $queryBuilder
                 // Where sport
                 ->join(
-                    "mp1.participant",
+                    "mp.participant",
                     'p'
                 )
                 ->andWhere('p.sport = :sportId')
