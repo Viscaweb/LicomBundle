@@ -426,7 +426,7 @@ class MatchRepository extends AbstractEntityRepository
             ->setParameter('resultType', $matchResultType)
             ->groupBy('m.id');
 
-        return $query->getQuery()->getResult();
+        return $query->getQuery()->setHint(\Doctrine\ORM\Query::HINT_REFRESH, true)->getResult();
     }
 
     /**
