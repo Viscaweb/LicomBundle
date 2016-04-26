@@ -42,7 +42,7 @@ class MatchCounterRepository
             ->matchRepository
             ->createQueryBuilder('m')
             ->setCacheable(false)
-            ->select('count(m)')
+            ->select('count(DISTINCT m)')
             ->join('m.competitionSeasonStage', 'stage')
             ->join('stage.competitionSeason', 'season')
             ->join('season.competition', 'competition')

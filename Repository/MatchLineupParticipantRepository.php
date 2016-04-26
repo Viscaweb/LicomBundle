@@ -34,6 +34,7 @@ class MatchLineupParticipantRepository extends AbstractEntityRepository
 
     /**
      * Get MatchLineup by MatchLineup. Preloads MatchIncidents
+     * Sorted by MatchLineup.position
      *
      * @param int              $matchLineupId MatchLineup ID.
      *
@@ -45,15 +46,17 @@ class MatchLineupParticipantRepository extends AbstractEntityRepository
     {
         $queryBuilder = $this->createQueryBuilder('ml');
         $queryBuilder
-            ->select('ml', 'p', 'px', 'mi')
+            ->select('ml', 'mlt', 'p', 'px', 'mi')
             ->where('ml.matchLineup = :matchLineupId')
+            ->leftJoin('ml.matchLineupType', 'mlt')
             ->leftJoin('ml.participant', 'p')
             ->leftJoin('p.aux', 'px')
             ->leftJoin('p.matchIncident', 'mi', Join::WITH, 'mi.matchParticipant = :matchParticipant')
             ->setParameters([
                 'matchLineupId' => $matchLineupId,
                 'matchParticipant' => $matchParticipant
-            ]);
+            ])
+            ->orderBy('ml.position', 'ASC');
 
         return $queryBuilder->getQuery()->getResult();
     }
