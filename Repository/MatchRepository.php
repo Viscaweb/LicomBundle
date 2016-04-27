@@ -1601,6 +1601,10 @@ class MatchRepository extends AbstractEntityRepository
                 break;
 
             case MatchStatusDescriptionCategoryType::FINISHED:
+                $statusCategories = [
+                    MatchStatusDescriptionCategoryType::FINISHED,
+                ];
+                break;
             default:
                 $statusCategories = [
                     MatchStatusDescriptionCategoryType::UNKNOWN,
