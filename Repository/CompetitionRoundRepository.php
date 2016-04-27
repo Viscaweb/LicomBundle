@@ -50,7 +50,8 @@ class CompetitionRoundRepository extends AbstractEntityRepository
                 'SeasonStage.competitionStage = Stage.id'
             )
             ->where('Stage.competitionStageType1 = :competitionStageType')
-            ->andWhere('SeasonStage.competitionSeason = :competitionSeason');
+            ->andWhere('SeasonStage.competitionSeason = :competitionSeason')
+            ->orderBy('Round.start', 'ASC');
 
         $parameters = [
             'competitionStageType' => $competitionStageType->getId(),
