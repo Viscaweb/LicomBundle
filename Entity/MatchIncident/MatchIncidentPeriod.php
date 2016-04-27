@@ -30,6 +30,11 @@ class MatchIncidentPeriod
     protected $elapsedStartTime;
 
     /**
+     * @var string
+     */
+    protected $translation;
+
+    /**
      * Get MatchIncidentPeriod code.
      *
      * @return SoccerMatchIncidentPeriodCode
@@ -44,7 +49,7 @@ class MatchIncidentPeriod
      *
      * @param SoccerMatchIncidentPeriodCode $code SoccerMatchIncidentPeriodCode code.
      *
-     * @return SoccerMatchIncidentPeriodCode
+     * @return MatchIncidentPeriod
      */
     public function setCode(SoccerMatchIncidentPeriodCode $code)
     {
@@ -121,6 +126,26 @@ class MatchIncidentPeriod
     public function setElapsedStartTime($elapsedStartTime)
     {
         $this->elapsedStartTime = $elapsedStartTime;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTranslation()
+    {
+        return $this->translation;
+    }
+
+    /**
+     * @param string $translation
+     *
+     * @return MatchIncidentPeriod
+     */
+    public function setTranslation($translation)
+    {
+        $this->translation = $translation;
 
         return $this;
     }

@@ -42,7 +42,7 @@ class MatchCounterRepository
             ->matchRepository
             ->createQueryBuilder('m')
             ->setCacheable(false)
-            ->select('count(m)')
+            ->select('count(DISTINCT m)')
             ->join('m.competitionSeasonStage', 'stage')
             ->join('stage.competitionSeason', 'season')
             ->join('season.competition', 'competition')
@@ -60,7 +60,7 @@ class MatchCounterRepository
     private function getScalarResult(QueryBuilder $queryBuilder)
     {
         $query = $queryBuilder->getQuery();
-//        $query->useResultCache(true, $this->resultCacheLifetime);
+        $query->useResultCache(true, $this->resultCacheLifetime);
 
         return intval($query->getSingleScalarResult());
     }

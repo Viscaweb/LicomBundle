@@ -280,110 +280,19 @@ class MatchRepository extends AbstractEntityRepository
         $limit = null,
         $offset = null,
         $orderField = null,
-        $orderType = 'ASC',
-        $preloadBothParticipants = false,
-        $participantPosition = null
+        $orderType = 'ASC'
     ) {
         $query = $this->createQueryBuilder('m');
         $query->select('m', 'mp');
 
-        if (is_array($participantId)) {
-            $query
-                ->where('mp.participant in (:participant)')
-                ->setParameter('participant', implode(',', $participantId));
-        } else {
-            $query
-                ->where('mp.participant = :participant')
-                ->setParameter('participant', $participantId);
-        }
-
-        foreach ($whereConditions as $condition) {
-            $query->andWhere($condition);
-        }
-
-        foreach ($whereArguments as $key => $value) {
-            $query->setParameter($key, $value);
-        }
-
-        if (is_numeric($limit)) {
-            $query->setMaxResults($limit);
-        }
-
-        if (is_numeric($offset)) {
-            $query->setFirstResult($offset);
-        }
-
-        if (!is_null($orderField)) {
-            $query->orderBy('m.'.$orderField, $orderType);
-        }
-
-        if ($preloadBothParticipants) {
-            $query->leftJoin('m.matchParticipant', 'mp2')
-                ->andWhere(
-                    '(mp.number=:home and mp2.number=:away) OR (mp.number=:away and mp2.number=:home)'
-                )
-                ->setParameter('home', MatchParticipant::HOME)
-                ->setParameter('away', MatchParticipant::AWAY);
-            $query->addSelect('mp2');
-        }
-
-        if (!is_null($participantPosition)) {
-            $query
-                ->andWhere('mp.number = :position')
-                ->setParameter(
-                    'position',
-                    $participantPosition
-                );
-        }
-
-        $query->groupBy('m.id');
-
-        return $query->getQuery()->getResult();
-    }
-
-    /**
-     * @param int    $participantId
-     * @param array  $whereConditions
-     * @param array  $whereArguments
-     * @param null   $limit
-     * @param null   $offset
-     * @param null   $orderField
-     * @param string $orderType
-     * @param int    $matchResultType
-     * @param null   $participantPosition
-     *
-     * @return array
-     */
-    public function findMatchByParticipantPreloadResults(
-        $participantId,
-        array $whereConditions = [],
-        array $whereArguments = [],
-        $limit = null,
-        $offset = null,
-        $orderField = null,
-        $orderType = 'ASC',
-        $matchResultType = MatchResultTypeCode::RUNNING_SCORE_CODE,
-        $participantPosition = null
-    ) {
-        $query = $this->createQueryBuilder('m');
-        $query
-            ->select('m', 'mp', 'mp2', 'mr', 'mr2')
-            ->leftJoin('m.matchParticipant', 'mp2')
-            ->leftJoin(
-                'mp.matchResult',
-                'mr',
-                Join::WITH,
-                'mr.matchResultType = :resultType'
-            )
-            ->leftJoin(
-                'mp2.matchResult',
-                'mr2',
-                Join::WITH,
-                'mr2.matchResultType = :resultType'
-            )
+        $query->leftJoin('m.matchParticipant', 'mp2')
+            ->addSelect('mp2')
             ->where(
                 '(mp.number=:home and mp2.number=:away) OR (mp.number=:away and mp2.number=:home)'
-            );
+            )
+            ->setParameter('home', MatchParticipant::HOME)
+            ->setParameter('away', MatchParticipant::AWAY);
+
 
         if (is_array($participantId)) {
             $query
@@ -415,6 +324,93 @@ class MatchRepository extends AbstractEntityRepository
             $query->orderBy('m.'.$orderField, $orderType);
         }
 
+        $query->groupBy('m.id');
+
+        return $query->getQuery()->getResult();
+    }
+
+    /**
+     * Finds a match by one of its participants.
+     *
+     * @param int    $participantId       Participant entity ID.
+     * @param array  $whereConditions     Where conditions.
+     * @param array  $whereArguments      Where condition arguments.
+     * @param null   $limit               Limit the number of results.
+     * @param null   $offset              Offset of the results.
+     * @param null   $orderField          Order field name
+     * @param string $orderType           Order type (ASC, DESC)
+     * @param int    $matchResultType     Type of match results we want to preload.
+     * @param null   $matchStatusCategory
+     * @param null   $participantPosition Force the participant position (HOME|AWAY)
+     *
+     * @return \Visca\Bundle\LicomBundle\Entity\Match[]
+     */
+    public function findMatchByParticipantPreloadResults(
+        $participantId,
+        array $whereConditions = [],
+        array $whereArguments = [],
+        $limit = null,
+        $offset = null,
+        $orderField = null,
+        $orderType = 'ASC',
+        $matchResultType = MatchResultTypeCode::RUNNING_SCORE_CODE,
+        $matchStatusCategory = null,
+        $participantPosition = null
+    ) {
+        $query = $this->createQueryBuilder('m');
+        $query
+            ->select('m', 'mp', 'mp2', 'mr')
+            ->leftJoin('m.matchParticipant', 'mp2')
+            ->leftJoin(
+                'mp.matchResult',
+                'mr',
+                Join::WITH,
+                'mr.matchResultType IN (:resultType)'
+            )
+            ->where(
+                '(mp.number=:home and mp2.number=:away) OR (mp.number=:away and mp2.number=:home)'
+            );
+
+        if ($matchStatusCategory !== null) {
+            $query
+                ->addSelect('msd')
+                ->join('m.matchStatusDescription', 'msd', Join::WITH, 'msd.category = :category')
+                ->setParameter('category', $matchStatusCategory);
+        }
+
+        if (is_array($participantId)) {
+            $query
+                ->andWhere('mp.participant in (:participant)')
+                ->setParameter('participant', implode(',', $participantId));
+        } else {
+            $query
+                ->andWhere('mp.participant = :participant')
+                ->setParameter('participant', $participantId);
+        }
+
+        foreach ($whereConditions as $condition) {
+            $query->andWhere($condition);
+        }
+
+        foreach ($whereArguments as $key => $value) {
+            if ($key === 'startDate') {
+                $this->alterDateObjects($value);
+            }
+            $query->setParameter($key, $value);
+        }
+
+        if (is_numeric($limit)) {
+            $query->setMaxResults($limit);
+        }
+
+        if (is_numeric($offset)) {
+            $query->setFirstResult($offset);
+        }
+
+        if (!is_null($orderField)) {
+            $query->orderBy('m.'.$orderField, $orderType);
+        }
+
         if (!is_null($participantPosition)) {
             $query
                 ->andWhere('mp.number = :position')
@@ -430,7 +426,7 @@ class MatchRepository extends AbstractEntityRepository
             ->setParameter('resultType', $matchResultType)
             ->groupBy('m.id');
 
-        return $query->getQuery()->getResult();
+        return $query->getQuery()->setHint(\Doctrine\ORM\Query::HINT_REFRESH, true)->getResult();
     }
 
     /**
@@ -762,21 +758,9 @@ class MatchRepository extends AbstractEntityRepository
         if ($eagerFetching) {
             $queryBuilder
                 ->join(
-                    'ViscaLicomBundle:MatchParticipant',
-                    'mp1',
-                    'WITH',
-                    'mp1.match = m AND mp1.number = :homeNumber'
-                )
-                ->join(
-                    'ViscaLicomBundle:MatchParticipant',
-                    'mp2',
-                    'WITH',
-                    'mp2.match = m AND mp2.number = :awayNumber'
-                )
-                ->where('mp1.id IS NOT NULL')
-                ->andWhere('mp2.id IS NOT NULL')
-                ->setParameter('homeNumber', MatchParticipant::HOME)
-                ->setParameter('awayNumber', MatchParticipant::AWAY);
+                    'm.matchParticipant',
+                    'mp'
+                );
         }
 
         /*
@@ -785,7 +769,7 @@ class MatchRepository extends AbstractEntityRepository
         $this->alterDateObjects($dateFrom, $dateTo);
 
         $queryBuilder
-            ->andWhere('m.startDate BETWEEN :dateFrom AND :dateTo')
+            ->where('m.startDate BETWEEN :dateFrom AND :dateTo')
             ->setParameter('dateFrom', $dateFrom->format('Y-m-d H:i'))
             ->setParameter('dateTo', $dateTo->format('Y-m-d H:i'));
 
@@ -814,7 +798,7 @@ class MatchRepository extends AbstractEntityRepository
             $queryBuilder
                 // Where sport
                 ->join(
-                    "mp1.participant",
+                    "mp.participant",
                     'p'
                 )
                 ->andWhere('p.sport = :sportId')
@@ -1617,6 +1601,10 @@ class MatchRepository extends AbstractEntityRepository
                 break;
 
             case MatchStatusDescriptionCategoryType::FINISHED:
+                $statusCategories = [
+                    MatchStatusDescriptionCategoryType::FINISHED,
+                ];
+                break;
             default:
                 $statusCategories = [
                     MatchStatusDescriptionCategoryType::UNKNOWN,
@@ -1633,6 +1621,7 @@ class MatchRepository extends AbstractEntityRepository
 
     /**
      * @param string[] $participantNames
+     *
      * @return Match[]
      */
     public function findAllByParticipantNames(array $participantNames)
@@ -1644,12 +1633,17 @@ class MatchRepository extends AbstractEntityRepository
         foreach ($participantNames as $key => $name) {
             $number = $key + 1;
             $query->join(
-                    MatchParticipant::class,
-                    "mp{$number}",
+                MatchParticipant::class,
+                "mp{$number}",
+                Join::WITH,
+                "mp{$number}.number = {$number} and mp{$number}.match = m.id"
+            )
+                ->join(
+                    Participant::class,
+                    "p{$number}",
                     Join::WITH,
-                    "mp{$number}.number = {$number} and mp{$number}.match = m.id"
+                    "p{$number}.id = mp{$number}.participant"
                 )
-                ->join(Participant::class, "p{$number}", Join::WITH, "p{$number}.id = mp{$number}.participant")
                 ->andWhere("p{$number}.name = :p{$number}Name")
                 ->setParameter("p{$number}Name", $name);
         }
@@ -1676,6 +1670,7 @@ class MatchRepository extends AbstractEntityRepository
      * @param Competition $competition
      * @param Participant $home
      * @param Participant $away
+     *
      * @return Match[]
      */
     public function findByCompetitionAndHomeAndAwayParticipants(

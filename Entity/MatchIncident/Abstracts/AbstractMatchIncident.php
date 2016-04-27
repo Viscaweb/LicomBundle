@@ -232,11 +232,11 @@ abstract class AbstractMatchIncident implements MatchIncidentViewInterface
     }
 
     /**
-     * @param MatchIncidentPeriod $period
+     * @param MatchIncidentPeriod|null $period
      *
      * @return $this
      */
-    public function setPeriod(MatchIncidentPeriod $period)
+    public function setPeriod($period)
     {
         $this->period = $period;
 
