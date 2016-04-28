@@ -1601,6 +1601,10 @@ class MatchRepository extends AbstractEntityRepository
                 break;
 
             case MatchStatusDescriptionCategoryType::FINISHED:
+                $statusCategories = [
+                    MatchStatusDescriptionCategoryType::FINISHED,
+                ];
+                break;
             default:
                 $statusCategories = [
                     MatchStatusDescriptionCategoryType::UNKNOWN,
@@ -1698,6 +1702,65 @@ class MatchRepository extends AbstractEntityRepository
                     'home' => MatchParticipant::HOME,
                     'away' => MatchParticipant::AWAY,
                     'competition' => $competition,
+                ]
+            );
+
+        return $query->getQuery()->getResult();
+    }
+
+
+    /**
+     * @param Datetime $start
+     * @param DateTime $end
+     * @return array
+     */
+    public function findMatchesWhichMostRelevantWasNotUpdatedBetweenDates(
+        \Datetime $start,
+        \DateTime $end
+    ) {
+        $query = parent::createQueryBuilder('m')
+            ->select(
+                [
+                    'm',
+                    'homeMatchParticipant',
+                    'awayMatchParticipant',
+                    'homeParticipant',
+                    'awayParticipant',
+                    'stage',
+                    'season',
+                    'competition',
+                ]
+            )
+            ->join(
+                'm.matchParticipant',
+                'homeMatchParticipant',
+                Join::WITH,
+                'homeMatchParticipant.number = :home'
+            )
+            ->join(
+                'homeMatchParticipant.participant',
+                'homeParticipant'
+            )
+            ->join(
+                'm.matchParticipant',
+                'awayMatchParticipant',
+                Join::WITH,
+                'awayMatchParticipant.number = :away'
+            )
+            ->join(
+                'awayMatchParticipant.participant',
+                'awayParticipant'
+            )
+            ->join('m.competitionSeasonStage', 'stage')
+            ->join('stage.competitionSeason', 'season')
+            ->join('season.competition', 'competition')
+            ->where('m.updatedAt between :start and :end')
+            ->setParameters(
+                [
+                    'home' => MatchParticipant::HOME,
+                    'away' => MatchParticipant::AWAY,
+                    'start' => $start,
+                    'end' => $end,
                 ]
             );
 
