@@ -9,7 +9,6 @@ use Doctrine\ORM\Query\Expr\Join;
 use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
 use Visca\Bundle\LicomBundle\Entity\Athlete;
 use Visca\Bundle\LicomBundle\Entity\Code\MatchResultTypeCode;
-use Visca\Bundle\LicomBundle\Entity\Competition;
 use Visca\Bundle\LicomBundle\Entity\CompetitionSeasonStage;
 use Visca\Bundle\LicomBundle\Entity\Enum\MatchStatusDescriptionCategoryType;
 use Visca\Bundle\LicomBundle\Entity\Match;
@@ -1667,16 +1666,16 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param Competition $competition
-     * @param Participant $home
-     * @param Participant $away
+     * @param int $competitionId
+     * @param int $homeId
+     * @param int $awayId
      *
      * @return Match[]
      */
     public function findByCompetitionAndHomeAndAwayParticipants(
-        Competition $competition,
-        Participant $home,
-        Participant $away
+        $competitionId,
+        $homeParticipantId,
+        $awayParticipantId
     ) {
         $query = parent::createQueryBuilder('m')
             ->join(
@@ -1694,14 +1693,14 @@ class MatchRepository extends AbstractEntityRepository
             ->join('m.competitionSeasonStage', 'stage')
             ->join('stage.competitionSeason', 'season')
             ->join('season.competition', 'competition')
-            ->where('competition = :competition')
+            ->where('competition.id = :competition')
             ->setParameters(
                 [
-                    'homeParticipant' => $home,
-                    'awayParticipant' => $away,
+                    'homeParticipant' => $homeParticipantId,
+                    'awayParticipant' => $awayParticipantId,
                     'home' => MatchParticipant::HOME,
                     'away' => MatchParticipant::AWAY,
-                    'competition' => $competition,
+                    'competition' => $competitionId,
                 ]
             );
 
@@ -1721,14 +1720,10 @@ class MatchRepository extends AbstractEntityRepository
         $query = parent::createQueryBuilder('m')
             ->select(
                 [
-                    'm',
-                    'homeMatchParticipant',
-                    'awayMatchParticipant',
-                    'homeParticipant',
-                    'awayParticipant',
-                    'stage',
-                    'season',
-                    'competition',
+                    'm.id as matchId',
+                    'homeParticipant.id as homeParticipantId',
+                    'awayParticipant.id as awayParticipantId',
+                    'competition.id as competitionId',
                 ]
             )
             ->join(
@@ -1755,6 +1750,7 @@ class MatchRepository extends AbstractEntityRepository
             ->join('stage.competitionSeason', 'season')
             ->join('season.competition', 'competition')
             ->where('m.updatedAt between :start and :end')
+            ->groupBy('competition.id, homeParticipant.id, awayParticipant.id')
             ->setParameters(
                 [
                     'home' => MatchParticipant::HOME,
@@ -1764,6 +1760,7 @@ class MatchRepository extends AbstractEntityRepository
                 ]
             );
 
-        return $query->getQuery()->getResult();
+        return $query->getQuery()->getArrayResult();
+
     }
 }
