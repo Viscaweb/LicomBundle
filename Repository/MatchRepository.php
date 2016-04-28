@@ -1749,7 +1749,7 @@ class MatchRepository extends AbstractEntityRepository
             ->join('m.competitionSeasonStage', 'stage')
             ->join('stage.competitionSeason', 'season')
             ->join('season.competition', 'competition')
-            ->where('m.updatedAt between :start and :end')
+            ->where('m.startDate between :start and :end')
             ->groupBy('competition.id, homeParticipant.id, awayParticipant.id')
             ->setParameters(
                 [
