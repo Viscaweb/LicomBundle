@@ -59,3 +59,23 @@ Visca\Bundle\LicomBundle\Entity\MatchAuxType:
         code: ExtraTime2ndHalfTimeStartedAt
         name: 'Second extra time half start date'
         del: 'no'
+    match_aux_type13:
+        id: 13
+        code: FirstHalfTimeEndedAt
+        name: 'First half end date'
+        del: 'no'
+    match_aux_type14:
+        id: 14
+        code: SecondHalfTimeEndedAt
+        name: 'Second half end date'
+        del: 'no'
+    match_aux_type15:
+        id: 15
+        code: ExtraTime1ndHalfTimeEndeddAt
+        name: 'First extra time half end date'
+        del: 'no'
+    match_aux_type16:
+        id: 16
+        code: ExtraTime2ndHalfTimeEndedAt
+        name: 'Second extra time half end date'
+        del: 'no'
