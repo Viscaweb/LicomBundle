@@ -267,8 +267,6 @@ class MatchRepository extends AbstractEntityRepository
      * @param null      $offset                  Limit offset
      * @param null      $orderField              Order field
      * @param string    $orderType               Order type
-     * @param bool      $preloadBothParticipants Preload both participants in the resultset
-     * @param null      $participantPosition     Specify if the Participant is HOME|AWAY
      *
      * @return \Visca\Bundle\LicomBundle\Entity\Match[]
      */
@@ -323,7 +321,10 @@ class MatchRepository extends AbstractEntityRepository
             $query->orderBy('m.'.$orderField, $orderType);
         }
 
-        $query->groupBy('m.id');
+        // only if we ask for a limited/offset number of matches we will add the
+        if (is_numeric($limit) || is_numeric($offset)) {
+            $query->groupBy('m.id');
+        }
 
         return $query->getQuery()->getResult();
     }
@@ -422,8 +423,12 @@ class MatchRepository extends AbstractEntityRepository
         $query
             ->setParameter('home', MatchParticipant::HOME)
             ->setParameter('away', MatchParticipant::AWAY)
-            ->setParameter('resultType', $matchResultType)
-            ->groupBy('m.id');
+            ->setParameter('resultType', $matchResultType);
+
+        // only if we ask for a limited/offset number of matches we will add the
+        if (is_numeric($limit) || is_numeric($offset)) {
+            $query->groupBy('m.id');
+        }
 
         return $query->getQuery()->setHint(\Doctrine\ORM\Query::HINT_REFRESH, true)->getResult();
     }
@@ -468,8 +473,7 @@ class MatchRepository extends AbstractEntityRepository
             ->setParameter('homeParticipants', $homeParticipants)
             ->setParameter('awayParticipants', $awayParticipants)
             ->setParameter('matchParticipantHomeNumber', MatchParticipant::HOME)
-            ->setParameter('matchParticipantAwayNumber', MatchParticipant::AWAY)
-            ->groupBy('m.id');
+            ->setParameter('matchParticipantAwayNumber', MatchParticipant::AWAY);
 
         foreach ($whereConditions as $condition) {
             $query->andWhere($condition);
@@ -489,6 +493,11 @@ class MatchRepository extends AbstractEntityRepository
 
         if (!is_null($orderField)) {
             $query->orderBy('m.'.$orderField, $orderType);
+        }
+
+        // only if we ask for a limited/offset number of matches we will add the
+        if (is_numeric($limit) || is_numeric($offset)) {
+            $query->groupBy('m.id');
         }
 
         return $query->getQuery()->getResult();
@@ -603,8 +612,7 @@ class MatchRepository extends AbstractEntityRepository
             ->andWhere('ma.value = :importance')
             ->orderBy('m.startDate', 'ASC')
             ->setParameter('start', $dateFrom->format('Y-m-d H:i:s'))
-            ->setParameter('importance', $importance)
-            ->groupBy('m.id');
+            ->setParameter('importance', $importance);
 
         /*
          * If we don't have any "to date", don't add it to the query
@@ -620,6 +628,11 @@ class MatchRepository extends AbstractEntityRepository
 
         if ($limit !== null) {
             $queryBuilder->setMaxResults($limit);
+        }
+
+        // only if we ask for a limited/offset number of matches we will add the
+        if (is_numeric($limit)) {
+            $queryBuilder->groupBy('m.id');
         }
 
         return $queryBuilder
@@ -708,8 +721,7 @@ class MatchRepository extends AbstractEntityRepository
             ->orderBy('m.startDate', 'ASC')
             ->setParameter('start', $dateFrom->format('Y-m-d H:i:s'))
             ->setParameter('importance', $importance)
-            ->setParameter('country', $countryId)
-            ->groupBy('m.id');
+            ->setParameter('country', $countryId);
 
         /*
          * If we don't have any "to date", don't add it to the query
@@ -725,6 +737,11 @@ class MatchRepository extends AbstractEntityRepository
 
         if ($limit !== null) {
             $queryBuilder->setMaxResults($limit);
+        }
+
+        // only if we ask for a limited/offset number of matches we will add the
+        if (is_numeric($limit)) {
+            $queryBuilder->groupBy('m.id');
         }
 
         return $queryBuilder
