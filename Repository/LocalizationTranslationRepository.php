@@ -451,6 +451,7 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
         }
 
         $query = $qb->getQuery();
+        $this->setCacheStrategy($query);
 
         $localizationTranslations = $query->getResult();
 
