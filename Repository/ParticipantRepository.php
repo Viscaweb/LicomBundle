@@ -3,11 +3,19 @@
 namespace Visca\Bundle\LicomBundle\Repository;
 
 use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
+use Visca\Bundle\LicomBundle\Entity\Athlete;
+use Visca\Bundle\LicomBundle\Entity\Code\EntityCode;
 use Visca\Bundle\LicomBundle\Entity\Code\LocalizationTranslationTypeCode;
 use Visca\Bundle\LicomBundle\Entity\Code\ProfileTranslationGraphLabelCode;
+use Visca\Bundle\LicomBundle\Entity\Code\StandingTypeCode;
+use Visca\Bundle\LicomBundle\Entity\CompetitionSeason;
+use Visca\Bundle\LicomBundle\Entity\Enum\ParticipantType;
 use Visca\Bundle\LicomBundle\Entity\Participant;
+use Visca\Bundle\LicomBundle\Entity\ParticipantMembership;
 use Visca\Bundle\LicomBundle\Entity\ProfileEntityGraph;
 use Visca\Bundle\LicomBundle\Entity\Sport;
+use Visca\Bundle\LicomBundle\Entity\Standing;
+use Visca\Bundle\LicomBundle\Entity\Team;
 use Visca\Bundle\LicomBundle\Exception\NoTranslationFoundException;
 use Doctrine\ORM\Query\Expr\Join;
 
@@ -170,7 +178,7 @@ class ParticipantRepository extends AbstractEntityRepository
      *
      * @return Participant[]
      */
-    public function findAtheleteByTeamIds($teamsIds)
+    public function findAthleteByTeamIds($teamsIds)
     {
         return $this
             ->createQueryBuilder('participant')
@@ -182,10 +190,59 @@ class ParticipantRepository extends AbstractEntityRepository
             )
             ->where('participantMembership.entity = :membershipEntity')
             ->andWhere('participantMembership.entityId IN (:membershipsTeamsIds)')
-            ->setParameter('membershipEntity', '401')
+            ->setParameter('membershipEntity', EntityCode::PARTICIPANT_CODE)
             ->setParameter('membershipsTeamsIds', $teamsIds)
             ->getQuery()
             ->getResult();
+    }
+
+    /**
+     * Returns the Athlete team in the current Standing
+     *
+     * @param Athlete  $athlete
+     * @param Standing $standing
+     *
+     * @return mixed
+     */
+    public function getMainTeamByAthleteAndStanding(
+        Athlete $athlete,
+        Standing $standing
+    ){
+        $participantMemberships = $athlete->getParticipantMembership();
+        $teamIds = [];
+        if(!$participantMemberships->isEmpty()){
+            /** @var ParticipantMembership $participantMembership */
+            foreach($participantMemberships as $participantMembership){
+                $teamIds[] = $participantMembership->getEntityId();
+            }
+        }
+
+        $query = $this
+            ->createQueryBuilder('participant')
+            ->join(
+                'ViscaLicomBundle:Standing',
+                'standing',
+                'WITH',
+                'standing.entityId = :standingId'
+            )
+            ->join(
+                'ViscaLicomBundle:StandingRow',
+                'standingRow',
+                'WITH',
+                'standingRow.standing = standing.id'
+            )
+            ->where('standing.entity = :standingEntity')
+            ->andWhere('standing.standingType = :standingType')
+            ->andWhere('participant.id IN (:athleteTeamsIds)')
+            ->andWhere('participant.id = standingRow.participant')
+            ->setParameter('standingId', $standing->getEntityId())
+            ->setParameter('standingEntity', EntityCode::COMPETITION_SEASON_STAGE_CODE)
+            ->setParameter('standingType', StandingTypeCode::LEAGUE_TABLE_CODE)
+            ->setParameter('athleteTeamsIds', $teamIds)
+            ->setMaxResults(1)
+            ->getQuery();
+
+        return $query->getOneOrNullResult();
     }
 
     /**
