@@ -204,7 +204,7 @@ class ParticipantRepository extends AbstractEntityRepository
      *
      * @return mixed
      */
-    public function getMainTeamByAthleteAndStanding(
+    public function findOneByMainTeamByAthleteAndStanding(
         Athlete $athlete,
         Standing $standing
     ){
