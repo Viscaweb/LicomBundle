@@ -7,7 +7,7 @@ use Visca\Bundle\LicomBundle\Entity\Match as LicomMatch;
 use Visca\Bundle\LicomBundle\Entity\Team;
 use Visca\Bundle\LicomBundle\Events\AbstractEvent;
 
-class MatchResult extends AbstractEvent
+class MatchIncident extends AbstractEvent
 {
     public static function listenByMatch(LicomMatch $match)
     {
@@ -34,6 +34,6 @@ class MatchResult extends AbstractEvent
      */
     public function getEventObject()
     {
-        return 'match_result';
+        return 'match_incident';
     }
 }

@@ -1,13 +1,12 @@
 <?php
 namespace Visca\Bundle\LicomBundle\Events\Match;
 
-use Visca\Bundle\LicomBundle\Entity\Athlete;
 use Visca\Bundle\LicomBundle\Entity\Competition;
 use Visca\Bundle\LicomBundle\Entity\Match as LicomMatch;
 use Visca\Bundle\LicomBundle\Entity\Team;
 use Visca\Bundle\LicomBundle\Events\AbstractEvent;
 
-class MatchResult extends AbstractEvent
+class MatchStatus extends AbstractEvent
 {
     public static function listenByMatch(LicomMatch $match)
     {
@@ -24,16 +23,11 @@ class MatchResult extends AbstractEvent
         return self::createSelfByScope('team.'.$team->getId());
     }
 
-    public static function listenByAthlete(Athlete $athlete)
-    {
-        return self::createSelfByScope('athlete.'.$athlete->getId());
-    }
-
     /**
      * @return string
      */
     public function getEventObject()
     {
-        return 'match_result';
+        return 'match_status';
     }
 }
