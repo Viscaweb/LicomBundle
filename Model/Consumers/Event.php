@@ -7,14 +7,19 @@ class Event
     /** @var string */
     private $eventName;
 
+    /** @var string */
+    private $objectId;
+
     /**
      * Event constructor.
      *
      * @param string $eventName
+     * @param string $objectId
      */
-    public function __construct($eventName)
+    public function __construct($eventName, $objectId)
     {
         $this->eventName = $eventName;
+        $this->objectId = $objectId;
     }
 
     /**
@@ -23,5 +28,13 @@ class Event
     public function getEventName()
     {
         return $this->eventName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getObjectId()
+    {
+        return $this->objectId;
     }
 }
