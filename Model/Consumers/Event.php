@@ -1,8 +1,8 @@
 <?php
 
-namespace Model\Consumers;
+namespace Visca\Bundle\LicomBundle\Model\Consumers;
 
-class Event
+final class Event
 {
     /** @var string */
     private $eventName;
