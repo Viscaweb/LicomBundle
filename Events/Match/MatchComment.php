@@ -7,16 +7,13 @@ use Visca\Bundle\LicomBundle\Entity\Team;
 
 class MatchComment extends AbstractEvent
 {
-    public static function listenByMatch(LicomMatch $match)
+    public function listenByMatch(LicomMatch $match)
     {
-        return self::createSelfByScope('match.'.$match->getId());
-    }
+        $this->setScope('match.'.$match->getId());
 
-    public static function listenByTeam(Team $team)
-    {
-        return self::createSelfByScope('team.'.$team->getId());
+        return $this;
     }
-
+    
     /**
      * @return string
      */

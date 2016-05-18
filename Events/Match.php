@@ -8,24 +8,32 @@ use Visca\Bundle\LicomBundle\Entity\Team;
 
 final class Match extends AbstractEvent implements Event
 {
-    public static function listenByMatch(LicomMatch $match)
+    public function listenByMatch(LicomMatch $match)
     {
-        return self::createSelfByScope('match.'.$match->getId());
+        $this->setScope('match.'.$match->getId());
+
+        return $this;
     }
 
-    public static function listenByCompetition(Competition $competition)
+    public function listenByCompetition(Competition $competition)
     {
-        return self::createSelfByScope('competition.'.$competition->getId());
+        $this->setScope('competition.'.$competition->getId());
+
+        return $this;
     }
 
-    public static function listenByTeam(Team $team)
+    public function listenByTeam(Team $team)
     {
-        return self::createSelfByScope('team.'.$team->getId());
+        $this->setScope('team.'.$team->getId());
+
+        return $this;
     }
 
-    public static function listenByAthlete(Athlete $athlete)
+    public function listenByAthlete(Athlete $athlete)
     {
-        return self::createSelfByScope('athlete.'.$athlete->getId());
+        $this->setScope('athlete.'.$athlete->getId());
+
+        return $this;
     }
 
     /**

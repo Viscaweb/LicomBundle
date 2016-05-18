@@ -6,8 +6,9 @@ use Visca\Bundle\LicomBundle\Entity\Competition;
 use Visca\Bundle\LicomBundle\Entity\Match as LicomMatch;
 use Visca\Bundle\LicomBundle\Entity\Team;
 use Visca\Bundle\LicomBundle\Events\AbstractEvent;
+use Visca\Bundle\LicomBundle\Events\Event;
 
-class MatchIncident extends AbstractEvent
+class MatchHasBegun extends AbstractEvent implements Event
 {
     public function listenByMatch(LicomMatch $match)
     {
@@ -42,6 +43,6 @@ class MatchIncident extends AbstractEvent
      */
     public function getEventObject()
     {
-        return 'match_incident';
+        return 'match_has_begun';
     }
 }
