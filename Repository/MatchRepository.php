@@ -40,18 +40,16 @@ class MatchRepository extends AbstractEntityRepository
     ) {
         $queryBuilder = parent::createQueryBuilder($alias, $indexBy);
         $queryBuilder
-            ->select($alias, 'aux', 'mp', 'p')
+            ->select($alias, 'aux', 'auxProfile', 'mp', 'p')
             ->leftJoin(
                 "$alias.matchParticipant",
                 'mp',
                 $matchParticipantConditionType,
                 $matchParticipantCondition
             )
-            ->join(
-                "mp.participant",
-                'p'
-            )
+            ->join("mp.participant", 'p')
             ->leftJoin("$alias.aux", 'aux')
+            ->leftJoin("$alias.matchAuxProfile", "auxProfile")
             ->setCacheable(false);
 
         return $queryBuilder;
@@ -768,14 +766,14 @@ class MatchRepository extends AbstractEntityRepository
         $sportId = null,
         $eagerFetching = false
     ) {
-        $queryBuilder = parent::createQueryBuilder('m')
-            ->select('m');
+        $queryBuilder = $this->createQueryBuilder('m');
 
         if ($eagerFetching) {
             $queryBuilder
+                ->addSelect('mr')
                 ->join(
-                    'm.matchParticipant',
-                    'mp'
+                    'mp.matchResult',
+                    'mr'
                 );
         }
 
@@ -813,10 +811,10 @@ class MatchRepository extends AbstractEntityRepository
         if (!is_null($sportId) && is_numeric($sportId)) {
             $queryBuilder
                 // Where sport
-                ->join(
-                    "mp.participant",
-                    'p'
-                )
+//                ->join(
+//                    "mp.participant",
+//                    'p'
+//                )
                 ->andWhere('p.sport = :sportId')
                 ->setParameter('sportId', $sportId);
         }
