@@ -9,3 +9,4 @@
 |MatchIncident|✓|✓|✓|✓|
 |MatchComment |✓| | | |
 |MatchStats   |✓|✓|✓| |
+|MatchLineup  |✓|✓|✓|✓|
