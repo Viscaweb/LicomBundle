@@ -3,7 +3,7 @@
 ### List of events
 |Name           |Scope: match|Scope: competition|Scope: team|Scope: athlete|
 |:--------------|:----------:|:----------:|:----------:|:----------:|
-|Match          |✓|✓|✓|✓|
+|Match          |✓|✓|✓| |
 |→ MatchHasBegun|✓|✓|✓| |
 |MatchResult  |✓|✓|✓| |
 |MatchIncident|✓|✓|✓|✓|

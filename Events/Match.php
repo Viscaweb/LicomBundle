@@ -29,13 +29,6 @@ final class Match extends AbstractEvent implements Event
         return $this;
     }
 
-    public function listenByAthlete(Athlete $athlete)
-    {
-        $this->setScope('athlete.'.$athlete->getId());
-
-        return $this;
-    }
-
     /**
      * @return string
      */
