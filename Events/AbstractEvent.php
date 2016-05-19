@@ -8,41 +8,32 @@ abstract class AbstractEvent implements Event
      */
     abstract public function getEventObject();
 
-    private static $scope;
+    /** @var string */
+    private $scope;
+
+    /**
+     * AbstractEvent constructor.
+     *
+     * @param string $scope
+     */
+    protected function __construct($scope)
+    {
+        $this->scope = $scope;
+    }
 
     /**
      * @return string
      */
-    public function getScope()
+    protected function getScope()
     {
-        return self::$scope;
+        return $this->scope;
     }
-    /**
-     * @param mixed $scope
-     */
-    public static function setScope($scope)
-    {
-        self::$scope = $scope;
-    }
-
     /**
      * @return string
      */
     public function getName()
     {
         return $this->getEventObject().'@'.$this->getScope();
-    }
-
-    /**
-     * @param $scopeName
-     *
-     * @return static
-     */
-    protected static function createSelfByScope($scopeName){
-        $event = new static();
-        $event->setScope($scopeName);
-
-        return $event;
     }
 
 }
