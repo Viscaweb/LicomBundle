@@ -29,6 +29,7 @@ class EventMatchTest extends PHPUnit_Framework_TestCase
         $matchEvent = '\Visca\Bundle\LicomBundle\Events\Match';
         $matchResultEvent = '\Visca\Bundle\LicomBundle\Events\Match\MatchResult';
         $matchIncidentEvent = '\Visca\Bundle\LicomBundle\Events\Match\MatchIncident';
+        $matchCardEvent = '\Visca\Bundle\LicomBundle\Events\Match\MatchIncidentCard';
         $matchCommentEvent = '\Visca\Bundle\LicomBundle\Events\Match\MatchComment';
         $matchStatsEvent = '\Visca\Bundle\LicomBundle\Events\Match\MatchStats';
         $matchLineupEvent = '\Visca\Bundle\LicomBundle\Events\Match\MatchLineup';
@@ -50,6 +51,12 @@ class EventMatchTest extends PHPUnit_Framework_TestCase
             [$matchIncidentEvent, 'listenByCompetition', $this->createCompetition(1), 'match_incident@competition.1'],
             [$matchIncidentEvent, 'listenByTeam',        $this->createTeam(1),        'match_incident@team.1'],
             [$matchIncidentEvent, 'listenByAthlete',     $this->createAthlete(1),     'match_incident@athlete.1'],
+
+            // MatchCard
+            [$matchCardEvent,     'listenByMatch',       $this->createMatch(1),       'match_incident_card@match.1'],
+            [$matchCardEvent,     'listenByCompetition', $this->createCompetition(1), 'match_incident_card@competition.1'],
+            [$matchCardEvent,     'listenByTeam',        $this->createTeam(1),        'match_incident_card@team.1'],
+            [$matchCardEvent,     'listenByAthlete',     $this->createAthlete(1),     'match_incident_card@athlete.1'],
 
             // MatchComment
             [$matchCommentEvent,  'listenByMatch',       $this->createMatch(1),       'match_comment@match.1'],

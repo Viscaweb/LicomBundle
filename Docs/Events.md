@@ -7,6 +7,7 @@
 |→ MatchHasBegun|✓|✓|✓| |
 |MatchResult  |✓|✓|✓| |
 |MatchIncident|✓|✓|✓|✓|
+|→ MatchIncidentCard|✓|✓|✓|✓|
 |MatchComment |✓| | | |
 |MatchStats   |✓|✓|✓| |
 |MatchLineup  |✓|✓|✓|✓|
