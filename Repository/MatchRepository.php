@@ -771,7 +771,7 @@ class MatchRepository extends AbstractEntityRepository
         if ($eagerFetching) {
             $queryBuilder
                 ->addSelect('mr')
-                ->join(
+                ->leftJoin(
                     'mp.matchResult',
                     'mr'
                 );
