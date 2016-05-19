@@ -12,20 +12,22 @@ abstract class AbstractEvent implements Event
     private $scope;
 
     /**
+     * AbstractEvent constructor.
+     *
+     * @param string $scope
+     */
+    protected function __construct($scope)
+    {
+        $this->scope = $scope;
+    }
+
+    /**
      * @return string
      */
     protected function getScope()
     {
         return $this->scope;
     }
-    /**
-     * @param mixed $scope
-     */
-    protected function setScope($scope)
-    {
-        $this->scope = $scope;
-    }
-
     /**
      * @return string
      */

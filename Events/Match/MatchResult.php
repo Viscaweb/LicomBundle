@@ -8,25 +8,19 @@ use Visca\Bundle\LicomBundle\Events\AbstractEvent;
 
 class MatchResult extends AbstractEvent
 {
-    public function listenByMatch(LicomMatch $match)
+    public static function listenByMatch(LicomMatch $match)
     {
-        $this->setScope('match.'.$match->getId());
-
-        return $this;
+        return new static('match.'.$match->getId());
     }
 
-    public function listenByCompetition(Competition $competition)
+    public static function listenByCompetition(Competition $competition)
     {
-        $this->setScope('competition.'.$competition->getId());
-
-        return $this;
+        return new static('competition.'.$competition->getId());
     }
 
-    public function listenByTeam(Team $team)
+    public static function listenByTeam(Team $team)
     {
-        $this->setScope('team.'.$team->getId());
-
-        return $this;
+        return new static('team.'.$team->getId());
     }
 
     /**
