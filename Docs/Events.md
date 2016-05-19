@@ -8,3 +8,4 @@
 |MatchResult  |✓|✓|✓| |
 |MatchIncident|✓|✓|✓|✓|
 |MatchComment |✓| | | |
+|MatchStats   |✓|✓|✓| |
