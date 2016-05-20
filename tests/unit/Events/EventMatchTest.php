@@ -2,6 +2,7 @@
 
 use Visca\Bundle\LicomBundle\Entity\Athlete;
 use Visca\Bundle\LicomBundle\Entity\Competition;
+use Visca\Bundle\LicomBundle\Entity\CompetitionSeasonStage;
 use Visca\Bundle\LicomBundle\Entity\Match;
 use Visca\Bundle\LicomBundle\Entity\Team;
 use Visca\Bundle\LicomBundle\Events\Event;
@@ -35,10 +36,14 @@ class EventMatchTest extends PHPUnit_Framework_TestCase
         $matchLineupEvent = '\Visca\Bundle\LicomBundle\Events\Match\MatchLineup';
         $matchHasBegunEvent = '\Visca\Bundle\LicomBundle\Events\Match\MatchHasBegun';
 
+        $listenByCompSS = 'listenByCompetitionSeasonStage';
+        $competitionSS = $this->createCompetitionSeasonStage(1);
+
         return [
             // Match
             [$matchEvent,         'listenByMatch',       $this->createMatch(1),       'match@match.1'],
             [$matchEvent,         'listenByCompetition', $this->createCompetition(1), 'match@competition.1'],
+            [$matchEvent,         $listenByCompSS,       $competitionSS,              'match@competition_season_stage.1'],
             [$matchEvent,         'listenByTeam',        $this->createTeam(1),        'match@team.1'],
 
             // MatchResult
@@ -82,7 +87,7 @@ class EventMatchTest extends PHPUnit_Framework_TestCase
     /**
      * @param int $athleteId
      *
-     * @return Team
+     * @return Athlete
      */
     private function createAthlete($athleteId)
     {
@@ -108,7 +113,7 @@ class EventMatchTest extends PHPUnit_Framework_TestCase
     /**
      * @param int $competitionId
      *
-     * @return Match
+     * @return Competition
      */
     private function createCompetition($competitionId)
     {
@@ -116,6 +121,19 @@ class EventMatchTest extends PHPUnit_Framework_TestCase
         $this->setId($competitionObj, $competitionId);
 
         return $competitionObj;
+    }
+
+    /**
+     * @param int $competitionSeasonStageId
+     *
+     * @return CompetitionSeasonStage
+     */
+    private function createCompetitionSeasonStage($competitionSeasonStageId)
+    {
+        $competitionSeasonStageObj = new CompetitionSeasonStage();
+        $this->setId($competitionSeasonStageObj, $competitionSeasonStageId);
+
+        return $competitionSeasonStageObj;
     }
 
     /**
