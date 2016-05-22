@@ -1,7 +1,6 @@
 <?php
 namespace Visca\Bundle\LicomBundle\Events;
 
-use Visca\Bundle\LicomBundle\Entity\Athlete;
 use Visca\Bundle\LicomBundle\Entity\Competition;
 use Visca\Bundle\LicomBundle\Entity\CompetitionSeasonStage;
 use Visca\Bundle\LicomBundle\Entity\Match as LicomMatch;
