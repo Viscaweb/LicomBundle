@@ -11,22 +11,22 @@ class MatchIncident extends AbstractEvent
 {
     public static function listenByMatch(LicomMatch $match)
     {
-        return self::createSelfByScope('match.'.$match->getId());
+        return new static('match.'.$match->getId());
     }
 
     public static function listenByCompetition(Competition $competition)
     {
-        return self::createSelfByScope('competition.'.$competition->getId());
+        return new static('competition.'.$competition->getId());
     }
 
     public static function listenByTeam(Team $team)
     {
-        return self::createSelfByScope('team.'.$team->getId());
+        return new static('team.'.$team->getId());
     }
 
     public static function listenByAthlete(Athlete $athlete)
     {
-        return self::createSelfByScope('athlete.'.$athlete->getId());
+        return new static('athlete.'.$athlete->getId());
     }
 
     /**

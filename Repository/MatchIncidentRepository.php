@@ -85,6 +85,8 @@ class MatchIncidentRepository extends AbstractEntityRepository
         }
 
         $queryBuilder->setParameter('matchParticipant', $matchParticipant);
+        $queryBuilder->orderBy('mi.timeElapsed', 'ASC');
+        $queryBuilder->addOrderBy('mi.timeElapsedExtra', 'ASC');
 
         return $queryBuilder->getQuery()->getResult();
     }

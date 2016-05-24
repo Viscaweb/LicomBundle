@@ -1,11 +1,20 @@
 ## Events
 
-### List of events
-|Name           |Scope: match|Scope: competition|Scope: team|Scope: athlete|
-|:--------------|:----------:|:----------:|:----------:|:----------:|
-|Match          |✓|✓|✓|✓|
-|→ MatchResult  |✓|✓|✓|✓|
-|→ MatchIncident|✓|✓|✓|✓|
-|→ MatchComment |✓| |✓| |
-|→ MatchStatus  |✓|✓|✓| |
-|→ → MatchBegins|✓|✓|✓| |
+### List of events:
+
+Listen by...
+
+|Object           |Match|Competition|CompetitionSeasonStage|CompetitionRound|CompetitionStage|Team|Athlete|
+|:--------------|:----------:|:----------:|:----------:|:----------:|:----------:|
+|Match          |✓|✓|✓| | |✓| |
+|→ MatchHasBegun|✓|✓|✓| | |✓| |
+|MatchResult  |✓|✓| | | |✓| |
+|MatchIncident|✓|✓| | | |✓|✓|
+|→ MatchIncidentCard|✓|✓| | | |✓|✓|
+|MatchComment |✓| | | | | | |
+|MatchStats   |✓|✓| | | |✓| |
+|MatchLineup  |✓|✓| | | |✓|✓|
+|Competition    | |✓| | | | | |
+|CompetitionRound| |✓| |✓| | | |
+|CompetitionSeasonStage| |✓|✓| | | | |
+|CompetitionStage| |✓| | |✓| | |

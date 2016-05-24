@@ -2,6 +2,7 @@
 
 use Visca\Bundle\LicomBundle\Entity\Athlete;
 use Visca\Bundle\LicomBundle\Entity\Competition;
+use Visca\Bundle\LicomBundle\Entity\CompetitionSeasonStage;
 use Visca\Bundle\LicomBundle\Entity\Match;
 use Visca\Bundle\LicomBundle\Entity\Team;
 use Visca\Bundle\LicomBundle\Events\Event;
@@ -29,22 +30,26 @@ class EventMatchTest extends PHPUnit_Framework_TestCase
         $matchEvent = '\Visca\Bundle\LicomBundle\Events\Match';
         $matchResultEvent = '\Visca\Bundle\LicomBundle\Events\Match\MatchResult';
         $matchIncidentEvent = '\Visca\Bundle\LicomBundle\Events\Match\MatchIncident';
+        $matchCardEvent = '\Visca\Bundle\LicomBundle\Events\Match\MatchIncidentCard';
         $matchCommentEvent = '\Visca\Bundle\LicomBundle\Events\Match\MatchComment';
-        $matchStatusEvent = '\Visca\Bundle\LicomBundle\Events\Match\MatchStatus';
-        $matchBeginsEvent = '\Visca\Bundle\LicomBundle\Events\Match\MatchStatus\MatchBegins';
+        $matchStatsEvent = '\Visca\Bundle\LicomBundle\Events\Match\MatchStats';
+        $matchLineupEvent = '\Visca\Bundle\LicomBundle\Events\Match\MatchLineup';
+        $matchHasBegunEvent = '\Visca\Bundle\LicomBundle\Events\Match\MatchHasBegun';
+
+        $listenByCompSS = 'listenByCompetitionSeasonStage';
+        $competitionSS = $this->createCompetitionSeasonStage(1);
 
         return [
             // Match
             [$matchEvent,         'listenByMatch',       $this->createMatch(1),       'match@match.1'],
             [$matchEvent,         'listenByCompetition', $this->createCompetition(1), 'match@competition.1'],
+            [$matchEvent,         $listenByCompSS,       $competitionSS,              'match@competition_season_stage.1'],
             [$matchEvent,         'listenByTeam',        $this->createTeam(1),        'match@team.1'],
-            [$matchEvent,         'listenByAthlete',     $this->createAthlete(1),     'match@athlete.1'],
 
             // MatchResult
             [$matchResultEvent,   'listenByMatch',       $this->createMatch(1),       'match_result@match.1'],
             [$matchResultEvent,   'listenByCompetition', $this->createCompetition(1), 'match_result@competition.1'],
             [$matchResultEvent,   'listenByTeam',        $this->createTeam(1),        'match_result@team.1'],
-            [$matchResultEvent,   'listenByAthlete',     $this->createAthlete(1),     'match_result@athlete.1'],
 
             // MatchIncident
             [$matchIncidentEvent, 'listenByMatch',       $this->createMatch(1),       'match_incident@match.1'],
@@ -52,26 +57,37 @@ class EventMatchTest extends PHPUnit_Framework_TestCase
             [$matchIncidentEvent, 'listenByTeam',        $this->createTeam(1),        'match_incident@team.1'],
             [$matchIncidentEvent, 'listenByAthlete',     $this->createAthlete(1),     'match_incident@athlete.1'],
 
+            // MatchCard
+            [$matchCardEvent,     'listenByMatch',       $this->createMatch(1),       'match_incident_card@match.1'],
+            [$matchCardEvent,     'listenByCompetition', $this->createCompetition(1), 'match_incident_card@competition.1'],
+            [$matchCardEvent,     'listenByTeam',        $this->createTeam(1),        'match_incident_card@team.1'],
+            [$matchCardEvent,     'listenByAthlete',     $this->createAthlete(1),     'match_incident_card@athlete.1'],
+
             // MatchComment
             [$matchCommentEvent,  'listenByMatch',       $this->createMatch(1),       'match_comment@match.1'],
-            [$matchCommentEvent,  'listenByTeam',        $this->createTeam(1),        'match_comment@team.1'],
 
-            // MatchStatus
-            [$matchStatusEvent,   'listenByMatch',       $this->createMatch(1),       'match_status@match.1'],
-            [$matchStatusEvent,   'listenByCompetition', $this->createCompetition(1), 'match_status@competition.1'],
-            [$matchStatusEvent,   'listenByTeam',        $this->createTeam(1),        'match_status@team.1'],
+            // MatchHasBegun
+            [$matchHasBegunEvent, 'listenByMatch',       $this->createMatch(1),       'match_has_begun@match.1'],
+            [$matchHasBegunEvent, 'listenByCompetition', $this->createCompetition(1), 'match_has_begun@competition.1'],
+            [$matchHasBegunEvent, 'listenByTeam',        $this->createTeam(1),        'match_has_begun@team.1'],
 
-            // MatchBegins
-            [$matchBeginsEvent,   'listenByMatch',       $this->createMatch(1),       'match_begins@match.1'],
-            [$matchBeginsEvent,   'listenByCompetition', $this->createCompetition(1), 'match_begins@competition.1'],
-            [$matchBeginsEvent,   'listenByTeam',        $this->createTeam(1),        'match_begins@team.1'],
+            // MatchStats
+            [$matchStatsEvent,    'listenByMatch',       $this->createMatch(1),       'match_stats@match.1'],
+            [$matchStatsEvent,    'listenByCompetition', $this->createCompetition(1), 'match_stats@competition.1'],
+            [$matchStatsEvent,    'listenByTeam',        $this->createTeam(1),        'match_stats@team.1'],
+
+            // MatchLineup
+            [$matchLineupEvent,   'listenByMatch',       $this->createMatch(1),       'match_lineup@match.1'],
+            [$matchLineupEvent,   'listenByCompetition', $this->createCompetition(1), 'match_lineup@competition.1'],
+            [$matchLineupEvent,   'listenByTeam',        $this->createTeam(1),        'match_lineup@team.1'],
+            [$matchLineupEvent,   'listenByAthlete',     $this->createAthlete(1),     'match_lineup@athlete.1'],
         ];
     }
 
     /**
      * @param int $athleteId
      *
-     * @return Team
+     * @return Athlete
      */
     private function createAthlete($athleteId)
     {
@@ -97,7 +113,7 @@ class EventMatchTest extends PHPUnit_Framework_TestCase
     /**
      * @param int $competitionId
      *
-     * @return Match
+     * @return Competition
      */
     private function createCompetition($competitionId)
     {
@@ -105,6 +121,19 @@ class EventMatchTest extends PHPUnit_Framework_TestCase
         $this->setId($competitionObj, $competitionId);
 
         return $competitionObj;
+    }
+
+    /**
+     * @param int $competitionSeasonStageId
+     *
+     * @return CompetitionSeasonStage
+     */
+    private function createCompetitionSeasonStage($competitionSeasonStageId)
+    {
+        $competitionSeasonStageObj = new CompetitionSeasonStage();
+        $this->setId($competitionSeasonStageObj, $competitionSeasonStageId);
+
+        return $competitionSeasonStageObj;
     }
 
     /**
