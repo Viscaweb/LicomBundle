@@ -10,10 +10,10 @@ use Visca\Bundle\LicomBundle\Events\AbstractEvent;
 use Visca\Bundle\LicomBundle\Events\Event;
 
 /**
- * Class MatchHasBegun
+ * Class MatchHasFinished
  * @package Visca\Bundle\LicomBundle\Events\Match
  */
-class MatchHasBegun extends AbstractEvent
+class MatchHasFinished extends AbstractEvent
 {
     /**
      * @param LicomMatch $match
@@ -60,6 +60,6 @@ class MatchHasBegun extends AbstractEvent
      */
     public function getEventObject()
     {
-        return 'match_has_begun';
+        return 'match_has_finished';
     }
 }

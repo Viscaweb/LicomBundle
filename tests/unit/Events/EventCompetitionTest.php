@@ -4,9 +4,13 @@ use Visca\Bundle\LicomBundle\Entity\Competition;
 use Visca\Bundle\LicomBundle\Entity\CompetitionRound;
 use Visca\Bundle\LicomBundle\Entity\CompetitionSeasonStage;
 use Visca\Bundle\LicomBundle\Entity\CompetitionStage;
+use Visca\Bundle\LicomBundle\Entity\CompetitionLeg;
 use Visca\Bundle\LicomBundle\Events\Event;
 use \Visca\Bundle\LicomBundle\Events\Match as MatchEvent;
 
+/**
+ * Class EventCompetitionTest
+ */
 class EventCompetitionTest extends PHPUnit_Framework_TestCase
 {
     /**
@@ -24,11 +28,15 @@ class EventCompetitionTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($event->getName(), $expectedEventName);
     }
 
+    /**
+     * @return array
+     */
     public function listOfEvents()
     {
         $competitionEvent = '\Visca\Bundle\LicomBundle\Events\Competition';
         $competitionSeasonStageEvent = '\Visca\Bundle\LicomBundle\Events\Competition\CompetitionSeasonStage';
         $competitionRoundEvent = '\Visca\Bundle\LicomBundle\Events\Competition\CompetitionRound';
+        $competitionLegEvent = '\Visca\Bundle\LicomBundle\Events\Competition\CompetitionLeg';
         $competitionStageEvent = '\Visca\Bundle\LicomBundle\Events\Competition\CompetitionStage';
 
         return [
@@ -42,6 +50,10 @@ class EventCompetitionTest extends PHPUnit_Framework_TestCase
             // CompetitionRound
             [$competitionRoundEvent,       'listenByCompetition',            $this->createCompetition(1),            'competition_round@competition.1'],
             [$competitionRoundEvent,       'listenByCompetitionRound',       $this->createCompetitionRound(1),       'competition_round@competition_round.1'],
+
+            // CompetitionLeg
+            [$competitionLegEvent,         'listenByCompetition',            $this->createCompetition(1),            'competition_leg@competition.1'],
+            [$competitionLegEvent,         'listenByCompetitionLeg',         $this->createCompetitionLeg(1),         'competition_leg@competition_leg.1'],
 
             // CompetitionSeasonStage
             [$competitionSeasonStageEvent, 'listenByCompetition',            $this->createCompetition(1),            'competition_season_stage@competition.1'],
@@ -86,6 +98,19 @@ class EventCompetitionTest extends PHPUnit_Framework_TestCase
         $this->setId($competitionRoundObj, $competitionRoundId);
 
         return $competitionRoundObj;
+    }
+
+    /**
+     * @param int $competitionLegId
+     *
+     * @return CompetitionLeg
+     */
+    private function createCompetitionLeg($competitionLegId)
+    {
+        $competitionLegObj = new CompetitionLeg();
+        $this->setId($competitionLegObj, $competitionLegId);
+
+        return $competitionLegObj;
     }
 
     /**

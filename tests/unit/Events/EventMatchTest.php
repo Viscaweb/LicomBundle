@@ -35,6 +35,7 @@ class EventMatchTest extends PHPUnit_Framework_TestCase
         $matchStatsEvent = '\Visca\Bundle\LicomBundle\Events\Match\MatchStats';
         $matchLineupEvent = '\Visca\Bundle\LicomBundle\Events\Match\MatchLineup';
         $matchHasBegunEvent = '\Visca\Bundle\LicomBundle\Events\Match\MatchHasBegun';
+        $matchHasFinishedEvent = '\Visca\Bundle\LicomBundle\Events\Match\MatchHasFinished';
 
         $listenByCompSS = 'listenByCompetitionSeasonStage';
         $competitionSS = $this->createCompetitionSeasonStage(1);
@@ -69,7 +70,14 @@ class EventMatchTest extends PHPUnit_Framework_TestCase
             // MatchHasBegun
             [$matchHasBegunEvent, 'listenByMatch',       $this->createMatch(1),       'match_has_begun@match.1'],
             [$matchHasBegunEvent, 'listenByCompetition', $this->createCompetition(1), 'match_has_begun@competition.1'],
+            [$matchHasBegunEvent, 'listenByCompetitionSeasonStage', $this->createCompetitionSeasonStage(1), 'match_has_begun@competition_season_stage.1'],
             [$matchHasBegunEvent, 'listenByTeam',        $this->createTeam(1),        'match_has_begun@team.1'],
+
+            // MatchHasFinished
+            [$matchHasFinishedEvent, 'listenByMatch',       $this->createMatch(1),       'match_has_finished@match.1'],
+            [$matchHasFinishedEvent, 'listenByCompetition', $this->createCompetition(1), 'match_has_finished@competition.1'],
+            [$matchHasFinishedEvent, 'listenByCompetitionSeasonStage', $this->createCompetitionSeasonStage(1), 'match_has_finished@competition_season_stage.1'],
+            [$matchHasFinishedEvent, 'listenByTeam',        $this->createTeam(1),        'match_has_finished@team.1'],
 
             // MatchStats
             [$matchStatsEvent,    'listenByMatch',       $this->createMatch(1),       'match_stats@match.1'],
