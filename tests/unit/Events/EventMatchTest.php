@@ -5,9 +5,13 @@ use Visca\Bundle\LicomBundle\Entity\Competition;
 use Visca\Bundle\LicomBundle\Entity\CompetitionSeasonStage;
 use Visca\Bundle\LicomBundle\Entity\Match;
 use Visca\Bundle\LicomBundle\Entity\Team;
+use Visca\Bundle\LicomBundle\Entity\Sport;
 use Visca\Bundle\LicomBundle\Events\Event;
 use \Visca\Bundle\LicomBundle\Events\Match as MatchEvent;
 
+/**
+ * Class EventMatchTest
+ */
 class EventMatchTest extends PHPUnit_Framework_TestCase
 {
     /**
@@ -25,6 +29,9 @@ class EventMatchTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($event->getName(), $expectedEventName);
     }
 
+    /**
+     * @return array
+     */
     public function listOfEvents()
     {
         $matchEvent = '\Visca\Bundle\LicomBundle\Events\Match';
@@ -72,12 +79,14 @@ class EventMatchTest extends PHPUnit_Framework_TestCase
             [$matchHasBegunEvent, 'listenByCompetition', $this->createCompetition(1), 'match_has_begun@competition.1'],
             [$matchHasBegunEvent, 'listenByCompetitionSeasonStage', $this->createCompetitionSeasonStage(1), 'match_has_begun@competition_season_stage.1'],
             [$matchHasBegunEvent, 'listenByTeam',        $this->createTeam(1),        'match_has_begun@team.1'],
+            [$matchHasBegunEvent, 'listenBySport',        $this->createSport(1),        'match_has_begun@sport.1'],
 
             // MatchHasFinished
             [$matchHasFinishedEvent, 'listenByMatch',       $this->createMatch(1),       'match_has_finished@match.1'],
             [$matchHasFinishedEvent, 'listenByCompetition', $this->createCompetition(1), 'match_has_finished@competition.1'],
             [$matchHasFinishedEvent, 'listenByCompetitionSeasonStage', $this->createCompetitionSeasonStage(1), 'match_has_finished@competition_season_stage.1'],
             [$matchHasFinishedEvent, 'listenByTeam',        $this->createTeam(1),        'match_has_finished@team.1'],
+            [$matchHasFinishedEvent, 'listenBySport',        $this->createSport(1),        'match_has_finished@sport.1'],
 
             // MatchStats
             [$matchStatsEvent,    'listenByMatch',       $this->createMatch(1),       'match_stats@match.1'],
@@ -155,6 +164,19 @@ class EventMatchTest extends PHPUnit_Framework_TestCase
         $this->setId($matchObj, $matchId);
 
         return $matchObj;
+    }
+
+    /**
+     * @param $sportId
+     *
+     * @return Sport
+     */
+    private function createSport($sportId)
+    {
+        $sportObj = new Sport();
+        $this->setId($sportObj, $sportId);
+
+        return $sportObj;
     }
 
     /**

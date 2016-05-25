@@ -6,6 +6,7 @@ use Visca\Bundle\LicomBundle\Entity\Competition;
 use Visca\Bundle\LicomBundle\Entity\CompetitionSeasonStage;
 use Visca\Bundle\LicomBundle\Entity\Match as LicomMatch;
 use Visca\Bundle\LicomBundle\Entity\Team;
+use Visca\Bundle\LicomBundle\Entity\Sport;
 use Visca\Bundle\LicomBundle\Events\AbstractEvent;
 use Visca\Bundle\LicomBundle\Events\Event;
 
@@ -53,6 +54,16 @@ class MatchHasFinished extends AbstractEvent
     public static function listenByTeam(Team $team)
     {
         return new static('team.'.$team->getId());
+    }
+
+    /**
+     * @param Sport $sport
+     *
+     * @return static
+     */
+    public static function listenBySport(Sport $sport)
+    {
+        return new static('sport.'.$sport->getId());
     }
 
     /**
