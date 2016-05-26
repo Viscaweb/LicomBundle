@@ -7,7 +7,7 @@ Listen by...
 |Object           |Match|Competition|CompetitionSeasonStage|CompetitionRound|CompetitionStage|CompetitionLeg|Team|Athlete|Sport|
 |:--------------|:----------:|:----------:|:----------:|:----------:|:----------:|:----------:|
 |Match          |✓|✓|✓| | | |✓| | |
-|→ MatchHasBegun|✓|✓|✓| | | |✓| | |
+|→ MatchHasBegun|✓|✓|✓| | | |✓| |✓|
 |→ MatchHasFinished|✓|✓|✓| | | |✓| |✓|
 |MatchResult  |✓|✓| | | | |✓| | |
 |MatchIncident|✓|✓| | | | |✓|✓| |
