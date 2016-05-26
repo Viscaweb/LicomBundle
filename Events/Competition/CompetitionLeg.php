@@ -7,7 +7,6 @@ use Visca\Bundle\LicomBundle\Entity\CompetitionLeg as LicomCompetitionLeg;
 
 /**
  * Class CompetitionLeg
- * @package Visca\Bundle\LicomBundle\Events\Competition
  */
 class CompetitionLeg extends AbstractEvent
 {
