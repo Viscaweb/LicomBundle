@@ -319,11 +319,6 @@ class MatchRepository extends AbstractEntityRepository
             $query->orderBy('m.'.$orderField, $orderType);
         }
 
-        // only if we ask for a limited/offset number of matches we will add the
-//        if (is_numeric($limit) || is_numeric($offset)) {
-//            $query->groupBy('m.id');
-//        }
-
         if (is_numeric($limit) || $is_numeric($offset)) {
             $result = new Paginator($query, $fetchJoin = true);
         } else {
