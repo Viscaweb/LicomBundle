@@ -12,7 +12,6 @@ use Visca\Bundle\LicomBundle\Events\Event;
 
 /**
  * Class MatchHasFinished
- * @package Visca\Bundle\LicomBundle\Events\Match
  */
 class MatchHasFinished extends AbstractEvent
 {

@@ -2,8 +2,8 @@
 
 namespace Visca\Bundle\LicomBundle\Entity;
 
-use Visca\Bundle\CoreBundle\Entity\Traits\OptionalDateTimeTrait;
 use Visca\Bundle\CoreBundle\Entity\Traits\DeletableTrait;
+use Visca\Bundle\CoreBundle\Entity\Traits\OptionalDateTimeTrait;
 use Visca\Bundle\LicomBundle\Factory\MatchStatusDescriptionFactory;
 
 /**
@@ -11,8 +11,13 @@ use Visca\Bundle\LicomBundle\Factory\MatchStatusDescriptionFactory;
  */
 class MatchStatusDescription
 {
-    const IN_PROGRESS_KEY = 'inprogress';
+    const CANCELLED_KEY = 'cancelled';
+    const DELETED_KEY = 'deleted';
     const FINISHED_KEY = 'finished';
+    const IN_PROGRESS_KEY = 'inprogress';
+    const INTERRUPTED_KEY = 'interrupted';
+    const NOT_STARTED_KEY = 'notstarted';
+    const UNKNOWN_KEY = 'unknown';
 
     use OptionalDateTimeTrait;
     use DeletableTrait;
