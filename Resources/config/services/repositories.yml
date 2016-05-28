@@ -290,6 +290,14 @@ services:
             - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\ProfileEntityGraphLabel
 
+    visca_licom.repository.profile_translation_graph_label:
+        class: Visca\Bundle\LicomBundle\Repository\ProfileTranslationGraphLabelRepository
+        factory_service: visca_doctrine.repository.factory
+        factory_method: getRepository
+        arguments:
+            - '@visca_licom.entity_manager'
+            - Visca\Bundle\LicomBundle\Entity\ProfileTranslationGraphLabel
+
     visca_licom.repository.participant_membership:
         class: Visca\Bundle\LicomBundle\Repository\ParticipantMembershipRepository
         factory_service: visca_doctrine.repository.factory
