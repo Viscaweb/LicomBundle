@@ -1,6 +1,7 @@
 Visca\Bundle\LicomBundle\Entity\StandingCell:
   type: entity
   table: StandingCell
+  repositoryClass: Visca\Bundle\LicomBundle\Repository\StandingCellRepository
   id:
     id:
       type: integer
