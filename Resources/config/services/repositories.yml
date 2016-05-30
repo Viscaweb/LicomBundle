@@ -322,6 +322,22 @@ services:
             - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\StandingColumn
 
+    visca_licom.repository.standing_cell:
+        class: Visca\Bundle\LicomBundle\Repository\StandingCellRepository
+        factory_service: visca_doctrine.repository.factory
+        factory_method: getRepository
+        arguments:
+            - '@visca_licom.entity_manager'
+            - Visca\Bundle\LicomBundle\Entity\StandingCell
+
+    visca_licom.repository.standing_row:
+        class: Visca\Bundle\LicomBundle\Repository\StandingRowRepository
+        factory_service: visca_doctrine.repository.factory
+        factory_method: getRepository
+        arguments:
+            - '@visca_licom.entity_manager'
+            - Visca\Bundle\LicomBundle\Entity\StandingRow
+
     visca_licom.repository.localization:
         class: Visca\Bundle\LicomBundle\Repository\LocalizationRepository
         factory_service: visca_doctrine.repository.factory
