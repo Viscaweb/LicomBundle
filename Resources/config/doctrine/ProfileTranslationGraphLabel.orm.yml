@@ -1,6 +1,7 @@
 Visca\Bundle\LicomBundle\Entity\ProfileTranslationGraphLabel:
   type: entity
   table: ProfileTranslation_graphLabel
+  repositoryClass: Visca\Bundle\LicomBundle\Repository\ProfileTranslationGraphLabelRepository
   id:
     id:
       type: smallint

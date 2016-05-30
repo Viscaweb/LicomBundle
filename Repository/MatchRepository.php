@@ -6,6 +6,7 @@ use DateTime;
 use DateTimeInterface;
 use Doctrine\ORM\Query\Expr;
 use Doctrine\ORM\Query\Expr\Join;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
 use Visca\Bundle\LicomBundle\Entity\Athlete;
 use Visca\Bundle\LicomBundle\Entity\Code\MatchResultTypeCode;
@@ -288,7 +289,6 @@ class MatchRepository extends AbstractEntityRepository
             ->setParameter('home', MatchParticipant::HOME)
             ->setParameter('away', MatchParticipant::AWAY);
 
-
         if (is_array($participantId)) {
             $query
                 ->andWhere('mp.participant in (:participant)')
@@ -319,12 +319,13 @@ class MatchRepository extends AbstractEntityRepository
             $query->orderBy('m.'.$orderField, $orderType);
         }
 
-        // only if we ask for a limited/offset number of matches we will add the
-        if (is_numeric($limit) || is_numeric($offset)) {
-            $query->groupBy('m.id');
+        if (is_numeric($limit) || $is_numeric($offset)) {
+            $result = new Paginator($query, $fetchJoin = true);
+        } else {
+            $result = $query->getQuery()->getResult();
         }
 
-        return $query->getQuery()->getResult();
+        return $result;
     }
 
     /**

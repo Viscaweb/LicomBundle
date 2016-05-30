@@ -137,6 +137,7 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
         $qb = $this->createQueryBuilder('l');
 
         $qb
+            ->select('l.entityId, l.text')
             ->join('l.profileTranslationGraph', 'p')
             ->where('p.profile = :profileId')
             ->andWhere('p.profileTranslationGraphLabel = :profileGraphLabelId')
@@ -178,15 +179,23 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
         $query = $qb->getQuery();
         $this->setCacheStrategy($query);
 
-        $localizationTranslation = $query->getResult();
+        $rawLocalizationTranslations = $query->getArrayResult();
 
-        if (count($localizationTranslation) === 0) {
+        if (count($rawLocalizationTranslations) === 0) {
             throw new NoTranslationFoundException(
                 sprintf('No translation can be found for the given parameters.')
             );
         }
 
-        return $localizationTranslation;
+        $localizationTranslations = [];
+        foreach ($rawLocalizationTranslations as $rawLocalizationTranslation) {
+            $localizationTranslations[] =
+                (new LocalizationTranslation())
+                    ->setEntityId($rawLocalizationTranslation['entityId'])
+                    ->setText($rawLocalizationTranslation['text']);
+        }
+
+        return $localizationTranslations;
     }
 
     /**
@@ -414,6 +423,7 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
         $qb = $this->createQueryBuilder('l');
 
         $qb
+            ->select('l.entityId, l.text')
             ->join('l.localizationTranslationGraph', 'g')
             ->where('g.localization = :localizationId')
             ->andWhere('g.label = :localizationLabel')
@@ -453,13 +463,22 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
         $query = $qb->getQuery();
         $this->setCacheStrategy($query);
 
-        $localizationTranslations = $query->getResult();
+        $rawLocalizationTranslations = $query->getArrayResult();
 
-        if (count($localizationTranslations) === 0) {
+        if (count($rawLocalizationTranslations) === 0) {
             throw new NoTranslationFoundException(
                 sprintf('No translation can be found for the given parameters.')
             );
         }
+
+        $localizationTranslations = [];
+        foreach ($rawLocalizationTranslations as $rawLocalizationTranslation) {
+            $localizationTranslations[] =
+                (new LocalizationTranslation())
+                    ->setEntityId($rawLocalizationTranslation['entityId'])
+                    ->setText($rawLocalizationTranslation['text']);
+        }
+
 
         return $localizationTranslations;
     }
