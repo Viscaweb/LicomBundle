@@ -290,6 +290,14 @@ services:
             - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\ProfileEntityGraphLabel
 
+    visca_licom.repository.profile_translation_graph_label:
+        class: Visca\Bundle\LicomBundle\Repository\ProfileTranslationGraphLabelRepository
+        factory_service: visca_doctrine.repository.factory
+        factory_method: getRepository
+        arguments:
+            - '@visca_licom.entity_manager'
+            - Visca\Bundle\LicomBundle\Entity\ProfileTranslationGraphLabel
+
     visca_licom.repository.participant_membership:
         class: Visca\Bundle\LicomBundle\Repository\ParticipantMembershipRepository
         factory_service: visca_doctrine.repository.factory
@@ -313,6 +321,22 @@ services:
         arguments:
             - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\StandingColumn
+
+    visca_licom.repository.standing_cell:
+        class: Visca\Bundle\LicomBundle\Repository\StandingCellRepository
+        factory_service: visca_doctrine.repository.factory
+        factory_method: getRepository
+        arguments:
+            - '@visca_licom.entity_manager'
+            - Visca\Bundle\LicomBundle\Entity\StandingCell
+
+    visca_licom.repository.standing_row:
+        class: Visca\Bundle\LicomBundle\Repository\StandingRowRepository
+        factory_service: visca_doctrine.repository.factory
+        factory_method: getRepository
+        arguments:
+            - '@visca_licom.entity_manager'
+            - Visca\Bundle\LicomBundle\Entity\StandingRow
 
     visca_licom.repository.localization:
         class: Visca\Bundle\LicomBundle\Repository\LocalizationRepository
