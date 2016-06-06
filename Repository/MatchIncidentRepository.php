@@ -106,4 +106,21 @@ class MatchIncidentRepository extends AbstractEntityRepository
 
         return $queryBuilder->getQuery()->getArrayResult();
     }
+
+    /**
+     * @param array $ids Ids
+     *
+     * @return array
+     */
+    public function findByIdsOrderedByTimeElapsed($ids)
+    {
+        $queryBuilder = $this->createQueryBuilder('m');
+        $queryBuilder->select('m')
+            ->where('m.id IN (:ids)')
+            ->orderBy('m.timeElapsed', 'ASC')
+            ->addOrderBy('m.timeElapsedExtra', 'ASC')
+            ->setParameter('ids', $ids);
+
+        return $queryBuilder->getQuery()->getResult();
+    }
 }
