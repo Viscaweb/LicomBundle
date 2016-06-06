@@ -109,4 +109,16 @@ class CompetitionSeasonRepository extends AbstractEntityRepository
 
         return $queryBuilder->getQuery()->getResult();
     }
+
+    /**
+     * @return CompetitionSeason[]
+     */
+    public function findGroupedByCompetition()
+    {
+        return $this
+            ->createQueryBuilder('cs')
+            ->groupBy('cs.competition')
+            ->getQuery()
+            ->getResult();
+    }
 }
