@@ -209,4 +209,16 @@ class CompetitionRoundRepository extends AbstractEntityRepository
 
         return $queryBuilder->getQuery()->getOneOrNullResult();
     }
+
+    /**
+     * @return CompetitionRound[]
+     */
+    public function findGroupedByCompetitionSeasonStage()
+    {
+        return $this
+            ->createQueryBuilder('cr')
+            ->groupBy('cr.competitionSeasonStage')
+            ->getQuery()
+            ->getResult();
+    }
 }
