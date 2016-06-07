@@ -362,4 +362,16 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
 
         return $competitionStageType;
     }
+
+    /**
+     * @return CompetitionSeasonStage[]
+     */
+    public function findGroupedByCompetitionSeason()
+    {
+        return $this
+            ->createQueryBuilder('css')
+            ->groupBy('css.competitionSeason')
+            ->getQuery()
+            ->getResult();
+    }
 }
