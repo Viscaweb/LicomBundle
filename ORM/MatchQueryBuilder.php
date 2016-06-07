@@ -5,7 +5,6 @@ namespace Visca\Bundle\LicomBundle\ORM;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query\Expr\Join;
-use Visca\Bundle\LicomBundle\Entity\Code\MatchAuxTypeCode;
 
 /**
  * Class MatchQueryBuilder
@@ -43,7 +42,7 @@ class MatchQueryBuilder extends QueryBuilder
     }
 
     /**
-     * @param boolean $reducedColumnSet
+     * @param bool $reducedColumnSet
      *
      * @return $this
      */
@@ -60,10 +59,10 @@ class MatchQueryBuilder extends QueryBuilder
      *
      * @return $this
      */
-    public function setUpAlias($alias, $indexBy = null)
+    public function prepareQuery($alias, $indexBy = null)
     {
         $this->alias = $alias;
-         $columnsSelection = $alias;
+        $columnsSelection = $alias;
         if ($this->reducedColumnSet) {
             $columnsSelection = 'partial '.$alias.'.{id, startDate, coverage, winner, competitionRound, competitionLeg, matchStatusDescription, competitionSeasonStage}';
         }
@@ -76,8 +75,7 @@ class MatchQueryBuilder extends QueryBuilder
     }
 
     /**
-     * @param QueryBuilder $queryBuilder
-     * @param bool         $optimized
+     * @param bool $optimizeJoin
      *
      * @return $this
      */
@@ -110,9 +108,7 @@ class MatchQueryBuilder extends QueryBuilder
                 ->addSelect("mp", "p")
                 ->leftJoin(
                     "$this->alias.matchParticipant",
-                    'mp',
-                    $matchParticipantConditionType,
-                    $matchParticipantCondition
+                    'mp'
                 )
                 ->join("mp.participant", 'p');
         }
@@ -163,7 +159,7 @@ class MatchQueryBuilder extends QueryBuilder
     {
         if (count($optimizeMatchAuxTypeCodes) > 0) {
             foreach ($optimizeMatchAuxTypeCodes as $i => $matchAuxTypeCode) {
-                $prefix = ($i+1);
+                $prefix = ($i + 1);
                 $this->addSelect('aux'.$prefix);
                 $this->leftJoin(
                     "$this->alias.aux",

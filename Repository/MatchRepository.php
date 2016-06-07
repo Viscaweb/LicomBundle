@@ -16,6 +16,7 @@ use Visca\Bundle\LicomBundle\Entity\Enum\MatchStatusDescriptionCategoryType;
 use Visca\Bundle\LicomBundle\Entity\Match;
 use Visca\Bundle\LicomBundle\Entity\MatchParticipant;
 use Visca\Bundle\LicomBundle\Entity\MatchResult;
+use Visca\Bundle\LicomBundle\Entity\MatchResultType;
 use Visca\Bundle\LicomBundle\Entity\Participant;
 use Visca\Bundle\LicomBundle\Entity\Sport;
 use Visca\Bundle\LicomBundle\ORM\MatchQueryBuilder;
@@ -29,135 +30,65 @@ class MatchRepository extends AbstractEntityRepository
     use UTCAltererTrait;
 
     /**
-     * @var bool Triggers the joining of Aux registers in a way that db resultset is
-     *           contained inside the root main result row instead of creating a new
-     *           row result for each MatchAux thus saving memory.
-     */
-    private $enableAuxOptimizer;
-
-    /**
-     * @var int[] Triggers the joining of MatchResult registers in a way that db resultset
-     *           is contained inside the root main result row instead of creating a new
-     *           row result for each MatchResult thus saving memory.
-     */
-    private $enableResultOptimizer;
-
-    /**
-     * @var bool
-     */
-    private $enableMatchParticipantOptimizer;
-
-    /**
-     * @var bool
-     */
-    private $optimizeReducedColumnSet;
-
-    /**
-     * @param bool $enable
-     */
-    private function setOptimizedAux($enable)
-    {
-        $this->enableAuxOptimizer = $enable;
-
-        return $this;
-    }
-
-    /**
-     * @param int[] $matchResultTypes
-     */
-    private function setOptimizedMatchResults($matchResultTypes)
-    {
-        $this->enableResultOptimizer = $matchResultTypes;
-
-        return $this;
-    }
-
-    /**
-     * @param bool $enable
-     *
-     * @return $this
-     */
-    private function setOptimizeMatchParticipant($enable)
-    {
-        $this->enableMatchParticipantOptimizer = $enable;
-
-        return $this;
-    }
-
-    /**
-     * @param bool $enable Controls wether we select all columns for each entity,
-     *                     or we select only those really used.
-     *
-     * @return $this
-     */
-    private function setOptimizeReducedColumnSet($enable)
-    {
-        $this->optimizeReducedColumnSet = $enable;
-
-        return $this;
-    }
-
-    /**
      * @param string $alias
      * @param null   $indexBy
-     * @param null   $matchParticipantConditionType
-     * @param null   $matchParticipantCondition
+     * @param bool   $reducedColumnSet
      *
      * @return MatchQueryBuilder
      */
     public function createQueryBuilder(
         $alias,
-        $indexBy = null
-//        $matchParticipantConditionType = null,
-//        $matchParticipantCondition = null
+        $indexBy = null,
+        $reducedColumnSet = false
     )
     {
         $queryBuilder = new MatchQueryBuilder($this->entityManager, $this->entityName);
         $queryBuilder
-            ->setUpAlias($alias)
+            ->setReducedColumnSet($reducedColumnSet)
+            ->prepareQuery($alias)
             ->setCacheable(false);
 
         return $queryBuilder;
-/*
+        /*
 
-        $queryBuilder = parent::createQueryBuilder($alias, $indexBy);
+                $queryBuilder = parent::createQueryBuilder($alias, $indexBy);
 
-        $columnsSelection = $alias;
-        if ($this->reducedColumnSet) {
-            $columnsSelection = 'partial '.$alias.'.{id, startDate, coverage, winner, competitionRound, competitionLeg, matchStatusDescription, competitionSeasonStage}';
-        }
+                $columnsSelection = $alias;
+                if ($this->reducedColumnSet) {
+                    $columnsSelection = 'partial '.$alias.'.{id, startDate, coverage, winner, competitionRound, competitionLeg, matchStatusDescription, competitionSeasonStage}';
+                }
 
-        $queryBuilder->select($aliasColumnsSelection);
-//        $queryBuilder = $this->joinMatchParticipant($queryBuilder, $flag);
-
-
-        if ($this->enableAuxOptimizer) {
-            $queryBuilder->addSelect('aux1', 'aux2', 'aux3', 'auxProfile');
-            $queryBuilder
-                ->leftJoin("$alias.aux", "aux1", Join::WITH, 'aux1.type = :aux1')
-                ->leftJoin("$alias.aux", "aux2", Join::WITH, 'aux2.type = :aux2')
-                ->leftJoin("$alias.aux", "aux3", Join::WITH, 'aux3.type = :aux3')
-                ->leftJoin("$alias.matchAuxProfile", "auxProfile")
-                ->setParameter('aux1', MatchAuxTypeCode::DATE_ENDED_CODE)
-                ->setParameter('aux2', MatchAuxTypeCode::DATE_STARTED_CODE)
-                ->setParameter('aux3', MatchAuxTypeCode::DATE_FIRST_HALF_ENDED_CODE);
-
-        } else {
-            $queryBuilder
-                ->addSelect('aux', 'auxProfile')
-                ->leftJoin("$alias.aux", 'aux')
-                ->leftJoin("$alias.matchAuxProfile", "auxProfile");
-        }
+                $queryBuilder->select($aliasColumnsSelection);
+        //        $queryBuilder = $this->joinMatchParticipant($queryBuilder, $flag);
 
 
-        // Reset optimizer flags
-        $this->setOptimizedAux(false);
-        $this->setOptimizedMatchResults([]);
-        $this->setOptimizeMatchParticipant(false);
+                if ($this->enableAuxOptimizer) {
+                    $queryBuilder->addSelect('aux1', 'aux2', 'aux3', 'auxProfile');
+                    $queryBuilder
+                        ->leftJoin("$alias.aux", "aux1", Join::WITH, 'aux1.type = :aux1')
+                        ->leftJoin("$alias.aux", "aux2", Join::WITH, 'aux2.type = :aux2')
+                        ->leftJoin("$alias.aux", "aux3", Join::WITH, 'aux3.type = :aux3')
+                        ->leftJoin("$alias.matchAuxProfile", "auxProfile")
+                        ->setParameter('aux1', MatchAuxTypeCode::DATE_ENDED_CODE)
+                        ->setParameter('aux2', MatchAuxTypeCode::DATE_STARTED_CODE)
+                        ->setParameter('aux3', MatchAuxTypeCode::DATE_FIRST_HALF_ENDED_CODE);
 
-        $queryBuilder->setCacheable(false);
+                } else {
+                    $queryBuilder
+                        ->addSelect('aux', 'auxProfile')
+                        ->leftJoin("$alias.aux", 'aux')
+                        ->leftJoin("$alias.matchAuxProfile", "auxProfile");
+                }
 
-        return $queryBuilder;*/
+
+                // Reset optimizer flags
+                $this->setOptimizedAux(false);
+                $this->setOptimizedMatchResults([]);
+                $this->setOptimizeMatchParticipant(false);
+
+                $queryBuilder->setCacheable(false);
+
+                return $queryBuilder;*/
     }
 
 
@@ -383,51 +314,46 @@ class MatchRepository extends AbstractEntityRepository
         $orderField = null,
         $orderType = 'ASC'
     ) {
-        $query = $this->createQueryBuilder('m');
-        $query->select('m', 'mp');
+        $optimized = true;
 
-        $query->leftJoin('m.matchParticipant', 'mp2')
-            ->addSelect('mp2')
-            ->where(
-                '(mp.number=:home and mp2.number=:away) OR (mp.number=:away and mp2.number=:home)'
-            )
-            ->setParameter('home', MatchParticipant::HOME)
-            ->setParameter('away', MatchParticipant::AWAY);
+        $queryBuilder = $this->createQueryBuilder('m', null, $optimized);
+        $queryBuilder->setReducedColumnSet($optimized);
+        $queryBuilder->joinMatchParticipant($optimized);
 
         if (is_array($participantId)) {
-            $query
-                ->andWhere('mp.participant in (:participant)')
-                ->setParameter('participant', implode(',', $participantId));
+            $queryBuilder
+                ->andWhere('mp1.participant in (:participants) OR mp2.participant in (:participants)')
+                ->setParameter('participants', $participantId);
         } else {
-            $query
-                ->andWhere('mp.participant = :participant')
+            $queryBuilder
+                ->andWhere('mp1.participant = :participant OR mp2.participant = :participant')
                 ->setParameter('participant', $participantId);
         }
 
         foreach ($whereConditions as $condition) {
-            $query->andWhere($condition);
+            $queryBuilder->andWhere($condition);
         }
 
         foreach ($whereArguments as $key => $value) {
-            $query->setParameter($key, $value);
+            $queryBuilder->setParameter($key, $value);
         }
 
         if (is_numeric($limit)) {
-            $query->setMaxResults($limit);
+            $queryBuilder->setMaxResults($limit);
         }
 
         if (is_numeric($offset)) {
-            $query->setFirstResult($offset);
+            $queryBuilder->setFirstResult($offset);
         }
 
         if (!is_null($orderField)) {
-            $query->orderBy('m.'.$orderField, $orderType);
+            $queryBuilder->orderBy('m.'.$orderField, $orderType);
         }
 
         if (is_numeric($limit) || is_numeric($offset)) {
-            $result = new Paginator($query, $fetchJoin = true);
+            $result = new Paginator($queryBuilder, $fetchJoin = true);
         } else {
-            $result = $query->getQuery()->getResult();
+            $result = $queryBuilder->getQuery()->getResult();
         }
 
         return $result;
@@ -875,15 +801,19 @@ class MatchRepository extends AbstractEntityRepository
         $queryBuilder
             ->setReducedColumnSet($optimized)
             ->joinMatchParticipant($optimized)
-            ->joinMatchAux([
-                MatchAuxTypeCode::DATE_ENDED_CODE,
-                MatchAuxTypeCode::DATE_STARTED_CODE,
-                MatchAuxTypeCode::DATE_FIRST_HALF_ENDED_CODE
-            ])
-            ->joinMatchResult([
-                MatchResultTypeCode::HALF_TIME_CODE,
-                MatchResultTypeCode::RUNNING_SCORE_CODE
-            ]);
+            ->joinMatchAux(
+                [
+                    MatchAuxTypeCode::DATE_ENDED_CODE,
+                    MatchAuxTypeCode::DATE_STARTED_CODE,
+                    MatchAuxTypeCode::DATE_FIRST_HALF_ENDED_CODE
+                ]
+            )
+            ->joinMatchResult(
+                [
+                    MatchResultTypeCode::HALF_TIME_CODE,
+                    MatchResultTypeCode::RUNNING_SCORE_CODE
+                ]
+            );
 
         /*
          * Filter by date
@@ -918,7 +848,7 @@ class MatchRepository extends AbstractEntityRepository
          */
         if (!is_null($sportId) && is_numeric($sportId)) {
             $queryBuilder
-                ->andWhere('p'.($optimized? '1':'').'.sport = :sportId')
+                ->andWhere('p'.($optimized ? '1' : '').'.sport = :sportId')
                 ->setParameter('sportId', $sportId);
         }
 
@@ -1342,14 +1272,22 @@ class MatchRepository extends AbstractEntityRepository
         $competitionRoundId = null,
         $competitionLegId = null
     ) {
-        $queryBuilder = $this
-            ->setOptimizedAux(true)
-            ->setOptimizedMatchResults(true)
-            ->createQueryBuilder('m');
+        $optimized = true;
+
+        $queryBuilder = $this->createQueryBuilder('m');
+        $queryBuilder
+            ->setReducedColumnSet($optimized)
+            ->joinMatchParticipant($optimized)
+            ->joinMatchResult(
+                [
+                    MatchResultTypeCode::HALF_TIME_CODE,
+                    MatchResultTypeCode::RUNNING_SCORE_CODE
+                ]
+            );
 
         $queryBuilder
-            ->from('ViscaLicomBundle:CompetitionSeasonStage', 'css')
-            ->from('ViscaLicomBundle:CompetitionStage', 'cs')
+            ->leftJoin('m.competitionSeasonStage', 'css')
+            ->leftJoin('css.competitionStage', 'cs')
             ->where('cs.competitionStageType1 = :cstype1')
             ->andWhere('css.competitionSeason = :competitionSeason');
 
@@ -1364,7 +1302,6 @@ class MatchRepository extends AbstractEntityRepository
             ->andWhere('m.competitionSeasonStage = css.id');
 
         if ($competitionRoundId !== null && count($competitionRoundId) > 0) {
-            //            if (is_array($competitionRoundId)) {
             $queryBuilder
                 ->andWhere('m.competitionRound IN (:rids)')
                 ->setParameter('rids', $competitionRoundId);
