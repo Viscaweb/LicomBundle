@@ -195,4 +195,16 @@ class CompetitionLegRepository extends AbstractEntityRepository
         return $queryBuilder->getQuery()->getResult();
 
     }
+
+    /**
+     * @return CompetitionLeg[]
+     */
+    public function findGroupedByCompetitionRound()
+    {
+        return $this
+            ->createQueryBuilder('cr')
+            ->groupBy('cr.competitionRound')
+            ->getQuery()
+            ->getResult();
+    }
 }
