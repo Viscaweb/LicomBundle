@@ -306,13 +306,7 @@ class MatchRepository extends AbstractEntityRepository
             $queryBuilder->orderBy('m.'.$orderField, $orderType);
         }
 
-        if (is_numeric($limit) || is_numeric($offset)) {
-            $result = new Paginator($queryBuilder, $fetchJoin = true);
-        } else {
-            $result = $queryBuilder->getQuery()->getResult();
-        }
-
-        return $result;
+        return $queryBuilder->getQuery()->getResult();
     }
 
     /**
