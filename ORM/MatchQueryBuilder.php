@@ -98,8 +98,8 @@ class MatchQueryBuilder extends QueryBuilder
 
             $this
                 ->addSelect($mpColumns, $mp2Columns, $pColumns, $p2Columns)
-                ->leftJoin("$this->alias.matchParticipant", "mp1", Join::WITH, 'mp1.number = 1')
-                ->leftJoin("$this->alias.matchParticipant", "mp2", Join::WITH, 'mp2.number = 2')
+                ->join("$this->alias.matchParticipant", "mp1", Join::WITH, 'mp1.number = 1')
+                ->join("$this->alias.matchParticipant", "mp2", Join::WITH, 'mp2.number = 2')
                 ->join("mp1.participant", "p1")
                 ->join("mp2.participant", "p2");
 
