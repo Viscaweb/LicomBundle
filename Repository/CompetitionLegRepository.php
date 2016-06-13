@@ -96,7 +96,7 @@ class CompetitionLegRepository extends AbstractEntityRepository
             ->join(
                 'ViscaLicomBundle:CompetitionRoundGraph',
                 'RoundGraph',
-                Join::INNER_JOIN,
+                Join::WITH,
                 'RoundGraph.competitionLeg = Leg.id'
             )
             ->where('RoundGraph.competitionRound IN (:id)')
