@@ -113,6 +113,7 @@ class MatchSlugMatcher
                 $participantCombination = $this
                     ->participantsCombinationMatcher
                     ->getParticipantCombination(
+                        $competition->getCompetitionCategory()->getSport(),
                         $this->licomProfileId,
                         $combination[0],
                         $combination[1]
