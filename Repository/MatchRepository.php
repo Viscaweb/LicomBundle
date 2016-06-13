@@ -840,7 +840,13 @@ class MatchRepository extends AbstractEntityRepository
                 [
                     MatchAuxTypeCode::DATE_ENDED_CODE,
                     MatchAuxTypeCode::DATE_STARTED_CODE,
-                    MatchAuxTypeCode::DATE_FIRST_HALF_ENDED_CODE
+                    MatchAuxTypeCode::DATE_FIRST_HALF_ENDED_CODE,
+                    MatchAuxTypeCode::DATE_SECOND_HALF_STARTED_CODE,
+                    MatchAuxTypeCode::DATE_SECOND_HALF_ENDED_CODE,
+                    MatchAuxTypeCode::EXTRA_TIME_1ST_HALF_TIME_STARTED_AT_CODE,
+                    MatchAuxTypeCode::EXTRA_TIME_1ST_HALF_TIME_ENDED_AT_CODE,
+                    MatchAuxTypeCode::EXTRA_TIME_2ND_HALF_TIME_STARTED_AT_CODE,
+                    MatchAuxTypeCode::EXTRA_TIME_2ND_HALF_TIME_ENDED_AT_CODE,
                 ]
             )
             ->joinMatchResult(
