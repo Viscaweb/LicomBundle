@@ -144,7 +144,7 @@ class CompetitionRoundRepository extends AbstractEntityRepository
                 Join::INNER_JOIN,
                 'SeasonStageGraph.competitionRound = Round.id'
             )
-            ->andWhere(
+            ->where(
                 'SeasonStageGraph.competitionSeasonStage = :competitionSeasonStage'
             )
             ->andWhere('SeasonStageGraph.label = :label')
@@ -193,10 +193,10 @@ class CompetitionRoundRepository extends AbstractEntityRepository
             ->join(
                 'ViscaLicomBundle:CompetitionSeasonStageGraph',
                 'SeasonStageGraph',
-                Join::INNER_JOIN,
+                Join::WITH,
                 'SeasonStageGraph.competitionRound = Round.id'
             )
-            ->andWhere(
+            ->where(
                 'SeasonStageGraph.competitionSeasonStage = :competitionSeasonStage'
             )
             ->andWhere('SeasonStageGraph.label = :label')
