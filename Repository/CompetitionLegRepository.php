@@ -61,12 +61,7 @@ class CompetitionLegRepository extends AbstractEntityRepository
 
         $queryBuilder->select('Leg')
             ->from('ViscaLicomBundle:CompetitionLeg', 'Leg')
-            ->join(
-                'ViscaLicomBundle:Match',
-                'Match',
-                Join::INNER_JOIN,
-                'Match.competitionLeg = Leg.id'
-            )
+            ->join('ViscaLicomBundle:Match', 'Match')
             ->where('Leg.competitionRound IN (:id)')
             ->setParameters(
                 [
@@ -129,13 +124,13 @@ class CompetitionLegRepository extends AbstractEntityRepository
             ->join(
                 'ViscaLicomBundle:CompetitionRoundGraph',
                 'RoundGraph',
-                Join::INNER_JOIN,
+                Join::WITH,
                 'RoundGraph.competitionLeg = Leg.id'
             )
             ->join(
                 'ViscaLicomBundle:Match',
                 'Match',
-                Join::INNER_JOIN,
+                Join::WITH,
                 'Match.competitionLeg = Leg.id'
             )
             ->where('RoundGraph.competitionRound IN (:id)')
@@ -179,12 +174,7 @@ class CompetitionLegRepository extends AbstractEntityRepository
 
         $queryBuilder->select('Leg')
             ->from('ViscaLicomBundle:CompetitionLeg', 'Leg')
-            ->join(
-                'ViscaLicomBundle:Match',
-                'Match',
-                Join::INNER_JOIN,
-                'Match.competitionLeg = Leg.id'
-            )
+            ->join('ViscaLicomBundle:Match', 'Match')
             ->where('Leg.id IN (:id)')
             ->setParameters(
                 [
