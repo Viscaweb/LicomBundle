@@ -180,7 +180,12 @@ class CompetitionLegRepository extends AbstractEntityRepository
 
         $queryBuilder->select('Leg')
             ->from('ViscaLicomBundle:CompetitionLeg', 'Leg')
-            ->join('ViscaLicomBundle:Match', 'Match')
+            ->join(
+                'ViscaLicomBundle:Match',
+                'Match',
+                Join::WITH,
+                'Match.competitionLeg = Leg.id'
+            )
             ->where('Leg.id IN (:id)')
             ->setParameters(
                 [
