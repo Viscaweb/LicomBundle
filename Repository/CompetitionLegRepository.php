@@ -61,13 +61,19 @@ class CompetitionLegRepository extends AbstractEntityRepository
 
         $queryBuilder->select('Leg')
             ->from('ViscaLicomBundle:CompetitionLeg', 'Leg')
-            ->join('ViscaLicomBundle:Match', 'Match')
+            ->join(
+                'ViscaLicomBundle:Match',
+                'Match',
+                Join::WITH,
+                'Match.competitionLeg = Leg.id'
+            )
             ->where('Leg.competitionRound IN (:id)')
             ->setParameters(
                 [
                     'id' => $competitionRoundIds
                 ]
-            );
+            )
+            ->groupBy('Leg.id');
 
         return $queryBuilder->getQuery()->getResult();
     }
@@ -76,7 +82,7 @@ class CompetitionLegRepository extends AbstractEntityRepository
     /**
      * @param int[] $competitionRoundIds List of competitionRound ids
      *
-     * @param int $seasonStageGraphLabelCode
+     * @param int   $seasonStageGraphLabelCode
      *
      * @return \Visca\Bundle\LicomBundle\Entity\CompetitionLeg
      */
@@ -109,7 +115,7 @@ class CompetitionLegRepository extends AbstractEntityRepository
     /**
      * @param int[] $competitionRoundIds List of competitionRound ids
      *
-     * @param int $seasonStageGraphLabelCode
+     * @param int   $seasonStageGraphLabelCode
      *
      * @return \Visca\Bundle\LicomBundle\Entity\CompetitionLeg
      */
