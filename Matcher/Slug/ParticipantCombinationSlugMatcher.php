@@ -105,7 +105,7 @@ class ParticipantCombinationSlugMatcher
         $participantSlug
     ) {
         $profileGraphLabelId = ProfileTranslationGraphLabelCode::SLUG_CODE;
-        $localizationTranslationTypeId = (int) LocalizationTranslationTypeCode::PARTICIPANT_SLUG_CODE;
+        $localizationTranslationTypeId = (int)LocalizationTranslationTypeCode::PARTICIPANT_SLUG_CODE;
 
         try {
             $participantTranslationSlugs = $this
@@ -120,15 +120,20 @@ class ParticipantCombinationSlugMatcher
             throw new NoMatchFoundException();
         }
 
-        /** @var LocalizationTranslation $participantTranslationSlug */
-        $participantTranslationSlug = $participantTranslationSlugs[0];
+        $candidatesParticipantsIds = [];
+        foreach ($participantTranslationSlugs as $participantTranslationSlug) {
+            $candidatesParticipantsIds[] =
+                $participantTranslationSlug->getEntityId();
+        }
 
         $participant = $this
             ->participantRepository
-            ->findOneBy([
-                'id' => $participantTranslationSlug->getEntityId(),
-                'sport' => $sport->getId(),
-            ]);
+            ->findOneBy(
+                [
+                    'id' => $candidatesParticipantsIds,
+                    'sport' => $sport->getId(),
+                ]
+            );
 
         if ($participant === null) {
             throw new NoMatchFoundException();
