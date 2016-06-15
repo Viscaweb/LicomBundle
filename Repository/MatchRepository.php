@@ -616,6 +616,7 @@ class MatchRepository extends AbstractEntityRepository
                     'profileId' => $profileId,
                 ]
             )
+            ->orderBy('m.startDate')
             ->getQuery()
             ->getResult();
     }
