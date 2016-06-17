@@ -17,8 +17,8 @@ class CompetitionRoundRepository extends AbstractEntityRepository
 {
 
     /**
-     * @param CompetitionSeason    $competitionSeason         CompetitionSeason entity
-     * @param CompetitionStageType $competitionStageType      CompetitionStageType entity
+     * @param CompetitionSeason    $competitionSeason    CompetitionSeason entity
+     * @param CompetitionStageType $competitionStageType CompetitionStageType entity
      *
      * @return CompetitionRound[]
      * @throws \Doctrine\ORM\NonUniqueResultException
@@ -122,7 +122,6 @@ class CompetitionRoundRepository extends AbstractEntityRepository
     }
 
 
-
     /**
      * Finds the current CompetitionRound by a given CompetitionSeasonStage.
      *
@@ -175,14 +174,14 @@ class CompetitionRoundRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param CompetitionSeasonStage $competitionSeasonStage
-     * @param                        $label
+     * @param CompetitionSeasonStage[] $competitionSeasonStages
+     * @param int                      $label
      *
      * @return mixed
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findLabeledByCompetitionSeasonStage(
-        CompetitionSeasonStage $competitionSeasonStage,
+    public function findLabeledByCompetitionSeasonStages(
+        $competitionSeasonStages,
         $label
     ) {
         // Get current CompetitionSeasonStage
@@ -197,17 +196,17 @@ class CompetitionRoundRepository extends AbstractEntityRepository
                 'SeasonStageGraph.competitionRound = Round.id'
             )
             ->where(
-                'SeasonStageGraph.competitionSeasonStage = :competitionSeasonStage'
+                'SeasonStageGraph.competitionSeasonStage IN (:competitionSeasonStage)'
             )
             ->andWhere('SeasonStageGraph.label = :label')
             ->setParameters(
                 [
-                    'competitionSeasonStage' => $competitionSeasonStage,
+                    'competitionSeasonStage' => $competitionSeasonStages,
                     'label' => $label,
                 ]
             );
 
-        return $queryBuilder->getQuery()->getOneOrNullResult();
+        return $queryBuilder->getQuery()->getResult();
     }
 
     /**
