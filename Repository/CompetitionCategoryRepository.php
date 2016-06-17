@@ -2,6 +2,7 @@
 
 namespace Visca\Bundle\LicomBundle\Repository;
 
+use Doctrine\ORM\Query;
 use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
 use Visca\Bundle\LicomBundle\Entity\CompetitionCategory;
 
@@ -50,6 +51,6 @@ class CompetitionCategoryRepository extends AbstractEntityRepository
                 ->orderBy('cc.'.$orderBy, 'ASC');
         }
 
-        return $queryBuilder->getQuery()->execute();
+        return $queryBuilder->getQuery()->setHint(Query::HINT_REFRESH, true)->execute();
     }
 }
