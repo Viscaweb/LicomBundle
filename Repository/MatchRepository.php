@@ -1380,10 +1380,9 @@ class MatchRepository extends AbstractEntityRepository
         $queryBuilder = $this->entityManager->createQueryBuilder();
 
         $queryBuilder
-            ->select('m', 'mp2')
+            ->select('m')
             ->from('Visca\Bundle\LicomBundle\Entity\Match', 'm')
             ->leftJoin("m.matchParticipant", 'mp')
-            ->leftJoin('m.matchParticipant', 'mp2')
             ->join(
                 'Visca\Bundle\LicomBundle\Entity\MatchIncident',
                 'mi',
