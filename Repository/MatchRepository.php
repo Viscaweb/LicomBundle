@@ -1379,23 +1379,60 @@ class MatchRepository extends AbstractEntityRepository
     ) {
         $queryBuilder = $this->entityManager->createQueryBuilder();
 
+        /**
+         * This query may need an explanation as it may look as it is wrong / black magic:
+         * Basically we are building this:
+         *      SELECT *
+         *      FROM
+         *      `Match` m
+         *      INNER JOIN MatchParticipant mp ON m.id = mp.Match_id
+         *      INNER JOIN MatchParticipant mp2 ON m.id = mp2.Match_id
+         *      INNER JOIN MatchIncident mi ON mp.id = mi.MatchParticipant
+         *      AND (
+         *          mi.MatchParticipant = mp.id
+         *          AND mi.Participant = <athlete id>
+         *      )
+         *      WHERE
+         *          mp2.number <> mp.number
+         *          AND mi.MatchIncidentType = 7
+         *      ORDER BY
+         *          m.startDate DESC
+         *
+         * We are asking the following:
+         *  Give all matches that:
+         *  - Has an incident of type GOAL (...AND mi.MatchIncidentType = 7)
+         *  - The incident is caused by ATHLETE (...AND mi.Participant = <athlete id>)
+         *
+         * The tricky part is that this query only crosses MatchIncident with one
+         * of the two MatchParticipants being Joined and how it works is because:
+         * - We do not force HOME / AWAY to any of the MatchParticipants.
+         * - We force that both MatchParticipants are different.
+         *
+         * So basically we are saying:
+         *  - mp is always the team the athlete plays with.
+         *  - mp is always the team that has the GOAL incidents we are filtering.
+         *  - mp2 will be always the other team.
+         *
+         */
         $queryBuilder
-            ->select('m', 'mp2')
+            ->select('m', 'mp', 'mp2', 'p', 'p2', 'mr', 'mr2')
             ->from('Visca\Bundle\LicomBundle\Entity\Match', 'm')
-            ->leftJoin("m.matchParticipant", 'mp')
-            ->leftJoin('m.matchParticipant', 'mp2')
-            ->join(
-                'Visca\Bundle\LicomBundle\Entity\MatchIncident',
-                'mi',
-                Join::WITH,
-                'mi.matchParticipant = mp.id'
-            )
-            ->where('mi.participant = :athlete')
+            ->join("m.matchParticipant", 'mp')
+            ->join('m.matchParticipant', 'mp2')
+            ->join('mp.participant', 'p')
+            ->join('mp2.participant', 'p2')
+            ->join('mp.matchResult', 'mr')
+            ->join('mp.matchResult', 'mr2')
+            ->join('mp.matchIncident', 'mi', Join::WITH, 'mi.matchParticipant = mp.id AND mi.participant = :athlete')
+            ->where('mp2.number != mp.number')
             ->andWhere('mi.matchIncidentType = :type')
+            ->andWhere('mr.matchResultType = :resultType')
+            ->andWhere('mr2.matchResultType = :resultType')
             ->setParameters(
                 [
                     'athlete' => $athlete->getId(),
                     'type' => $matchIncidentTypeCode,
+                    'resultType' => MatchResultTypeCode::RUNNING_SCORE_CODE
                 ]
             )
             ->orderBy('m.startDate', 'DESC');
