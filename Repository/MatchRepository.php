@@ -1383,7 +1383,7 @@ class MatchRepository extends AbstractEntityRepository
          *
          */
         $queryBuilder
-            ->select('m', 'mp', 'mp2', 'p', 'p2', 'mr', 'mr2')
+            ->select('m', 'mp', 'mp2', 'p', 'p2', 'mr', 'mr2', 'css', 'cs', 'cstage')
             ->from('Visca\Bundle\LicomBundle\Entity\Match', 'm')
             ->join("m.matchParticipant", 'mp')
             ->join('m.matchParticipant', 'mp2')
@@ -1392,6 +1392,9 @@ class MatchRepository extends AbstractEntityRepository
             ->join('mp.matchResult', 'mr')
             ->join('mp.matchResult', 'mr2')
             ->join('mp.matchIncident', 'mi', Join::WITH, 'mi.matchParticipant = mp.id AND mi.participant = :athlete')
+            ->join('m.competitionSeasonStage', 'css')
+            ->join('css.competitionSeason', 'cs')
+            ->join('css.competitionStage', 'cstage')
             ->where('mp2.number != mp.number')
             ->andWhere('mi.matchIncidentType = :type')
             ->andWhere('mr.matchResultType = :resultType')
