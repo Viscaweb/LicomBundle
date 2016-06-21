@@ -218,6 +218,7 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
      * @param CompetitionSeason $competitionSeason
      *
      * @return CompetitionSeasonStage
+     * @deprecated
      */
     public function findLastByCompetitionSeason(
         CompetitionSeason $competitionSeason
@@ -232,6 +233,7 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
      * @param CompetitionSeason $competitionSeason
      *
      * @return CompetitionSeasonStage
+     * @deprecated
      */
     public function findNextByCompetitionSeason(
         CompetitionSeason $competitionSeason
@@ -263,7 +265,7 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
 
     /**
      * @param CompetitionSeason $competitionSeason
-     * @param                   $labelCode
+     * @param int               $labelCode
      */
     public function findLabeledByCompetitionSeason(CompetitionSeason $competitionSeason, $labelCode)
     {
@@ -289,15 +291,10 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
 
         if ($competitionStageType instanceof CompetitionStageType) {
             $qb = $this->entityManager->createQueryBuilder();
-            $competitionSeasonStage = $qb->select('ss')
-                ->from('ViscaLicomBundle:CompetitionSeasonStage', 'ss')
-                ->join(
-                    'ViscaLicomBundle:CompetitionStage',
-                    'cstage',
-                    Join::WITH,
-                    'ss.competitionStage = cstage.id'
-                )
-                ->where('ss.competitionSeason = :cs')
+            $competitionSeasonStage = $qb->select('css')
+                ->from('ViscaLicomBundle:CompetitionSeasonStage', 'css')
+                ->join('css.competitionStage', 'cstage', Join::WITH, 'css.competitionStage = cstage.id')
+                ->where('css.competitionSeason = :cs')
                 ->andWhere('cstage.competitionStageType1 = :stype')
                 ->setParameters(
                     [
