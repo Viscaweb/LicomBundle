@@ -859,7 +859,7 @@ class MatchRepository extends AbstractEntityRepository
         $queryBuilder->setParameter('categories', $statusCategories);
 
         $queryBuilder->andWhere(
-            "s.category = 'inprogress' OR (s.category = 'finished' AND DATE_ADD(aux1.value, $intervalSeconds, 'SECOND') >= CURRENT_TIMESTAMP())"
+            "s.category = 'inprogress' OR (s.category = 'finished' AND m.coverage = 'live' AND DATE_ADD(aux1.value, $intervalSeconds, 'SECOND') >= CURRENT_TIMESTAMP())"
         );
 
         return $queryBuilder->getQuery()->getResult();

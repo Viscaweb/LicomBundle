@@ -58,4 +58,19 @@ class CompetitionCategoryRepository extends AbstractEntityRepository
 
         return $queryBuilder->getQuery()->setHint(Query::HINT_REFRESH, true)->execute();
     }
+
+    /**
+     * @param array $ids Ids
+     *
+     * @return CompetitionCategory[]
+     */
+    public function getAndSortByIds($ids)
+    {
+        $queryBuilder = $this->createQueryBuilder('cc')
+            ->where('cc.id IN (:ids)')
+            ->orderBy('FIELD(cc.id, :ids)')
+            ->setParameter('ids', $ids);
+
+        return $queryBuilder->getQuery()->getResult();
+    }
 }
