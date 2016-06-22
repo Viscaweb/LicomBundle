@@ -88,13 +88,16 @@ class MatchCounterRepository
         QueryBuilder $qb,
         Competition $competition
     ) {
-        $qb
-            ->join('m.competitionSeasonStage', 'stage')
+        $competitionIsValid = $this->competitionSeasonStageRepository
+            ->createQueryBuilder('stage')
+            ->select('stage.id')
             ->join('stage.competitionSeason', 'season')
             ->join('season.competition', 'competition')
             ->join('competition.competitionCategory', 'competitionCategory')
-            ->join('competitionCategory.sport', 'sport')
-            ->andWhere('competition.id = :competitionId')
+            ->where('competition.id = :competitionId');
+
+        $qb
+            ->andWhere($qb->expr()->exists($competitionIsValid))
             ->setParameter('competitionId', $competition->getId());
     }
 
