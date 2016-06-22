@@ -36,20 +36,64 @@ class MatchCounterRepository
     /**
      * @return QueryBuilder
      */
-    protected function getFullMatchQueryBuilder()
+    protected function getMatchQueryBuilder()
     {
         $queryBuilder = $this
             ->matchRepository
             ->createQueryBuilder('m')
-            ->setCacheable(false)
-            ->select('count(DISTINCT m)')
+            ->select('count(DISTINCT m)');
+
+        $queryBuilder->setCacheable(false);
+
+        return $queryBuilder;
+    }
+
+    /**
+     * @param QueryBuilder $qb
+     * @param Sport        $sport
+     */
+    private function filterBySport(QueryBuilder $qb, Sport $sport)
+    {
+        $qb
             ->join('m.competitionSeasonStage', 'stage')
             ->join('stage.competitionSeason', 'season')
             ->join('season.competition', 'competition')
             ->join('competition.competitionCategory', 'competitionCategory')
-            ->join('competitionCategory.sport', 'sport');
+            ->join('competitionCategory.sport', 'sport')
+            ->andWhere('sport.id = :sportId')
+            ->setParameter('sportId', $sport->getId());
+    }
 
-        return $queryBuilder;
+    /**
+     * @param QueryBuilder $qb
+     * @param Competition  $competition
+     */
+    private function filterByCompetition(
+        QueryBuilder $qb,
+        Competition $competition
+    ) {
+        $qb
+            ->join('m.competitionSeasonStage', 'stage')
+            ->join('stage.competitionSeason', 'season')
+            ->join('season.competition', 'competition')
+            ->join('competition.competitionCategory', 'competitionCategory')
+            ->join('competitionCategory.sport', 'sport')
+            ->andWhere('competition.id = :competitionId')
+            ->setParameter('competitionId', $competition->getId());
+    }
+
+    /**
+     * @param QueryBuilder $qb
+     * @param string       $matchStatusCategory
+     */
+    private function filterByMatchStatusCategory(
+        QueryBuilder $qb,
+        $matchStatusCategory
+    ) {
+        $qb
+            ->join('m.matchStatusDescription', 'MatchStatusDescription')
+            ->andWhere('MatchStatusDescription.category = :statusCategory')
+            ->setParameter('statusCategory', $matchStatusCategory);
     }
 
     /**
@@ -74,11 +118,8 @@ class MatchCounterRepository
      */
     public function countMatchesBySport(Sport $sport)
     {
-        $queryBuilder = $this->getFullMatchQueryBuilder();
-
-        $queryBuilder
-            ->where('sport.id = :sportId')
-            ->setParameter('sportId', $sport->getId());
+        $queryBuilder = $this->getMatchQueryBuilder();
+        $this->filterBySport($queryBuilder, $sport);
 
         $this->getScalarResult($queryBuilder);
     }
@@ -92,14 +133,12 @@ class MatchCounterRepository
      */
     public function countLiveMatchesBySport(Sport $sport)
     {
-        $queryBuilder = $this->getFullMatchQueryBuilder();
-
-        $queryBuilder
-            ->join('m.matchStatusDescription', 'MatchStatusDescription')
-            ->where('sport.id = :sportId')
-            ->andWhere('MatchStatusDescription.category = :statusCategory')
-            ->setParameter('sportId', $sport->getId())
-            ->setParameter('statusCategory', MatchStatusDescription::IN_PROGRESS_KEY);
+        $queryBuilder = $this->getMatchQueryBuilder();
+        $this->filterBySport($queryBuilder, $sport);
+        $this->filterByMatchStatusCategory(
+            $queryBuilder,
+            MatchStatusDescription::IN_PROGRESS_KEY
+        );
 
         return $this->getScalarResult($queryBuilder);
     }
@@ -113,14 +152,13 @@ class MatchCounterRepository
      */
     public function countLiveMatchesByCompetition(Competition $competition)
     {
-        $queryBuilder = $this->getFullMatchQueryBuilder();
+        $queryBuilder = $this->getMatchQueryBuilder();
 
-        $queryBuilder
-            ->join('m.matchStatusDescription', 'MatchStatusDescription')
-            ->where('competition.id = :competitionId')
-            ->andWhere('MatchStatusDescription.category = :statusCategory')
-            ->setParameter('competitionId', $competition->getId())
-            ->setParameter('statusCategory', MatchStatusDescription::IN_PROGRESS_KEY);
+        $this->filterByCompetition($queryBuilder, $competition);
+        $this->filterByMatchStatusCategory(
+            $queryBuilder,
+            MatchStatusDescription::IN_PROGRESS_KEY
+        );
 
         return $this->getScalarResult($queryBuilder);
     }
