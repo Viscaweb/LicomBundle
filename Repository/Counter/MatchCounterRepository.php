@@ -6,6 +6,7 @@ use Doctrine\ORM\QueryBuilder;
 use Visca\Bundle\LicomBundle\Entity\Competition;
 use Visca\Bundle\LicomBundle\Entity\MatchStatusDescription;
 use Visca\Bundle\LicomBundle\Entity\Sport;
+use Visca\Bundle\LicomBundle\Repository\CompetitionSeasonStageRepository;
 use Visca\Bundle\LicomBundle\Repository\MatchRepository;
 
 /**
@@ -26,11 +27,22 @@ class MatchCounterRepository
     protected $matchRepository;
 
     /**
-     * @param MatchRepository $matchRepository Match Repository
+     * @var CompetitionSeasonStageRepository Competition Season Stage Repository
      */
-    public function __construct($matchRepository)
-    {
+    protected $competitionSeasonStageRepository;
+
+    /**
+     * MatchCounterRepository constructor.
+     *
+     * @param MatchRepository                  $matchRepository
+     * @param CompetitionSeasonStageRepository $competitionSeasonStageRepository
+     */
+    public function __construct(
+        MatchRepository $matchRepository,
+        CompetitionSeasonStageRepository $competitionSeasonStageRepository
+    ) {
         $this->matchRepository = $matchRepository;
+        $this->competitionSeasonStageRepository = $competitionSeasonStageRepository;
     }
 
     /**
@@ -54,13 +66,17 @@ class MatchCounterRepository
      */
     private function filterBySport(QueryBuilder $qb, Sport $sport)
     {
-        $qb
-            ->join('m.competitionSeasonStage', 'stage')
+        $sportIsValid = $this->competitionSeasonStageRepository
+            ->createQueryBuilder('stage')
+            ->select('stage.id')
             ->join('stage.competitionSeason', 'season')
             ->join('season.competition', 'competition')
             ->join('competition.competitionCategory', 'competitionCategory')
             ->join('competitionCategory.sport', 'sport')
-            ->andWhere('sport.id = :sportId')
+            ->where('sport.id = :sportId');
+
+        $qb
+            ->andWhere($qb->expr()->exists($sportIsValid))
             ->setParameter('sportId', $sport->getId());
     }
 
@@ -134,11 +150,11 @@ class MatchCounterRepository
     public function countLiveMatchesBySport(Sport $sport)
     {
         $queryBuilder = $this->getMatchQueryBuilder();
-        $this->filterBySport($queryBuilder, $sport);
         $this->filterByMatchStatusCategory(
             $queryBuilder,
             MatchStatusDescription::IN_PROGRESS_KEY
         );
+        $this->filterBySport($queryBuilder, $sport);
 
         return $this->getScalarResult($queryBuilder);
     }
@@ -154,11 +170,11 @@ class MatchCounterRepository
     {
         $queryBuilder = $this->getMatchQueryBuilder();
 
-        $this->filterByCompetition($queryBuilder, $competition);
         $this->filterByMatchStatusCategory(
             $queryBuilder,
             MatchStatusDescription::IN_PROGRESS_KEY
         );
+        $this->filterByCompetition($queryBuilder, $competition);
 
         return $this->getScalarResult($queryBuilder);
     }
