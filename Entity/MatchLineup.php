@@ -26,6 +26,11 @@ class MatchLineup
     private $matchParticipant;
 
     /**
+     * @var Collection
+     */
+    private $matchLineupParticipant;
+
+    /**
      * @var string|null
      */
     private $formation;
@@ -86,5 +91,33 @@ class MatchLineup
         $this->formation = $formation;
 
         return $this;
+    }
+
+    /**
+     * @param MatchLineupParticipant $matchLineupParticipant
+     * @return $this
+     */
+    public function addMatchLineupParticipant(MatchLineupParticipant $matchLineupParticipant)
+    {
+        $this->matchLineupParticipant[] = $matchLineupParticipant;
+        return $this;
+    }
+
+    /**
+     * @param MatchLineupParticipant $matchLineupParticipant
+     * @return $this
+     */
+    public function removeMatchLineup(MatchLineupParticipant $matchLineupParticipant)
+    {
+        $this->matchLineupParticipant->removeElement($matchLineupParticipant);
+        return $this;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getMatchLineup()
+    {
+        return $this->matchLineupParticipant;
     }
 }
