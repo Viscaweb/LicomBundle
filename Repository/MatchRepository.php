@@ -129,6 +129,10 @@ class MatchRepository extends AbstractEntityRepository
             ->join('m.competitionSeasonStage', 'stage')
             ->join('stage.competitionSeason', 'season')
             ->join('season.competition', 'competition')
+            ->join("m.matchParticipant", 'mp')
+            ->join('m.matchParticipant', 'mp2')
+            ->join('mp.participant', 'p')
+            ->join('mp2.participant', 'p2')
             ->where('competition.id = :competitionId')
             ->setParameter('competitionId', $competitionId)
             ->orderBy('m.startDate', 'ASC');
