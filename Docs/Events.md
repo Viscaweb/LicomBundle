@@ -12,6 +12,11 @@ Listen by...
 |MatchResult  |✓|✓| | | | |✓| | |
 |MatchIncident|✓|✓| | | | |✓|✓| |
 |→ MatchIncidentCard|✓|✓| | | | |✓|✓| |
+|→ Assist|✓|✓| | | | |✓|✓| |
+|→ Substitution|✓|✓| | | | |✓|✓| |
+|→ Regular Goal|✓|✓| | | | |✓|✓| |
+|→ Penalty Goal|✓|✓| | | | |✓|✓| |
+|→ Own Goal|✓|✓| | | | |✓|✓| |
 |MatchComment |✓| | | | | | | | |
 |MatchStats   |✓|✓| | | | |✓| | |
 |MatchLineup  |✓|✓| | | | |✓|✓| |

@@ -310,16 +310,16 @@ class MatchRepository extends AbstractEntityRepository
     /**
      * Finds a match by one of its participants.
      *
-     * @param int    $participantId       Participant entity ID.
-     * @param array  $whereConditions     Where conditions.
-     * @param array  $whereArguments      Where condition arguments.
-     * @param null   $limit               Limit the number of results.
-     * @param null   $offset              Offset of the results.
-     * @param null   $orderField          Order field name
-     * @param string $orderType           Order type (ASC, DESC)
-     * @param int    $matchResultType     Type of match results we want to preload.
-     * @param null   $matchStatusCategory
-     * @param null   $participantPosition Force the participant position (HOME|AWAY)
+     * @param int       $participantId       Participant entity ID.
+     * @param array     $whereConditions     Where conditions.
+     * @param array     $whereArguments      Where condition arguments.
+     * @param null      $limit               Limit the number of results.
+     * @param null      $offset              Offset of the results.
+     * @param null      $orderField          Order field name
+     * @param string    $orderType           Order type (ASC, DESC)
+     * @param int|int[] $matchResultType     Type of match results we want to preload.
+     * @param null      $matchStatusCategory
+     * @param null      $participantPosition Force the participant position (HOME|AWAY)
      *
      * @return \Visca\Bundle\LicomBundle\Entity\Match[]
      */
