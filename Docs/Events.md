@@ -9,14 +9,15 @@ Listen by...
 |Match          |✓|✓|✓| | | |✓| | |
 |→ MatchHasBegun|✓|✓|✓| | | |✓| |✓|
 |→ MatchHasFinished|✓|✓|✓| | | |✓| |✓|
+|→ [x]RefereeeChanged|✓|✓|✓| | | |✓| |✓|
 |MatchResult  |✓|✓| | | | |✓| | |
 |MatchIncident|✓|✓| | | | |✓|✓| |
 |→ MatchIncidentCard|✓|✓| | | | |✓|✓| |
-|→ Assist|✓|✓| | | | |✓|✓| |
-|→ Substitution|✓|✓| | | | |✓|✓| |
-|→ Regular Goal|✓|✓| | | | |✓|✓| |
-|→ Penalty Goal|✓|✓| | | | |✓|✓| |
-|→ Own Goal|✓|✓| | | | |✓|✓| |
+|→ [x]MatchIncidentAssist|✓|✓| | | | |✓|✓| |
+|→ [x]MatchIncidentSubstitution|✓|✓| | | | |✓|✓| |
+|→ [x]MatchIncidentRegularGoal|✓|✓| | | | |✓|✓| |
+|→ [x]MatchIncidentPenaltyGoal|✓|✓| | | | |✓|✓| |
+|→ [x]MatchIncidentOwnGoal|✓|✓| | | | |✓|✓| |
 |MatchComment |✓| | | | | | | | |
 |MatchStats   |✓|✓| | | | |✓| | |
 |MatchLineup  |✓|✓| | | | |✓|✓| |
