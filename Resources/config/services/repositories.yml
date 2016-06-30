@@ -378,6 +378,7 @@ services:
         class: Visca\Bundle\LicomBundle\Repository\Counter\MatchCounterRepository
         arguments:
           - '@visca_licom.repository.match'
+          - '@visca_licom.repository.competition_season_stage'
 
     visca_licom.repository.standing_type:
         class: Visca\Bundle\LicomBundle\Repository\StandingTypeRepository
