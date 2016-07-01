@@ -1,22 +1,14 @@
 <?php
+
 namespace Visca\Bundle\LicomBundle\Events\Competition;
 
 use Visca\Bundle\LicomBundle\Events\AbstractEvent;
-use Visca\Bundle\LicomBundle\Entity\Competition;
-use Visca\Bundle\LicomBundle\Entity\CompetitionStage as LicomCompetitionStage;
+use Visca\Bundle\LicomBundle\Events\Traits\ListenByCompetitionLegTrait;
+use Visca\Bundle\LicomBundle\Events\Traits\ListenByCompetitionStageTrait;
 
-class CompetitionStage extends AbstractEvent
+final class CompetitionStage extends AbstractEvent
 {
-    public static function listenByCompetitionStage(
-        LicomCompetitionStage $stage
-    ) {
-        return new static('competition_stage.'.$stage->getId());
-    }
-
-    public static function listenByCompetition(Competition $competition)
-    {
-        return new static('competition.'.$competition->getId());
-    }
+    use ListenByCompetitionStageTrait, ListenByCompetitionLegTrait;
 
     /**
      * @return string
