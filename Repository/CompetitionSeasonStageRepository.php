@@ -266,6 +266,7 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
     /**
      * @param CompetitionSeason $competitionSeason
      * @param int               $labelCode
+     * @return CompetitionSeasonStage[]|null
      */
     public function findLabeledByCompetitionSeason(CompetitionSeason $competitionSeason, $labelCode)
     {
