@@ -9,10 +9,10 @@ Listen by...
 |Match          |✓|✓|✓| | | |✓| | |
 |→ MatchHasBegun|✓|✓|✓| | | |✓| |✓|
 |→ MatchHasFinished|✓|✓|✓| | | |✓| |✓|
-|→ [x]RefereeeChanged|✓| | | | | | | | |
+|→ [x]MatchRefereeAssigned|✓| | | | | | | | |
 |MatchResult  |✓|✓| | | | |✓| | |
 |MatchIncident|✓|✓| | | | |✓|✓| |
-|→ MatchIncidentCard|✓|✓| | | | |✓|✓| |
+|→ MatchIncidentCard|✓| | | | | |✓|✓| |
 |→ [x]MatchIncidentAssist|✓| | | | | |✓|✓| |
 |→ [x]MatchIncidentSubstitution|✓| | | | | |✓|✓| |
 |→ [x]MatchIncidentRegularGoal|✓| | | | | |✓|✓| |
