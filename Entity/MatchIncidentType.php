@@ -21,7 +21,7 @@ class MatchIncidentType
     const CODE_PENALTY_SHOOTOUT_SCORED = 'PenaltyShootoutScored';
     const CODE_REGULAR_GOAL = 'RegularGoal';
     const CODE_RED_CARD = 'RedCard';
-    const SUBSTITUTION_IN = 'SubstitutionIn';
+    const CODE_SUBSTITUTION_IN = 'SubstitutionIn';
     const CODE_SUBSTITUTION_OUT = 'SubstitutionOut';
     const CODE_YELLOW_CARD = 'YellowCard';
     const CODE_YELLOW_CARD2 = 'YellowCard2';
