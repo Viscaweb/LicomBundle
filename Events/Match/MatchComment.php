@@ -3,7 +3,7 @@
 namespace Visca\Bundle\LicomBundle\Events\Match;
 
 use Visca\Bundle\LicomBundle\Events\AbstractEvent;
-use Visca\Bundle\LicomBundle\Events\ListenByMatchTrait;
+use Visca\Bundle\LicomBundle\Events\Traits\ListenByMatchTrait;
 
 final class MatchComment extends AbstractEvent
 {
