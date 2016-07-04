@@ -16,7 +16,8 @@ Listen by...
 |→ MatchIncidentAssist|✓| | | | | |✓|✓| |
 |→ MatchIncidentSubstitution|✓| | | | | |✓|✓| |
 |→ MatchIncidentRegularGoal|✓| | | | | |✓|✓| |
-|→ MatchIncidentPenaltyGoal|✓| | | | | |✓|✓| |
+|→ MatchIncidentRegularPenaltyScored|✓| | | | | |✓|✓| |
+|→ MatchIncidentRegularPenaltyMissed|✓| | | | | |✓|✓| |
 |→ MatchIncidentOwnGoal|✓| | | | | |✓|✓| |
 |MatchComment |✓| | | | | | | | |
 |MatchStats   |✓|✓| | | | |✓| | |

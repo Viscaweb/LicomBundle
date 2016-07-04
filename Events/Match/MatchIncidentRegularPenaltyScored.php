@@ -7,7 +7,7 @@ use Visca\Bundle\LicomBundle\Events\Traits\ListenByAthleteTrait;
 use Visca\Bundle\LicomBundle\Events\Traits\ListenByMatchTrait;
 use Visca\Bundle\LicomBundle\Events\Traits\ListenByTeamTrait;
 
-final class MatchIncidentPenaltyGoal extends AbstractEvent
+final class MatchIncidentRegularPenaltyScored extends AbstractEvent
 {
     use ListenByMatchTrait, ListenByTeamTrait, ListenByAthleteTrait;
 
@@ -16,6 +16,6 @@ final class MatchIncidentPenaltyGoal extends AbstractEvent
      */
     public function getEventObject()
     {
-        return 'match_incident_penalty_goal';
+        return 'match_incident_regular_penalty_scored';
     }
 }
