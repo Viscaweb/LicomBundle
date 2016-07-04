@@ -107,7 +107,7 @@ class MatchLineup
      * @param MatchLineupParticipant $matchLineupParticipant
      * @return $this
      */
-    public function removeMatchLineup(MatchLineupParticipant $matchLineupParticipant)
+    public function removeMatchLineupParticipant(MatchLineupParticipant $matchLineupParticipant)
     {
         $this->matchLineupParticipant->removeElement($matchLineupParticipant);
         return $this;
@@ -116,7 +116,7 @@ class MatchLineup
     /**
      * @return Collection
      */
-    public function getMatchLineup()
+    public function getMatchLineupParticipant()
     {
         return $this->matchLineupParticipant;
     }
