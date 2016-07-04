@@ -45,11 +45,12 @@ class EventMatchTest extends PHPUnit_Framework_TestCase
         $matchHasBegunEvent = '\Visca\Bundle\LicomBundle\Events\Match\MatchHasBegun';
         $matchHasFinishedEvent = '\Visca\Bundle\LicomBundle\Events\Match\MatchHasFinished';
 
-        $matchRefereeAssignedEvent = MatchEvent\MatchRefereeAssigned::class;
+        $matchRefereeAssignedEvent = Events\MatchAux\MatchAuxRefereeAssigned::class;
         $matchIncidentAssitsEvent = MatchEvent\MatchIncidentAssist::class;
         $matchIncidentSubstitutionEvent = MatchEvent\MatchIncidentSubstitution::class;
         $matchIncidentRegularGoalEvent = MatchEvent\MatchIncidentRegularGoal::class;
-        $matchIncidentPenaltyGoalEvent = MatchEvent\MatchIncidentPenaltyGoal::class;
+        $matchIncidentRegularPenaltyScoredEvent = MatchEvent\MatchIncidentRegularPenaltyScored::class;
+        $matchIncidentRegularPenaltyMissedEvent = MatchEvent\MatchIncidentRegularPenaltyMissed::class;
         $matchIncidentOwnGoalEvent = MatchEvent\MatchIncidentOwnGoal::class;
 
         $listenByCompSS = 'listenByCompetitionSeasonStage';
@@ -124,7 +125,7 @@ class EventMatchTest extends PHPUnit_Framework_TestCase
 
 
             // MatchRefereeAssignedEvent
-            [$matchRefereeAssignedEvent, 'listenByMatch', $this->createMatch(1), 'match_referee_assigned@match.1'],
+            [$matchRefereeAssignedEvent, 'listenByMatch', $this->createMatch(1), 'match_aux_referee_assigned@match.1'],
 
             // MatchRefereeAssignedEvent
             [$matchIncidentAssitsEvent, 'listenByMatch', $this->createMatch(1), 'match_incident_assist@match.1'],
@@ -141,12 +142,17 @@ class EventMatchTest extends PHPUnit_Framework_TestCase
             [$matchIncidentRegularGoalEvent, 'listenByTeam', $this->createTeam(1), 'match_incident_regular_goal@team.1'],
             [$matchIncidentRegularGoalEvent, 'listenByAthlete', $this->createAthlete(1), 'match_incident_regular_goal@athlete.1'],
 
-            // MatchIncidentRegularGoalEvent
-            [$matchIncidentPenaltyGoalEvent, 'listenByMatch', $this->createMatch(1), 'match_incident_penalty_goal@match.1'],
-            [$matchIncidentPenaltyGoalEvent, 'listenByTeam', $this->createTeam(1), 'match_incident_penalty_goal@team.1'],
-            [$matchIncidentPenaltyGoalEvent, 'listenByAthlete', $this->createAthlete(1), 'match_incident_penalty_goal@athlete.1'],
+            // MatchIncidentRegularPenaltyScoredEvent
+            [$matchIncidentRegularPenaltyScoredEvent, 'listenByMatch', $this->createMatch(1), 'match_incident_regular_penalty_scored@match.1'],
+            [$matchIncidentRegularPenaltyScoredEvent, 'listenByTeam', $this->createTeam(1), 'match_incident_regular_penalty_scored@team.1'],
+            [$matchIncidentRegularPenaltyScoredEvent, 'listenByAthlete', $this->createAthlete(1), 'match_incident_regular_penalty_scored@athlete.1'],
 
-            // MatchIncidentRegularGoalEvent
+            // MatchIncidentRegularPenaltyMissedEvent
+            [$matchIncidentRegularPenaltyMissedEvent, 'listenByMatch', $this->createMatch(1), 'match_incident_regular_penalty_missed@match.1'],
+            [$matchIncidentRegularPenaltyMissedEvent, 'listenByTeam', $this->createTeam(1), 'match_incident_regular_penalty_missed@team.1'],
+            [$matchIncidentRegularPenaltyMissedEvent, 'listenByAthlete', $this->createAthlete(1), 'match_incident_regular_penalty_missed@athlete.1'],
+
+            // MatchIncidentOwnGoalEvent
             [$matchIncidentOwnGoalEvent, 'listenByMatch', $this->createMatch(1), 'match_incident_own_goal@match.1'],
             [$matchIncidentOwnGoalEvent, 'listenByTeam', $this->createTeam(1), 'match_incident_own_goal@team.1'],
             [$matchIncidentOwnGoalEvent, 'listenByAthlete', $this->createAthlete(1), 'match_incident_own_goal@athlete.1'],
