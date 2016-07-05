@@ -167,6 +167,14 @@ services:
         calls:
             - ['setRepositoryProfileEntityGraph', ['@visca_licom.repository.profile_entity_graph']]
 
+    visca_licom.repository.coach:
+        class: Visca\Bundle\LicomBundle\Repository\CoachRepository
+        factory_service: visca_doctrine.repository.factory
+        factory_method: getRepository
+        arguments:
+            - '@visca_licom.entity_manager'
+            - Visca\Bundle\LicomBundle\Entity\Coach
+
     visca_licom.repository.athlete:
         class: Visca\Bundle\LicomBundle\Repository\AthleteRepository
         factory_service: visca_doctrine.repository.factory
