@@ -109,11 +109,12 @@ class CountryRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param null $limit Number of country we need
+     * @param Sport $sport Sport
+     * @param null  $limit Number of country we need
      *
-     * @return Country[]
+     * @return \Visca\Bundle\LicomBundle\Entity\Country[]
      */
-    public function findWithCompetitionAndCountryExistsOrderedByName($limit = null)
+    public function findWithCompetitionAndCountryExistsOrderedByName(Sport $sport, $limit = null)
     {
         // The ids of countries that not exists currently.
         $notExistsIds = [96, 673, 671, 672, 670, 669, 675, 665];
@@ -123,7 +124,9 @@ class CountryRepository extends AbstractEntityRepository
             ->join('c.competitionCategory', 'competitionCategory')
             ->join('competitionCategory.competition', 'competition')
             ->Where('c.id NOT IN (:notExistsIds)')
+            ->andWhere('competitionCategory.sport = :sport')
             ->setParameter('notExistsIds',$notExistsIds)
+            ->setParameter('sport',$sport)
             ->orderBy('c.name', 'ASC');
 
         if (is_numeric($limit)) {
