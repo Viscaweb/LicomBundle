@@ -26,6 +26,14 @@ services:
             - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\MatchLineupParticipant
 
+    visca_licom.repository.match_lineup_participant_type:
+        class: Visca\Bundle\LicomBundle\Repository\MatchLineupParticipantTypeRepository
+        factory_service: visca_doctrine.repository.factory
+        factory_method: getRepository
+        arguments:
+            - '@visca_licom.entity_manager'
+            - Visca\Bundle\LicomBundle\Entity\MatchLineupParticipantType
+
     visca_licom.repository.match_incident:
         class: Visca\Bundle\LicomBundle\Repository\MatchIncidentRepository
         factory_service: visca_doctrine.repository.factory
