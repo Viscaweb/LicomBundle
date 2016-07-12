@@ -53,6 +53,9 @@ class EventMatchTest extends PHPUnit_Framework_TestCase
         $matchIncidentRegularPenaltyMissedEvent = MatchEvent\MatchIncidentRegularPenaltyMissed::class;
         $matchIncidentOwnGoalEvent = MatchEvent\MatchIncidentOwnGoal::class;
 
+        $matchImportantAssigned = Events\MatchAuxProfile\MatchImportantAssigned::class;
+        $matchCommentedCoverageAssigned = Events\MatchAuxProfile\MatchCommentedCoverageAssigned::class;
+
         $listenByCompSS = 'listenByCompetitionSeasonStage';
         $competitionSS = $this->createCompetitionSeasonStage(1);
 
@@ -133,69 +136,125 @@ class EventMatchTest extends PHPUnit_Framework_TestCase
             [$matchIncidentAssitsEvent, 'listenByAthlete', $this->createAthlete(1), 'match_incident_assist@athlete.1'],
 
             // MatchIncidentSubstitutionEvent
-            [$matchIncidentSubstitutionEvent, 'listenByMatch', $this->createMatch(1), 'match_incident_substitution@match.1'],
-            [$matchIncidentSubstitutionEvent, 'listenByTeam', $this->createTeam(1), 'match_incident_substitution@team.1'],
-            [$matchIncidentSubstitutionEvent, 'listenByAthlete', $this->createAthlete(1), 'match_incident_substitution@athlete.1'],
+            [
+                $matchIncidentSubstitutionEvent,
+                'listenByMatch',
+                $this->createMatch(1),
+                'match_incident_substitution@match.1'
+            ],
+            [
+                $matchIncidentSubstitutionEvent,
+                'listenByTeam',
+                $this->createTeam(1),
+                'match_incident_substitution@team.1'
+            ],
+            [
+                $matchIncidentSubstitutionEvent,
+                'listenByAthlete',
+                $this->createAthlete(1),
+                'match_incident_substitution@athlete.1'
+            ],
 
             // MatchIncidentRegularGoalEvent
-            [$matchIncidentRegularGoalEvent, 'listenByMatch', $this->createMatch(1), 'match_incident_regular_goal@match.1'],
-            [$matchIncidentRegularGoalEvent, 'listenByTeam', $this->createTeam(1), 'match_incident_regular_goal@team.1'],
-            [$matchIncidentRegularGoalEvent, 'listenByAthlete', $this->createAthlete(1), 'match_incident_regular_goal@athlete.1'],
+            [
+                $matchIncidentRegularGoalEvent,
+                'listenByMatch',
+                $this->createMatch(1),
+                'match_incident_regular_goal@match.1'
+            ],
+            [
+                $matchIncidentRegularGoalEvent,
+                'listenByTeam',
+                $this->createTeam(1),
+                'match_incident_regular_goal@team.1'
+            ],
+            [
+                $matchIncidentRegularGoalEvent,
+                'listenByAthlete',
+                $this->createAthlete(1),
+                'match_incident_regular_goal@athlete.1'
+            ],
 
             // MatchIncidentRegularPenaltyScoredEvent
-            [$matchIncidentRegularPenaltyScoredEvent, 'listenByMatch', $this->createMatch(1), 'match_incident_regular_penalty_scored@match.1'],
-            [$matchIncidentRegularPenaltyScoredEvent, 'listenByTeam', $this->createTeam(1), 'match_incident_regular_penalty_scored@team.1'],
-            [$matchIncidentRegularPenaltyScoredEvent, 'listenByAthlete', $this->createAthlete(1), 'match_incident_regular_penalty_scored@athlete.1'],
+            [
+                $matchIncidentRegularPenaltyScoredEvent,
+                'listenByMatch',
+                $this->createMatch(1),
+                'match_incident_regular_penalty_scored@match.1'
+            ],
+            [
+                $matchIncidentRegularPenaltyScoredEvent,
+                'listenByTeam',
+                $this->createTeam(1),
+                'match_incident_regular_penalty_scored@team.1'
+            ],
+            [
+                $matchIncidentRegularPenaltyScoredEvent,
+                'listenByAthlete',
+                $this->createAthlete(1),
+                'match_incident_regular_penalty_scored@athlete.1'
+            ],
 
             // MatchIncidentRegularPenaltyMissedEvent
-            [$matchIncidentRegularPenaltyMissedEvent, 'listenByMatch', $this->createMatch(1), 'match_incident_regular_penalty_missed@match.1'],
-            [$matchIncidentRegularPenaltyMissedEvent, 'listenByTeam', $this->createTeam(1), 'match_incident_regular_penalty_missed@team.1'],
-            [$matchIncidentRegularPenaltyMissedEvent, 'listenByAthlete', $this->createAthlete(1), 'match_incident_regular_penalty_missed@athlete.1'],
+            [
+                $matchIncidentRegularPenaltyMissedEvent,
+                'listenByMatch',
+                $this->createMatch(1),
+                'match_incident_regular_penalty_missed@match.1'
+            ],
+            [
+                $matchIncidentRegularPenaltyMissedEvent,
+                'listenByTeam',
+                $this->createTeam(1),
+                'match_incident_regular_penalty_missed@team.1'
+            ],
+            [
+                $matchIncidentRegularPenaltyMissedEvent,
+                'listenByAthlete',
+                $this->createAthlete(1),
+                'match_incident_regular_penalty_missed@athlete.1'
+            ],
 
             // MatchIncidentOwnGoalEvent
             [$matchIncidentOwnGoalEvent, 'listenByMatch', $this->createMatch(1), 'match_incident_own_goal@match.1'],
             [$matchIncidentOwnGoalEvent, 'listenByTeam', $this->createTeam(1), 'match_incident_own_goal@team.1'],
-            [$matchIncidentOwnGoalEvent, 'listenByAthlete', $this->createAthlete(1), 'match_incident_own_goal@athlete.1'],
+            [
+                $matchIncidentOwnGoalEvent,
+                'listenByAthlete',
+                $this->createAthlete(1),
+                'match_incident_own_goal@athlete.1'
+            ],
+
+
+            // MatchImportantAssigned
+            [
+                $matchImportantAssigned,
+                'listenByMatch',
+                $this->createMatch(1),
+                'match_aux_profile_match_important_assigned@match.1'
+            ],
+            [
+                $matchImportantAssigned,
+                'listenBySport',
+                $this->createSport(1),
+                'match_aux_profile_match_important_assigned@sport.1'
+            ],
+
+
+            // MatchImportantAssigned
+            [
+                $matchCommentedCoverageAssigned,
+                'listenByMatch',
+                $this->createMatch(1),
+                'match_aux_profile_match_commented_coverage_assigned@match.1'
+            ],
+            [
+                $matchCommentedCoverageAssigned,
+                'listenBySport',
+                $this->createSport(1),
+                'match_aux_profile_match_commented_coverage_assigned@sport.1'
+            ],
         ];
-    }
-
-    /**
-     * @param int $athleteId
-     *
-     * @return Athlete
-     */
-    private function createAthlete($athleteId)
-    {
-        $athleteObj = new Athlete();
-        $this->setId($athleteObj, $athleteId);
-
-        return $athleteObj;
-    }
-
-    /**
-     * @param int $teamId
-     *
-     * @return Team
-     */
-    private function createTeam($teamId)
-    {
-        $teamObj = new Team();
-        $this->setId($teamObj, $teamId);
-
-        return $teamObj;
-    }
-
-    /**
-     * @param int $competitionId
-     *
-     * @return Competition
-     */
-    private function createCompetition($competitionId)
-    {
-        $competitionObj = new Competition();
-        $this->setId($competitionObj, $competitionId);
-
-        return $competitionObj;
     }
 
     /**
@@ -212,6 +271,18 @@ class EventMatchTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @param mixed $object
+     * @param int $id
+     */
+    private function setId($object, $id)
+    {
+        $objReflected = new ReflectionClass($object);
+        $idProperty = $objReflected->getProperty('id');
+        $idProperty->setAccessible(true);
+        $idProperty->setValue($object, $id);
+    }
+
+    /**
      * @param $matchId
      *
      * @return Match
@@ -225,6 +296,45 @@ class EventMatchTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @param int $competitionId
+     *
+     * @return Competition
+     */
+    private function createCompetition($competitionId)
+    {
+        $competitionObj = new Competition();
+        $this->setId($competitionObj, $competitionId);
+
+        return $competitionObj;
+    }
+
+    /**
+     * @param int $teamId
+     *
+     * @return Team
+     */
+    private function createTeam($teamId)
+    {
+        $teamObj = new Team();
+        $this->setId($teamObj, $teamId);
+
+        return $teamObj;
+    }
+
+    /**
+     * @param int $athleteId
+     *
+     * @return Athlete
+     */
+    private function createAthlete($athleteId)
+    {
+        $athleteObj = new Athlete();
+        $this->setId($athleteObj, $athleteId);
+
+        return $athleteObj;
+    }
+
+    /**
      * @param $sportId
      *
      * @return Sport
@@ -235,18 +345,6 @@ class EventMatchTest extends PHPUnit_Framework_TestCase
         $this->setId($sportObj, $sportId);
 
         return $sportObj;
-    }
-
-    /**
-     * @param mixed $object
-     * @param int $id
-     */
-    private function setId($object, $id)
-    {
-        $objReflected = new ReflectionClass($object);
-        $idProperty = $objReflected->getProperty('id');
-        $idProperty->setAccessible(true);
-        $idProperty->setValue($object, $id);
     }
 }
 
