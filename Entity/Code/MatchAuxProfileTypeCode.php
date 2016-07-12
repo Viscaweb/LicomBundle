@@ -10,4 +10,5 @@ namespace Visca\Bundle\LicomBundle\Entity\Code;
 class MatchAuxProfileTypeCode
 {
     const IMPORTANCE_CODE = 1;
+    const COMMENT_CODE = 2;
 }
