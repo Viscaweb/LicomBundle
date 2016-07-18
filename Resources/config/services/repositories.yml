@@ -427,3 +427,19 @@ services:
         arguments:
             - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\Bookmaker
+
+    visca_licom.repository.betting_offer:
+        class: Visca\Bundle\LicomBundle\Repository\BettingOfferRepository
+        factory_service: visca_doctrine.repository.factory
+        factory_method: getRepository
+        arguments:
+            - '@visca_licom.entity_manager'
+            - Visca\Bundle\LicomBundle\Entity\BettingOffer
+
+    visca_licom.repository.betting_offer_provider:
+        class: Visca\Bundle\LicomBundle\Repository\BettingOfferProviderRepository
+        factory_service: visca_doctrine.repository.factory
+        factory_method: getRepository
+        arguments:
+            - '@visca_licom.entity_manager'
+            - Visca\Bundle\LicomBundle\Entity\BettingOfferProvider
