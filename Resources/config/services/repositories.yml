@@ -436,6 +436,14 @@ services:
             - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\BettingOffer
 
+    visca_licom.repository.betting_outcome:
+        class: Visca\Bundle\LicomBundle\Repository\MatchBettingOutcomeRepository
+        factory_service: visca_doctrine.repository.factory
+        factory_method: getRepository
+        arguments:
+            - '@visca_licom.entity_manager'
+            - Visca\Bundle\LicomBundle\Entity\MatchBettingOutcome
+
     visca_licom.repository.betting_offer_provider:
         class: Visca\Bundle\LicomBundle\Repository\BettingOfferProviderRepository
         factory_service: visca_doctrine.repository.factory
