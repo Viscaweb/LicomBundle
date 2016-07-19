@@ -34,6 +34,11 @@ abstract class BettingOutcome
     protected $entityId;
 
     /**
+     * @var BettingOutcomeType
+     */
+    protected $type;
+
+    /**
      * @var BettingOutcomeSubType
      */
     protected $subType;
@@ -102,6 +107,31 @@ abstract class BettingOutcome
     public function setEntityId($entityId)
     {
         $this->entityId = $entityId;
+
+        return $this;
+    }
+
+    /**
+     * Get BettingOutcomeSubType.
+     *
+     * @return BettingOutcomeType
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set BettingOutcomeSubType.
+     *
+     * @param BettingOutcomeType $type
+     *
+     * @return MatchBettingOutcome
+     */
+    public function setType(
+        BettingOutcomeType $type
+    ) {
+        $this->type = $type;
 
         return $this;
     }
