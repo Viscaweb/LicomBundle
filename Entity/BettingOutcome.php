@@ -112,7 +112,7 @@ abstract class BettingOutcome
     }
 
     /**
-     * Get BettingOutcomeSubType.
+     * Get BettingOutcomeType.
      *
      * @return BettingOutcomeType
      */
@@ -122,7 +122,7 @@ abstract class BettingOutcome
     }
 
     /**
-     * Set BettingOutcomeSubType.
+     * Set BettingOutcomeType.
      *
      * @param BettingOutcomeType $type
      *
