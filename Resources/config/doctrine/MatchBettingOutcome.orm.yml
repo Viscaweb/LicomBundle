@@ -55,6 +55,12 @@ Visca\Bundle\LicomBundle\Entity\MatchBettingOutcome:
         Entity:
           referencedColumnName: id
           nullable: false
+    type:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\BettingOutcomeType
+      joinColumns:
+        BettingOutcomeType:
+          referencedColumnName: id
+          nullable: false
     subType:
       targetEntity: Visca\Bundle\LicomBundle\Entity\BettingOutcomeSubType
       joinColumns:
