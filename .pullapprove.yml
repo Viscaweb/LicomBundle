@@ -1,9 +1,10 @@
 approve_by_comment: true
-approve_regex: '^:\+1:'
-reject_regex: '^(:-1:)'
+approve_regex: '^(Approved|:\+1:)'
+reject_regex: '^(Rejected|:-1:)'
 reset_on_push: true
 author_approval: required
 reviewers:
+  required: 2
   members:
   - dagio
   - raulferras
@@ -12,4 +13,3 @@ reviewers:
   - JonasHaouzi
   - celtric
   name: default
-  required: 2
