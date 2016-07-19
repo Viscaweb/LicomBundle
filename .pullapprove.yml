@@ -10,5 +10,6 @@ reviewers:
   - kristianmu
   - raulferras
   - JonasHaouzi
+  - jcornide
   name: default
   required: 2
