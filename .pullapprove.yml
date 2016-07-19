@@ -10,5 +10,6 @@ reviewers:
   - kristianmu
   - raulferras
   - JonasHaouzi
+  - celtric
   name: default
   required: 2
