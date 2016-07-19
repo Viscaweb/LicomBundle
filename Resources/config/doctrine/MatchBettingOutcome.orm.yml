@@ -12,6 +12,13 @@ Visca\Bundle\LicomBundle\Entity\MatchBettingOutcome:
       options:
         unsigned: true
   fields:
+    entityId:
+      type: integer
+      length: 10
+      nullable: false
+      options:
+        default:
+        unsigned: true
     status:
       type: BettingOutcomeStatusType
       length: 0
