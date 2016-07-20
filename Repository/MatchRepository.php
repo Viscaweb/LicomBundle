@@ -1656,6 +1656,22 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
+     * @param array $ids Ids
+     *
+     * @return Match[]
+     */
+    public function getMatchesIdsAndSortByStartDateFromIds($ids)
+    {
+        $queryBuilder = $this->createQueryBuilder('m')
+            ->select('m.id, m.startDate')
+            ->where('m.id IN (:ids)')
+            ->orderBy('m.startDate', 'DESC')
+            ->setParameter('ids', $ids);
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+    /**
      * @param int $competitionId
      * @param int $homeParticipantId
      * @param int $awayParticipantId
