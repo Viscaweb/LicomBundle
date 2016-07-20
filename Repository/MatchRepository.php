@@ -1656,6 +1656,24 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
+     * Returns the matches given by the id's ordered by StartDtae
+     *
+     * @param int[] Ids
+     *
+     * @return Match[]
+     */
+    public function getMatchesChronologicallyByIds($ids)
+    {
+        $queryBuilder = $this->createQueryBuilder('m')
+            ->select('m.id, m.startDate')
+            ->where('m.id IN (:ids)')
+            ->orderBy('m.startDate', 'DESC')
+            ->setParameter('ids', $ids);
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+    /**
      * @param int $competitionId
      * @param int $homeParticipantId
      * @param int $awayParticipantId
