@@ -1656,11 +1656,13 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param array $ids Ids
+     * Returns the matches given by the id's ordered by StartDtae
+     *
+     * @param int[] Ids
      *
      * @return Match[]
      */
-    public function getMatchesIdsAndSortByStartDateFromIds($ids)
+    public function getMatchesChronologicallyByIds($ids)
     {
         $queryBuilder = $this->createQueryBuilder('m')
             ->select('m.id, m.startDate')
