@@ -4,7 +4,7 @@
 
 Listen by...
 
-| Object                              | Match | Competition | CompetitionSeasonStage | CompetitionRound | CompetitionStage | CompetitionLeg | Team | Athlete | Sport |
+| ``↓ Object`` - ``Scope →``          | Match | Competition | CompetitionSeasonStage | CompetitionRound | CompetitionStage | CompetitionLeg | Team | Athlete | Sport |
 | :---------------------------------  | :---: | :---------: | :--------------------: | :--------------: | :--------------: | :------------: | :--: | :-----: | :---: |
 | Match                               | ✓     | ✓           | ✓                      |                  |                  |                | ✓    |         |       |
 | → MatchHasBegun                     | ✓     | ✓           | ✓                      |                  |                  |                | ✓    |         | ✓     |
