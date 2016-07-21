@@ -6,11 +6,12 @@ use Visca\Bundle\LicomBundle\Events\AbstractEvent;
 use Visca\Bundle\LicomBundle\Events\Traits\ListenByAthleteTrait;
 use Visca\Bundle\LicomBundle\Events\Traits\ListenByCompetitionTrait;
 use Visca\Bundle\LicomBundle\Events\Traits\ListenByMatchTrait;
+use Visca\Bundle\LicomBundle\Events\Traits\ListenByStartDateTrait;
 use Visca\Bundle\LicomBundle\Events\Traits\ListenByTeamTrait;
 
 final class MatchIncident extends AbstractEvent
 {
-    use ListenByMatchTrait, ListenByTeamTrait, ListenByAthleteTrait, ListenByCompetitionTrait;
+    use ListenByMatchTrait, ListenByTeamTrait, ListenByAthleteTrait, ListenByCompetitionTrait, ListenByStartDateTrait;
 
     /**
      * @return string

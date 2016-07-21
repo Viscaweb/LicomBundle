@@ -65,23 +65,27 @@ class EventMatchTest extends PHPUnit_Framework_TestCase
             [$matchEvent, 'listenByCompetition', $this->createCompetition(1), 'match@competition.1'],
             [$matchEvent, $listenByCompSS, $competitionSS, 'match@competition_season_stage.1'],
             [$matchEvent, 'listenByTeam', $this->createTeam(1), 'match@team.1'],
+            [$matchEvent, 'listenByMatchStartDateHour', new \DateTime('1991-03-07 18:00:00'), 'match@match_start_date.1991-03-07-18'],
 
             // MatchResult
             [$matchResultEvent, 'listenByMatch', $this->createMatch(1), 'match_result@match.1'],
             [$matchResultEvent, 'listenByCompetition', $this->createCompetition(1), 'match_result@competition.1'],
             [$matchResultEvent, 'listenByTeam', $this->createTeam(1), 'match_result@team.1'],
+            [$matchResultEvent, 'listenByMatchStartDateHour', new \DateTime('1991-03-07 18:00:00'), 'match_result@match_start_date.1991-03-07-18'],
 
             // MatchIncident
             [$matchIncidentEvent, 'listenByMatch', $this->createMatch(1), 'match_incident@match.1'],
             [$matchIncidentEvent, 'listenByCompetition', $this->createCompetition(1), 'match_incident@competition.1'],
             [$matchIncidentEvent, 'listenByTeam', $this->createTeam(1), 'match_incident@team.1'],
             [$matchIncidentEvent, 'listenByAthlete', $this->createAthlete(1), 'match_incident@athlete.1'],
+            [$matchIncidentEvent, 'listenByMatchStartDateHour', new \DateTime('1991-03-07 18:00:00'), 'match_incident@match_start_date.1991-03-07-18'],
 
             // MatchCard
             [$matchCardEvent, 'listenByMatch', $this->createMatch(1), 'match_incident_card@match.1'],
             [$matchCardEvent, 'listenByCompetition', $this->createCompetition(1), 'match_incident_card@competition.1'],
             [$matchCardEvent, 'listenByTeam', $this->createTeam(1), 'match_incident_card@team.1'],
             [$matchCardEvent, 'listenByAthlete', $this->createAthlete(1), 'match_incident_card@athlete.1'],
+            [$matchCardEvent, 'listenByMatchStartDateHour', new \DateTime('1991-03-07 18:00:00'), 'match_incident_card@match_start_date.1991-03-07-18'],
 
             // MatchComment
             [$matchCommentEvent, 'listenByMatch', $this->createMatch(1), 'match_comment@match.1'],
@@ -125,7 +129,6 @@ class EventMatchTest extends PHPUnit_Framework_TestCase
             [$matchLineupEvent, 'listenByCompetition', $this->createCompetition(1), 'match_lineup@competition.1'],
             [$matchLineupEvent, 'listenByTeam', $this->createTeam(1), 'match_lineup@team.1'],
             [$matchLineupEvent, 'listenByAthlete', $this->createAthlete(1), 'match_lineup@athlete.1'],
-
 
             // MatchRefereeAssignedEvent
             [$matchRefereeAssignedEvent, 'listenByMatch', $this->createMatch(1), 'match_aux_referee_assigned@match.1'],
