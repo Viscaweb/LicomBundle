@@ -1944,4 +1944,22 @@ class MatchRepository extends AbstractEntityRepository
 
         return $statusCategories;
     }
+
+    /**
+     * @param int[] $matchesIds Matches IDs
+     *
+     * @return array
+     */
+    public function findMatchesByIdsAndGroupByDateAndHour($matchesIds)
+    {
+        return $this
+            ->createQueryBuilder('m')
+            ->select('GROUP_CONCAT(m.id) as matchesIds')
+            ->addSelect('SUBSTRING(m.startDate, 1, 13) as dateWithHour')
+            ->where('m.id IN (:matchesIds)')
+            ->setParameter('matchesIds', $matchesIds)
+            ->groupBy('dateWithHour')
+            ->getQuery()
+            ->getArrayResult();
+    }
 }
