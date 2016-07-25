@@ -1665,12 +1665,12 @@ class MatchRepository extends AbstractEntityRepository
     public function getMatchesChronologicallyByIds($ids)
     {
         $queryBuilder = $this->createQueryBuilder('m')
-            ->select('m.id, m.startDate')
+            ->select('m.id')
             ->where('m.id IN (:ids)')
             ->orderBy('m.startDate', 'DESC')
             ->setParameter('ids', $ids);
 
-        return $queryBuilder->getQuery()->getResult();
+        return array_column($queryBuilder->getQuery()->getScalarResult(), 'id');
     }
 
     /**
