@@ -78,7 +78,7 @@ abstract class BettingOutcome
      *
      * @param Entity $entity
      *
-     * @return MatchBettingOutcome
+     * @return BettingOutcome
      */
     public function setEntity(Entity $entity)
     {
@@ -126,7 +126,7 @@ abstract class BettingOutcome
      *
      * @param BettingOutcomeType $type
      *
-     * @return MatchBettingOutcome
+     * @return BettingOutcome
      */
     public function setType(
         BettingOutcomeType $type
@@ -151,7 +151,7 @@ abstract class BettingOutcome
      *
      * @param BettingOutcomeSubType $subType
      *
-     * @return MatchBettingOutcome
+     * @return BettingOutcome
      */
     public function setSubType(
         BettingOutcomeSubType $subType
@@ -176,7 +176,7 @@ abstract class BettingOutcome
      *
      * @param BettingOutcomeScopeType $scopeType
      *
-     * @return MatchBettingOutcome
+     * @return BettingOutcome
      */
     public function setScopeType(
         BettingOutcomeScopeType $scopeType
@@ -201,7 +201,7 @@ abstract class BettingOutcome
      *
      * @param string|null $status
      *
-     * @return MatchBettingOutcome
+     * @return BettingOutcome
      */
     public function setStatus($status)
     {
