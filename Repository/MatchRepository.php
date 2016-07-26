@@ -1656,6 +1656,24 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
+     * Returns the matches given by the id's ordered by StartDtae
+     *
+     * @param int[] Ids
+     *
+     * @return Match[]
+     */
+    public function getMatchesChronologicallyByIds($ids)
+    {
+        $queryBuilder = $this->createQueryBuilder('m')
+            ->select('m.id')
+            ->where('m.id IN (:ids)')
+            ->orderBy('m.startDate', 'DESC')
+            ->setParameter('ids', $ids);
+
+        return array_column($queryBuilder->getQuery()->getScalarResult(), 'id');
+    }
+
+    /**
      * @param int $competitionId
      * @param int $homeParticipantId
      * @param int $awayParticipantId
@@ -1925,5 +1943,23 @@ class MatchRepository extends AbstractEntityRepository
         }
 
         return $statusCategories;
+    }
+
+    /**
+     * @param int[] $matchesIds Matches IDs
+     *
+     * @return array
+     */
+    public function findMatchesByIdsAndGroupByDateAndHour($matchesIds)
+    {
+        return $this
+            ->createQueryBuilder('m')
+            ->select('GROUP_CONCAT(m.id) as matchesIds')
+            ->addSelect('SUBSTRING(m.startDate, 1, 13) as dateWithHour')
+            ->where('m.id IN (:matchesIds)')
+            ->setParameter('matchesIds', $matchesIds)
+            ->groupBy('dateWithHour')
+            ->getQuery()
+            ->getArrayResult();
     }
 }
