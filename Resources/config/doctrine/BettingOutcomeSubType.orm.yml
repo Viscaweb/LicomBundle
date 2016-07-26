@@ -1,5 +1,6 @@
 Visca\Bundle\LicomBundle\Entity\BettingOutcomeSubType:
   type: entity
+  repositoryClass: Visca\Bundle\LicomBundle\Repository\BettingOutcomeSubTypeRepository
   table: BettingOutcomeSubType
   id:
     id:

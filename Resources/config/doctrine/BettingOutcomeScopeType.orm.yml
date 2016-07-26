@@ -1,5 +1,6 @@
 Visca\Bundle\LicomBundle\Entity\BettingOutcomeScopeType:
   type: entity
+  repositoryClass: Visca\Bundle\LicomBundle\Repository\BettingOutcomeScopeTypeRepository
   table: BettingOutcomeScopeType
   id:
     id:
