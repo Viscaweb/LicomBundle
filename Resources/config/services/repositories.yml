@@ -26,6 +26,14 @@ services:
             - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\MatchLineupParticipant
 
+    visca_licom.repository.match_lineup_participant_type:
+        class: Visca\Bundle\LicomBundle\Repository\MatchLineupParticipantTypeRepository
+        factory_service: visca_doctrine.repository.factory
+        factory_method: getRepository
+        arguments:
+            - '@visca_licom.entity_manager'
+            - Visca\Bundle\LicomBundle\Entity\MatchLineupParticipantType
+
     visca_licom.repository.match_incident:
         class: Visca\Bundle\LicomBundle\Repository\MatchIncidentRepository
         factory_service: visca_doctrine.repository.factory
@@ -166,6 +174,14 @@ services:
             - Visca\Bundle\LicomBundle\Entity\Team
         calls:
             - ['setRepositoryProfileEntityGraph', ['@visca_licom.repository.profile_entity_graph']]
+
+    visca_licom.repository.coach:
+        class: Visca\Bundle\LicomBundle\Repository\CoachRepository
+        factory_service: visca_doctrine.repository.factory
+        factory_method: getRepository
+        arguments:
+            - '@visca_licom.entity_manager'
+            - Visca\Bundle\LicomBundle\Entity\Coach
 
     visca_licom.repository.athlete:
         class: Visca\Bundle\LicomBundle\Repository\AthleteRepository
@@ -378,6 +394,7 @@ services:
         class: Visca\Bundle\LicomBundle\Repository\Counter\MatchCounterRepository
         arguments:
           - '@visca_licom.repository.match'
+          - '@visca_licom.repository.competition_season_stage'
 
     visca_licom.repository.standing_type:
         class: Visca\Bundle\LicomBundle\Repository\StandingTypeRepository
@@ -410,3 +427,27 @@ services:
         arguments:
             - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\Bookmaker
+
+    visca_licom.repository.betting_offer:
+        class: Visca\Bundle\LicomBundle\Repository\BettingOfferRepository
+        factory_service: visca_doctrine.repository.factory
+        factory_method: getRepository
+        arguments:
+            - '@visca_licom.entity_manager'
+            - Visca\Bundle\LicomBundle\Entity\BettingOffer
+
+    visca_licom.repository.betting_outcome:
+        class: Visca\Bundle\LicomBundle\Repository\MatchBettingOutcomeRepository
+        factory_service: visca_doctrine.repository.factory
+        factory_method: getRepository
+        arguments:
+            - '@visca_licom.entity_manager'
+            - Visca\Bundle\LicomBundle\Entity\MatchBettingOutcome
+
+    visca_licom.repository.betting_offer_provider:
+        class: Visca\Bundle\LicomBundle\Repository\BettingOfferProviderRepository
+        factory_service: visca_doctrine.repository.factory
+        factory_method: getRepository
+        arguments:
+            - '@visca_licom.entity_manager'
+            - Visca\Bundle\LicomBundle\Entity\BettingOfferProvider

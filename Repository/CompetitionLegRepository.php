@@ -64,7 +64,7 @@ class CompetitionLegRepository extends AbstractEntityRepository
             ->join(
                 'ViscaLicomBundle:Match',
                 'Match',
-                Join::INNER_JOIN,
+                Join::WITH,
                 'Match.competitionLeg = Leg.id'
             )
             ->where('Leg.competitionRound IN (:id)')
@@ -72,7 +72,8 @@ class CompetitionLegRepository extends AbstractEntityRepository
                 [
                     'id' => $competitionRoundIds
                 ]
-            );
+            )
+            ->groupBy('Leg.id');
 
         return $queryBuilder->getQuery()->getResult();
     }
@@ -81,7 +82,7 @@ class CompetitionLegRepository extends AbstractEntityRepository
     /**
      * @param int[] $competitionRoundIds List of competitionRound ids
      *
-     * @param int $seasonStageGraphLabelCode
+     * @param int   $seasonStageGraphLabelCode
      *
      * @return \Visca\Bundle\LicomBundle\Entity\CompetitionLeg
      */
@@ -96,7 +97,7 @@ class CompetitionLegRepository extends AbstractEntityRepository
             ->join(
                 'ViscaLicomBundle:CompetitionRoundGraph',
                 'RoundGraph',
-                Join::INNER_JOIN,
+                Join::WITH,
                 'RoundGraph.competitionLeg = Leg.id'
             )
             ->where('RoundGraph.competitionRound IN (:id)')
@@ -114,7 +115,7 @@ class CompetitionLegRepository extends AbstractEntityRepository
     /**
      * @param int[] $competitionRoundIds List of competitionRound ids
      *
-     * @param int $seasonStageGraphLabelCode
+     * @param int   $seasonStageGraphLabelCode
      *
      * @return \Visca\Bundle\LicomBundle\Entity\CompetitionLeg
      */
@@ -129,13 +130,13 @@ class CompetitionLegRepository extends AbstractEntityRepository
             ->join(
                 'ViscaLicomBundle:CompetitionRoundGraph',
                 'RoundGraph',
-                Join::INNER_JOIN,
+                Join::WITH,
                 'RoundGraph.competitionLeg = Leg.id'
             )
             ->join(
                 'ViscaLicomBundle:Match',
                 'Match',
-                Join::INNER_JOIN,
+                Join::WITH,
                 'Match.competitionLeg = Leg.id'
             )
             ->where('RoundGraph.competitionRound IN (:id)')
@@ -182,7 +183,7 @@ class CompetitionLegRepository extends AbstractEntityRepository
             ->join(
                 'ViscaLicomBundle:Match',
                 'Match',
-                Join::INNER_JOIN,
+                Join::WITH,
                 'Match.competitionLeg = Leg.id'
             )
             ->where('Leg.id IN (:id)')

@@ -5,6 +5,7 @@ namespace Visca\Bundle\LicomBundle\Matcher\Slug;
 use Visca\Bundle\LicomBundle\Entity\Competition;
 use Visca\Bundle\LicomBundle\Entity\Country;
 use Visca\Bundle\LicomBundle\Entity\Participant;
+use Visca\Bundle\LicomBundle\Entity\Sport;
 use Visca\Bundle\LicomBundle\Exception\NoMatchFoundException;
 use Visca\Bundle\LicomBundle\Repository\CompetitionRepository;
 use Visca\Bundle\LicomBundle\Repository\ParticipantRepository;
@@ -41,11 +42,12 @@ class ParticipantSlugMatcher
     /**
      * @param string  $participantSlug Participant Slug, i.e. 'fc-barcelona'
      * @param Country $country         Country
+     * @param Sport   $sport           Sport
      *
      * @return Participant
      * @throws NoMatchFoundException
      */
-    public function match($participantSlug, Country $country)
+    public function match($participantSlug, Country $country, Sport $sport)
     {
         /*
          * Find related participants having this slug
@@ -62,12 +64,14 @@ class ParticipantSlugMatcher
         }
 
         /*
-         * Ensure the participant is related to the specified country
+         * Ensure the participant is related to the specified country and sport
          */
         $participantFoundEntity = null;
         foreach ($participants as $participant) {
             $participantCountry = $participant->getCountry();
-            if ($participantCountry->getId() == $country->getId()) {
+            $participantSport = $participant->getSport();
+            if ($participantCountry->getId() == $country->getId() &&
+                $participantSport->getId() == $sport->getId()) {
                 $participantFoundEntity = $participant;
                 break;
             }

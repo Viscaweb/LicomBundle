@@ -1,6 +1,7 @@
 Visca\Bundle\LicomBundle\Entity\MatchLineupParticipantType:
   type: entity
   table: MatchLineupParticipantType
+  repositoryClass: Visca\Bundle\LicomBundle\Repository\MatchLineupParticipantTypeRepository
   id:
     id:
       type: smallint

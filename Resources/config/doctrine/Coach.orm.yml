@@ -1,2 +1,3 @@
 Visca\Bundle\LicomBundle\Entity\Coach:
   type: entity
+  repositoryClass: Visca\Bundle\LicomBundle\Repository\CoachRepository

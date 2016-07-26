@@ -9,9 +9,16 @@ Listen by...
 |Match          |✓|✓|✓| | | |✓| | |
 |→ MatchHasBegun|✓|✓|✓| | | |✓| |✓|
 |→ MatchHasFinished|✓|✓|✓| | | |✓| |✓|
+|→ MatchRefereeAssigned|✓| | | | | | | | |
 |MatchResult  |✓|✓| | | | |✓| | |
 |MatchIncident|✓|✓| | | | |✓|✓| |
 |→ MatchIncidentCard|✓|✓| | | | |✓|✓| |
+|→ MatchIncidentAssist|✓| | | | | |✓|✓| |
+|→ MatchIncidentSubstitution|✓| | | | | |✓|✓| |
+|→ MatchIncidentRegularGoal|✓| | | | | |✓|✓| |
+|→ MatchIncidentRegularPenaltyScored|✓| | | | | |✓|✓| |
+|→ MatchIncidentRegularPenaltyMissed|✓| | | | | |✓|✓| |
+|→ MatchIncidentOwnGoal|✓| | | | | |✓|✓| |
 |MatchComment |✓| | | | | | | | |
 |MatchStats   |✓|✓| | | | |✓| | |
 |MatchLineup  |✓|✓| | | | |✓|✓| |

@@ -2,8 +2,8 @@
 
 namespace Visca\Bundle\LicomBundle\Entity;
 
-use Visca\Bundle\CoreBundle\Entity\Traits\OptionalDateTimeTrait;
 use Visca\Bundle\CoreBundle\Entity\Traits\DeletableTrait;
+use Visca\Bundle\CoreBundle\Entity\Traits\OptionalDateTimeTrait;
 
 /**
  * MatchIncidentType.
@@ -12,6 +12,19 @@ class MatchIncidentType
 {
     use OptionalDateTimeTrait;
     use DeletableTrait;
+
+    const CODE_ASSIST = 'Assist';
+    const CODE_MISSED_PENALTY = 'MissedPenalty';
+    const CODE_OWN_GOAL = 'OwnGoal';
+    const CODE_PENALTY = 'Penalty';
+    const CODE_PENALTY_SHOOTOUT_MISSED = 'PenaltyShootoutMissed';
+    const CODE_PENALTY_SHOOTOUT_SCORED = 'PenaltyShootoutScored';
+    const CODE_REGULAR_GOAL = 'RegularGoal';
+    const CODE_RED_CARD = 'RedCard';
+    const CODE_SUBSTITUTION_IN = 'SubstitutionIn';
+    const CODE_SUBSTITUTION_OUT = 'SubstitutionOut';
+    const CODE_YELLOW_CARD = 'YellowCard';
+    const CODE_YELLOW_CARD2 = 'YellowCard2';
 
     /**
      * @var int
@@ -165,14 +178,6 @@ class MatchIncidentType
     }
 
     /**
-     * Method to know if this incident type is a red card.
-     */
-    public function isRedCard()
-    {
-        return (in_array($this->getCode(), array('RedCard', 'YellowCard2')));
-    }
-
-    /**
      * Get code.
      *
      * @return string
@@ -194,5 +199,93 @@ class MatchIncidentType
         $this->code = $code;
 
         return $this;
+    }
+
+    /**
+     * Method to know if this incident type is a red card.
+     */
+    public function isRedCard()
+    {
+        return (in_array($this->getCode(), [self::CODE_RED_CARD, self::CODE_YELLOW_CARD2]));
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAssist()
+    {
+        return $this->getCode() === self::CODE_ASSIST;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isMissedPenalty()
+    {
+        return $this->getCode() === self::CODE_MISSED_PENALTY;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isOwnGoal()
+    {
+        return $this->getCode() === self::CODE_OWN_GOAL;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPenalty()
+    {
+        return $this->getCode() === self::CODE_PENALTY;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPenaltyShootoutMissed()
+    {
+        return $this->getCode() === self::CODE_PENALTY_SHOOTOUT_MISSED;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPenaltyShootoutScored()
+    {
+        return $this->getCode() === self::CODE_PENALTY_SHOOTOUT_SCORED;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isRegularGoal()
+    {
+        return $this->getCode() === self::CODE_REGULAR_GOAL;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSubstitionIn()
+    {
+        return $this->getCode() === self::SUBSTITUTION_IN;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSubstitionOut()
+    {
+        return $this->getCode() === self::CODE_SUBSTITUTION_OUT;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isYellowCard()
+    {
+        return $this->getCode() === self::CODE_YELLOW_CARD;
     }
 }

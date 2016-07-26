@@ -4,13 +4,14 @@ services:
         class: Visca\Bundle\LicomBundle\Matcher\Slug\CompetitionSlugMatcher
         arguments:
              - '@visca_licom.repository.competition'
-             - %licom_profile_id%
+             - '%licom_profile_id%'
+             - '@logger'
 
     visca_licom.matcher.slug.participant:
         class: Visca\Bundle\LicomBundle\Matcher\Slug\ParticipantSlugMatcher
         arguments:
              - '@visca_licom.repository.participant'
-             - %licom_profile_id%
+             - '%licom_profile_id%'
 
     visca_licom.matcher.slug.match:
         class: Visca\Bundle\LicomBundle\Matcher\Slug\MatchSlugMatcher
@@ -19,13 +20,15 @@ services:
              - '@visca_licom.matcher.participant_combination'
              - '@visca_licom.filter.match.most_revelant'
              - '@visca_licom.matcher.helper.participant_combination'
-             - %licom_profile_id%
+             - '%licom_profile_id%'
+             - '@logger'
 
     visca_licom.matcher.slug.country:
         class: Visca\Bundle\LicomBundle\Matcher\Slug\CountrySlugMatcher
         arguments:
              - '@visca_licom.repository.country'
-             - %licom_profile_id%
+             - '%licom_profile_id%'
+             - '@logger'
 
     visca_licom.matcher.participant_combination:
             class: Visca\Bundle\LicomBundle\Matcher\Slug\ParticipantCombinationSlugMatcher

@@ -9,6 +9,7 @@ use Visca\Bundle\LicomBundle\Matcher\Slug\Helper\FindTeamsCombinationsHelper;
 use Visca\Bundle\LicomBundle\Model\Slug\ParticipantCombinationModel;
 use Visca\Bundle\LicomBundle\Repository\MatchRepository;
 use Visca\Bundle\LicomBundle\Services\Filters\MatchMostRelevantFilter;
+use Psr\Log\LoggerInterface;
 
 /**
  * Class MatchSlugMatcher
@@ -66,6 +67,11 @@ class MatchSlugMatcher
     protected $licomProfileId;
 
     /**
+     * @var LoggerInterface
+     */
+    protected $logger;
+
+    /**
      * MatchSlugMatcher constructor.
      *
      * @param MatchRepository                   $matchRepository                Match Repository
@@ -73,19 +79,22 @@ class MatchSlugMatcher
      * @param MatchMostRelevantFilter           $matchMostRelevantFilter        Match most revelant filter
      * @param FindTeamsCombinationsHelper       $participantCombinationsHelper  Participant Combination Finder
      * @param int                               $licomProfileId                 App's profile ID
+     * @param LoggerInterface                   $logger                         Logger
      */
     public function __construct(
         MatchRepository $matchRepository,
         ParticipantCombinationSlugMatcher $participantsCombinationMatcher,
         MatchMostRelevantFilter $matchMostRelevantFilter,
         FindTeamsCombinationsHelper $participantCombinationsHelper,
-        $licomProfileId
+        $licomProfileId,
+        LoggerInterface $logger
     ) {
         $this->matchRepository = $matchRepository;
         $this->participantsCombinationMatcher = $participantsCombinationMatcher;
         $this->matchMostRelevantFilter = $matchMostRelevantFilter;
         $this->participantCombinationsHelper = $participantCombinationsHelper;
         $this->licomProfileId = $licomProfileId;
+        $this->logger = $logger;
     }
 
     /**
@@ -113,6 +122,7 @@ class MatchSlugMatcher
                 $participantCombination = $this
                     ->participantsCombinationMatcher
                     ->getParticipantCombination(
+                        $competition->getCompetitionCategory()->getSport(),
                         $this->licomProfileId,
                         $combination[0],
                         $combination[1]
@@ -124,6 +134,9 @@ class MatchSlugMatcher
             }
         }
         if ($participantCombination === null) {
+            $this->logger->debug(
+                "Unable to find any combination of two participants with the given slug ($matchSlug given)."
+            );
             throw new NoMatchFoundException();
         }
 
@@ -137,6 +150,11 @@ class MatchSlugMatcher
                 [$participantCombination->getAwayParticipant()]
             );
         if (empty($matchCollection)) {
+            $this->logger->debug(sprintf(
+                "Unable to find any match with the two participants detected (%d, %d).",
+                $participantCombination->getHomeParticipant()->getId(),
+                $participantCombination->getAwayParticipant()->getId()
+            ));
             throw new NoMatchFoundException();
         }
 

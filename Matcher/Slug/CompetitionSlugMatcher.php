@@ -6,6 +6,7 @@ use Visca\Bundle\LicomBundle\Entity\Competition;
 use Visca\Bundle\LicomBundle\Entity\Country;
 use Visca\Bundle\LicomBundle\Exception\NoMatchFoundException;
 use Visca\Bundle\LicomBundle\Repository\CompetitionRepository;
+use Psr\Log\LoggerInterface;
 
 /**
  * Class CompetitionSlugMatcher
@@ -23,17 +24,26 @@ class CompetitionSlugMatcher
     protected $licomProfileId;
 
     /**
+     * @var LoggerInterface
+     */
+    protected $logger;
+
+
+    /**
      * CompetitionSlugMatcher constructor.
      *
      * @param CompetitionRepository $competitionRepository Competition Repository
      * @param int                   $licomProfileId        App's profile ID
+     * @param LoggerInterface       $logger                LOgger
      */
     public function __construct(
         CompetitionRepository $competitionRepository,
-        $licomProfileId
+        $licomProfileId,
+        LoggerInterface $logger
     ) {
         $this->competitionRepository = $competitionRepository;
         $this->licomProfileId = $licomProfileId;
+        $this->logger = $logger;
     }
 
     /**
@@ -56,6 +66,9 @@ class CompetitionSlugMatcher
             );
 
         if (empty($competitions)) {
+            $this->logger->debug(
+                "Unable to find any Competition with the given slug ($competitionSlug given)."
+            );
             throw new NoMatchFoundException();
         }
 
@@ -74,6 +87,9 @@ class CompetitionSlugMatcher
         }
 
         if (!($competitionFoundEntity instanceof Competition)) {
+            $this->logger->debug(
+                "Unable to find any Competition with the given slug ($competitionSlug given)."
+            );
             throw new NoMatchFoundException();
         }
 

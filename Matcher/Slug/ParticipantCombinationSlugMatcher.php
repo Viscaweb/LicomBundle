@@ -8,6 +8,7 @@ use Visca\Bundle\LicomBundle\Entity\Code\LocalizationTranslationTypeCode;
 use Visca\Bundle\LicomBundle\Entity\Code\ProfileTranslationGraphLabelCode;
 use Visca\Bundle\LicomBundle\Entity\LocalizationTranslation;
 use Visca\Bundle\LicomBundle\Entity\Participant;
+use Visca\Bundle\LicomBundle\Entity\Sport;
 use Visca\Bundle\LicomBundle\Exception\NoMatchFoundException;
 use Visca\Bundle\LicomBundle\Exception\NoTranslationFoundException;
 use Visca\Bundle\LicomBundle\Model\Slug\ParticipantCombinationModel;
@@ -44,6 +45,7 @@ class ParticipantCombinationSlugMatcher
     }
 
     /**
+     * @param Sport  $sport          Sport of the given teams slugs
      * @param int    $licomProfileId App's Profile ID
      * @param string $homeTeamSlug   Supposed Home Team Slug
      * @param string $awayTeamSlug   Supposed Away Team Slug
@@ -52,6 +54,7 @@ class ParticipantCombinationSlugMatcher
      * @throws NoMatchFoundException
      */
     public function getParticipantCombination(
+        Sport $sport,
         $licomProfileId,
         $homeTeamSlug,
         $awayTeamSlug
@@ -61,10 +64,12 @@ class ParticipantCombinationSlugMatcher
          */
         try {
             $homeParticipant = $this->findParticipant(
+                $sport,
                 $licomProfileId,
                 $homeTeamSlug
             );
             $awayParticipant = $this->findParticipant(
+                $sport,
                 $licomProfileId,
                 $awayTeamSlug
             );
@@ -86,6 +91,7 @@ class ParticipantCombinationSlugMatcher
     }
 
     /**
+     * @param Sport  $sport           Sport of the given teams slugs
      * @param int    $licomProfileId  App's Profile ID
      * @param string $participantSlug Supposed Participant Slug
      *
@@ -94,11 +100,12 @@ class ParticipantCombinationSlugMatcher
      * @throws NoMatchFoundException
      */
     private function findParticipant(
+        Sport $sport,
         $licomProfileId,
         $participantSlug
     ) {
         $profileGraphLabelId = ProfileTranslationGraphLabelCode::SLUG_CODE;
-        $localizationTranslationTypeId = (int) LocalizationTranslationTypeCode::PARTICIPANT_SLUG_CODE;
+        $localizationTranslationTypeId = (int)LocalizationTranslationTypeCode::PARTICIPANT_SLUG_CODE;
 
         try {
             $participantTranslationSlugs = $this
@@ -113,12 +120,20 @@ class ParticipantCombinationSlugMatcher
             throw new NoMatchFoundException();
         }
 
-        /** @var LocalizationTranslation $participantTranslationSlug */
-        $participantTranslationSlug = $participantTranslationSlugs[0];
+        $candidatesParticipantsIds = [];
+        foreach ($participantTranslationSlugs as $participantTranslationSlug) {
+            $candidatesParticipantsIds[] =
+                $participantTranslationSlug->getEntityId();
+        }
 
         $participant = $this
             ->participantRepository
-            ->findOneBy(['id' => $participantTranslationSlug->getEntityId()]);
+            ->findOneBy(
+                [
+                    'id' => $candidatesParticipantsIds,
+                    'sport' => $sport->getId(),
+                ]
+            );
 
         if ($participant === null) {
             throw new NoMatchFoundException();

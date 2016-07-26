@@ -17,8 +17,8 @@ class CompetitionRoundRepository extends AbstractEntityRepository
 {
 
     /**
-     * @param CompetitionSeason    $competitionSeason         CompetitionSeason entity
-     * @param CompetitionStageType $competitionStageType      CompetitionStageType entity
+     * @param CompetitionSeason    $competitionSeason    CompetitionSeason entity
+     * @param CompetitionStageType $competitionStageType CompetitionStageType entity
      *
      * @return CompetitionRound[]
      * @throws \Doctrine\ORM\NonUniqueResultException
@@ -40,13 +40,13 @@ class CompetitionRoundRepository extends AbstractEntityRepository
             ->join(
                 'ViscaLicomBundle:CompetitionSeasonStage',
                 'SeasonStage',
-                Join::INNER_JOIN,
+                Join::WITH,
                 'Round.competitionSeasonStage = SeasonStage.id'
             )
             ->join(
                 'ViscaLicomBundle:CompetitionStage',
                 'Stage',
-                Join::INNER_JOIN,
+                Join::WITH,
                 'SeasonStage.competitionStage = Stage.id'
             )
             ->where('Stage.competitionStageType1 = :competitionStageType')
@@ -88,19 +88,19 @@ class CompetitionRoundRepository extends AbstractEntityRepository
             ->join(
                 'ViscaLicomBundle:CompetitionSeasonStageGraph',
                 'SeasonStageGraph',
-                Join::INNER_JOIN,
+                Join::WITH,
                 'SeasonStageGraph.competitionRound = Round.id'
             )
             ->join(
                 'ViscaLicomBundle:CompetitionSeasonStage',
                 'SeasonStage',
-                Join::INNER_JOIN,
+                Join::WITH,
                 'SeasonStageGraph.competitionSeasonStage = SeasonStage.id'
             )
             ->join(
                 'ViscaLicomBundle:CompetitionStage',
                 'Stage',
-                Join::INNER_JOIN,
+                Join::WITH,
                 'SeasonStage.competitionStage = Stage.id'
             )
             ->where('Stage.competitionStageType1 = :competitionStageType')
@@ -122,7 +122,6 @@ class CompetitionRoundRepository extends AbstractEntityRepository
     }
 
 
-
     /**
      * Finds the current CompetitionRound by a given CompetitionSeasonStage.
      *
@@ -141,10 +140,10 @@ class CompetitionRoundRepository extends AbstractEntityRepository
             ->join(
                 'ViscaLicomBundle:CompetitionSeasonStageGraph',
                 'SeasonStageGraph',
-                Join::INNER_JOIN,
+                Join::WITH,
                 'SeasonStageGraph.competitionRound = Round.id'
             )
-            ->andWhere(
+            ->where(
                 'SeasonStageGraph.competitionSeasonStage = :competitionSeasonStage'
             )
             ->andWhere('SeasonStageGraph.label = :label')
@@ -175,14 +174,14 @@ class CompetitionRoundRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param CompetitionSeasonStage $competitionSeasonStage
-     * @param                        $label
+     * @param CompetitionSeasonStage[] $competitionSeasonStages
+     * @param int                      $label
      *
      * @return mixed
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findLabeledByCompetitionSeasonStage(
-        CompetitionSeasonStage $competitionSeasonStage,
+    public function findLabeledByCompetitionSeasonStages(
+        $competitionSeasonStages,
         $label
     ) {
         // Get current CompetitionSeasonStage
@@ -193,21 +192,21 @@ class CompetitionRoundRepository extends AbstractEntityRepository
             ->join(
                 'ViscaLicomBundle:CompetitionSeasonStageGraph',
                 'SeasonStageGraph',
-                Join::INNER_JOIN,
+                Join::WITH,
                 'SeasonStageGraph.competitionRound = Round.id'
             )
-            ->andWhere(
-                'SeasonStageGraph.competitionSeasonStage = :competitionSeasonStage'
+            ->where(
+                'SeasonStageGraph.competitionSeasonStage IN (:competitionSeasonStage)'
             )
             ->andWhere('SeasonStageGraph.label = :label')
             ->setParameters(
                 [
-                    'competitionSeasonStage' => $competitionSeasonStage,
+                    'competitionSeasonStage' => $competitionSeasonStages,
                     'label' => $label,
                 ]
             );
 
-        return $queryBuilder->getQuery()->getOneOrNullResult();
+        return $queryBuilder->getQuery()->getResult();
     }
 
     /**

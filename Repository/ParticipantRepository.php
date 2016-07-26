@@ -12,10 +12,8 @@ use Visca\Bundle\LicomBundle\Entity\CompetitionSeason;
 use Visca\Bundle\LicomBundle\Entity\Enum\ParticipantType;
 use Visca\Bundle\LicomBundle\Entity\Participant;
 use Visca\Bundle\LicomBundle\Entity\ParticipantMembership;
-use Visca\Bundle\LicomBundle\Entity\ProfileEntityGraph;
 use Visca\Bundle\LicomBundle\Entity\Sport;
 use Visca\Bundle\LicomBundle\Entity\Standing;
-use Visca\Bundle\LicomBundle\Entity\Team;
 use Visca\Bundle\LicomBundle\Exception\NoTranslationFoundException;
 use Doctrine\ORM\Query\Expr\Join;
 
@@ -194,6 +192,26 @@ class ParticipantRepository extends AbstractEntityRepository
             ->setParameter('membershipsTeamsIds', $teamsIds)
             ->getQuery()
             ->getResult();
+    }
+
+    /**
+     * Find teams of an Athlete.
+     *
+     * @param int $athleteId
+     *
+     * @return Participant[]
+     */
+    public function findByAthleteId($athleteId)
+    {
+        return $this
+            ->createQueryBuilder('participant')
+            ->join('participant.matchParticipant', 'mp')
+            ->join('mp.matchIncident', 'mi')
+            ->join('mi.participant', 'a', Join::WITH, 'a.id = :athleteId')
+            ->groupBy('participant.id')
+            ->setParameters([
+                'athleteId' => $athleteId
+            ])->getQuery()->getResult();
     }
 
     /**

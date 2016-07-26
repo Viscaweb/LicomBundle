@@ -43,3 +43,7 @@ Visca\Bundle\LicomBundle\Entity\MatchLineup:
         MatchParticipant:
           referencedColumnName: id
           nullable: false
+  oneToMany:
+    matchLineupParticipant:
+        targetEntity: Visca\Bundle\LicomBundle\Entity\MatchParticipant
+        mappedBy: matchLineup
