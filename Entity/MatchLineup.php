@@ -28,12 +28,17 @@ class MatchLineup
     /**
      * @var Collection
      */
-    private $matchLineupParticipant;
+    private $matchLineupParticipants;
 
     /**
      * @var string|null
      */
     private $formation;
+
+    public function __construct()
+    {
+        $this->matchLineupParticipants = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id.
@@ -99,7 +104,7 @@ class MatchLineup
      */
     public function addMatchLineupParticipant(MatchLineupParticipant $matchLineupParticipant)
     {
-        $this->matchLineupParticipant[] = $matchLineupParticipant;
+        $this->matchLineupParticipants[] = $matchLineupParticipant;
         return $this;
     }
 
@@ -109,15 +114,15 @@ class MatchLineup
      */
     public function removeMatchLineupParticipant(MatchLineupParticipant $matchLineupParticipant)
     {
-        $this->matchLineupParticipant->removeElement($matchLineupParticipant);
+        $this->matchLineupParticipants->removeElement($matchLineupParticipant);
         return $this;
     }
 
     /**
      * @return Collection
      */
-    public function getMatchLineupParticipant()
+    public function getMatchLineupParticipants()
     {
-        return $this->matchLineupParticipant;
+        return $this->matchLineupParticipants;
     }
 }
