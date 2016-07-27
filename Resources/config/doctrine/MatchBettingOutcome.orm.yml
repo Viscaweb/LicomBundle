@@ -79,6 +79,9 @@ Visca\Bundle\LicomBundle\Entity\MatchBettingOutcome:
         entityId:
           referencedColumnName: id
           nullable: false
+  # This determines the type of outcome. At the moment we only support ThreeWay and OverUnder outcomes, when more would
+  # be added we should add them here as well.
+  # Using the value of `BettingOfferType` is not possible since Doctrine does not supports fields as relationship.
   discriminatorColumn:
     name: type
     type: smallint
