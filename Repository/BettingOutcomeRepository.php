@@ -25,9 +25,9 @@ class BettingOutcomeRepository extends AbstractEntityRepository
             return [];
         }
 
-        $queryBuilder = $this->createQueryBuilder('o')->select('o.id');
-
-        $queryBuilder
+        $queryBuilder = $this
+            ->createQueryBuilder('o')
+            ->select('o.id')
             ->where('o.entity = :entity')
             ->andWhere('o.entityId = :matchId')
             ->andWhere('o.scopeType = :bettingOutcomeScopeType')
