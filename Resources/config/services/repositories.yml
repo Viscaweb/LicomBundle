@@ -476,8 +476,8 @@ services:
             - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\BettingOutcomeSubType
 
-    visca_licom.repository.betting_offer_provider.three_way:
-        class: Visca\Bundle\LicomBundle\Repository\ThreeWayMatchBettingOutcome
+    visca_licom.repository.betting_outcome_three_way:
+        class: Visca\Bundle\LicomBundle\Repository\ThreeWayMatchBettingOutcomeRepository
         factory_service: visca_doctrine.repository.factory
         factory_method: getRepository
         arguments:

@@ -7,7 +7,7 @@ use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
 /**
  * Class ThreeWayMatchBettingOutcome.
  */
-class ThreeWayMatchBettingOutcome extends AbstractEntityRepository
+class ThreeWayMatchBettingOutcomeRepository extends BettingOutcomeRepository
 {
 
 }
