@@ -46,8 +46,6 @@ class BettingOfferRepository extends AbstractEntityRepository
 
         $queryBuilder = $this
             ->createQueryBuilder('o')
-            ->select('*')
-            ->join('o.bettingOutcome', 'bo')
             ->where('o.bettingOutcome IN (:outcomeIds)')
             ->andWhere('o.bettingOfferProvider IN (:providerIds)')
             ->setParameter('outcomeIds', $outcomeIds)
