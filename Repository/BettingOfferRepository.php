@@ -53,34 +53,4 @@ class BettingOfferRepository extends AbstractEntityRepository
 
         return $queryBuilder->getQuery()->getResult();
     }
-
-    /**
-     * Returns the Providers Ids that have offers from the outcomes given, and limited by the number we want
-     *
-     * @param array $outcomeIds
-     * @param int   $providersLimit
-     *
-     * @return array
-     */
-    public function getProviderIdsFromOutcomes($outcomeIds = array(), $providersLimit = 3)
-    {
-        if(empty($outcomeIds)){
-            return [];
-        }
-
-        $queryBuilder = $this
-            ->createQueryBuilder('o')
-            ->select('bp.id')
-            ->join('o.bettingOfferProvider', 'bp')
-            ->where('o.bettingOutcome IN (:outcomeIds)')
-            ->setParameter('outcomeIds', $outcomeIds)
-            ->groupBy('bp.id')
-            ->setMaxResults($providersLimit);
-
-        $arrayResult =  $queryBuilder->getQuery()->getScalarResult();
-
-        return array_column($arrayResult, 'id');
-
-    }
-
 }

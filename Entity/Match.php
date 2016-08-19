@@ -113,6 +113,7 @@ class Match implements EntityWithAuxInterface
      * @var CompetitionSeasonStage
      */
     private $competitionSeasonStage;
+
     /**
      * @var bool
      */
