@@ -1,5 +1,6 @@
 Visca\Bundle\LicomBundle\Entity\ThreeWayMatchBettingOutcome:
   type: entity
+  repositoryClass: Visca\Bundle\LicomBundle\Repository\ThreeWayMatchBettingOutcomeRepository
   manyToOne:
     winner:
       targetEntity: Visca\Bundle\LicomBundle\Entity\Participant

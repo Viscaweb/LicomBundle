@@ -54,6 +54,11 @@ abstract class BettingOutcome
     protected $status;
 
     /**
+     * @var int
+     */
+    protected $iparam;
+
+    /**
      * Get id.
      *
      * @return int
@@ -102,7 +107,7 @@ abstract class BettingOutcome
      *
      * @param int $entityId
      *
-     * @return BettingOfferAvailability
+     * @return BettingOutcome
      */
     public function setEntityId($entityId)
     {
@@ -206,6 +211,26 @@ abstract class BettingOutcome
     public function setStatus($status)
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIparam()
+    {
+        return $this->iparam;
+    }
+
+    /**
+     * @param int $iparam
+     *
+     * @return BettingOutcome
+     */
+    public function setIparam($iparam)
+    {
+        $this->iparam = $iparam;
 
         return $this;
     }
