@@ -9,7 +9,6 @@ use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
  */
 class BettingOfferRepository extends AbstractEntityRepository
 {
-
     /**
      * Returns all the offers from the given outcome ids
      *
@@ -35,6 +34,7 @@ class BettingOfferRepository extends AbstractEntityRepository
      * Returns all the offers from the given outcome ids and provider ids
      *
      * @param array $outcomeIds
+     * @param array $providerIds
      *
      * @return array
      */
