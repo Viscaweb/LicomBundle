@@ -116,12 +116,12 @@ class MatchSlugMatcher
         /*
          * Try to find what's the participants related to this slug
          */
-        $participantCombination = null;
+        $participantCombinations = null;
         foreach ($combinations as $combination) {
             try {
-                $participantCombination = $this
+                $participantCombinations = $this
                     ->participantsCombinationMatcher
-                    ->getParticipantCombination(
+                    ->getParticipantCombinations(
                         $competition->getCompetitionCategory()->getSport(),
                         $this->licomProfileId,
                         $combination[0],
@@ -133,9 +133,9 @@ class MatchSlugMatcher
                  */
             }
         }
-        if ($participantCombination === null) {
+        if ($participantCombinations === null) {
             $this->logger->debug(
-                "Unable to find any combination of two participants with the given slug ($matchSlug given)."
+                "Unable to find any combinations of two participants with the given slug ($matchSlug given)."
             );
             throw new NoMatchFoundException();
         }
@@ -143,18 +143,18 @@ class MatchSlugMatcher
         /*
          * Try to find the related match
          */
-        $matchCollection = $this
-            ->matchRepository
-            ->findMatchByParticipants(
-                [$participantCombination->getHomeParticipant()],
-                [$participantCombination->getAwayParticipant()]
-            );
-        if (empty($matchCollection)) {
-            $this->logger->debug(sprintf(
-                "Unable to find any match with the two participants detected (%d, %d).",
-                $participantCombination->getHomeParticipant()->getId(),
-                $participantCombination->getAwayParticipant()->getId()
-            ));
+        $matchesCollection = [];
+        foreach ($participantCombinations as $participantCombination) {
+            $matches = $this
+                ->matchRepository
+                ->findMatchByParticipants(
+                    [$participantCombination->getHomeParticipant()],
+                    [$participantCombination->getAwayParticipant()]
+                );
+            $matchesCollection = array_merge($matchesCollection, $matches);
+        }
+        if (empty($matchesCollection)) {
+            $this->logger->debug("Unable to find any match with the two participants detected.");
             throw new NoMatchFoundException();
         }
 
@@ -162,7 +162,7 @@ class MatchSlugMatcher
          * Filter the match on the given competition
          */
         $competitionMatchCollection = $this->filterByGivenCompetition(
-            $matchCollection,
+            $matchesCollection,
             $competition
         );
 
