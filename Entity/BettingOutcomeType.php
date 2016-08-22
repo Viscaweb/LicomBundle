@@ -6,7 +6,7 @@ use Visca\Bundle\CoreBundle\Entity\Traits\OptionalDateTimeTrait;
 use Visca\Bundle\CoreBundle\Entity\Traits\DeletableTrait;
 
 /**
- * BettingOutcomeSubType.
+ * BettingOutcomeType.
  */
 class BettingOutcomeType
 {
@@ -43,7 +43,7 @@ class BettingOutcomeType
      *
      * @param int $id
      *
-     * @return BettingOutcomeSubType
+     * @return BettingOutcomeType
      */
     public function setId($id)
     {
@@ -67,7 +67,7 @@ class BettingOutcomeType
      *
      * @param string $code
      *
-     * @return BettingOutcomeSubType
+     * @return BettingOutcomeType
      */
     public function setCode($code)
     {
@@ -91,7 +91,7 @@ class BettingOutcomeType
      *
      * @param string $description
      *
-     * @return BettingOutcomeSubType
+     * @return BettingOutcomeType
      */
     public function setDescription($description)
     {
