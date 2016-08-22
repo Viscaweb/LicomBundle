@@ -29,3 +29,7 @@ Visca\Bundle\LicomBundle\Entity\BettingOfferProvider:
       nullable: true
       options:
         default: NULL
+  oneToMany:
+    bettingOffers:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\BettingOffer
+      mappedBy: bettingOfferProvider

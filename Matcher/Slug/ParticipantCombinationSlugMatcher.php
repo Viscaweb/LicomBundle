@@ -50,10 +50,10 @@ class ParticipantCombinationSlugMatcher
      * @param string $homeTeamSlug   Supposed Home Team Slug
      * @param string $awayTeamSlug   Supposed Away Team Slug
      *
-     * @return ParticipantCombinationModel
+     * @return ParticipantCombinationModel[]
      * @throws NoMatchFoundException
      */
-    public function getParticipantCombination(
+    public function getParticipantCombinations(
         Sport $sport,
         $licomProfileId,
         $homeTeamSlug,
@@ -63,12 +63,12 @@ class ParticipantCombinationSlugMatcher
          * Get the home/away participant IDs from translations
          */
         try {
-            $homeParticipant = $this->findParticipant(
+            $homeParticipants = $this->findParticipants(
                 $sport,
                 $licomProfileId,
                 $homeTeamSlug
             );
-            $awayParticipant = $this->findParticipant(
+            $awayParticipants = $this->findParticipants(
                 $sport,
                 $licomProfileId,
                 $awayTeamSlug
@@ -81,13 +81,18 @@ class ParticipantCombinationSlugMatcher
          * Create the custom combination model
          */
         $matchSlug = sprintf('%s-%s', $homeTeamSlug, $awayTeamSlug);
-        $participantCombinationModel = new ParticipantCombinationModel(
-            $homeParticipant,
-            $awayParticipant,
-            $matchSlug
-        );
+        $participantCombinationModels = [];
+        foreach ($homeParticipants as $homeParticipant) {
+            foreach ($awayParticipants as $awayParticipant) {
+                $participantCombinationModels[] = new ParticipantCombinationModel(
+                    $homeParticipant,
+                    $awayParticipant,
+                    $matchSlug
+                );
+            }
+        }
 
-        return $participantCombinationModel;
+        return $participantCombinationModels;
     }
 
     /**
@@ -95,11 +100,11 @@ class ParticipantCombinationSlugMatcher
      * @param int    $licomProfileId  App's Profile ID
      * @param string $participantSlug Supposed Participant Slug
      *
-     * @return Participant
+     * @return Participant[]
      *
      * @throws NoMatchFoundException
      */
-    private function findParticipant(
+    private function findParticipants(
         Sport $sport,
         $licomProfileId,
         $participantSlug
@@ -126,19 +131,19 @@ class ParticipantCombinationSlugMatcher
                 $participantTranslationSlug->getEntityId();
         }
 
-        $participant = $this
+        $participants = $this
             ->participantRepository
-            ->findOneBy(
+            ->findBy(
                 [
                     'id' => $candidatesParticipantsIds,
                     'sport' => $sport->getId(),
                 ]
             );
 
-        if ($participant === null) {
+        if (empty($participants)) {
             throw new NoMatchFoundException();
         }
 
-        return $participant;
+        return $participants;
     }
 }

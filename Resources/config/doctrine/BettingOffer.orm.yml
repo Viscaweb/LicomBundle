@@ -63,6 +63,7 @@ Visca\Bundle\LicomBundle\Entity\BettingOffer:
           nullable: false
     bettingOfferProvider:
       targetEntity: Visca\Bundle\LicomBundle\Entity\BettingOfferProvider
+      inversedBy: bettingOffers
       joinColumns:
         BettingOfferProvider:
           referencedColumnName: id
