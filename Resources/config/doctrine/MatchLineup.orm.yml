@@ -44,6 +44,6 @@ Visca\Bundle\LicomBundle\Entity\MatchLineup:
           referencedColumnName: id
           nullable: false
   oneToMany:
-    matchLineupParticipant:
-        targetEntity: Visca\Bundle\LicomBundle\Entity\MatchParticipant
+    matchLineupParticipants:
+        targetEntity: Visca\Bundle\LicomBundle\Entity\MatchLineupParticipant
         mappedBy: matchLineup

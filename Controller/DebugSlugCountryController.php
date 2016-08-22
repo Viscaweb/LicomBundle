@@ -19,9 +19,9 @@ class DebugSlugCountryController extends Controller
     public function testSlugMatchersAction()
     {
         $e = $this->get('visca_licom.matcher.participant_combination');
-        $f1 =  $e->getParticipantCombination('barcelona-real-madrid');
-        $f2 =  $e->getParticipantCombination('barcelona-espanyol');
-        $f3 =  $e->getParticipantCombination('espanyol-barcelona');
+        list($f1) =  $e->getParticipantCombinations('barcelona-real-madrid');
+        list($f2) =  $e->getParticipantCombinations('barcelona-espanyol');
+        list($f3) =  $e->getParticipantCombinations('espanyol-barcelona');
         $v = 1;
         /*
          * Prepare the objects

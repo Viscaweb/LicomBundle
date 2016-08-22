@@ -451,3 +451,35 @@ services:
         arguments:
             - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\BettingOfferProvider
+
+    visca_licom.repository.betting_outcome_scope_type:
+        class: Visca\Bundle\LicomBundle\Repository\BettingOutcomeScopeTypeRepository
+        factory_service: visca_doctrine.repository.factory
+        factory_method: getRepository
+        arguments:
+            - '@visca_licom.entity_manager'
+            - Visca\Bundle\LicomBundle\Entity\BettingOutcomeScopeType
+
+    visca_licom.repository.betting_outcome_type:
+        class: Visca\Bundle\LicomBundle\Repository\BettingOutcomeTypeRepository
+        factory_service: visca_doctrine.repository.factory
+        factory_method: getRepository
+        arguments:
+            - '@visca_licom.entity_manager'
+            - Visca\Bundle\LicomBundle\Entity\BettingOutcomeType
+
+    visca_licom.repository.betting_outcome_sub_type:
+        class: Visca\Bundle\LicomBundle\Repository\BettingOutcomeSubTypeRepository
+        factory_service: visca_doctrine.repository.factory
+        factory_method: getRepository
+        arguments:
+            - '@visca_licom.entity_manager'
+            - Visca\Bundle\LicomBundle\Entity\BettingOutcomeSubType
+
+    visca_licom.repository.betting_outcome_three_way:
+        class: Visca\Bundle\LicomBundle\Repository\ThreeWayMatchBettingOutcomeRepository
+        factory_service: visca_doctrine.repository.factory
+        factory_method: getRepository
+        arguments:
+            - '@visca_licom.entity_manager'
+            - Visca\Bundle\LicomBundle\Entity\ThreeWayMatchBettingOutcome
