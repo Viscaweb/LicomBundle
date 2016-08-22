@@ -87,7 +87,7 @@ Visca\Bundle\LicomBundle\Entity\MatchBettingOutcome:
           referencedColumnName: id
           nullable: false
   discriminatorColumn:
-    name: type
+    name: BettingOutcomeType
     type: smallint
   discriminatorMap:
     1: Visca\Bundle\LicomBundle\Entity\ThreeWayMatchBettingOutcome
