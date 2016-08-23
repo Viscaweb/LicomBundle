@@ -101,6 +101,20 @@ class Bookmaker
     }
 
     /**
+     * Set url.
+     *
+     * @param string $url
+     *
+     * @return Bookmaker
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    /**
      * @param BettingOfferProvider $provider
      *
      * @return Bookmaker
