@@ -1,7 +1,6 @@
 include:
   - ../types/Bookmaker.yml
   - ../types/BettingOfferProvider.yml
-  - ../types/BettingOfferProviderGraphLabel.yml
   - ../types/BettingOutcomeScopeType.yml
   - ../types/BettingOutcomeSubType.yml
 

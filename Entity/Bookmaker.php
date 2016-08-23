@@ -23,7 +23,7 @@ class Bookmaker
     use DeletableTrait;
 
     /**
-     * @var int
+     * @var string
      */
     private $id;
 
@@ -33,6 +33,11 @@ class Bookmaker
     private $name;
 
     /**
+     * @var BettingOfferProvider|null
+     */
+    private $provider;
+
+    /**
      * @var string
      */
     private $url;
@@ -40,7 +45,7 @@ class Bookmaker
     /**
      * Get id.
      *
-     * @return int
+     * @return string
      */
     public function getId()
     {
@@ -50,7 +55,7 @@ class Bookmaker
     /**
      * Set id.
      *
-     * @param int $id
+     * @param string $id
      *
      * @return Bookmaker
      */
@@ -96,16 +101,22 @@ class Bookmaker
     }
 
     /**
-     * Set url.
-     *
-     * @param string $url
+     * @param BettingOfferProvider $provider
      *
      * @return Bookmaker
      */
-    public function setUrl($url)
+    public function setProvider(BettingOfferProvider $provider = null)
     {
-        $this->url = $url;
+        $this->provider = $provider;
 
         return $this;
+    }
+
+    /**
+     * @return BettingOfferProvider|null
+     */
+    public function getProvider()
+    {
+        return $this->provider;
     }
 }

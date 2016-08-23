@@ -4,10 +4,8 @@ Visca\Bundle\LicomBundle\Entity\Bookmaker:
   repositoryClass: Visca\Bundle\LicomBundle\Repository\BookmakerRepository
   id:
     id:
-      type: smallint
-      length: 5
-      options:
-        unsigned: true
+      type: string
+      length: 50
   fields:
     name:
       type: string
@@ -33,3 +31,10 @@ Visca\Bundle\LicomBundle\Entity\Bookmaker:
       nullable: true
       options:
         default: NULL
+  manyToOne:
+    provider:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\BettingOfferProvider
+      joinColumns:
+        provider:
+          referencedColumnName: id
+          nullable: true
