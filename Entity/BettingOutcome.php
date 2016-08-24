@@ -54,7 +54,7 @@ abstract class BettingOutcome
     protected $status;
 
     /**
-     * @var int
+     * @var int|null
      */
     protected $iparam;
 
@@ -216,7 +216,7 @@ abstract class BettingOutcome
     }
 
     /**
-     * @return int
+     * @return int|null
      */
     public function getIparam()
     {
@@ -224,7 +224,7 @@ abstract class BettingOutcome
     }
 
     /**
-     * @param int $iparam
+     * @param int|null $iparam
      *
      * @return BettingOutcome
      */
