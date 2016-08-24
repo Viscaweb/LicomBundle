@@ -1,4 +1,5 @@
 <?php
+
 namespace Visca\Bundle\LicomBundle\Events;
 
 interface Event

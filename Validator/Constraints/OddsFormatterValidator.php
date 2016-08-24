@@ -2,7 +2,6 @@
 
 namespace Visca\Bundle\LicomBundle\Validator\Constraints;
 
-use DateTimeZone;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Visca\Bundle\LicomBundle\Services\Chain\OddsFormatterChain;

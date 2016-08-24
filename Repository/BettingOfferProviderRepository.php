@@ -10,7 +10,7 @@ use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
 class BettingOfferProviderRepository extends AbstractEntityRepository
 {
     /**
-     * Returns the Providers Ids that have offers from the outcomes given, and limited by the number we want
+     * Returns the Providers Ids that have offers from the outcomes given, and limited by the number we want.
      *
      * @param array $outcomeIds
      * @param int   $providersLimit
@@ -19,7 +19,7 @@ class BettingOfferProviderRepository extends AbstractEntityRepository
      */
     public function findIdsFromOutcomes($outcomeIds = array(), $providersLimit = 3)
     {
-        if(empty($outcomeIds)){
+        if (empty($outcomeIds)) {
             return [];
         }
 
@@ -32,10 +32,8 @@ class BettingOfferProviderRepository extends AbstractEntityRepository
             ->groupBy('p.id')
             ->setMaxResults($providersLimit);
 
-        $arrayResult =  $queryBuilder->getQuery()->getScalarResult();
+        $arrayResult = $queryBuilder->getQuery()->getScalarResult();
 
         return array_column($arrayResult, 'id');
-
     }
-
 }

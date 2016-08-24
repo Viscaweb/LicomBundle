@@ -1,4 +1,5 @@
 <?php
+
 namespace Visca\Bundle\LicomBundle\Services\Filters\Rules;
 
 use Visca\Bundle\LicomBundle\Entity\Match;

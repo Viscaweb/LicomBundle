@@ -10,7 +10,7 @@ use Visca\Bundle\LicomBundle\Events\Traits\ListenByTeamTrait;
 final class MatchIncidentRegularGoal extends AbstractEvent
 {
     use ListenByMatchTrait, ListenByTeamTrait, ListenByAthleteTrait;
-    
+
     /**
      * @return string
      */

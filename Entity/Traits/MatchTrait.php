@@ -31,9 +31,9 @@ trait MatchTrait
     abstract public function getCompetitionSeasonStage();
 
     /**
-     * @return MatchParticipant
-     *
      * @throws MatchParticipantNotFoundException
+     *
+     * @return MatchParticipant
      */
     public function getHomeParticipant()
     {
@@ -43,9 +43,9 @@ trait MatchTrait
     /**
      * @param int $participantNumber Participant number
      *
-     * @return MatchParticipant
-     *
      * @throws MatchParticipantNotFoundException
+     *
+     * @return MatchParticipant
      */
     public function getMatchParticipantByNumber($participantNumber)
     {
@@ -64,9 +64,9 @@ trait MatchTrait
     abstract public function getMatchParticipant();
 
     /**
-     * @return MatchParticipant
-     *
      * @throws MatchParticipantNotFoundException
+     *
+     * @return MatchParticipant
      */
     public function getAwayParticipant()
     {
@@ -209,11 +209,12 @@ trait MatchTrait
     }
 
     /**
-     * Returns true if the Match is Top
+     * Returns true if the Match is Top.
      *
      * @return bool
      */
-    public function isMatchTop(){
+    public function isMatchTop()
+    {
         $auxProfiles = $this->getMatchAuxProfile();
         // if we have aux data
         if ($auxProfiles->count() > 0) {
@@ -223,7 +224,7 @@ trait MatchTrait
                 // if its a importance field
                 if ($auxTypeId === MatchAuxProfileTypeCode::IMPORTANCE_CODE) {
                     // And its value is TOP, return true
-                    if($aux->getValue() === MatchAuxProfileValue::TOP){
+                    if ($aux->getValue() === MatchAuxProfileValue::TOP) {
                         return true;
                     }
                     break;

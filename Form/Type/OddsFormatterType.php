@@ -8,7 +8,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 use Visca\Bundle\LicomBundle\Services\Chain\OddsFormatterChain;
 
 /**
- * Class OddsFormatterType
+ * Class OddsFormatterType.
  */
 class OddsFormatterType extends AbstractType
 {
@@ -67,7 +67,7 @@ class OddsFormatterType extends AbstractType
     }
 
     /**
-     * Retrieve all the available odds formatter
+     * Retrieve all the available odds formatter.
      *
      * @return array
      */

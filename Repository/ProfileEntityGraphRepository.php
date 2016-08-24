@@ -4,7 +4,6 @@ namespace Visca\Bundle\LicomBundle\Repository;
 
 use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
 use Visca\Bundle\LicomBundle\Entity\Code\EntityCode;
-use Visca\Bundle\LicomBundle\Entity\ProfileEntityGraph;
 use Visca\Bundle\LicomBundle\Entity\ProfileEntityGraphLabel;
 use Visca\Bundle\LicomBundle\Entity\Sport;
 
@@ -53,10 +52,10 @@ class ProfileEntityGraphRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param Sport    $sport Sport
-     * @param string   $code  Code
+     * @param Sport    $sport    Sport
+     * @param string   $code     Code
      * @param bool     $arrayIds ArrayIDs
-     * @param int|null $limit Limit of results
+     * @param int|null $limit    Limit of results
      *
      * @return \Visca\Bundle\LicomBundle\Entity\ProfileEntityGraph[]
      */

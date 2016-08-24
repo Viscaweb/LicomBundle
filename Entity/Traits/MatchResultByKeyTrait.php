@@ -37,11 +37,12 @@ trait MatchResultByKeyTrait
     abstract public function getMatchResult();
 
     /**
-     * Will return the Extra time + The ordinary time results
+     * Will return the Extra time + The ordinary time results.
      *
      * @return null|string
      */
-    public function getRunningExtraTimeResult(){
+    public function getRunningExtraTimeResult()
+    {
         $resultCollection = $this->getMatchResult();
         $ordinaryTimeResult = $extraTimeResult = null;
         // Search for the results
@@ -56,7 +57,7 @@ trait MatchResultByKeyTrait
         }
 
         // Sum the two results and return it
-        if(!is_null($ordinaryTimeResult) && !is_null($extraTimeResult)){
+        if (!is_null($ordinaryTimeResult) && !is_null($extraTimeResult)) {
             return $ordinaryTimeResult + $extraTimeResult;
         }
 

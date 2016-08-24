@@ -14,10 +14,10 @@ class MatchCommentRepository extends AbstractEntityRepository
      * @param int $matchId             match id
      * @param int $localizationProfile localization profile id
      *
-     * @return MatchComment[]
-     *
      * @throws \Doctrine\ORM\NoResultException
      * @throws \Doctrine\ORM\NonUniqueResultException
+     *
+     * @return MatchComment[]
      */
     public function findByMatchAndLocalizationProfile(
         $matchId,
@@ -89,7 +89,7 @@ class MatchCommentRepository extends AbstractEntityRepository
         $coefficient = count($sortCriteria);
         foreach ($sortCriteria as $number) {
             $position += $coefficient * $number;
-            $coefficient--;
+            --$coefficient;
         }
 
         return $position;

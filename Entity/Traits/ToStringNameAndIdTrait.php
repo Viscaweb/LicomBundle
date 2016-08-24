@@ -18,10 +18,10 @@ trait ToStringNameAndIdTrait
     /**
      * @return string
      */
-    abstract function getName();
+    abstract public function getName();
 
     /**
      * @return int
      */
-    abstract function getId();
+    abstract public function getId();
 }

@@ -76,9 +76,9 @@ class TranslationCacheManager
      * @param int $id       ID
      * @param int $property Property
      *
-     * @return mixed
-     *
      * @throws NoTranslationFoundException
+     *
+     * @return mixed
      */
     public function fetch($id, $property)
     {

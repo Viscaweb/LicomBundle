@@ -1,10 +1,11 @@
 <?php
+
 namespace Visca\Bundle\LicomBundle\Model\Slug;
 
 use Visca\Bundle\LicomBundle\Entity\Participant;
 
 /**
- * Class ParticipantCombinationModel
+ * Class ParticipantCombinationModel.
  */
 class ParticipantCombinationModel
 {

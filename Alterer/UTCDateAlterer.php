@@ -7,7 +7,7 @@ use DateTimeZone;
 use Visca\Bundle\LicomBundle\Alterer\Interfaces\TimeZoneProviderInterface;
 
 /**
- * Class UTCDateAlterer
+ * Class UTCDateAlterer.
  */
 class UTCDateAlterer
 {

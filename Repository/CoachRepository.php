@@ -9,5 +9,4 @@ use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
  */
 class CoachRepository extends AbstractEntityRepository
 {
-
 }

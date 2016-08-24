@@ -116,7 +116,7 @@ class MatchTest extends FixturesTestCase
     }
 
     /**
-     * Test if coverage can have multiple value
+     * Test if coverage can have multiple value.
      */
     public function testCoverageCanHaveMultipleValues()
     {

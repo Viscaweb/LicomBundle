@@ -39,7 +39,7 @@ class CompetitionSeasonRepository extends AbstractEntityRepository
         try {
             return $queryBuilder->getQuery()->getSingleResult();
         } catch (NoResultException $exception) {
-            return null;
+            return;
         }
     }
 

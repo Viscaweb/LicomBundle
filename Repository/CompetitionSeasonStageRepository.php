@@ -6,8 +6,6 @@ use Doctrine\ORM\Query\Expr\Join;
 use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
 use Visca\Bundle\LicomBundle\Entity\Code\CompetitionGraphLabelCode;
 use Visca\Bundle\LicomBundle\Entity\Code\CompetitionSeasonGraphLabelCode;
-use Visca\Bundle\LicomBundle\Entity\Code\EntityCode;
-use Visca\Bundle\LicomBundle\Entity\Code\StandingTypeCode;
 use Visca\Bundle\LicomBundle\Entity\Competition;
 use Visca\Bundle\LicomBundle\Entity\CompetitionSeason;
 use Visca\Bundle\LicomBundle\Entity\CompetitionSeasonStage;
@@ -141,7 +139,7 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
          * JOIN Competition AS c ON (c.id = cg.competition)
          * JOIN CompetitionCategory AS cc ON cc.id = c.CompetitionCategory
          * JOIN CompetitionSeason_graph AS csg ON (csg.CompetitionSeason = cs.id AND csg.label = 1)
-         * WHERE cc.Country = 8 AND cc.Sport = 1
+         * WHERE cc.Country = 8 AND cc.Sport = 1.
          */
         $qb = $this->entityManager->createQueryBuilder();
         $qb->select('css');
@@ -218,6 +216,7 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
      * @param CompetitionSeason $competitionSeason
      *
      * @return CompetitionSeasonStage
+     *
      * @deprecated
      */
     public function findLastByCompetitionSeason(
@@ -233,6 +232,7 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
      * @param CompetitionSeason $competitionSeason
      *
      * @return CompetitionSeasonStage
+     *
      * @deprecated
      */
     public function findNextByCompetitionSeason(
@@ -248,8 +248,9 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
      * @param CompetitionSeason $competitionSeason CompetitionSeason entity
      * @param int               $labelCode         Label code. CompetitionSeasonGraphLabelCode::code
      *
-     * @return CompetitionSeasonStage|null
      * @throws \Doctrine\ORM\NonUniqueResultException
+     *
+     * @return CompetitionSeasonStage|null
      */
     public function findOneLabeledByCompetitionSeason(
         CompetitionSeason $competitionSeason,
@@ -266,6 +267,7 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
     /**
      * @param CompetitionSeason $competitionSeason
      * @param int               $labelCode
+     *
      * @return CompetitionSeasonStage[]|null
      */
     public function findLabeledByCompetitionSeason(CompetitionSeason $competitionSeason, $labelCode)
@@ -308,16 +310,17 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
             return $competitionSeasonStage;
         }
 
-        return null;
+        return;
     }
 
     /**
-     * Returns the current CompetitionSeasonStage for the Participant
+     * Returns the current CompetitionSeasonStage for the Participant.
      *
      * @param int $participantId Participant Id
      *
-     * @return CompetitionSeasonStage[]
      * @throws \Doctrine\ORM\NonUniqueResultException
+     *
+     * @return CompetitionSeasonStage[]
      */
     public function findCurrentByParticipant(
         $participantId

@@ -42,8 +42,9 @@ class MatchMostRelevantFilter
     /**
      * @param Match[] $matches Matches collection
      *
-     * @return Match
      * @throws NoMatchFoundException
+     *
+     * @return Match
      */
     public function filter($matches)
     {

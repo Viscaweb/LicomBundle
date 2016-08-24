@@ -3,7 +3,7 @@
 namespace Visca\Bundle\LicomBundle\Entity\Value;
 
 /**
- * Class MatchAuxProfileValue
+ * Class MatchAuxProfileValue.
  *
  * This class is to enumerate all the types of ProfileValues
  * Is not a DB enum field, its only to not use strings inside the code.

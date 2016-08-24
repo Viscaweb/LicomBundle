@@ -1,11 +1,12 @@
 <?php
+
 namespace Visca\Bundle\LicomBundle\Repository\Traits;
 
 use DateTime;
 use Visca\Bundle\LicomBundle\Alterer\UTCDateAlterer;
 
 /**
- * Class UTCAltererTrait
+ * Class UTCAltererTrait.
  */
 trait UTCAltererTrait
 {
@@ -23,7 +24,7 @@ trait UTCAltererTrait
     }
 
     /**
-     * Alter given date objects
+     * Alter given date objects.
      */
     protected function alterDateObjects()
     {

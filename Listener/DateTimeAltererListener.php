@@ -8,7 +8,7 @@ use Visca\Bundle\LicomBundle\Alterer\UTCDateAlterer;
 use Visca\Bundle\LicomBundle\Cache\UTCDateFieldsWarmer;
 
 /**
- * Class TranslationInjectorListener
+ * Class TranslationInjectorListener.
  */
 class DateTimeAltererListener
 {
@@ -90,7 +90,7 @@ class DateTimeAltererListener
     }
 
     /**
-     * @param Object $object Object
+     * @param object $object Object
      *
      * @return string|bool
      */

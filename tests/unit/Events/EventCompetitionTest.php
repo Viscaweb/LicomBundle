@@ -6,10 +6,9 @@ use Visca\Bundle\LicomBundle\Entity\CompetitionSeasonStage;
 use Visca\Bundle\LicomBundle\Entity\CompetitionStage;
 use Visca\Bundle\LicomBundle\Entity\CompetitionLeg;
 use Visca\Bundle\LicomBundle\Events\Event;
-use \Visca\Bundle\LicomBundle\Events\Match as MatchEvent;
 
 /**
- * Class EventCompetitionTest
+ * Class EventCompetitionTest.
  */
 class EventCompetitionTest extends PHPUnit_Framework_TestCase
 {
@@ -128,7 +127,7 @@ class EventCompetitionTest extends PHPUnit_Framework_TestCase
 
     /**
      * @param mixed $object
-     * @param int $id
+     * @param int   $id
      */
     private function setId($object, $id)
     {
@@ -138,4 +137,3 @@ class EventCompetitionTest extends PHPUnit_Framework_TestCase
         $idProperty->setValue($object, $id);
     }
 }
-

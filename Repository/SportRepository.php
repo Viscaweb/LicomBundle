@@ -28,8 +28,10 @@ class SportRepository extends AbstractEntityRepository
 
     /**
      * @param $id
-     * @return Sport
+     *
      * @throws \Doctrine\ORM\NonUniqueResultException
+     *
+     * @return Sport
      */
     public function findSportByCompetitionSeasonStageId($id)
     {
@@ -46,8 +48,10 @@ class SportRepository extends AbstractEntityRepository
 
     /**
      * @param $id
-     * @return Sport
+     *
      * @throws \Doctrine\ORM\NonUniqueResultException
+     *
+     * @return Sport
      */
     public function findSportByMatchId($id)
     {
@@ -56,7 +60,7 @@ class SportRepository extends AbstractEntityRepository
             ->join('cc.competition', 'c')
             ->join('c.competitionSeason', 'cs')
             ->join('cs.competitionSeasonStage', 'css')
-            ->join('css.match','match')
+            ->join('css.match', 'match')
             ->where('match.id = :id')
             ->setParameter('id', $id)
             ->getQuery()
