@@ -1,6 +1,4 @@
-preset:
-   - 'psr1'
-   - 'psr2'
+preset: psr2
 
 enabled:
    - 'array_element_no_space_before_comma'
