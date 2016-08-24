@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Visca\Bundle\LicomBundle\Repository;
 
 use Doctrine\ORM\Query\Expr\Join;
@@ -10,7 +9,7 @@ use Visca\Bundle\LicomBundle\Entity\StandingComment;
 use Visca\Bundle\LicomBundle\Entity\StandingRow;
 
 /**
- * Class StandingCommentRepository
+ * Class StandingCommentRepository.
  */
 class StandingCommentRepository extends AbstractEntityRepository
 {

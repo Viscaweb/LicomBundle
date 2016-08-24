@@ -9,7 +9,7 @@ use Visca\Bundle\LicomBundle\Events\Traits\ListenByCompetitionTrait;
 final class CompetitionLeg extends AbstractEvent
 {
     use ListenByCompetitionLegTrait, ListenByCompetitionTrait;
-    
+
     /**
      * @return string
      */

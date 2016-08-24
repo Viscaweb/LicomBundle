@@ -5,7 +5,6 @@ namespace Visca\Bundle\LicomBundle\Repository;
 use Doctrine\ORM\Query\Expr\Join;
 use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
 use Visca\Bundle\LicomBundle\Entity\Match;
-use Visca\Bundle\LicomBundle\Entity\MatchIncident;
 use Visca\Bundle\LicomBundle\Entity\MatchIncidentType;
 use Visca\Bundle\LicomBundle\Entity\MatchParticipant;
 
@@ -53,7 +52,7 @@ class MatchIncidentRepository extends AbstractEntityRepository
     }
 
     /**
-     * Gets the incidents of a MatchParticipant
+     * Gets the incidents of a MatchParticipant.
      *
      * @param MatchParticipant    $matchParticipant   MatchParticipant
      * @param MatchIncidentType[] $matchIncidentTypes MatchIncidentType[]

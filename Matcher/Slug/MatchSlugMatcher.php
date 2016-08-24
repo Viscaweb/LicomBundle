@@ -1,4 +1,5 @@
 <?php
+
 namespace Visca\Bundle\LicomBundle\Matcher\Slug;
 
 use Doctrine\Tests\ORM\Functional\Ticket\Participant;
@@ -12,7 +13,7 @@ use Visca\Bundle\LicomBundle\Services\Filters\MatchMostRelevantFilter;
 use Psr\Log\LoggerInterface;
 
 /**
- * Class MatchSlugMatcher
+ * Class MatchSlugMatcher.
  *
  *
  * THE PROBLEM
@@ -101,8 +102,9 @@ class MatchSlugMatcher
      * @param string      $matchSlug   Match Slug, i.e. 'fc-barcelona-madrid'
      * @param Competition $competition Competition
      *
-     * @return Match
      * @throws NoMatchFoundException
+     *
+     * @return Match
      */
     public function match($matchSlug, Competition $competition)
     {
@@ -172,13 +174,14 @@ class MatchSlugMatcher
     /**
      * @param array $matches
      *
-     * @return Match
      * @throws NoMatchFoundException
+     *
+     * @return Match
      */
     public function getBestMatch(array $matches)
     {
         /**
-         * Take the best match to display in this list
+         * Take the best match to display in this list.
          */
         try {
             $bestMatch = $this->matchMostRelevantFilter->filter(

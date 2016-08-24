@@ -1,8 +1,9 @@
 <?php
+
 namespace Visca\Bundle\LicomBundle\Alterer\Interfaces;
 
 /**
- * Interface TimeZoneProviderInterface
+ * Interface TimeZoneProviderInterface.
  */
 interface TimeZoneProviderInterface
 {

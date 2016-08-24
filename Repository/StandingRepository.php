@@ -13,14 +13,14 @@ use Visca\Bundle\LicomBundle\Entity\Standing;
 class StandingRepository extends AbstractEntityRepository
 {
     /**
-     * @param int $entity Entity
-     * @param int $entityId Entity Id
+     * @param int $entity         Entity
+     * @param int $entityId       Entity Id
      * @param int $standingViewId The StandingView id used to filter columns
-     *
-     * @return Standing
      *
      * @throws \Doctrine\ORM\NoResultException
      * @throws \Doctrine\ORM\NonUniqueResultException
+     *
+     * @return Standing
      */
     public function findByView($entity, $entityId, $standingViewId)
     {
@@ -54,7 +54,8 @@ class StandingRepository extends AbstractEntityRepository
      * @param string $entity
      * @param string $entityId
      * @param string $standingType
-     * @return boolean
+     *
+     * @return bool
      */
     public function hasCompetitionLiveStandingUpToDateData($entity, $entityId)
     {
@@ -82,6 +83,6 @@ class StandingRepository extends AbstractEntityRepository
             ->getQuery()
             ->getScalarResult();
 
-        return empty($hasDifferences[0]) ? false : (int)$hasDifferences[0][1] > 0;
+        return empty($hasDifferences[0]) ? false : (int) $hasDifferences[0][1] > 0;
     }
 }

@@ -88,9 +88,9 @@ class OddsFormatterChain
      *
      * @param string $id Service ID
      *
-     * @return null|OddsFormatterInterface
-     *
      * @throws InvalidArgumentException
+     *
+     * @return null|OddsFormatterInterface
      */
     public function get($id)
     {

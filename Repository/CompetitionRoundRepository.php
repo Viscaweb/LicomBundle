@@ -20,8 +20,9 @@ class CompetitionRoundRepository extends AbstractEntityRepository
      * @param CompetitionSeason    $competitionSeason    CompetitionSeason entity
      * @param CompetitionStageType $competitionStageType CompetitionStageType entity
      *
-     * @return CompetitionRound[]
      * @throws \Doctrine\ORM\NonUniqueResultException
+     *
+     * @return CompetitionRound[]
      */
     public function findByCompetitionSeasonAndCompetitionStageType(
         CompetitionSeason $competitionSeason,
@@ -73,8 +74,9 @@ class CompetitionRoundRepository extends AbstractEntityRepository
      *                                                        `last round`|
      *                                                        `previous round`.
      *
-     * @return CompetitionRound[]
      * @throws \Doctrine\ORM\NonUniqueResultException
+     *
+     * @return CompetitionRound[]
      */
     public function findByCompetitionSeasonAndCompetitionStageTypeAndLabel(
         CompetitionSeason $competitionSeason,
@@ -177,8 +179,9 @@ class CompetitionRoundRepository extends AbstractEntityRepository
      * @param CompetitionSeasonStage[] $competitionSeasonStages
      * @param int                      $label
      *
-     * @return mixed
      * @throws \Doctrine\ORM\NonUniqueResultException
+     *
+     * @return mixed
      */
     public function findLabeledByCompetitionSeasonStages(
         $competitionSeasonStages,

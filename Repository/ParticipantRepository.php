@@ -9,7 +9,6 @@ use Visca\Bundle\LicomBundle\Entity\Code\LocalizationTranslationTypeCode;
 use Visca\Bundle\LicomBundle\Entity\Code\ProfileTranslationGraphLabelCode;
 use Visca\Bundle\LicomBundle\Entity\Code\StandingTypeCode;
 use Visca\Bundle\LicomBundle\Entity\CompetitionSeason;
-use Visca\Bundle\LicomBundle\Entity\Enum\ParticipantType;
 use Visca\Bundle\LicomBundle\Entity\Participant;
 use Visca\Bundle\LicomBundle\Entity\ParticipantMembership;
 use Visca\Bundle\LicomBundle\Entity\Sport;
@@ -144,7 +143,7 @@ class ParticipantRepository extends AbstractEntityRepository
                     [$participantSlug]
                 );
         } catch (NoTranslationFoundException $ex) {
-            return null;
+            return;
         }
 
         $participantsIds = [];
@@ -215,7 +214,7 @@ class ParticipantRepository extends AbstractEntityRepository
     }
 
     /**
-     * Returns the Athlete team in the current Standing
+     * Returns the Athlete team in the current Standing.
      *
      * @param Athlete  $athlete
      * @param Standing $standing
@@ -225,12 +224,12 @@ class ParticipantRepository extends AbstractEntityRepository
     public function findOneByMainTeamByAthleteAndStanding(
         Athlete $athlete,
         Standing $standing
-    ){
+    ) {
         $participantMemberships = $athlete->getParticipantMembership();
         $teamIds = [];
-        if(!$participantMemberships->isEmpty()){
+        if (!$participantMemberships->isEmpty()) {
             /** @var ParticipantMembership $participantMembership */
-            foreach($participantMemberships as $participantMembership){
+            foreach ($participantMemberships as $participantMembership) {
                 $teamIds[] = $participantMembership->getEntityId();
             }
         }
@@ -279,6 +278,6 @@ class ParticipantRepository extends AbstractEntityRepository
             ->setParameter('ids', $ids)
             ->setParameter('sportId', $sport->getId());
 
-       return $queryBuilder->getQuery()->getResult();
+        return $queryBuilder->getQuery()->getResult();
     }
 }

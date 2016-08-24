@@ -1,4 +1,5 @@
 <?php
+
 namespace Visca\Bundle\LicomBundle\Events;
 
 abstract class AbstractEvent implements Event
@@ -35,5 +36,4 @@ abstract class AbstractEvent implements Event
     {
         return $this->getEventObject().'@'.$this->getScope();
     }
-
 }

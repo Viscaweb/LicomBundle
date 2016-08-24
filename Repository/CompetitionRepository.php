@@ -8,7 +8,6 @@ use Visca\Bundle\LicomBundle\Entity\Code\ProfileTranslationGraphLabelCode;
 use Visca\Bundle\LicomBundle\Entity\Competition;
 use Visca\Bundle\LicomBundle\Entity\Country;
 use Visca\Bundle\LicomBundle\Entity\Match;
-use Visca\Bundle\LicomBundle\Entity\ProfileEntityGraph;
 use Visca\Bundle\LicomBundle\Entity\Sport;
 use Visca\Bundle\LicomBundle\Exception\NoTranslationFoundException;
 use Doctrine\ORM\Query\Expr\Join;
@@ -172,7 +171,7 @@ class CompetitionRepository extends AbstractEntityRepository
                     [$competitionSlug]
                 );
         } catch (NoTranslationFoundException $ex) {
-            return null;
+            return;
         }
 
         $competitionsIds = [];
@@ -219,7 +218,7 @@ class CompetitionRepository extends AbstractEntityRepository
             ->getOneOrNullResult();
 
         if (!$competitionCategory) {
-            return null;
+            return;
         }
 
         return $this->createQueryBuilder('competition')

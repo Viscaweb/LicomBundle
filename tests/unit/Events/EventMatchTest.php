@@ -11,14 +11,14 @@ use Visca\Bundle\LicomBundle\Events\Event;
 use Visca\Bundle\LicomBundle\Events\Match as MatchEvent;
 
 /**
- * Class EventMatchTest
+ * Class EventMatchTest.
  */
 class EventMatchTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @param string $listenTo
      * @param string $listenBy
-     * @param mixed $object
+     * @param mixed  $object
      * @param string $expectedEventName
      *
      * @dataProvider listOfEvents
@@ -275,7 +275,7 @@ class EventMatchTest extends PHPUnit_Framework_TestCase
 
     /**
      * @param mixed $object
-     * @param int $id
+     * @param int   $id
      */
     private function setId($object, $id)
     {
@@ -350,4 +350,3 @@ class EventMatchTest extends PHPUnit_Framework_TestCase
         return $sportObj;
     }
 }
-

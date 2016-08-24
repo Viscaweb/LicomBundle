@@ -1,10 +1,11 @@
 <?php
+
 namespace Visca\Bundle\LicomBundle\Services\Filters\Rules\Interfaces;
 
 use Visca\Bundle\LicomBundle\Entity\Match;
 
 /**
- * Interface FilterMatchRuleInterface
+ * Interface FilterMatchRuleInterface.
  */
 interface FilterMatchRuleInterface
 {

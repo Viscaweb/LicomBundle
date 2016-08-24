@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Visca\Bundle\LicomBundle\Repository;
 
 use Doctrine\ORM\Query\Expr\Join;
@@ -8,7 +7,7 @@ use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
 use Visca\Bundle\LicomBundle\Entity\CompetitionLeg;
 
 /**
- * Class CompetitionLegRepository
+ * Class CompetitionLegRepository.
  */
 class CompetitionLegRepository extends AbstractEntityRepository
 {
@@ -80,8 +79,7 @@ class CompetitionLegRepository extends AbstractEntityRepository
 
 
     /**
-     * @param int[] $competitionRoundIds List of competitionRound ids
-     *
+     * @param int[] $competitionRoundIds       List of competitionRound ids
      * @param int   $seasonStageGraphLabelCode
      *
      * @return \Visca\Bundle\LicomBundle\Entity\CompetitionLeg
@@ -113,8 +111,7 @@ class CompetitionLegRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param int[] $competitionRoundIds List of competitionRound ids
-     *
+     * @param int[] $competitionRoundIds       List of competitionRound ids
      * @param int   $seasonStageGraphLabelCode
      *
      * @return \Visca\Bundle\LicomBundle\Entity\CompetitionLeg
@@ -194,7 +191,6 @@ class CompetitionLegRepository extends AbstractEntityRepository
             );
 
         return $queryBuilder->getQuery()->getResult();
-
     }
 
     /**

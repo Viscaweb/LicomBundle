@@ -1,8 +1,9 @@
 <?php
+
 namespace Visca\Bundle\LicomBundle\Exception;
 
 /**
- * Class SlugNotAvailableException
+ * Class SlugNotAvailableException.
  */
 class SlugNotAvailableException extends \Exception
 {

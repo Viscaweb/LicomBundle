@@ -8,6 +8,7 @@ trait ListenByMatchTrait
 {
     /**
      * @param Match $match
+     *
      * @return static
      */
     public static function listenByMatch(Match $match)

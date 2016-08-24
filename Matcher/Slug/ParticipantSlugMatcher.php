@@ -2,16 +2,14 @@
 
 namespace Visca\Bundle\LicomBundle\Matcher\Slug;
 
-use Visca\Bundle\LicomBundle\Entity\Competition;
 use Visca\Bundle\LicomBundle\Entity\Country;
 use Visca\Bundle\LicomBundle\Entity\Participant;
 use Visca\Bundle\LicomBundle\Entity\Sport;
 use Visca\Bundle\LicomBundle\Exception\NoMatchFoundException;
-use Visca\Bundle\LicomBundle\Repository\CompetitionRepository;
 use Visca\Bundle\LicomBundle\Repository\ParticipantRepository;
 
 /**
- * Class ParticipantSlugMatcher
+ * Class ParticipantSlugMatcher.
  */
 class ParticipantSlugMatcher
 {
@@ -44,8 +42,9 @@ class ParticipantSlugMatcher
      * @param Country $country         Country
      * @param Sport   $sport           Sport
      *
-     * @return Participant
      * @throws NoMatchFoundException
+     *
+     * @return Participant
      */
     public function match($participantSlug, Country $country, Sport $sport)
     {

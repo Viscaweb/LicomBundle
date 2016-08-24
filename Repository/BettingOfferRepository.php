@@ -11,7 +11,7 @@ use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
 class BettingOfferRepository extends AbstractEntityRepository
 {
     /**
-     * Returns all the offers from the given outcome ids
+     * Returns all the offers from the given outcome ids.
      *
      * @param array $outcomeIds
      *
@@ -32,7 +32,7 @@ class BettingOfferRepository extends AbstractEntityRepository
     }
 
     /**
-     * Returns all the offers from the given outcome ids and provider ids
+     * Returns all the offers from the given outcome ids and provider ids.
      *
      * @param array $outcomeIds
      * @param array $providerIds
@@ -56,14 +56,13 @@ class BettingOfferRepository extends AbstractEntityRepository
     }
 
     /**
-     * Returns all the offers from the given outcome ids and provider ids
+     * Returns all the offers from the given outcome ids and provider ids.
      *
      * @param array $outcomeIds
      * @param array $bookmakerKeys
      * @param int   $bookmakersLimit
      *
      * @return array
-     *
      */
     public function findByOutcomeIdsAndBookmakerKeys($outcomeIds = [], $bookmakerKeys = [], $bookmakersLimit = 3)
     {
@@ -90,14 +89,13 @@ class BettingOfferRepository extends AbstractEntityRepository
     }
 
     /**
-     * Returns all the offers from the given outcome ids and provider ids
+     * Returns all the offers from the given outcome ids and provider ids.
      *
      * @param array $outcomeIds
      * @param array $bookmakerKeys
      * @param int   $bookmakersLimit
      *
      * @return array
-     *
      */
     public function findProviderIdsByOutcomeIdsAndBookmakerKeys($outcomeIds = [], $bookmakerKeys = [], $bookmakersLimit = 3)
     {

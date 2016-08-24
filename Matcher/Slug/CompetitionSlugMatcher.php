@@ -9,7 +9,7 @@ use Visca\Bundle\LicomBundle\Repository\CompetitionRepository;
 use Psr\Log\LoggerInterface;
 
 /**
- * Class CompetitionSlugMatcher
+ * Class CompetitionSlugMatcher.
  */
 class CompetitionSlugMatcher
 {
@@ -50,8 +50,9 @@ class CompetitionSlugMatcher
      * @param string  $competitionSlug Competition Slug, i.e. 'liga'
      * @param Country $country         Country
      *
-     * @return Competition
      * @throws NoMatchFoundException
+     *
+     * @return Competition
      */
     public function match($competitionSlug, Country $country)
     {

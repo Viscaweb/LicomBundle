@@ -3,7 +3,7 @@
 namespace Visca\Bundle\LicomBundle\Matcher\Slug\Helper;
 
 /**
- * Class FindTeamsCombinationsHelper
+ * Class FindTeamsCombinationsHelper.
  *
  * This class receive a $teamSlug such as: 'fc-barcelona-real-madrid'
  *
@@ -24,7 +24,7 @@ class FindTeamsCombinationsHelper
         $matchSlugSlices = explode('-', $teamSlug);
 
         $allCombinations = [];
-        for ($index = 0; $index < count($matchSlugSlices) - 1; $index++) {
+        for ($index = 0; $index < count($matchSlugSlices) - 1; ++$index) {
             $homeCombinationParts = [];
             $awayCombinationParts = [];
             foreach ($matchSlugSlices as $sliceIndex => $slice) {

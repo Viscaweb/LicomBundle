@@ -7,7 +7,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Visca\Bundle\LicomBundle\DependencyInjection\Compiler\OddsFormatterCompilerPass;
 
 /**
- * Class ViscaLicomBundle
+ * Class ViscaLicomBundle.
  */
 class ViscaLicomBundle extends Bundle
 {
@@ -22,5 +22,4 @@ class ViscaLicomBundle extends Bundle
 
         $container->addCompilerPass(new OddsFormatterCompilerPass());
     }
-
 }

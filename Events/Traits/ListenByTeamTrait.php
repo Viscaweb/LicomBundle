@@ -8,6 +8,7 @@ trait ListenByTeamTrait
 {
     /**
      * @param Team $team
+     *
      * @return static
      */
     public static function listenByTeam(Team $team)

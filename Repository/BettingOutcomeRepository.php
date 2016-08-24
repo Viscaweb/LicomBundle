@@ -12,7 +12,7 @@ use Visca\Bundle\LicomBundle\Entity\Code\EntityCode;
 class BettingOutcomeRepository extends AbstractEntityRepository
 {
     /**
-     * Returns the outcomes for the ordinary time
+     * Returns the outcomes for the ordinary time.
      *
      * @param int|null $matchId
      * @param int|null $outcomeType
@@ -37,9 +37,8 @@ class BettingOutcomeRepository extends AbstractEntityRepository
             ->setParameter('bettingOutcomeScopeType', BettingOutcomeScopeTypeCode::ORDINARY_TIME_CODE)
             ->setParameter('outcomeType', $outcomeType);
 
-        $arrayResult =  $queryBuilder->getQuery()->getScalarResult();
+        $arrayResult = $queryBuilder->getQuery()->getScalarResult();
 
         return array_column($arrayResult, 'id');
     }
-
 }
