@@ -7,7 +7,6 @@ enabled:
    - 'double_arrow_multiline_whitespaces'
    - 'no_empty_statement'
    - 'simplified_null_return'
-   - 'no_extra_consecutive_blank_lines'
    - 'function_typehint_space'
    - 'join_function'
    - 'no_trailing_comma_in_list_call'
