@@ -17,7 +17,7 @@ class BettingOfferRepository extends AbstractEntityRepository
      *
      * @return array
      */
-    public function findByOutcomeIds($outcomeIds = array())
+    public function findByOutcomeIds($outcomeIds = [])
     {
         if (empty($outcomeIds)) {
             return [];
@@ -39,7 +39,7 @@ class BettingOfferRepository extends AbstractEntityRepository
      *
      * @return array
      */
-    public function findByOutcomeIdsAndProviderIds($outcomeIds = array(), $providerIds = array())
+    public function findByOutcomeIdsAndProviderIds($outcomeIds = [], $providerIds = [])
     {
         if (empty($outcomeIds) || empty($providerIds)) {
             return [];
@@ -65,7 +65,7 @@ class BettingOfferRepository extends AbstractEntityRepository
      * @return array
      *
      */
-    public function findByOutcomeIdsAndBookmakerKeys($outcomeIds = array(), $bookmakerKeys = array(), $bookmakersLimit = 3)
+    public function findByOutcomeIdsAndBookmakerKeys($outcomeIds = [], $bookmakerKeys = [], $bookmakersLimit = 3)
     {
         if (empty($outcomeIds) || empty($bookmakerKeys)) {
             return [];
@@ -99,7 +99,7 @@ class BettingOfferRepository extends AbstractEntityRepository
      * @return array
      *
      */
-    public function findProviderIdsByOutcomeIdsAndBookmakerKeys($outcomeIds = array(), $bookmakerKeys = array(), $bookmakersLimit = 3)
+    public function findProviderIdsByOutcomeIdsAndBookmakerKeys($outcomeIds = [], $bookmakerKeys = [], $bookmakersLimit = 3)
     {
         if (empty($outcomeIds) || empty($bookmakerKeys)) {
             return [];
