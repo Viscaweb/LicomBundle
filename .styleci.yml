@@ -44,4 +44,3 @@ enabled:
    - 'phpdoc_order'
    - 'binary_operator_spaces'
    - 'blank_line_before_return'
-   - 'braces'
