@@ -21,7 +21,6 @@ class GenerateFixturesFromDbCommand extends ContainerAwareCommand
         '*\\CompetitionStageType',
         '*\\Bookmaker',
         '*\\BettingOfferProvider',
-        '*\\BettingOfferProviderGraphLabel',
         '*\\MatchAuxType',
         '*\\MatchAuxProfileType',
         '*\\MatchIncidentType',

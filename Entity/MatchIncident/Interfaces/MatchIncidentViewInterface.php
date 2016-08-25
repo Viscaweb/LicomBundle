@@ -5,7 +5,7 @@ namespace Visca\Bundle\LicomBundle\Entity\MatchIncident\Interfaces;
 use Visca\Bundle\LicomBundle\Entity\MatchIncident\MatchIncidentPeriod;
 
 /**
- * Interface MatchIncidentViewInterface
+ * Interface MatchIncidentViewInterface.
  */
 interface MatchIncidentViewInterface
 {

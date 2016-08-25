@@ -7,7 +7,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query\Expr\Join;
 
 /**
- * Class MatchQueryBuilder
+ * Class MatchQueryBuilder.
  */
 class MatchQueryBuilder extends QueryBuilder
 {
@@ -23,7 +23,7 @@ class MatchQueryBuilder extends QueryBuilder
 
     /**
      * @var bool Controls wether we select all columns for each entity,
-     *                     or we select only those really used.
+     *           or we select only those really used.
      */
     private $reducedColumnSet;
 
@@ -83,7 +83,6 @@ class MatchQueryBuilder extends QueryBuilder
     {
         $this->matchParticipantJoinOptimized = $optimizeJoin;
         if ($optimizeJoin) {
-
             if ($this->reducedColumnSet) {
                 $mpColumns = "partial mp1.{id, number}";
                 $mp2Columns = "partial mp2.{id, number}";
@@ -102,7 +101,6 @@ class MatchQueryBuilder extends QueryBuilder
                 ->join("$this->alias.matchParticipant", "mp2", Join::WITH, 'mp2.number = 2')
                 ->join("mp1.participant", "p1")
                 ->join("mp2.participant", "p2");
-
         } else {
             $this
                 ->addSelect("mp", "p")
@@ -124,14 +122,12 @@ class MatchQueryBuilder extends QueryBuilder
     public function joinMatchResult(array $optimizeMatchResultTypeCodes = [])
     {
         if (count($optimizeMatchResultTypeCodes) > 0) {
-
             $total = 1;
             if ($this->matchParticipantJoinOptimized) {
                 $total = 2;
             }
 
-            for ($i = 0; $i < $total; $i++) {
-
+            for ($i = 0; $i < $total; ++$i) {
                 $postfix = $total === 0 ? '' : ($i + 1);
 
                 foreach ($optimizeMatchResultTypeCodes as $j => $matchResultTypeCode) {

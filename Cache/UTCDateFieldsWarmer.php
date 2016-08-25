@@ -7,7 +7,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpKernel\CacheWarmer\CacheWarmer;
 
 /**
- * Class UTCDateFieldsWarmer
+ * Class UTCDateFieldsWarmer.
  */
 final class UTCDateFieldsWarmer extends CacheWarmer
 {

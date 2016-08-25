@@ -2,7 +2,6 @@
 
 namespace Tests\Unit\Services\Filters;
 
-
 use Visca\Bundle\LicomBundle\Entity\Match;
 use Visca\Bundle\LicomBundle\Entity\MatchStatusDescription;
 use Visca\Bundle\LicomBundle\Exception\NoMatchFoundException;
@@ -11,7 +10,7 @@ use Visca\Bundle\LicomBundle\Services\Filters\Rules\MatchInProgressRule;
 use Visca\Bundle\LicomBundle\Services\Filters\Rules\MatchLastPlayedRule;
 use Visca\Bundle\LicomBundle\Services\Filters\Rules\MatchNextToComeRule;
 
-class MatchMostRelevantFilterTest extends \PHPUnit_Framework_TestCase
+class MatchMostRevelantFilterTest extends \PHPUnit_Framework_TestCase
 {
 
     /** @test */
@@ -89,6 +88,7 @@ class MatchMostRelevantFilterTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @param string $name
+     *
      * @return MatchStatusDescription
      */
     private function createMatchStatusDescriptionWithCategoryName($name)
@@ -157,7 +157,7 @@ class MatchMostRelevantFilterTest extends \PHPUnit_Framework_TestCase
     /**
      * @param object $object
      * @param string $property
-     * @param mixed $value
+     * @param mixed  $value
      *
      * @return object
      */

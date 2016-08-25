@@ -6,6 +6,7 @@ trait ListenByStartDateTrait
 {
     /**
      * @param \DateTime $date
+     *
      * @return static
      */
     public static function listenByMatchStartDateHour(\DateTime $date)

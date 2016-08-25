@@ -1,4 +1,5 @@
 <?php
+
 namespace Visca\Bundle\LicomBundle\Events\Traits;
 
 use Visca\Bundle\LicomBundle\Entity\Sport;

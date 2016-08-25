@@ -100,21 +100,25 @@ class MatchLineup
 
     /**
      * @param MatchLineupParticipant $matchLineupParticipant
+     *
      * @return $this
      */
     public function addMatchLineupParticipant(MatchLineupParticipant $matchLineupParticipant)
     {
         $this->matchLineupParticipants[] = $matchLineupParticipant;
+
         return $this;
     }
 
     /**
      * @param MatchLineupParticipant $matchLineupParticipant
+     *
      * @return $this
      */
     public function removeMatchLineupParticipant(MatchLineupParticipant $matchLineupParticipant)
     {
         $this->matchLineupParticipants->removeElement($matchLineupParticipant);
+
         return $this;
     }
 

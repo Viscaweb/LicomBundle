@@ -224,7 +224,7 @@ class MatchRepository extends AbstractEntityRepository
      * @param DateTime $periodFrom Matches from this date
      * @param DateTime $periodTo   Matches until this date
      *
-     * @return integer[] Array of match id
+     * @return int[] Array of match id
      */
     public function findMatchIdByPeriod(
         DateTime $periodFrom,
@@ -252,15 +252,15 @@ class MatchRepository extends AbstractEntityRepository
     /**
      * Returns the matches where the given participants are playing.
      *
-     * @param int|array $participantId           Participant ID
-     * @param array     $whereConditions         Extra conditions
-     * @param array     $whereArguments          Extra condition's parameters
-     * @param null      $limit                   Limit the number of registers.
-     *                                           As currently this method is, it does not limit the
-     *                                           number of matches retrieved
-     * @param null      $offset                  Limit offset
-     * @param null      $orderField              Order field
-     * @param string    $orderType               Order type
+     * @param int|array $participantId   Participant ID
+     * @param array     $whereConditions Extra conditions
+     * @param array     $whereArguments  Extra condition's parameters
+     * @param null      $limit           Limit the number of registers.
+     *                                   As currently this method is, it does not limit the
+     *                                   number of matches retrieved
+     * @param null      $offset          Limit offset
+     * @param null      $orderField      Order field
+     * @param string    $orderType       Order type
      *
      * @return \Visca\Bundle\LicomBundle\Entity\Match[]
      */
@@ -339,7 +339,6 @@ class MatchRepository extends AbstractEntityRepository
         $matchStatusCategory = null,
         $participantPosition = null
     ) {
-
         $optimized = true;
         $matchResultType = is_array($matchResultType) ? $matchResultType : [$matchResultType];
 
@@ -410,14 +409,14 @@ class MatchRepository extends AbstractEntityRepository
                     ->where(
                         '(mp.number=:home and mp2.number=:away) OR (mp.number=:away and mp2.number=:home)'
                     );
-        
+
                 if ($matchStatusCategory !== null) {
                     $query
                         ->addSelect('msd')
                         ->join('m.matchStatusDescription', 'msd', Join::WITH, 'msd.category = :category')
                         ->setParameter('category', $matchStatusCategory);
                 }
-        
+
                 if (is_array($participantId)) {
                     $query
                         ->andWhere('mp.participant in (:participant)')
@@ -427,35 +426,35 @@ class MatchRepository extends AbstractEntityRepository
                         ->andWhere('mp.participant = :participant')
                         ->setParameter('participant', $participantId);
                 }
-        
+
                 foreach ($whereConditions as $condition) {
                     $query->andWhere($condition);
                 }
-        
+
                 foreach ($whereArguments as $key => $value) {
                     if ($key === 'startDate') {
                         $this->alterDateObjects($value);
                     }
                     $query->setParameter($key, $value);
                 }
-        
+
                 if (is_numeric($limit)) {
                     $query->setMaxResults($limit);
                 }
-        
+
                 if (is_numeric($offset)) {
                     $query->setFirstResult($offset);
                 }
-        
+
                 if (!is_null($orderField)) {
                     $query->orderBy('m.'.$orderField, $orderType);
                 }
-        
+
                 $query
                     ->setParameter('home', MatchParticipant::HOME)
                     ->setParameter('away', MatchParticipant::AWAY)
                     ->setParameter('resultType', $matchResultType);
-        
+
                 // only if we ask for a limited/offset number of matches we will add the
                 if (is_numeric($limit) || is_numeric($offset)) {
                     $query->groupBy('m.id');
@@ -714,12 +713,12 @@ class MatchRepository extends AbstractEntityRepository
      * If the toDays is not set, the query will return all the results biggers than the fromDate
      * And will add the limit if provided.
      *
-     * @param int    $countryId   Country entity.
-     * @param string $importance  top|important|2nd.
-     * @param int    $fromDays    Starting date the match can take place.
-     *                            Specified in number of relative days from today.
-     * @param int    $toDays      Limit date the match can take place. Specified in number of relative days from today.
-     * @param int    $limit       Limit the number of matches returned. Default 3.
+     * @param int    $countryId  Country entity.
+     * @param string $importance top|important|2nd.
+     * @param int    $fromDays   Starting date the match can take place.
+     *                           Specified in number of relative days from today.
+     * @param int    $toDays     Limit date the match can take place. Specified in number of relative days from today.
+     * @param int    $limit      Limit the number of matches returned. Default 3.
      *
      * @return \Visca\Bundle\LicomBundle\Entity\Match[]
      */
@@ -824,7 +823,7 @@ class MatchRepository extends AbstractEntityRepository
      *
      * @param DateTime    $dateFrom
      * @param DateTime    $dateTo
-     * @param string|null $status Any of the valid MatchStatusDescriptionCategoryType
+     * @param string|null $status   Any of the valid MatchStatusDescriptionCategoryType
      * @param null        $sportId
      *
      * @return \Visca\Bundle\LicomBundle\Entity\Match[]
@@ -846,7 +845,7 @@ class MatchRepository extends AbstractEntityRepository
      *
      * @param DateTime    $dateFrom
      * @param DateTime    $dateTo
-     * @param string|null $status Any of the valid MatchStatusDescriptionCategoryType
+     * @param string|null $status   Any of the valid MatchStatusDescriptionCategoryType
      * @param null        $sportId
      *
      * @return \Visca\Bundle\LicomBundle\Entity\Match[]
@@ -877,8 +876,7 @@ class MatchRepository extends AbstractEntityRepository
      *
      * @return array
      */
-    public
-    function findByDateAndStatusAndCompetitionSeasonStage(
+    public function findByDateAndStatusAndCompetitionSeasonStage(
         DateTime $dateFrom,
         DateTime $dateTo,
         $competitionSeasonStageIds,
@@ -967,10 +965,10 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param string|null       $status Match Status description.
-     * @param DateTimeInterface $date   A date.
-     * @param bool|true         $before Do we want matches before the date?
-     * @param null              $limit  How many matches we want.
+     * @param string|null       $status                    Match Status description.
+     * @param DateTimeInterface $date                      A date.
+     * @param bool|true         $before                    Do we want matches before the date?
+     * @param null              $limit                     How many matches we want.
      * @param int|null          $sportId
      * @param array             $competitionSeasonStageIds
      *
@@ -984,7 +982,6 @@ class MatchRepository extends AbstractEntityRepository
         $sportId = null,
         $competitionSeasonStageIds = array()
     ) {
-
         $symbol = $before ? '<' : '>=';
         $order = $before ? 'DESC' : 'ASC';
         if ($before) {
@@ -1063,10 +1060,10 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param string            $status Match Status description.
-     * @param DateTimeInterface $date   A date.
+     * @param string            $status                    Match Status description.
+     * @param DateTimeInterface $date                      A date.
      * @param int[]             $competitionSeasonStageIds
-     * @param int|null          $limit  How many matches we want.
+     * @param int|null          $limit                     How many matches we want.
      *
      * @return \Visca\Bundle\LicomBundle\Entity\Match[]
      */
@@ -1093,8 +1090,7 @@ class MatchRepository extends AbstractEntityRepository
      *
      * @return \Visca\Bundle\LicomBundle\Entity\Match[]
      */
-    public
-    function findMatchesByStatusAfterDateAndCompetitionSeasonStage(
+    public function findMatchesByStatusAfterDateAndCompetitionSeasonStage(
         $status,
         DateTimeInterface $date,
         $competitionSeasonStageIds,
@@ -1335,11 +1331,10 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * Find matches by an Athlete and a IncidentType
+     * Find matches by an Athlete and a IncidentType.
      *
      * @param Athlete  $athlete               Athlete entity
      * @param int      $matchIncidentTypeCode MatchIncidentTypeCode value
-     *
      * @param null|int $year                  Year to filter
      *
      * @return mixed
@@ -1368,7 +1363,7 @@ class MatchRepository extends AbstractEntityRepository
          *          mp2.number <> mp.number
          *          AND mi.MatchIncidentType = 7
          *      ORDER BY
-         *          m.startDate DESC
+         *          m.startDate DESC.
          *
          * We are asking the following:
          *  Give all matches that:
@@ -1384,7 +1379,6 @@ class MatchRepository extends AbstractEntityRepository
          *  - mp is always the team the athlete plays with.
          *  - mp is always the team that has the GOAL incidents we are filtering.
          *  - mp2 will be always the other team.
-         *
          */
         $queryBuilder
             ->select('m', 'mp', 'mp2', 'p', 'p2', 'mr', 'mr2', 'css', 'cs', 'cstage', 'mi')
@@ -1512,7 +1506,7 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * Gets the list of Matches for a Participant and status given
+     * Gets the list of Matches for a Participant and status given.
      *
      * @param string $status        Status to find
      * @param int    $participantId Participant to find
@@ -1558,7 +1552,7 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * Returns the matches ids where the competition is the given one
+     * Returns the matches ids where the competition is the given one.
      *
      * @param array    $matchesIds
      * @param int|null $competitionId
@@ -1572,14 +1566,14 @@ class MatchRepository extends AbstractEntityRepository
         $queryBuilder = $this->entityManager->createQueryBuilder();
 
         /**
-         * If no copmpetition, return all the matches id's
+         * If no copmpetition, return all the matches id's.
          */
         if (is_null($competitionId)) {
             return $matchesIds;
         }
 
         /**
-         * Filter by match ids and competition
+         * Filter by match ids and competition.
          */
         if (is_array($matchesIds) && !empty($matchesIds)) {
             $queryBuilder
@@ -1656,7 +1650,7 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * Returns the matches given by the id's ordered by StartDtae
+     * Returns the matches given by the id's ordered by StartDtae.
      *
      * @param int[] Ids
      *
@@ -1769,7 +1763,6 @@ class MatchRepository extends AbstractEntityRepository
             );
 
         return $query->getQuery()->getArrayResult();
-
     }
 
     /**
@@ -1852,7 +1845,7 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * Returns the prepared query builder
+     * Returns the prepared query builder.
      *
      * @param Sport $sport
      *
@@ -1903,7 +1896,7 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * Returns the array of status to search based on the status given
+     * Returns the array of status to search based on the status given.
      *
      * @param string $status Status of matches to search
      *

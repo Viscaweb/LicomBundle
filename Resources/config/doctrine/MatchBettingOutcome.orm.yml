@@ -22,7 +22,7 @@ Visca\Bundle\LicomBundle\Entity\MatchBettingOutcome:
     iparam:
       type: integer
       length: 10
-      nullable: false
+      nullable: true
       options:
         default:
         unsigned: true
@@ -87,7 +87,7 @@ Visca\Bundle\LicomBundle\Entity\MatchBettingOutcome:
           referencedColumnName: id
           nullable: false
   discriminatorColumn:
-    name: BettingOutcomeType
+    name: type
     type: smallint
   discriminatorMap:
     1: Visca\Bundle\LicomBundle\Entity\ThreeWayMatchBettingOutcome

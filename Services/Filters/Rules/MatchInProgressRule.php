@@ -1,11 +1,12 @@
 <?php
+
 namespace Visca\Bundle\LicomBundle\Services\Filters\Rules;
 
 use Visca\Bundle\LicomBundle\Entity\Match;
 use Visca\Bundle\LicomBundle\Services\Filters\Rules\Interfaces\FilterMatchRuleInterface;
 
 /**
- * Class MatchInProgressRule
+ * Class MatchInProgressRule.
  */
 class MatchInProgressRule implements FilterMatchRuleInterface
 {

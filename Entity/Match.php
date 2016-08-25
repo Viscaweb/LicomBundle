@@ -142,7 +142,7 @@ class Match implements EntityWithAuxInterface
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isMostRelevant()
     {
@@ -150,7 +150,7 @@ class Match implements EntityWithAuxInterface
     }
 
     /**
-     * @param boolean $mostRelevant
+     * @param bool $mostRelevant
      */
     public function setMostRelevant($mostRelevant)
     {

@@ -8,7 +8,7 @@ trait ListenByCompetitionStageTrait
 {
     /**
      * @param CompetitionStage $stage
-     * 
+     *
      * @return static
      */
     public static function listenByCompetitionStage(CompetitionStage $stage)

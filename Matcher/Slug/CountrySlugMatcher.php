@@ -9,7 +9,7 @@ use Visca\Bundle\LicomBundle\Repository\CountryRepository;
 use Psr\Log\LoggerInterface;
 
 /**
- * Class CountrySlugMatcher
+ * Class CountrySlugMatcher.
  */
 class CountrySlugMatcher
 {
@@ -49,8 +49,9 @@ class CountrySlugMatcher
      * @param string $countrySlug Country Slug, i.e. 'spain'
      * @param Sport  $sport       Sport
      *
-     * @return Country
      * @throws NoMatchFoundException
+     *
+     * @return Country
      */
     public function match($countrySlug, Sport $sport)
     {

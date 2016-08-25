@@ -5,7 +5,6 @@ namespace Visca\Bundle\LicomBundle\Repository;
 use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
 use Visca\Bundle\LicomBundle\Entity\Code\LocalizationTranslationTypeCode;
 use Visca\Bundle\LicomBundle\Entity\Country;
-use Visca\Bundle\LicomBundle\Entity\ProfileEntityGraph;
 use Visca\Bundle\LicomBundle\Entity\Sport;
 use Visca\Bundle\LicomBundle\Exception\NoTranslationFoundException;
 
@@ -125,8 +124,8 @@ class CountryRepository extends AbstractEntityRepository
             ->join('competitionCategory.competition', 'competition')
             ->Where('c.id NOT IN (:notExistsIds)')
             ->andWhere('competitionCategory.sport = :sport')
-            ->setParameter('notExistsIds',$notExistsIds)
-            ->setParameter('sport',$sport)
+            ->setParameter('notExistsIds', $notExistsIds)
+            ->setParameter('sport', $sport)
             ->orderBy('c.name', 'ASC');
 
         if (is_numeric($limit)) {
@@ -158,7 +157,7 @@ class CountryRepository extends AbstractEntityRepository
                     [$countrySlug]
                 );
         } catch (NoTranslationFoundException $ex) {
-            return null;
+            return;
         }
 
         $countriesIds = [];

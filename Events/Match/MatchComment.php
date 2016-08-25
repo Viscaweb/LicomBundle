@@ -8,7 +8,7 @@ use Visca\Bundle\LicomBundle\Events\Traits\ListenByMatchTrait;
 final class MatchComment extends AbstractEvent
 {
     use ListenByMatchTrait;
-    
+
     /**
      * @return string
      */

@@ -9,7 +9,6 @@ use Visca\Bundle\LicomBundle\Events\Traits\ListenByMatchTrait;
 use Visca\Bundle\LicomBundle\Events\Traits\ListenBySportTrait;
 use Visca\Bundle\LicomBundle\Events\Traits\ListenByTeamTrait;
 
-
 final class MatchHasBegun extends AbstractEvent
 {
     use ListenByMatchTrait, ListenByTeamTrait, ListenBySportTrait, ListenByCompetitionTrait, ListenByCompetitionSeasonStageTrait;

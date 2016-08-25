@@ -12,7 +12,7 @@ class ParticipantAux implements AuxInterface
 {
     const YES = 'yes';
     const NO = 'no';
-    
+
     use DeletableTrait;
 
     /**

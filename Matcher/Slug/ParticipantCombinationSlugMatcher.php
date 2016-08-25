@@ -1,12 +1,9 @@
 <?php
+
 namespace Visca\Bundle\LicomBundle\Matcher\Slug;
 
-use Doctrine\Common\Cache\Cache;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Config\FileLocatorInterface;
 use Visca\Bundle\LicomBundle\Entity\Code\LocalizationTranslationTypeCode;
 use Visca\Bundle\LicomBundle\Entity\Code\ProfileTranslationGraphLabelCode;
-use Visca\Bundle\LicomBundle\Entity\LocalizationTranslation;
 use Visca\Bundle\LicomBundle\Entity\Participant;
 use Visca\Bundle\LicomBundle\Entity\Sport;
 use Visca\Bundle\LicomBundle\Exception\NoMatchFoundException;
@@ -16,7 +13,7 @@ use Visca\Bundle\LicomBundle\Repository\LocalizationTranslationRepository;
 use Visca\Bundle\LicomBundle\Repository\ParticipantRepository;
 
 /**
- * Class ParticipantCombinationSlugMatcher
+ * Class ParticipantCombinationSlugMatcher.
  */
 class ParticipantCombinationSlugMatcher
 {
@@ -50,8 +47,9 @@ class ParticipantCombinationSlugMatcher
      * @param string $homeTeamSlug   Supposed Home Team Slug
      * @param string $awayTeamSlug   Supposed Away Team Slug
      *
-     * @return ParticipantCombinationModel[]
      * @throws NoMatchFoundException
+     *
+     * @return ParticipantCombinationModel[]
      */
     public function getParticipantCombinations(
         Sport $sport,
@@ -100,9 +98,9 @@ class ParticipantCombinationSlugMatcher
      * @param int    $licomProfileId  App's Profile ID
      * @param string $participantSlug Supposed Participant Slug
      *
-     * @return Participant[]
-     *
      * @throws NoMatchFoundException
+     *
+     * @return Participant[]
      */
     private function findParticipants(
         Sport $sport,
@@ -110,7 +108,7 @@ class ParticipantCombinationSlugMatcher
         $participantSlug
     ) {
         $profileGraphLabelId = ProfileTranslationGraphLabelCode::SLUG_CODE;
-        $localizationTranslationTypeId = (int)LocalizationTranslationTypeCode::PARTICIPANT_SLUG_CODE;
+        $localizationTranslationTypeId = (int) LocalizationTranslationTypeCode::PARTICIPANT_SLUG_CODE;
 
         try {
             $participantTranslationSlugs = $this

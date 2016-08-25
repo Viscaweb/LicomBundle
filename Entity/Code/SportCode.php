@@ -3,7 +3,7 @@
 namespace Visca\Bundle\LicomBundle\Entity\Code;
 
 /**
- * Class SportCode
+ * Class SportCode.
  */
 class SportCode
 {

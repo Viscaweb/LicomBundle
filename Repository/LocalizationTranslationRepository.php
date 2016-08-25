@@ -48,8 +48,9 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      * @param int $profileGraphLabelId           Profile Graph Label ID
      * @param int $entityId                      Entity to look for
      *
-     * @return LocalizationTranslation
      * @throws NoTranslationFoundException
+     *
+     * @return LocalizationTranslation
      */
     public function findOneByProfile(
         $profileId,
@@ -73,9 +74,9 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      * @param int   $profileGraphLabelId           Profile Graph Label ID
      * @param int[] $entityIds                     Entities to look for
      *
-     * @return LocalizationTranslation[]
-     *
      * @throws NoTranslationFoundException
+     *
+     * @return LocalizationTranslation[]
      */
     public function findByProfileAndEntityIds(
         $profileId,
@@ -97,9 +98,9 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      * @param int      $profileGraphLabelId           Profile Graph Label ID
      * @param string[] $textCollection                Text to look for
      *
-     * @return LocalizationTranslation[]
-     *
      * @throws NoTranslationFoundException
+     *
+     * @return LocalizationTranslation[]
      */
     public function findByProfileAndText(
         $profileId,
@@ -123,9 +124,9 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      * @param int[]    $filterEntityId                Filter by entity ID
      * @param string[] $filterText                    Filter by text value
      *
-     * @return LocalizationTranslation[]
-     *
      * @throws NoTranslationFoundException
+     *
+     * @return LocalizationTranslation[]
      */
     private function findByProfile(
         $profileId,
@@ -168,7 +169,7 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
         }
 
         /**
-         * Filter by text
+         * Filter by text.
          */
         if (!empty($filterText)) {
             $qb
@@ -203,9 +204,9 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      * @param int      $localizationTranslationTypeId Localization Translation Type
      * @param string[] $textCollection                Text to look for
      *
-     * @return LocalizationTranslation[]
-     *
      * @throws NoTranslationFoundException
+     *
+     * @return LocalizationTranslation[]
      */
     public function findByProfileAndTextUsingRules(
         $profileId,
@@ -225,9 +226,9 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      * @param int   $localizationTranslationTypeId Localization Translation Type
      * @param int[] $entityIds                     Entities to look for
      *
-     * @return LocalizationTranslation[]
-     *
      * @throws NoTranslationFoundException
+     *
+     * @return LocalizationTranslation[]
      */
     public function findByProfileAndEntityIdsUsingRules(
         $profileId,
@@ -247,9 +248,9 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      * @param int[]    $filterEntityId                Entities to look for
      * @param string[] $filterText                    Text to look for
      *
-     * @return LocalizationTranslation[]
-     *
      * @throws NoTranslationFoundException
+     *
+     * @return LocalizationTranslation[]
      */
     private function findByProfileUsingRules(
         $profileId,
@@ -322,8 +323,9 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      * @param int $localizationTranslationTypeId Localization Translation Type
      * @param int $entityId                      Entity to look for
      *
-     * @return LocalizationTranslation
      * @throws NoTranslationFoundException
+     *
+     * @return LocalizationTranslation
      */
     public function findOneByLocalizationAndEntityId(
         $localizationId,
@@ -344,9 +346,9 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      * @param int   $localizationTranslationTypeId Localization Translation Type
      * @param int[] $entityIdCollection            Entities to look for
      *
-     * @return LocalizationTranslation[]
-     *
      * @throws NoTranslationFoundException
+     *
+     * @return LocalizationTranslation[]
      */
     public function findByLocalizationAndEntityIds(
         $localizationId,
@@ -365,8 +367,9 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      * @param int    $localizationTranslationTypeId Localization Translation Type
      * @param string $text                          Text to look for
      *
-     * @return LocalizationTranslation
      * @throws NoTranslationFoundException
+     *
+     * @return LocalizationTranslation
      */
     public function findOneByLocalizationAndText(
         $localizationId,
@@ -387,9 +390,9 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      * @param int      $localizationTranslationTypeId Localization Translation Type
      * @param string[] $textCollection                Text to look for
      *
-     * @return LocalizationTranslation[]
-     *
      * @throws NoTranslationFoundException
+     *
+     * @return LocalizationTranslation[]
      */
     public function findByLocalizationAndText(
         $localizationId,
@@ -410,9 +413,9 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      * @param int[]    $filterEntityId                Filter by entity ID
      * @param string[] $filterText                    Filter by text value
      *
-     * @return LocalizationTranslation[]
-     *
      * @throws NoTranslationFoundException
+     *
+     * @return LocalizationTranslation[]
      */
     private function findByLocalization(
         $localizationId,
@@ -452,7 +455,7 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
         }
 
         /**
-         * Filter by text
+         * Filter by text.
          */
         if (!empty($filterText)) {
             $qb

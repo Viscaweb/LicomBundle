@@ -33,9 +33,9 @@ class CompetitionCategoryRepository extends AbstractEntityRepository
     }
 
     /**
-     * Returns all the CompetitionCategory in the array given
+     * Returns all the CompetitionCategory in the array given.
      *
-     * @param  array|null $competitionCategoriesIds ids to search
+     * @param array|null  $competitionCategoriesIds ids to search
      * @param string|null $orderBy                  Field to order by
      *
      * @return CompetitionCategory[]
