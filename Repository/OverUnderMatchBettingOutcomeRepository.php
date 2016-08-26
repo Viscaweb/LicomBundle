@@ -3,7 +3,7 @@
 namespace Visca\Bundle\LicomBundle\Repository;
 
 /**
- * Class OverUnderMatchBettingOutcome.
+ * Class OverUnderMatchBettingOutcomeRepository.
  */
 class OverUnderMatchBettingOutcomeRepository extends BettingOutcomeRepository
 {
