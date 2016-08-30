@@ -11,7 +11,7 @@ final class Event
     private $objectId;
 
     /** @var \DateTimeImmutable */
-    private $publishedDate;
+    private $publishedAt;
 
     /**
      * Event constructor.
@@ -20,11 +20,11 @@ final class Event
      * @param string                  $objectId
      * @param \DateTimeImmutable|null $timestamp
      */
-    public function __construct($eventName, $objectId, \DateTimeImmutable $publishedDate = null)
+    public function __construct($eventName, $objectId, \DateTimeImmutable $publishedAt = null)
     {
         $this->eventName = $eventName;
         $this->objectId = $objectId;
-        $this->publishedDate = $publishedDate ?: new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
+        $this->publishedAt = $publishedAt ?: new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
     }
 
     /**
@@ -46,9 +46,9 @@ final class Event
     /**
      * @return \DateTimeImmutable
      */
-    public function getPublishedDate()
+    public function getPublishedAt()
     {
-        return $this->publishedDate;
+        return $this->publishedAt;
     }
 
     /**
@@ -59,7 +59,7 @@ final class Event
         return json_encode([
             'eventName' => $this->eventName,
             'objectId' => $this->objectId,
-            'publishedDate' => $this->publishedDate->format('Y-m-d H:i:s'),
+            'publishedAt' => $this->publishedAt->format('Y-m-d H:i:s'),
         ]);
     }
 }
