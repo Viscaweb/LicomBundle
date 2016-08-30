@@ -33,3 +33,6 @@ Visca\Bundle\LicomBundle\Entity\BettingOfferProvider:
     bettingOffers:
       targetEntity: Visca\Bundle\LicomBundle\Entity\BettingOffer
       mappedBy: bettingOfferProvider
+    bookmakers:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\Bookmaker
+      mappedBy: provider
