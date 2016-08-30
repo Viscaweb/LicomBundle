@@ -17,7 +17,7 @@ class BettingOfferProviderRepository extends AbstractEntityRepository
      *
      * @return array
      */
-    public function findIdsFromOutcomes($outcomeIds = array(), $providersLimit = 3)
+    public function findIdsFromOutcomes($outcomeIds = [], $providersLimit = 3)
     {
         if (empty($outcomeIds)) {
             return [];
@@ -35,5 +35,24 @@ class BettingOfferProviderRepository extends AbstractEntityRepository
         $arrayResult = $queryBuilder->getQuery()->getScalarResult();
 
         return array_column($arrayResult, 'id');
+    }
+
+    /**
+     * Returns all the Partners that follows  keys available.
+     *
+     * @param array $bookmakerKeys
+     *
+     * @return array
+     */
+    public function findByBookmakerKeys($bookmakerKeys = [])
+    {
+        $queryBuilder = $this
+            ->createQueryBuilder('p')
+            ->select('p')
+            ->join('p.bookmakers', 'bm')
+            ->andWhere('bm.id in (:bookmakerKeys)')
+            ->setParameter('bookmakerKeys', $bookmakerKeys);
+
+        return $queryBuilder->getQuery()->getResult();
     }
 }
