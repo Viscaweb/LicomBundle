@@ -19,7 +19,7 @@ class BettingOutcomeRepository extends AbstractEntityRepository
      *
      * @return array
      */
-    public function getOrdinaryTimeOutcomeIdsByMatchIdAndType($matchId = null, $outcomeType = null)
+    public function getOrdinaryTimeOutcomesByMatchIdAndType($matchId = null, $outcomeType = null)
     {
         if (is_null($matchId)  || is_null($outcomeType)) {
             return [];
@@ -27,7 +27,7 @@ class BettingOutcomeRepository extends AbstractEntityRepository
 
         $queryBuilder = $this
             ->createQueryBuilder('o')
-            ->select('o.id')
+            ->select('o')
             ->where('o.entity = :entity')
             ->andWhere('o.entityId = :matchId')
             ->andWhere('o.scopeType = :bettingOutcomeScopeType')
@@ -37,8 +37,6 @@ class BettingOutcomeRepository extends AbstractEntityRepository
             ->setParameter('bettingOutcomeScopeType', BettingOutcomeScopeTypeCode::ORDINARY_TIME_CODE)
             ->setParameter('outcomeType', $outcomeType);
 
-        $arrayResult = $queryBuilder->getQuery()->getScalarResult();
-
-        return array_column($arrayResult, 'id');
+        return $queryBuilder->getQuery()->getResult();
     }
 }

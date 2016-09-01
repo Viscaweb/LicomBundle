@@ -2,6 +2,7 @@
 
 namespace Visca\Bundle\LicomBundle\Repository;
 
+use Doctrine\ORM\Query\Expr\Join;
 use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
 
 /**
@@ -52,6 +53,41 @@ class BettingOfferProviderRepository extends AbstractEntityRepository
             ->join('p.bookmakers', 'bm')
             ->andWhere('bm.id in (:bookmakerKeys)')
             ->setParameter('bookmakerKeys', $bookmakerKeys);
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+    /**
+     * Returns all the offers from the given outcome ids and provider ids.
+     *
+     * @param array $outcomeIds
+     * @param array $bookmakerKeys
+     * @param int   $bookmakersLimit
+     *
+     * @return array
+     */
+    public function findProviderByOutcomeAndBookmakerKeys($outcomeIds = [], $bookmakerKeys = [], $bookmakersLimit = 3)
+    {
+        if (empty($outcomeIds) || empty($bookmakerKeys)) {
+            return [];
+        }
+
+        $queryBuilder = $this
+            ->createQueryBuilder('p')
+            ->select('p')
+            ->join('p.bettingOffers', 'o')
+            ->join(
+                'ViscaLicomBundle:Bookmaker',
+                'b',
+                Join::WITH,
+                'b.provider = p.id'
+            )
+            ->where('o.bettingOutcome IN (:outcomeIds)')
+            ->andWhere('b.id IN (:bookmakerKeys)')
+            ->setParameter('outcomeIds', $outcomeIds)
+            ->setParameter('bookmakerKeys', $bookmakerKeys)
+            ->setMaxResults($bookmakersLimit)
+            ->groupBy('p.id');
 
         return $queryBuilder->getQuery()->getResult();
     }
