@@ -64,19 +64,19 @@ class ParticipantCombinationSlugMatcher
         $awayTeamSlug
     ) {
 
-        $key = $this->key($sport, $licomProfileId, $homeTeamSlug, $awayTeamSlug);
+        $key = $this->key($sport->getId(), $licomProfileId, $homeTeamSlug, $awayTeamSlug);
 
-        if (!$this->cache->contains($key)) {
-            $participantsCombination = $this->calculateParticipantsCombination(
-                $sport->getId(), $licomProfileId, $homeTeamSlug, $awayTeamSlug
-            );
-
-            $this->cache->save($key, $participantsCombination);
-
-            return $participantsCombination;
+        if ($this->cache->contains($key)) {
+            return $this->cache->fetch($key);
         }
 
-        return $this->cache->fetch($key);
+        $participantsCombination = $this->calculateParticipantsCombination(
+            $sport, $licomProfileId, $homeTeamSlug, $awayTeamSlug
+        );
+
+        $this->cache->save($key, $participantsCombination);
+
+        return $participantsCombination;
     }
 
     /**
@@ -186,6 +186,6 @@ class ParticipantCombinationSlugMatcher
      */
     private function key($sportId, $licomProfileId, $homeTeamSlug, $awayTeamSlug)
     {
-        return md5($sportId . $licomProfileId . $homeTeamSlug . $awayTeamSlug);
+        return md5('sport' . $sportId . 'profile' . $licomProfileId . 'home' . $homeTeamSlug . 'away' . $awayTeamSlug);
     }
 }
