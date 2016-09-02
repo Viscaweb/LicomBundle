@@ -2,6 +2,7 @@
 
 namespace Visca\Bundle\LicomBundle\Matcher\Slug;
 
+use Doctrine\Common\Cache\Cache;
 use Visca\Bundle\LicomBundle\Entity\Code\LocalizationTranslationTypeCode;
 use Visca\Bundle\LicomBundle\Entity\Code\ProfileTranslationGraphLabelCode;
 use Visca\Bundle\LicomBundle\Entity\Participant;
@@ -27,25 +28,30 @@ class ParticipantCombinationSlugMatcher
      */
     protected $localizationTranslationRepository;
 
+    /** @var Cache */
+    private $cache;
+
     /**
      * ParticipantCombinationSlugMatcher constructor.
      *
-     * @param ParticipantRepository             $participantRepository             Participant Repository
+     * @param ParticipantRepository $participantRepository Participant Repository
      * @param LocalizationTranslationRepository $localizationTranslationRepository Loc. Trans Repository
      */
     public function __construct(
         ParticipantRepository $participantRepository,
-        LocalizationTranslationRepository $localizationTranslationRepository
+        LocalizationTranslationRepository $localizationTranslationRepository,
+        Cache $cache
     ) {
         $this->participantRepository = $participantRepository;
         $this->localizationTranslationRepository = $localizationTranslationRepository;
+        $this->cache = $cache;
     }
 
     /**
-     * @param Sport  $sport          Sport of the given teams slugs
-     * @param int    $licomProfileId App's Profile ID
-     * @param string $homeTeamSlug   Supposed Home Team Slug
-     * @param string $awayTeamSlug   Supposed Away Team Slug
+     * @param Sport $sport Sport of the given teams slugs
+     * @param int $licomProfileId App's Profile ID
+     * @param string $homeTeamSlug Supposed Home Team Slug
+     * @param string $awayTeamSlug Supposed Away Team Slug
      *
      * @throws NoMatchFoundException
      *
@@ -57,45 +63,25 @@ class ParticipantCombinationSlugMatcher
         $homeTeamSlug,
         $awayTeamSlug
     ) {
-        /*
-         * Get the home/away participant IDs from translations
-         */
-        try {
-            $homeParticipants = $this->findParticipants(
-                $sport,
-                $licomProfileId,
-                $homeTeamSlug
+
+        $key = $this->key($sport, $licomProfileId, $homeTeamSlug, $awayTeamSlug);
+
+        if (!$this->cache->contains($key)) {
+            $participantsCombination = $this->calculateParticipantsCombination(
+                $sport->getId(), $licomProfileId, $homeTeamSlug, $awayTeamSlug
             );
-            $awayParticipants = $this->findParticipants(
-                $sport,
-                $licomProfileId,
-                $awayTeamSlug
-            );
-        } catch (NoMatchFoundException $ex) {
-            throw new $ex();
+
+            $this->cache->save($key, $participantsCombination);
+
+            return $participantsCombination;
         }
 
-        /*
-         * Create the custom combination model
-         */
-        $matchSlug = sprintf('%s-%s', $homeTeamSlug, $awayTeamSlug);
-        $participantCombinationModels = [];
-        foreach ($homeParticipants as $homeParticipant) {
-            foreach ($awayParticipants as $awayParticipant) {
-                $participantCombinationModels[] = new ParticipantCombinationModel(
-                    $homeParticipant,
-                    $awayParticipant,
-                    $matchSlug
-                );
-            }
-        }
-
-        return $participantCombinationModels;
+        return $this->cache->fetch($key);
     }
 
     /**
-     * @param Sport  $sport           Sport of the given teams slugs
-     * @param int    $licomProfileId  App's Profile ID
+     * @param Sport $sport Sport of the given teams slugs
+     * @param int $licomProfileId App's Profile ID
      * @param string $participantSlug Supposed Participant Slug
      *
      * @throws NoMatchFoundException
@@ -108,7 +94,7 @@ class ParticipantCombinationSlugMatcher
         $participantSlug
     ) {
         $profileGraphLabelId = ProfileTranslationGraphLabelCode::SLUG_CODE;
-        $localizationTranslationTypeId = (int) LocalizationTranslationTypeCode::PARTICIPANT_SLUG_CODE;
+        $localizationTranslationTypeId = (int)LocalizationTranslationTypeCode::PARTICIPANT_SLUG_CODE;
 
         try {
             $participantTranslationSlugs = $this
@@ -143,5 +129,63 @@ class ParticipantCombinationSlugMatcher
         }
 
         return $participants;
+    }
+
+    /**
+     * @param Sport $sport
+     * @param $licomProfileId
+     * @param $homeTeamSlug
+     * @param $awayTeamSlug
+     * @return array
+     */
+    private function calculateParticipantsCombination(Sport $sport, $licomProfileId, $homeTeamSlug, $awayTeamSlug)
+    {
+        /*
+        * Get the home/away participant IDs from translations
+        */
+        try {
+            $homeParticipants = $this->findParticipants(
+                $sport,
+                $licomProfileId,
+                $homeTeamSlug
+            );
+            $awayParticipants = $this->findParticipants(
+                $sport,
+                $licomProfileId,
+                $awayTeamSlug
+            );
+        } catch (NoMatchFoundException $ex) {
+            throw new $ex();
+        }
+
+        /*
+         * Create the custom combination model
+         */
+        $matchSlug = sprintf('%s-%s', $homeTeamSlug, $awayTeamSlug);
+        $participantCombinationModels = [];
+        foreach ($homeParticipants as $homeParticipant) {
+            foreach ($awayParticipants as $awayParticipant) {
+                $participantCombinationModels[] = new ParticipantCombinationModel(
+                    $homeParticipant,
+                    $awayParticipant,
+                    $matchSlug
+                );
+            }
+        }
+
+        return $participantCombinationModels;
+    }
+
+    /**
+     * @param int $sportId
+     * @param string $licomProfileId
+     * @param string $homeTeamSlug
+     * @param string $awayTeamSlug
+     *
+     * @return string
+     */
+    private function key($sportId, $licomProfileId, $homeTeamSlug, $awayTeamSlug)
+    {
+        return md5($sportId . $licomProfileId . $homeTeamSlug . $awayTeamSlug);
     }
 }
