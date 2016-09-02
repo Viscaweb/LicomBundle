@@ -34,7 +34,7 @@ class ParticipantCombinationSlugMatcher
     /**
      * ParticipantCombinationSlugMatcher constructor.
      *
-     * @param ParticipantRepository $participantRepository Participant Repository
+     * @param ParticipantRepository             $participantRepository             Participant Repository
      * @param LocalizationTranslationRepository $localizationTranslationRepository Loc. Trans Repository
      */
     public function __construct(
@@ -48,10 +48,10 @@ class ParticipantCombinationSlugMatcher
     }
 
     /**
-     * @param Sport $sport Sport of the given teams slugs
-     * @param int $licomProfileId App's Profile ID
-     * @param string $homeTeamSlug Supposed Home Team Slug
-     * @param string $awayTeamSlug Supposed Away Team Slug
+     * @param Sport  $sport          Sport of the given teams slugs
+     * @param int    $licomProfileId App's Profile ID
+     * @param string $homeTeamSlug   Supposed Home Team Slug
+     * @param string $awayTeamSlug   Supposed Away Team Slug
      *
      * @throws NoMatchFoundException
      *
@@ -63,7 +63,6 @@ class ParticipantCombinationSlugMatcher
         $homeTeamSlug,
         $awayTeamSlug
     ) {
-
         $key = $this->key($sport->getId(), $licomProfileId, $homeTeamSlug, $awayTeamSlug);
 
         if ($this->cache->contains($key)) {
@@ -80,8 +79,8 @@ class ParticipantCombinationSlugMatcher
     }
 
     /**
-     * @param Sport $sport Sport of the given teams slugs
-     * @param int $licomProfileId App's Profile ID
+     * @param Sport  $sport           Sport of the given teams slugs
+     * @param int    $licomProfileId  App's Profile ID
      * @param string $participantSlug Supposed Participant Slug
      *
      * @throws NoMatchFoundException
@@ -94,7 +93,7 @@ class ParticipantCombinationSlugMatcher
         $participantSlug
     ) {
         $profileGraphLabelId = ProfileTranslationGraphLabelCode::SLUG_CODE;
-        $localizationTranslationTypeId = (int)LocalizationTranslationTypeCode::PARTICIPANT_SLUG_CODE;
+        $localizationTranslationTypeId = (int) LocalizationTranslationTypeCode::PARTICIPANT_SLUG_CODE;
 
         try {
             $participantTranslationSlugs = $this
@@ -136,6 +135,7 @@ class ParticipantCombinationSlugMatcher
      * @param $licomProfileId
      * @param $homeTeamSlug
      * @param $awayTeamSlug
+     *
      * @return array
      */
     private function calculateParticipantsCombination(Sport $sport, $licomProfileId, $homeTeamSlug, $awayTeamSlug)
@@ -177,7 +177,7 @@ class ParticipantCombinationSlugMatcher
     }
 
     /**
-     * @param int $sportId
+     * @param int    $sportId
      * @param string $licomProfileId
      * @param string $homeTeamSlug
      * @param string $awayTeamSlug
