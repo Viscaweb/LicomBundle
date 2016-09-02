@@ -74,14 +74,9 @@ class BettingOfferProviderRepository extends AbstractEntityRepository
 
         $queryBuilder = $this
             ->createQueryBuilder('p')
-            ->select('p')
+            ->select('p, partial b.{id}')
             ->join('p.bettingOffers', 'o')
-            ->join(
-                'ViscaLicomBundle:Bookmaker',
-                'b',
-                Join::WITH,
-                'b.provider = p.id'
-            )
+            ->join('p.bookmakers', 'b')
             ->where('o.bettingOutcome IN (:outcomeIds)')
             ->andWhere('b.id IN (:bookmakerKeys)')
             ->setParameter('outcomeIds', $outcomeIds)
