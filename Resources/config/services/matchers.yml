@@ -35,6 +35,7 @@ services:
             arguments:
                 - '@visca_licom.repository.participant'
                 - '@visca_licom.repository.localization_translation'
+                - '@visca_licom.cache.participant_combination'
 
     # Helper
     visca_licom.matcher.helper.participant_combination:
