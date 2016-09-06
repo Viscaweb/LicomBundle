@@ -33,6 +33,9 @@ class BettingOfferProvider
      */
     private $bettingOffers;
 
+    /** @var Bookmaker[] */
+    private $bookmakers;
+
     /**
      * Get id.
      *
@@ -97,6 +100,26 @@ class BettingOfferProvider
     public function setBettingOffers($bettingOffers)
     {
         $this->bettingOffers = $bettingOffers;
+
+        return $this;
+    }
+
+    /**
+     * @return Bookmaker[]
+     */
+    public function getBookmakers()
+    {
+        return $this->bookmakers;
+    }
+
+    /**
+     * @param Bookmaker[] $bookmakers
+     *
+     * @return BettingOfferProvider
+     */
+    public function setBookmakers($bookmakers)
+    {
+        $this->bookmakers = $bookmakers;
 
         return $this;
     }

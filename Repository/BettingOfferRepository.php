@@ -87,41 +87,4 @@ class BettingOfferRepository extends AbstractEntityRepository
 
         return $queryBuilder->getQuery()->getResult();
     }
-
-    /**
-     * Returns all the offers from the given outcome ids and provider ids.
-     *
-     * @param array $outcomeIds
-     * @param array $bookmakerKeys
-     * @param int   $bookmakersLimit
-     *
-     * @return array
-     */
-    public function findProviderIdsByOutcomeIdsAndBookmakerKeys($outcomeIds = [], $bookmakerKeys = [], $bookmakersLimit = 3)
-    {
-        if (empty($outcomeIds) || empty($bookmakerKeys)) {
-            return [];
-        }
-
-        $queryBuilder = $this
-            ->createQueryBuilder('o')
-            ->select('p.id')
-            ->join('o.bettingOfferProvider', 'p')
-            ->join(
-                'ViscaLicomBundle:Bookmaker',
-                'b',
-                Join::WITH,
-                'b.provider = p.id'
-            )
-            ->where('o.bettingOutcome IN (:outcomeIds)')
-            ->andWhere('b.id IN (:bookmakerKeys)')
-            ->setParameter('outcomeIds', $outcomeIds)
-            ->setParameter('bookmakerKeys', $bookmakerKeys)
-            ->setMaxResults($bookmakersLimit)
-            ->groupBy('p.id');
-
-        $providerIds = $queryBuilder->getQuery()->getScalarResult();
-
-        return array_column($providerIds, 'id');
-    }
 }

@@ -476,6 +476,22 @@ services:
             - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\BettingOutcomeSubType
 
+    visca_licom.repository.betting_outcome_over_under:
+        class: Visca\Bundle\LicomBundle\Repository\OverUnderMatchBettingOutcomeRepository
+        factory_service: visca_doctrine.repository.factory
+        factory_method: getRepository
+        arguments:
+            - '@visca_licom.entity_manager'
+            - Visca\Bundle\LicomBundle\Entity\OverUnderMatchBettingOutcome
+
+    visca_licom.repository.betting_outcome_two_way:
+        class: Visca\Bundle\LicomBundle\Repository\TwoWayMatchBettingOutcomeRepository
+        factory_service: visca_doctrine.repository.factory
+        factory_method: getRepository
+        arguments:
+            - '@visca_licom.entity_manager'
+            - Visca\Bundle\LicomBundle\Entity\TwoWayMatchBettingOutcome
+
     visca_licom.repository.betting_outcome_three_way:
         class: Visca\Bundle\LicomBundle\Repository\ThreeWayMatchBettingOutcomeRepository
         factory_service: visca_doctrine.repository.factory
