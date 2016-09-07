@@ -3,6 +3,11 @@ Visca\Bundle\LicomBundle\Entity\MatchBettingOutcome:
   inheritanceType: SINGLE_TABLE
   table: BettingOutcome
   repositoryClass: Visca\Bundle\LicomBundle\Repository\MatchBettingOutcomeRepository
+  entityListeners:
+    Visca\Bundle\SportBundle\EventDispatcher\Listener\MatchBettingOutcomeListener:
+      postPersist: [dispatchEvents]
+      postUpdate: [dispatchEvents]
+      preRemove: [dispatchEvents]
   id:
     id:
       type: integer
