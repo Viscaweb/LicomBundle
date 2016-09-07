@@ -28,6 +28,7 @@ class StandingCommentRepository extends AbstractEntityRepository
                 'standingRow' => $standingRow,
                 'label' => StandingCommentGraphLabelCode::DEFAULT_CODE
             ])
+            ->setMaxResults(1)
             ->getQuery()
             ->getOneOrNullResult();
     }
