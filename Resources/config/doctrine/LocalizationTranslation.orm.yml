@@ -18,9 +18,9 @@ Visca\Bundle\LicomBundle\Entity\LocalizationTranslation:
       options:
         unsigned: true
     text:
-      type: text
+      type: string
+      length: 45
       nullable: true
-      columnDefinition: LONGTEXT
       options:
         default: NULL
     del:
@@ -42,6 +42,8 @@ Visca\Bundle\LicomBundle\Entity\LocalizationTranslation:
   indexes:
     idx_entityId:
       columns: [entityId]
+    idx_text:
+      columns: [text]
     idx_localizationTranslationType_entityId:
       columns: [LocalizationTranslationType, entityId]
     fk_localizationTranslationType:
