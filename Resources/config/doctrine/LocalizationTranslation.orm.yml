@@ -19,7 +19,7 @@ Visca\Bundle\LicomBundle\Entity\LocalizationTranslation:
         unsigned: true
     text:
       type: string
-      length: 45
+      length: 255
       nullable: true
       options:
         default: NULL
