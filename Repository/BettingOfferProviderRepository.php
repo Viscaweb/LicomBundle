@@ -52,6 +52,7 @@ class BettingOfferProviderRepository extends AbstractEntityRepository
             ->select('p')
             ->join('p.bookmakers', 'bm')
             ->andWhere('bm.id in (:bookmakerKeys)')
+            ->orderBy('FIELD(bm.id, :bookmakerKeys)')
             ->setParameter('bookmakerKeys', $bookmakerKeys);
 
         return $queryBuilder->getQuery()->getResult();
@@ -82,6 +83,7 @@ class BettingOfferProviderRepository extends AbstractEntityRepository
             ->setParameter('outcomeIds', $outcomeIds)
             ->setParameter('bookmakerKeys', $bookmakerKeys)
             ->setMaxResults($bookmakersLimit)
+            ->orderBy('FIELD(b.id, :bookmakerKeys)')
             ->groupBy('p.id');
 
         return $queryBuilder->getQuery()->getResult();
