@@ -63,11 +63,10 @@ class BettingOfferProviderRepository extends AbstractEntityRepository
      *
      * @param array $outcomeIds
      * @param array $bookmakerKeys
-     * @param int   $bookmakersLimit
      *
      * @return array
      */
-    public function findProviderByOutcomeAndBookmakerKeys($outcomeIds = [], $bookmakerKeys = [], $bookmakersLimit = 3)
+    public function findProviderByOutcomeAndBookmakerKeys($outcomeIds = [], $bookmakerKeys = [])
     {
         if (empty($outcomeIds) || empty($bookmakerKeys)) {
             return [];
@@ -82,7 +81,6 @@ class BettingOfferProviderRepository extends AbstractEntityRepository
             ->andWhere('b.id IN (:bookmakerKeys)')
             ->setParameter('outcomeIds', $outcomeIds)
             ->setParameter('bookmakerKeys', $bookmakerKeys)
-            ->setMaxResults($bookmakersLimit)
             ->orderBy('FIELD(b.id, :bookmakerKeys)')
             ->groupBy('p.id');
 
