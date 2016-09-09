@@ -74,15 +74,14 @@ class BettingOfferProviderRepository extends AbstractEntityRepository
 
         $queryBuilder = $this
             ->createQueryBuilder('p')
-            ->select('p, partial b.{id}')
+            ->select('p, b, o')
             ->join('p.bettingOffers', 'o')
             ->join('p.bookmakers', 'b')
             ->where('o.bettingOutcome IN (:outcomeIds)')
             ->andWhere('b.id IN (:bookmakerKeys)')
             ->setParameter('outcomeIds', $outcomeIds)
             ->setParameter('bookmakerKeys', $bookmakerKeys)
-            ->orderBy('FIELD(b.id, :bookmakerKeys)')
-            ->groupBy('p.id');
+            ->orderBy('FIELD(b.id, :bookmakerKeys)');
 
         return $queryBuilder->getQuery()->getResult();
     }
