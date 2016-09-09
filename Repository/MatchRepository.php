@@ -339,12 +339,34 @@ class MatchRepository extends AbstractEntityRepository
         $matchStatusCategory = null,
         $participantPosition = null
     ) {
+        // To make the query WAY faster, we'll extract the list of IDs for this team.
+        $matchesIds = [];
+        $rawMatchesIds = $this
+            ->entityManager
+            ->createQueryBuilder()
+            ->select('IDENTITY(mp.match) AS matchId')
+            ->from('ViscaLicomBundle:MatchParticipant', 'mp')
+            ->where('mp.participant = :participantId')
+            ->setParameter('participantId', $participantId)
+            ->getQuery()
+            ->getArrayResult();
+        foreach ($rawMatchesIds as $rawMatchId) {
+            $matchesIds[] = $rawMatchId['matchId'];
+        }
+
+        if (empty($matchesIds)) {
+            return [];
+        }
+
+        // Run the query
         $optimized = true;
         $matchResultType = is_array($matchResultType) ? $matchResultType : [$matchResultType];
 
 
         $query = $this->createQueryBuilder('m', null, $optimized);
         $query
+            ->andWhere('m.id IN (:filterMatchesIds)')
+            ->setParameter('filterMatchesIds', $matchesIds)
             ->joinMatchParticipant($optimized)
             ->joinMatchResult($matchResultType);
 
