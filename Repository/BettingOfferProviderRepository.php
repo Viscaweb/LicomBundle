@@ -49,9 +49,10 @@ class BettingOfferProviderRepository extends AbstractEntityRepository
     {
         $queryBuilder = $this
             ->createQueryBuilder('p')
-            ->select('p')
+            ->select('p, partial bm.{id}')
             ->join('p.bookmakers', 'bm')
             ->andWhere('bm.id in (:bookmakerKeys)')
+            ->orderBy('FIELD(bm.id, :bookmakerKeys)')
             ->setParameter('bookmakerKeys', $bookmakerKeys);
 
         return $queryBuilder->getQuery()->getResult();
@@ -62,11 +63,10 @@ class BettingOfferProviderRepository extends AbstractEntityRepository
      *
      * @param array $outcomeIds
      * @param array $bookmakerKeys
-     * @param int   $bookmakersLimit
      *
      * @return array
      */
-    public function findProviderByOutcomeAndBookmakerKeys($outcomeIds = [], $bookmakerKeys = [], $bookmakersLimit = 3)
+    public function findProviderByOutcomeAndBookmakerKeys($outcomeIds = [], $bookmakerKeys = [])
     {
         if (empty($outcomeIds) || empty($bookmakerKeys)) {
             return [];
@@ -74,15 +74,14 @@ class BettingOfferProviderRepository extends AbstractEntityRepository
 
         $queryBuilder = $this
             ->createQueryBuilder('p')
-            ->select('p, partial b.{id}')
+            ->select('p, b, o')
             ->join('p.bettingOffers', 'o')
             ->join('p.bookmakers', 'b')
             ->where('o.bettingOutcome IN (:outcomeIds)')
             ->andWhere('b.id IN (:bookmakerKeys)')
             ->setParameter('outcomeIds', $outcomeIds)
             ->setParameter('bookmakerKeys', $bookmakerKeys)
-            ->setMaxResults($bookmakersLimit)
-            ->groupBy('p.id');
+            ->orderBy('FIELD(b.id, :bookmakerKeys)');
 
         return $queryBuilder->getQuery()->getResult();
     }
