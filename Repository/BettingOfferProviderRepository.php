@@ -49,7 +49,7 @@ class BettingOfferProviderRepository extends AbstractEntityRepository
     {
         $queryBuilder = $this
             ->createQueryBuilder('p')
-            ->select('p')
+            ->select('p, partial bm.{id}')
             ->join('p.bookmakers', 'bm')
             ->andWhere('bm.id in (:bookmakerKeys)')
             ->orderBy('FIELD(bm.id, :bookmakerKeys)')
