@@ -28,5 +28,4 @@ class BookmakerRepository extends AbstractEntityRepository
 
         return $queryBuilder->getQuery()->getResult();
     }
-
 }
