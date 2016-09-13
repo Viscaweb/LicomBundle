@@ -2,6 +2,7 @@
 
 namespace Visca\Bundle\LicomBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Visca\Bundle\CoreBundle\Entity\Traits\OptionalDateTimeTrait;
 use Visca\Bundle\CoreBundle\Entity\Traits\DeletableTrait;
 
@@ -32,6 +33,19 @@ class BettingOfferProvider
      * @var BettingOffer[]
      */
     private $bettingOffers;
+
+    /** @var Bookmaker[] */
+    private $bookmakers;
+
+    /**
+     * BettingOfferProvider constructor.
+     */
+    public function __construct()
+    {
+        $this->bettingOffers = new ArrayCollection();
+        $this->bookmakers = new ArrayCollection();
+    }
+
 
     /**
      * Get id.
@@ -97,6 +111,26 @@ class BettingOfferProvider
     public function setBettingOffers($bettingOffers)
     {
         $this->bettingOffers = $bettingOffers;
+
+        return $this;
+    }
+
+    /**
+     * @return Bookmaker[]
+     */
+    public function getBookmakers()
+    {
+        return $this->bookmakers;
+    }
+
+    /**
+     * @param Bookmaker[] $bookmakers
+     *
+     * @return BettingOfferProvider
+     */
+    public function setBookmakers($bookmakers)
+    {
+        $this->bookmakers = $bookmakers;
 
         return $this;
     }

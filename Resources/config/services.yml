@@ -31,3 +31,6 @@ services:
            - '@doctrine.orm.licom_entity_manager'
        tags:
            - { name: kernel.cache_warmer, priority: 0 }
+
+   visca_licom.cache.participant_combination:
+        class: Doctrine\Common\Cache\ArrayCache
