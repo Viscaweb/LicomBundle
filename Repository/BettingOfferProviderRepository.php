@@ -2,6 +2,7 @@
 
 namespace Visca\Bundle\LicomBundle\Repository;
 
+use Doctrine\ORM\Query;
 use Doctrine\ORM\Query\Expr\Join;
 use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
 
@@ -84,6 +85,7 @@ class BettingOfferProviderRepository extends AbstractEntityRepository
             ->setParameter('bookmakerKeys', $bookmakerKeys)
             ->orderBy('FIELD(b.id, :bookmakerKeys)');
 
-        return $queryBuilder->getQuery()->getResult();
+
+        return $queryBuilder->getQuery()->setHint(Query::HINT_REFRESH, true)->getResult();
     }
 }
