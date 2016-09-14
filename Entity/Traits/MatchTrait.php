@@ -55,7 +55,11 @@ trait MatchTrait
             }
         }
 
-        throw new MatchParticipantNotFoundException();
+        throw new MatchParticipantNotFoundException(
+            'Could not find MatchParticipant with number "%d" for match.%d',
+            $participantNumber,
+            $this->getId()
+        );
     }
 
     /**
