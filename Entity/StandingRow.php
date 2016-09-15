@@ -194,7 +194,7 @@ class StandingRow
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isLiveRow()
     {
@@ -202,7 +202,7 @@ class StandingRow
     }
 
     /**
-     * @param boolean $liveRow
+     * @param bool $liveRow
      *
      * @return StandingRow
      */

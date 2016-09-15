@@ -52,7 +52,7 @@ class StandingRepository extends AbstractEntityRepository
 
     /**
      * @param string $entity
-     * @param int $entityId
+     * @param int    $entityId
      *
      * @return bool
      */
