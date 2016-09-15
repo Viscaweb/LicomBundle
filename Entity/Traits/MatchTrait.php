@@ -100,8 +100,7 @@ trait MatchTrait
     public function getMatchResultByNumberAndResultTypeCode(
         $participantNumber,
         $resultTypeCode
-    )
-    {
+    ) {
         $matchParticipant = $this->getMatchParticipantByNumber(
             $participantNumber
         );
