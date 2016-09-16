@@ -53,6 +53,7 @@ Visca\Bundle\LicomBundle\Entity\MatchLineupParticipant:
   manyToOne:
     matchLineup:
       targetEntity: Visca\Bundle\LicomBundle\Entity\MatchLineup
+      inversedBy: matchLineupParticipants
       joinColumns:
         MatchLineup:
           referencedColumnName: id
