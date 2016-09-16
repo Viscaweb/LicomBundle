@@ -21,7 +21,7 @@ class BettingOutcomeRepository extends AbstractEntityRepository
      */
     public function getOrdinaryTimeOutcomesByMatchIdAndType($matchId = null, $outcomeType = null)
     {
-        if (is_null($matchId)  || is_null($outcomeType)) {
+        if (is_null($matchId) || is_null($outcomeType)) {
             return [];
         }
 
