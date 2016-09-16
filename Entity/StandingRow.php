@@ -146,7 +146,7 @@ class StandingRow
     }
 
     /**
-     * @return Collection|StandingCell[]
+     * @return StandingCell[]
      */
     public function getStandingCell()
     {
