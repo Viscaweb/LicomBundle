@@ -34,6 +34,7 @@ Visca\Bundle\LicomBundle\Entity\Bookmaker:
   manyToOne:
     provider:
       targetEntity: Visca\Bundle\LicomBundle\Entity\BettingOfferProvider
+      inversedBy: bookmakers
       joinColumns:
         provider:
           referencedColumnName: id
