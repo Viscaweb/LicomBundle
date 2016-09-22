@@ -943,6 +943,57 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
+     * @param \DateTime $dateFrom       Initial date.
+     * @param \DateTime $dateTo         End date.
+     * @param int[]     $competitionIds List of CompetitionSeasonStages.
+     * @param null      $status         Match status.
+     *
+     * @return array
+     */
+    public function findByDateAndStatusAndCompetitionIds(
+        DateTime $dateFrom,
+        DateTime $dateTo,
+        $competitionIds,
+        $status = null
+    ) {
+        $optimized = true;
+        $this->alterDateObjects($dateFrom, $dateTo);
+
+        $queryBuilder = $this->createQueryBuilder('m');
+
+        $queryBuilder
+            ->setReducedColumnSet($optimized)
+            ->joinMatchParticipant($optimized)
+            ->joinCompetition()
+            ->where('m.startDate BETWEEN :dateFrom AND :dateTo')
+            ->andWhere('c.id IN (:competitionIds)')
+            ->andWhere('mp1.id IS NOT NULL')
+            ->andWhere('mp2.id IS NOT NULL')
+            ->setParameter('dateFrom', $dateFrom->format('Y-m-d H:i:s'))
+            ->setParameter('dateTo', $dateTo->format('Y-m-d H:i:s'))
+            ->setParameter('competitionIds', $competitionIds);
+
+        /*
+         * Filter the status
+         */
+        if ($status !== null) {
+            $statusCategories = $this->prepareStatusCategories($status);
+
+            $queryBuilder
+                ->leftJoin(
+                    'Visca\Bundle\LicomBundle\Entity\MatchStatusDescription',
+                    's',
+                    Join::WITH,
+                    's.id = m.matchStatusDescription'
+                )
+                ->andWhere('s.category IN (:categories)')
+                ->setParameter('categories', $statusCategories);
+        }
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+    /**
      * @param string            $status Match Status description.
      * @param DateTimeInterface $date   A date.
      * @param int|null          $limit  How many matches we want.
