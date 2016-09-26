@@ -32,7 +32,7 @@ class MatchCounterRepository
     /**
      * MatchCounterRepository constructor.
      *
-     * @param MatchRepository $matchRepository
+     * @param MatchRepository                  $matchRepository
      * @param CompetitionSeasonStageRepository $competitionSeasonStageRepository
      */
     public function __construct(
@@ -60,7 +60,7 @@ class MatchCounterRepository
 
     /**
      * @param QueryBuilder $qb
-     * @param Sport $sport
+     * @param Sport        $sport
      */
     private function filterBySport(QueryBuilder $qb, Sport $sport)
     {
@@ -80,7 +80,7 @@ class MatchCounterRepository
 
     /**
      * @param QueryBuilder $qb
-     * @param Competition $competition
+     * @param Competition  $competition
      */
     private function filterByCompetition(
         QueryBuilder $qb,
@@ -101,7 +101,7 @@ class MatchCounterRepository
 
     /**
      * @param QueryBuilder $qb
-     * @param string $matchStatusCategory
+     * @param string       $matchStatusCategory
      */
     private function filterByMatchStatusCategory(
         QueryBuilder $qb,
