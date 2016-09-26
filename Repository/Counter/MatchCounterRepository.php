@@ -159,6 +159,7 @@ class MatchCounterRepository
             ->join('competitionCategory.sport', 'sport')
             ->where('sport.id = :sportId')
             ->andWhere('MatchStatusDescription.category = :statusCategory')
+            ->andWhere("DATE_ADD(m.startDate,1, 'day') > CURRENT_DATE()")
             ->setParameter('statusCategory', MatchStatusDescription::IN_PROGRESS_KEY)
             ->setParameter('sportId', $sport->getId());
 
