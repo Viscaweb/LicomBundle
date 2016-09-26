@@ -17,24 +17,22 @@ use Visca\Bundle\LicomBundle\Repository\MatchRepository;
 class MatchCounterRepository
 {
     /**
+     * @var MatchRepository Match Repository
+     */
+    protected $matchRepository;
+    /**
+     * @var CompetitionSeasonStageRepository Competition Season Stage Repository
+     */
+    protected $competitionSeasonStageRepository;
+    /**
      * @var int
      */
     private $resultCacheLifetime = 60;
 
     /**
-     * @var MatchRepository Match Repository
-     */
-    protected $matchRepository;
-
-    /**
-     * @var CompetitionSeasonStageRepository Competition Season Stage Repository
-     */
-    protected $competitionSeasonStageRepository;
-
-    /**
      * MatchCounterRepository constructor.
      *
-     * @param MatchRepository                  $matchRepository
+     * @param MatchRepository $matchRepository
      * @param CompetitionSeasonStageRepository $competitionSeasonStageRepository
      */
     public function __construct(
@@ -62,7 +60,7 @@ class MatchCounterRepository
 
     /**
      * @param QueryBuilder $qb
-     * @param Sport        $sport
+     * @param Sport $sport
      */
     private function filterBySport(QueryBuilder $qb, Sport $sport)
     {
@@ -82,7 +80,7 @@ class MatchCounterRepository
 
     /**
      * @param QueryBuilder $qb
-     * @param Competition  $competition
+     * @param Competition $competition
      */
     private function filterByCompetition(
         QueryBuilder $qb,
@@ -103,7 +101,7 @@ class MatchCounterRepository
 
     /**
      * @param QueryBuilder $qb
-     * @param string       $matchStatusCategory
+     * @param string $matchStatusCategory
      */
     private function filterByMatchStatusCategory(
         QueryBuilder $qb,
@@ -152,12 +150,17 @@ class MatchCounterRepository
      */
     public function countLiveMatchesBySport(Sport $sport)
     {
-        $queryBuilder = $this->getMatchQueryBuilder();
-        $this->filterByMatchStatusCategory(
-            $queryBuilder,
-            MatchStatusDescription::IN_PROGRESS_KEY
-        );
-        $this->filterBySport($queryBuilder, $sport);
+        $queryBuilder = $this->getMatchQueryBuilder()
+            ->join('m.matchStatusDescription', 'MatchStatusDescription')
+            ->join('m.competitionSeasonStage', 'stage')
+            ->join('stage.competitionSeason', 'season')
+            ->join('season.competition', 'competition')
+            ->join('competition.competitionCategory', 'competitionCategory')
+            ->join('competitionCategory.sport', 'sport')
+            ->where('sport.id = :sportId')
+            ->andWhere('MatchStatusDescription.category = :statusCategory')
+            ->setParameter('statusCategory', MatchStatusDescription::IN_PROGRESS_KEY)
+            ->setParameter('sportId', $sport->getId());
 
         return $this->getScalarResult($queryBuilder);
     }
