@@ -32,7 +32,6 @@ class BettingOutcomeRepository extends AbstractEntityRepository
             ->andWhere('o.entityId = :matchId')
             ->andWhere('o.scopeType = :bettingOutcomeScopeType')
             ->andWhere('o.type = :outcomeType')
-            ->andWhere('o.del = \'no\'')
             ->setParameter('entity', EntityCode::MATCH_CODE)
             ->setParameter('matchId', $matchId)
             ->setParameter('bettingOutcomeScopeType', BettingOutcomeScopeTypeCode::ORDINARY_TIME_CODE)
