@@ -82,9 +82,8 @@ class BettingOfferProviderRepository extends AbstractEntityRepository
             ->andWhere('b.id IN (:bookmakerKeys)')
             ->setParameter('outcomeIds', $outcomeIds)
             ->setParameter('bookmakerKeys', $bookmakerKeys)
-            ->addOrderBy('o.del DESC, o.id', 'DESC')
-            ->groupBy('p.id, o.bettingOutcome, b.id')
-            ->addOrderBy('FIELD(b.id, :bookmakerKeys)');
+            ->addOrderBy('FIELD(b.id, :bookmakerKeys), o.del DESC, o.id', 'DESC')
+            ->groupBy('p.id, o.bettingOutcome, b.id');
 
 
         return $queryBuilder->getQuery()->setHint(Query::HINT_REFRESH, true)->getResult();
