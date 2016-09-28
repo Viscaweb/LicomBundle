@@ -16,8 +16,8 @@ final class Event
     /**
      * Event constructor.
      *
-     * @param string $eventName
-     * @param string $objectId
+     * @param string                  $eventName
+     * @param string                  $objectId
      * @param \DateTimeImmutable|null $timestamp
      */
     public function __construct($eventName, $objectId = null, \DateTimeImmutable $publishedAt = null)
