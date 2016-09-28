@@ -20,7 +20,7 @@ final class Event
      * @param string                  $objectId
      * @param \DateTimeImmutable|null $timestamp
      */
-    public function __construct($eventName, $objectId, \DateTimeImmutable $publishedAt = null)
+    public function __construct($eventName, $objectId = null, \DateTimeImmutable $publishedAt = null)
     {
         $this->eventName = $eventName;
         $this->objectId = $objectId;
