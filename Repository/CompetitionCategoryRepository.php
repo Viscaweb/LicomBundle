@@ -73,4 +73,23 @@ class CompetitionCategoryRepository extends AbstractEntityRepository
 
         return $queryBuilder->getQuery()->getResult();
     }
+
+    /**
+     * @param Country $country
+     * @param Sport   $sport
+     *
+     * @return mixed
+     */
+    public function findOneByCountryAndSport(Country $country, Sport $sport)
+    {
+        return $this->createQueryBuilder('CountryCategory')
+            ->innerJoin('CountryCategory.sport', 'Sport')
+            ->innerJoin('CountryCategory.country', 'Country')
+            ->where('Sport = :sport')
+            ->andWhere('Country = :country')
+            ->setParameter(':country', $country)
+            ->setParameter(':sport', $sport)
+            ->getQuery()
+            ->getSingleResult();
+    }
 }
