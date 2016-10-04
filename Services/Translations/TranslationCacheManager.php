@@ -55,7 +55,14 @@ class TranslationCacheManager
     {
         $key = $this->getCacheKey($id, $profile, $property);
 
-        return $this->cache->save($key, $data);
+        $result = $this->cache->save($key, $data);
+        
+        return $result;
+    }
+
+    public function finish()
+    {
+        $this->cache->fetch(null);
     }
 
     /**
