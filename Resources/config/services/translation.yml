@@ -1,8 +1,8 @@
 services:
    visca_licom.cache.manager.translations:
         class: Visca\Bundle\LicomBundle\Services\Translations\TranslationCacheManager
-        arguments: ['@doctrine_cache.providers.translations_cache', %licom_profile_id%]
-#        arguments: ['@visca_licom.cache.translation.mysql', %licom_profile_id%]
+#        arguments: ['@doctrine_cache.providers.translations_cache', %licom_profile_id%]
+        arguments: ['@visca_licom.cache.translation.mysql', %licom_profile_id%]
 
    visca_licom.cache.translation:
         class: Doctrine\Common\Cache\MemcachedCache
