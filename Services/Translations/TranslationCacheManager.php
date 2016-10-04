@@ -56,7 +56,7 @@ class TranslationCacheManager
         $key = $this->getCacheKey($id, $profile, $property);
 
         $result = $this->cache->save($key, $data);
-        
+
         return $result;
     }
 

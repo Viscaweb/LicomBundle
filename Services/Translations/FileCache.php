@@ -5,7 +5,7 @@ namespace Visca\Bundle\LicomBundle\Services\Translations;
 use Doctrine\Common\Cache\Cache;
 
 /**
- * Class FileCache
+ * Class FileCache.
  */
 class FileCache implements Cache
 {
@@ -28,7 +28,7 @@ class FileCache implements Cache
      *
      * @param string $id The cache id of the entry to check for.
      *
-     * @return boolean TRUE if a cache entry exists for the given cache id, FALSE otherwise.
+     * @return bool TRUE if a cache entry exists for the given cache id, FALSE otherwise.
      */
     public function contains($id)
     {
@@ -44,11 +44,11 @@ class FileCache implements Cache
      * @param int    $lifeTime The cache lifetime.
      *                         If != 0, sets a specific lifetime for this cache entry (0 => infinite lifeTime).
      *
-     * @return boolean TRUE if the entry was successfully stored in the cache, FALSE otherwise.
+     * @return bool TRUE if the entry was successfully stored in the cache, FALSE otherwise.
      */
     public function save($id, $data, $lifeTime = 0)
     {
-        fputs($this->handle, $id.'='.$data."\n");
+        fwrite($this->handle, $id.'='.$data."\n");
 
         return true;
     }
@@ -58,7 +58,7 @@ class FileCache implements Cache
      *
      * @param string $id The cache id.
      *
-     * @return boolean TRUE if the cache entry was successfully deleted, FALSE otherwise.
+     * @return bool TRUE if the cache entry was successfully deleted, FALSE otherwise.
      */
     public function delete($id)
     {
