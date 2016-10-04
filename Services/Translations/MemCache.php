@@ -5,7 +5,7 @@ namespace Visca\Bundle\LicomBundle\Services\Translations;
 use Doctrine\Common\Cache\Cache;
 
 /**
- * Class MemCache
+ * Class MemCache.
  */
 class MemCache implements Cache
 {
@@ -26,7 +26,6 @@ class MemCache implements Cache
 //        '%memcached_host%', '%memcached_port%'
         $this->memcache = new \Memcached();
         $this->memcache->addServer($host, $port);
-
     }
 
     /**
@@ -46,7 +45,7 @@ class MemCache implements Cache
      *
      * @param string $id The cache id of the entry to check for.
      *
-     * @return boolean TRUE if a cache entry exists for the given cache id, FALSE otherwise.
+     * @return bool TRUE if a cache entry exists for the given cache id, FALSE otherwise.
      */
     public function contains($id)
     {
@@ -61,7 +60,7 @@ class MemCache implements Cache
      * @param int    $lifeTime The cache lifetime.
      *                         If != 0, sets a specific lifetime for this cache entry (0 => infinite lifeTime).
      *
-     * @return boolean TRUE if the entry was successfully stored in the cache, FALSE otherwise.
+     * @return bool TRUE if the entry was successfully stored in the cache, FALSE otherwise.
      */
     public function save($id, $data, $lifeTime = 0)
     {
@@ -77,7 +76,7 @@ class MemCache implements Cache
      *
      * @param string $id The cache id.
      *
-     * @return boolean TRUE if the cache entry was successfully deleted, FALSE otherwise.
+     * @return bool TRUE if the cache entry was successfully deleted, FALSE otherwise.
      */
     public function delete($id)
     {
@@ -110,15 +109,16 @@ class MemCache implements Cache
      */
     public function getStats()
     {
-        $stats   = $this->memcache->getStats();
+        $stats = $this->memcache->getStats();
         $servers = $this->memcache->getServerList();
-        $key     = $this->host . ':' . $this->port;
-        $stats   = $stats[$key];
+        $key = $this->host.':'.$this->port;
+        $stats = $stats[$key];
+
         return array(
-            Cache::STATS_HITS   => $stats['get_hits'],
+            Cache::STATS_HITS => $stats['get_hits'],
             Cache::STATS_MISSES => $stats['get_misses'],
             Cache::STATS_UPTIME => $stats['uptime'],
-            Cache::STATS_MEMORY_USAGE     => $stats['bytes'],
+            Cache::STATS_MEMORY_USAGE => $stats['bytes'],
             Cache::STATS_MEMORY_AVAILABLE => $stats['limit_maxbytes'],
         );
     }
