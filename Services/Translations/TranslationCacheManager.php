@@ -60,7 +60,7 @@ class TranslationCacheManager
         return $result;
     }
 
-    public function finish()
+    public function persist()
     {
         $this->cache->fetch(null);
     }
