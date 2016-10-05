@@ -48,7 +48,7 @@ class MysqlCache implements Cache
     {
         $this->batchInsert(true);
 
-        $sql = 'SELECT value FROM visca_translations WHERE `key`=:key';
+        $sql = 'SELECT value FROM '.$this->getTable().' WHERE `key`=:key';
         $stmt = $this->dbal->prepare($sql);
         $stmt->bindValue('key', $id);
 
@@ -107,7 +107,7 @@ class MysqlCache implements Cache
      */
     public function delete($id)
     {
-        $sql = 'DELETE FROM `visca_translations` WHERE `key`=:key';
+        $sql = 'DELETE FROM `'.$this->getTable().'` WHERE `key`=:key';
         $stmt = $this->dbal->prepare($sql);
         $stmt->execute();
 
