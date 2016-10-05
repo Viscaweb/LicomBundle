@@ -78,7 +78,10 @@ class CompetitionCategoryRepository extends AbstractEntityRepository
      * @param Country $country
      * @param Sport   $sport
      *
-     * @return mixed
+     * @throws NonUniqueResultException
+     * @throws NoResultException
+     *
+     * @return CompetitionCategory
      */
     public function findOneByCountryAndSport(Country $country, Sport $sport)
     {
