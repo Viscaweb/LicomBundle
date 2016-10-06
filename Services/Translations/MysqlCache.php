@@ -155,7 +155,7 @@ class MysqlCache implements Cache
 
             $pendantValues = [];
             foreach ($this->bulkCache as $pendant) {
-                $pendantValues[] = '("'.$this->dbal->quote($pendant['key']).'", "'.$this->dbal->quote($pendant['value']).'")';
+                $pendantValues[] = '('.$this->dbal->quote($pendant['key']).', '.$this->dbal->quote($pendant['value']).')';
             }
             $sql = 'INSERT INTO `%s` (`%s`) VALUES %s ON DUPLICATE KEY UPDATE `key`=VALUES(`key`), `value`=VALUES(`value`)';
 
