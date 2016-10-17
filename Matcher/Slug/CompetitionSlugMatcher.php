@@ -33,8 +33,8 @@ class CompetitionSlugMatcher
      * CompetitionSlugMatcher constructor.
      *
      * @param CompetitionRepository $competitionRepository Competition Repository
-     * @param int $licomProfileId App's profile ID
-     * @param LoggerInterface $logger LOgger
+     * @param int                   $licomProfileId        App's profile ID
+     * @param LoggerInterface       $logger                LOgger
      */
     public function __construct(
         CompetitionRepository $competitionRepository,
@@ -47,8 +47,8 @@ class CompetitionSlugMatcher
     }
 
     /**
-     * @param string $competitionSlug Competition Slug, i.e. 'liga'
-     * @param Country $country Country
+     * @param string  $competitionSlug Competition Slug, i.e. 'liga'
+     * @param Country $country         Country
      *
      * @throws NoMatchFoundException
      *
@@ -93,6 +93,7 @@ class CompetitionSlugMatcher
 
     /**
      * @param $competitionSlug
+     *
      * @throws NoMatchFoundException
      */
     private function noMatchFoundException($competitionSlug)

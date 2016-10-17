@@ -32,8 +32,8 @@ class CountrySlugMatcher
      * CountrySlugMatcher constructor.
      *
      * @param CountryRepository $countryRepository Country Repository
-     * @param int $licomProfileId App's profile ID
-     * @param LoggerInterface $logger Logger
+     * @param int               $licomProfileId    App's profile ID
+     * @param LoggerInterface   $logger            Logger
      */
     public function __construct(
         CountryRepository $countryRepository,
@@ -47,7 +47,7 @@ class CountrySlugMatcher
 
     /**
      * @param string $countrySlug Country Slug, i.e. 'spain'
-     * @param Sport $sport Sport
+     * @param Sport  $sport       Sport
      *
      * @throws NoMatchFoundException
      *
@@ -93,6 +93,7 @@ class CountrySlugMatcher
 
     /**
      * @param $countrySlug
+     *
      * @throws NoMatchFoundException
      */
     private function noMatchFoundException($countrySlug)
