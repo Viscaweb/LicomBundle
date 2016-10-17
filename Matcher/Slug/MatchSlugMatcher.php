@@ -2,15 +2,13 @@
 
 namespace Visca\Bundle\LicomBundle\Matcher\Slug;
 
-use Doctrine\Tests\ORM\Functional\Ticket\Participant;
+use Psr\Log\LoggerInterface;
 use Visca\Bundle\LicomBundle\Entity\Competition;
 use Visca\Bundle\LicomBundle\Entity\Match;
 use Visca\Bundle\LicomBundle\Exception\NoMatchFoundException;
 use Visca\Bundle\LicomBundle\Matcher\Slug\Helper\FindTeamsCombinationsHelper;
-use Visca\Bundle\LicomBundle\Model\Slug\ParticipantCombinationModel;
 use Visca\Bundle\LicomBundle\Repository\MatchRepository;
 use Visca\Bundle\LicomBundle\Services\Filters\MatchMostRelevantFilter;
-use Psr\Log\LoggerInterface;
 
 /**
  * Class MatchSlugMatcher.
@@ -136,10 +134,9 @@ class MatchSlugMatcher
             }
         }
         if ($participantCombinations === null) {
-            $this->logger->debug(
-                "Unable to find any combinations of two participants with the given slug ($matchSlug given)."
-            );
-            throw new NoMatchFoundException();
+            $message = "Unable to find any combinations of two participants with the given slug ($matchSlug given).";
+            $this->logger->debug($message);
+            throw new NoMatchFoundException($message);
         }
 
         /*
@@ -156,8 +153,9 @@ class MatchSlugMatcher
             $matchesCollection = array_merge($matchesCollection, $matches);
         }
         if (empty($matchesCollection)) {
-            $this->logger->debug("Unable to find any match with the two participants detected.");
-            throw new NoMatchFoundException();
+            $message = "Unable to find any match with the two participants detected.";
+            $this->logger->debug($message);
+            throw new NoMatchFoundException($message);
         }
 
         /*

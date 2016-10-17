@@ -2,11 +2,11 @@
 
 namespace Visca\Bundle\LicomBundle\Matcher\Slug;
 
+use Psr\Log\LoggerInterface;
 use Visca\Bundle\LicomBundle\Entity\Competition;
 use Visca\Bundle\LicomBundle\Entity\Country;
 use Visca\Bundle\LicomBundle\Exception\NoMatchFoundException;
 use Visca\Bundle\LicomBundle\Repository\CompetitionRepository;
-use Psr\Log\LoggerInterface;
 
 /**
  * Class CompetitionSlugMatcher.
@@ -67,10 +67,7 @@ class CompetitionSlugMatcher
             );
 
         if (empty($competitions)) {
-            $this->logger->debug(
-                "Unable to find any Competition with the given slug ($competitionSlug given)."
-            );
-            throw new NoMatchFoundException();
+            $this->noMatchFoundException($competitionSlug);
         }
 
         /*
@@ -88,12 +85,21 @@ class CompetitionSlugMatcher
         }
 
         if (!($competitionFoundEntity instanceof Competition)) {
-            $this->logger->debug(
-                "Unable to find any Competition with the given slug ($competitionSlug given)."
-            );
-            throw new NoMatchFoundException();
+            $this->noMatchFoundException($competitionSlug);
         }
 
         return $competitionFoundEntity;
+    }
+
+    /**
+     * @param $competitionSlug
+     *
+     * @throws NoMatchFoundException
+     */
+    private function noMatchFoundException($competitionSlug)
+    {
+        $message = "Unable to find any Competition with the given slug ($competitionSlug given).";
+        $this->logger->debug($message);
+        throw new NoMatchFoundException($message);
     }
 }
