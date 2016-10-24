@@ -242,13 +242,13 @@ class MatchSlugMatcher
         }
         foreach ($participantCombinations as $participantCombination) {
             $homeParticipant = $participantCombination->getHomeParticipant();
-            if(!$homeParticipant instanceof Participant || is_null($homeParticipant->getId())){
+            if (!$homeParticipant instanceof Participant || is_null($homeParticipant->getId())) {
                 $message = "Home Participant not properly set";
                 $this->logger->debug($message);
                 throw new NoMatchFoundException($message);
             }
             $awayParticipant = $participantCombination->getAwayParticipant();
-            if(!$awayParticipant instanceof Participant || is_null($awayParticipant->getId())){
+            if (!$awayParticipant instanceof Participant || is_null($awayParticipant->getId())) {
                 $message = "Away Participant not properly set";
                 $this->logger->debug($message);
                 throw new NoMatchFoundException($message);
