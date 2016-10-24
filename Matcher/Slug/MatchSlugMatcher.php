@@ -144,11 +144,17 @@ class MatchSlugMatcher
          */
         $matchesCollection = [];
         foreach ($participantCombinations as $participantCombination) {
+            if (
+                is_null($participantCombination->getHomeParticipant())
+                || is_null($participantCombination->getAwayParticipant())
+            ) {
+                continue;
+            }
             $matches = $this
                 ->matchRepository
                 ->findMatchByParticipants(
-                    [$participantCombination->getHomeParticipant()],
-                    [$participantCombination->getAwayParticipant()]
+                    [$participantCombination->getHomeParticipant()->getId()],
+                    [$participantCombination->getAwayParticipant()->getId()]
                 );
             $matchesCollection = array_merge($matchesCollection, $matches);
         }
