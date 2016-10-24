@@ -133,7 +133,6 @@ class MatchIncidentRepository extends AbstractEntityRepository
         $result = $this->createQueryBuilder('mi')
             ->select('COUNT(mi) as total')
             ->join('mi.matchParticipant', 'mp')
-            ->leftJoin('mi.participant', 'p')
             ->join('mp.match', 'm', Join::WITH, 'm.id = :matchId')
             ->setParameter('matchId', $match->getId())
             ->getQuery()
