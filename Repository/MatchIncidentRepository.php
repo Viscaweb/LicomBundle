@@ -122,4 +122,22 @@ class MatchIncidentRepository extends AbstractEntityRepository
 
         return $queryBuilder->getQuery()->getResult();
     }
+
+    /**
+     * @param Match $match Match entity
+     *
+     * @return int
+     */
+    public function countByMatch(Match $match)
+    {
+        $result = $this->createQueryBuilder('mi')
+            ->select('COUNT(mi) as total')
+            ->join('mi.matchParticipant', 'mp')
+            ->join('mp.match', 'm', Join::WITH, 'm.id = :matchId')
+            ->setParameter('matchId', $match->getId())
+            ->getQuery()
+            ->getSingleResult();
+
+        return $result['total'];
+    }
 }

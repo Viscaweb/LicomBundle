@@ -28,4 +28,24 @@ class MatchStatsRepository extends AbstractEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    /**
+     * @param Match $match The Match object
+     *
+     * @return int
+     */
+    public function countByMatch(Match $match)
+    {
+        $result = $this
+            ->createQueryBuilder('match_stats')
+            ->select('COUNT(match_stats) as total')
+            ->join('match_stats.matchParticipant', 'match_participant')
+            ->join('match_stats.matchStatsType', 'mt')
+            ->where('match_participant.match = :matchId')
+            ->setParameter('matchId', $match->getId())
+            ->getQuery()
+            ->getSingleResult();
+
+        return $result['total'];
+    }
 }
