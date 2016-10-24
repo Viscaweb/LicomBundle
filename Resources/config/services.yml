@@ -4,7 +4,6 @@ imports:
     - { resource: services/manager.entities.yml }
     - { resource: services/matchers.yml }
     - { resource: services/repositories.yml }
-    - { resource: services/translation.yml }
     - { resource: services/filters.yml }
     - { resource: services/formatters.yml }
     - { resource: services/fields.yml }
