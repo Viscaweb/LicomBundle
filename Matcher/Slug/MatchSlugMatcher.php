@@ -5,6 +5,7 @@ namespace Visca\Bundle\LicomBundle\Matcher\Slug;
 use Psr\Log\LoggerInterface;
 use Visca\Bundle\LicomBundle\Entity\Competition;
 use Visca\Bundle\LicomBundle\Entity\Match;
+use Visca\Bundle\LicomBundle\Entity\Participant;
 use Visca\Bundle\LicomBundle\Exception\NoMatchFoundException;
 use Visca\Bundle\LicomBundle\Matcher\Slug\Helper\FindTeamsCombinationsHelper;
 use Visca\Bundle\LicomBundle\Repository\MatchRepository;
@@ -73,12 +74,12 @@ class MatchSlugMatcher
     /**
      * MatchSlugMatcher constructor.
      *
-     * @param MatchRepository                   $matchRepository                Match Repository
+     * @param MatchRepository $matchRepository Match Repository
      * @param ParticipantCombinationSlugMatcher $participantsCombinationMatcher Participant Combination Matcher
-     * @param MatchMostRelevantFilter           $matchMostRelevantFilter        Match most revelant filter
-     * @param FindTeamsCombinationsHelper       $participantCombinationsHelper  Participant Combination Finder
-     * @param int                               $licomProfileId                 App's profile ID
-     * @param LoggerInterface                   $logger                         Logger
+     * @param MatchMostRelevantFilter $matchMostRelevantFilter Match most revelant filter
+     * @param FindTeamsCombinationsHelper $participantCombinationsHelper Participant Combination Finder
+     * @param int $licomProfileId App's profile ID
+     * @param LoggerInterface $logger Logger
      */
     public function __construct(
         MatchRepository $matchRepository,
@@ -97,7 +98,7 @@ class MatchSlugMatcher
     }
 
     /**
-     * @param string      $matchSlug   Match Slug, i.e. 'fc-barcelona-madrid'
+     * @param string $matchSlug Match Slug, i.e. 'fc-barcelona-madrid'
      * @param Competition $competition Competition
      *
      * @throws NoMatchFoundException
@@ -133,23 +134,14 @@ class MatchSlugMatcher
                  */
             }
         }
-        if ($participantCombinations === null) {
-            $message = "Unable to find any combinations of two participants with the given slug ($matchSlug given).";
-            $this->logger->debug($message);
-            throw new NoMatchFoundException($message);
-        }
+
+        $this->checkParticipantCombinationIsWellFormed($matchSlug, $participantCombinations);
 
         /*
          * Try to find the related match
          */
         $matchesCollection = [];
         foreach ($participantCombinations as $participantCombination) {
-            if (
-                is_null($participantCombination->getHomeParticipant())
-                || is_null($participantCombination->getAwayParticipant())
-            ) {
-                continue;
-            }
             $matches = $this
                 ->matchRepository
                 ->findMatchByParticipants(
@@ -214,8 +206,8 @@ class MatchSlugMatcher
      * Note: we use this method for now to not complicate the process.
      * We will improve this method depending on how it react in production.
      *
-     * @param Match[]     $matchCollection Matches
-     * @param Competition $competition     Competition we want to filter by
+     * @param Match[] $matchCollection Matches
+     * @param Competition $competition Competition we want to filter by
      *
      * @return Match[]
      */
@@ -239,5 +231,29 @@ class MatchSlugMatcher
         }
 
         return $competitionMatchCollection;
+    }
+
+    private function checkParticipantCombinationIsWellFormed($matchSlug, $participantCombinations = null)
+    {
+        if ($participantCombinations === null) {
+            $message = "Unable to find any combinations of two participants with the given slug ($matchSlug given).";
+            $this->logger->debug($message);
+            throw new NoMatchFoundException($message);
+        }
+
+        foreach ($participantCombinations as $participantCombination) {
+            $homeParticipant = $participantCombination->getHomeParticipant();
+            if (!$homeParticipant instanceof Participant || is_null($homeParticipant->getId())) {
+                $message = "Home Participant not properly set";
+                $this->logger->debug($message);
+                throw new NoMatchFoundException($message);
+            }
+            $awayParticipant = $participantCombination->getAwayParticipant();
+            if (!$awayParticipant instanceof Participant || is_null($awayParticipant->getId())) {
+                $message = "Away Participant not properly set";
+                $this->logger->debug($message);
+                throw new NoMatchFoundException($message);
+            }
+        }
     }
 }
