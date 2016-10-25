@@ -21,7 +21,8 @@ class MatchResultRepository extends AbstractEntityRepository
     {
         $result = $this->createQueryBuilder('mi')
             ->select('COUNT(mi) as total')
-            ->leftJoin('mi.matchParticipant', 'mp', 'WITH', 'mp.id = mi.matchParticipant AND mp.match = :matchId')
+            ->leftJoin('mi.matchParticipant', 'mp', 'WITH', 'mp.id = mi.matchParticipant')
+            ->where('mp.match = :matchId')
             ->setParameter('matchId', $match->getId())
             ->getQuery()
             ->getSingleResult();
