@@ -5,6 +5,7 @@ namespace Visca\Bundle\LicomBundle\Repository;
 use Doctrine\ORM\Query\Expr\Join;
 use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
 use Visca\Bundle\LicomBundle\Entity\Match;
+use Visca\Bundle\LicomBundle\Entity\MatchIncident;
 use Visca\Bundle\LicomBundle\Entity\MatchIncidentType;
 use Visca\Bundle\LicomBundle\Entity\MatchParticipant;
 
@@ -139,5 +140,25 @@ class MatchIncidentRepository extends AbstractEntityRepository
             ->getSingleResult();
 
         return $result['total'];
+    }
+
+    /**
+     * @param int   $participantId
+     * @param array $types
+     *
+     * @return MatchIncident[]
+     */
+    public function getNonDeletedIncidentsByParticipantIdFilteredByTypes($participantId, array $types = [])
+    {
+        $qb = $this->createQueryBuilder('mi')
+            ->where("mi.del = 'no' AND mi.matchParticipant = :participantId")
+            ->setParameter('participantId', $participantId);
+
+        if (!empty($types)) {
+            $qb->andWhere('mi.matchIncidentType in (:types)')
+                ->setParameter('types', $types);
+        }
+
+        return $qb->getQuery()->getResult();
     }
 }
