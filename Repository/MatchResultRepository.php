@@ -29,4 +29,24 @@ class MatchResultRepository extends AbstractEntityRepository
 
         return $result['total'];
     }
+
+    /**
+     * @param Match $match
+     * @param       $matchResultTypeId
+     *
+     * @return mixed
+     */
+    public function getTotalGoalsByMatchAndType(Match $match, $matchResultTypeId)
+    {
+        return $this->createQueryBuilder('matchResult')
+            ->select('SUM(matchResult.value) AS total')
+            ->innerJoin('matchResult.matchParticipant', 'matchParticipant')
+            ->innerJoin('matchParticipant.match', 'match')
+            ->where('match = :match')
+            ->andWhere('matchResult.matchResultType = :matchResultTypeId')
+            ->setParameter('match', $match)
+            ->setParameter('matchResultTypeId', $matchResultTypeId)
+            ->getQuery()
+            ->getSingleResult();
+    }
 }
