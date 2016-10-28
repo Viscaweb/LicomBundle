@@ -16,6 +16,6 @@ final class MatchIncidentCategoryGoal extends AbstractEvent
      */
     public function getEventObject()
     {
-        return 'match_incident_goal';
+        return 'match_incident_category_goal';
     }
 }
