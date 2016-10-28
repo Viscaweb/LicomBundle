@@ -7,7 +7,7 @@ use Visca\Bundle\LicomBundle\Events\Traits\ListenByAthleteTrait;
 use Visca\Bundle\LicomBundle\Events\Traits\ListenByMatchTrait;
 use Visca\Bundle\LicomBundle\Events\Traits\ListenByTeamTrait;
 
-final class MatchIncidentGoal extends AbstractEvent
+final class MatchIncidentCategoryGoal extends AbstractEvent
 {
     use ListenByMatchTrait, ListenByTeamTrait, ListenByAthleteTrait;
 
