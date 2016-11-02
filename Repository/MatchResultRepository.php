@@ -34,9 +34,9 @@ class MatchResultRepository extends AbstractEntityRepository
      * @param Match $match
      * @param int   $matchResultTypeId
      *
-     * @return mixed
+     * @return int
      */
-    public function getResultByMatchAndType(Match $match, $matchResultTypeId)
+    public function getTotalResultByMatchAndType(Match $match, $matchResultTypeId)
     {
         $result = $this->createQueryBuilder('matchResult')
             ->select('SUM(matchResult.value) AS total')
@@ -49,10 +49,6 @@ class MatchResultRepository extends AbstractEntityRepository
             ->getQuery()
             ->getSingleResult();
 
-        if (isset($result['total'])) {
-            return $result['total'];
-        }
-
-        return;
+        return $result['total'];
     }
 }
