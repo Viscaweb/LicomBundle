@@ -52,7 +52,7 @@ class Competition
     /**
      * @var int
      */
-    private $orderInsideCategory = 999;
+    private $orderInsideCategory = 255;
 
     /**
      * @var Collection|CompetitionSeason[]

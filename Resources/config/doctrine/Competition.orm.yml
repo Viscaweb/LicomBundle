@@ -39,7 +39,7 @@ Visca\Bundle\LicomBundle\Entity\Competition:
       length: 3
       nullable: false
       options:
-        default: 999
+        default: 255
         unsigned: true
     createdAt:
       type: DateTimeUTCType
