@@ -1,4 +1,0 @@
-services:
-   visca_licom.cache.manager.translations:
-        class: Visca\Bundle\LicomBundle\Services\Translations\TranslationCacheManager
-        arguments: ['@doctrine_cache.providers.translations_cache', %licom_profile_id%]

@@ -2,11 +2,11 @@
 
 namespace Visca\Bundle\LicomBundle\Matcher\Slug;
 
+use Psr\Log\LoggerInterface;
 use Visca\Bundle\LicomBundle\Entity\Country;
 use Visca\Bundle\LicomBundle\Entity\Sport;
 use Visca\Bundle\LicomBundle\Exception\NoMatchFoundException;
 use Visca\Bundle\LicomBundle\Repository\CountryRepository;
-use Psr\Log\LoggerInterface;
 
 /**
  * Class CountrySlugMatcher.
@@ -66,10 +66,7 @@ class CountrySlugMatcher
             );
 
         if (empty($countries)) {
-            $this->logger->debug(
-                "Unable to find any Country with the given slug ($countrySlug given)."
-            );
-            throw new NoMatchFoundException();
+            $this->noMatchFoundException($countrySlug);
         }
 
         /*
@@ -88,12 +85,21 @@ class CountrySlugMatcher
         }
 
         if (!($countryFoundEntity instanceof Country)) {
-            $this->logger->debug(
-                "Unable to find any Country with the given slug ($countrySlug given)."
-            );
-            throw new NoMatchFoundException();
+            $this->noMatchFoundException($countrySlug);
         }
 
         return $countryFoundEntity;
+    }
+
+    /**
+     * @param $countrySlug
+     *
+     * @throws NoMatchFoundException
+     */
+    private function noMatchFoundException($countrySlug)
+    {
+        $message = "Unable to find any Country with the given slug ($countrySlug given).";
+        $this->logger->debug($message);
+        throw new NoMatchFoundException($message);
     }
 }

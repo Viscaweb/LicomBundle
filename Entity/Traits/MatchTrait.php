@@ -8,7 +8,6 @@ use Visca\Bundle\LicomBundle\Entity\Code\MatchResultTypeCode;
 use Visca\Bundle\LicomBundle\Entity\Competition;
 use Visca\Bundle\LicomBundle\Entity\CompetitionSeasonStage;
 use Visca\Bundle\LicomBundle\Entity\Country;
-use Visca\Bundle\LicomBundle\Entity\Match;
 use Visca\Bundle\LicomBundle\Entity\MatchParticipant;
 use Visca\Bundle\LicomBundle\Entity\MatchStatusDescription;
 use Visca\Bundle\LicomBundle\Entity\Sport;
@@ -55,7 +54,13 @@ trait MatchTrait
             }
         }
 
-        throw new MatchParticipantNotFoundException();
+        throw new MatchParticipantNotFoundException(
+            sprintf(
+                'Could not find MatchParticipant with number "%d" for match.%d',
+                $participantNumber,
+                $this->getId()
+            )
+        );
     }
 
     /**

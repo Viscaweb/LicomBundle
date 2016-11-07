@@ -115,6 +115,28 @@ class MatchQueryBuilder extends QueryBuilder
     }
 
     /**
+     * @return $this
+     */
+    public function joinCompetition()
+    {
+        $this
+            ->leftJoin(
+                'm.competitionSeasonStage',
+                'css'
+            )
+            ->leftJoin(
+                'css.competitionSeason',
+                'cs'
+            )
+            ->leftJoin(
+                'cs.competition',
+                'c'
+            );
+
+        return $this;
+    }
+
+    /**
      * @param int[] $optimizeMatchResultTypeCodes
      *
      * @return $this

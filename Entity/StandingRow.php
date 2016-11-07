@@ -44,12 +44,16 @@ class StandingRow
      */
     private $standingCell;
 
+    /** @var bool */
+    private $liveRow;
+
     /**
      * Constructor.
      */
     public function __construct()
     {
         $this->standingCell = new ArrayCollection();
+        $this->liveRow = false;
     }
 
     /**
@@ -146,7 +150,7 @@ class StandingRow
     }
 
     /**
-     * @return Collection|StandingCell[]
+     * @return StandingCell[]
      */
     public function getStandingCell()
     {
@@ -187,5 +191,25 @@ class StandingRow
     public function removeStandingCell(StandingCell $standingCell)
     {
         $this->standingCell->removeElement($standingCell);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isLiveRow()
+    {
+        return $this->liveRow;
+    }
+
+    /**
+     * @param bool $liveRow
+     *
+     * @return StandingRow
+     */
+    public function setLiveRow($liveRow)
+    {
+        $this->liveRow = $liveRow;
+
+        return $this;
     }
 }

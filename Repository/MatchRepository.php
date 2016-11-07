@@ -339,12 +339,34 @@ class MatchRepository extends AbstractEntityRepository
         $matchStatusCategory = null,
         $participantPosition = null
     ) {
+        // To make the query WAY faster, we'll extract the list of IDs for this team.
+        $matchesIds = [];
+        $rawMatchesIds = $this
+            ->entityManager
+            ->createQueryBuilder()
+            ->select('IDENTITY(mp.match) AS matchId')
+            ->from('ViscaLicomBundle:MatchParticipant', 'mp')
+            ->where('mp.participant = :participantId')
+            ->setParameter('participantId', $participantId)
+            ->getQuery()
+            ->getArrayResult();
+        foreach ($rawMatchesIds as $rawMatchId) {
+            $matchesIds[] = $rawMatchId['matchId'];
+        }
+
+        if (empty($matchesIds)) {
+            return [];
+        }
+
+        // Run the query
         $optimized = true;
         $matchResultType = is_array($matchResultType) ? $matchResultType : [$matchResultType];
 
 
         $query = $this->createQueryBuilder('m', null, $optimized);
         $query
+            ->andWhere('m.id IN (:filterMatchesIds)')
+            ->setParameter('filterMatchesIds', $matchesIds)
             ->joinMatchParticipant($optimized)
             ->joinMatchResult($matchResultType);
 
@@ -899,6 +921,57 @@ class MatchRepository extends AbstractEntityRepository
             ->setParameter('dateFrom', $dateFrom->format('Y-m-d H:i:s'))
             ->setParameter('dateTo', $dateTo->format('Y-m-d H:i:s'))
             ->setParameter('competitionSeasonStageIds', $competitionSeasonStageIds);
+
+        /*
+         * Filter the status
+         */
+        if ($status !== null) {
+            $statusCategories = $this->prepareStatusCategories($status);
+
+            $queryBuilder
+                ->leftJoin(
+                    'Visca\Bundle\LicomBundle\Entity\MatchStatusDescription',
+                    's',
+                    Join::WITH,
+                    's.id = m.matchStatusDescription'
+                )
+                ->andWhere('s.category IN (:categories)')
+                ->setParameter('categories', $statusCategories);
+        }
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+    /**
+     * @param \DateTime $dateFrom       Initial date.
+     * @param \DateTime $dateTo         End date.
+     * @param int[]     $competitionIds List of CompetitionSeasonStages.
+     * @param null      $status         Match status.
+     *
+     * @return array
+     */
+    public function findByDateAndStatusAndCompetitionIds(
+        DateTime $dateFrom,
+        DateTime $dateTo,
+        $competitionIds,
+        $status = null
+    ) {
+        $optimized = true;
+        $this->alterDateObjects($dateFrom, $dateTo);
+
+        $queryBuilder = $this->createQueryBuilder('m');
+
+        $queryBuilder
+            ->setReducedColumnSet($optimized)
+            ->joinMatchParticipant($optimized)
+            ->joinCompetition()
+            ->where('m.startDate BETWEEN :dateFrom AND :dateTo')
+            ->andWhere('c.id IN (:competitionIds)')
+            ->andWhere('mp1.id IS NOT NULL')
+            ->andWhere('mp2.id IS NOT NULL')
+            ->setParameter('dateFrom', $dateFrom->format('Y-m-d H:i:s'))
+            ->setParameter('dateTo', $dateTo->format('Y-m-d H:i:s'))
+            ->setParameter('competitionIds', $competitionIds);
 
         /*
          * Filter the status

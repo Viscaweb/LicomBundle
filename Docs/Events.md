@@ -27,3 +27,6 @@ Listen by...
 | CompetitionRound                    |       | ✓           |                        | ✓                |                  |                |      |         |       |                   |
 | CompetitionSeasonStage              |       | ✓           | ✓                      |                  |                  |                |      |         |       |                   |
 | CompetitionStage                    |       | ✓           |                        |                  | ✓                |                |      |         |       |                   |
+| Odds                                | ✓     |             |                        |                  |                  |                |      |         |       |                   |
+| → OddsThreeWay                      | ✓     |             |                        |                  |                  |                |      |         |       |                   |
+| → OddsOverUnder                     | ✓     |             |                        |                  |                  |                |      |         |       |                   |

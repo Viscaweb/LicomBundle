@@ -32,6 +32,25 @@ trait MatchResultByKeyTrait
     }
 
     /**
+     * @param int $key
+     *
+     * return MatchResult|false
+     */
+    public function getMatchResultByKey($key)
+    {
+        $resultCollection = $this->getMatchResult();
+
+        foreach ($resultCollection as $matchResult) {
+            /** @var MatchResult $matchResult */
+            if ($matchResult->getMatchResultType()->getId() == $key) {
+                return $matchResult;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * @return Collection
      */
     abstract public function getMatchResult();

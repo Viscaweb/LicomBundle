@@ -2,6 +2,7 @@
 
 namespace Visca\Bundle\LicomBundle\Repository;
 
+use Doctrine\ORM\Mapping\ClassMetadata;
 use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
 use Visca\Bundle\LicomBundle\Entity\Code\StandingColumnCode;
 use Visca\Bundle\LicomBundle\Entity\Code\StandingTypeCode;
@@ -52,8 +53,7 @@ class StandingRepository extends AbstractEntityRepository
 
     /**
      * @param string $entity
-     * @param string $entityId
-     * @param string $standingType
+     * @param int    $entityId
      *
      * @return bool
      */
@@ -65,7 +65,9 @@ class StandingRepository extends AbstractEntityRepository
             ->join('mainStanding.standingRow', 'mainRow')
             ->join('mainRow.standingCell', 'mainCell', 'WITH', 'mainCell.standingColumn = :matchesTotalCode')
             ->join(
-                Standing::class, 'liveStanding', 'WITH',
+                Standing::class,
+                'liveStanding',
+                'WITH',
                 'liveStanding.entity = :entity and liveStanding.entityId = :entityId and liveStanding.standingType = :liveLeagueTableCode'
             )
             ->join('liveStanding.standingRow', 'liveRow')
@@ -78,11 +80,11 @@ class StandingRepository extends AbstractEntityRepository
                 'liveLeagueTableCode' => StandingTypeCode::LIVE_LEAGUE_TABLE_CODE,
                 'leagueTableCode' => StandingTypeCode::LEAGUE_TABLE_CODE,
                 'entity' => $entity,
-                'entityId' => $entityId
+                'entityId' => $entityId,
             ])
             ->getQuery()
             ->getScalarResult();
 
-        return empty($hasDifferences[0]) ? false : (int) $hasDifferences[0][1] > 0;
+        return empty($hasDifferences[0]) ? false : (int) $hasDifferences[0][1] != 0;
     }
 }

@@ -186,6 +186,6 @@ class ParticipantCombinationSlugMatcher
      */
     private function key($sportId, $licomProfileId, $homeTeamSlug, $awayTeamSlug)
     {
-        return md5('sport' . $sportId . 'profile' . $licomProfileId . 'home' . $homeTeamSlug . 'away' . $awayTeamSlug);
+        return md5('sport'.$sportId.'profile'.$licomProfileId.'home'.$homeTeamSlug.'away'.$awayTeamSlug);
     }
 }
