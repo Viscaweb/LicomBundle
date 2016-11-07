@@ -50,6 +50,11 @@ class Competition
     private $gender;
 
     /**
+     * @var int
+     */
+    private $orderInsideCategory = 999;
+
+    /**
      * @var Collection|CompetitionSeason[]
      */
     private $competitionSeason;
@@ -155,6 +160,30 @@ class Competition
     public function setGender($gender)
     {
         $this->gender = $gender;
+
+        return $this;
+    }
+
+    /**
+     * Get orderInsideCategory.
+     *
+     * @return int
+     */
+    public function getOrderInsideCategory()
+    {
+        return $this->orderInsideCategory;
+    }
+
+    /**
+     * Set orderInsideCategory.
+     *
+     * @param int $orderInsideCategory
+     *
+     * @return Competition
+     */
+    public function setOrderInsideCategory($orderInsideCategory)
+    {
+        $this->orderInsideCategory = $orderInsideCategory;
 
         return $this;
     }
