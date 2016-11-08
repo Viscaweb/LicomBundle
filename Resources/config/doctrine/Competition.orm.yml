@@ -34,7 +34,7 @@ Visca\Bundle\LicomBundle\Entity\Competition:
       nullable: false
       options:
         default: 'undefined'
-    orderInsideCategory:
+    positionInsideCategory:
       type: smallint
       length: 3
       nullable: false

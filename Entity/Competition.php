@@ -52,7 +52,7 @@ class Competition
     /**
      * @var int
      */
-    private $orderInsideCategory = 255;
+    private $positionInsideCategory = 255;
 
     /**
      * @var Collection|CompetitionSeason[]
@@ -165,25 +165,25 @@ class Competition
     }
 
     /**
-     * Get orderInsideCategory.
+     * Get positionInsideCategory.
      *
      * @return int
      */
-    public function getOrderInsideCategory()
+    public function getPositionInsideCategory()
     {
-        return $this->orderInsideCategory;
+        return $this->positionInsideCategory;
     }
 
     /**
-     * Set orderInsideCategory.
+     * Set positionInsideCategory.
      *
-     * @param int $orderInsideCategory
+     * @param int $positionInsideCategory
      *
      * @return Competition
      */
-    public function setOrderInsideCategory($orderInsideCategory)
+    public function setPositionInsideCategory($positionInsideCategory)
     {
-        $this->orderInsideCategory = $orderInsideCategory;
+        $this->positionInsideCategory = $positionInsideCategory;
 
         return $this;
     }
