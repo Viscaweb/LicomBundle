@@ -410,79 +410,6 @@ class MatchRepository extends AbstractEntityRepository
             $query->orderBy('m.'.$orderField, $orderType);
         }
 
-        // only if we ask for a limited/offset number of matches we will add the
-//        if (is_numeric($limit) || is_numeric($offset)) {
-//            $query->groupBy('m.id');
-//        }
-
-
-        /*
-                $query = parent::createQueryBuilder('m');
-                $query
-                    ->select('m', 'mp', 'mp2', 'mr')
-                    ->leftJoin('m.matchParticipant', 'mp')
-                    ->leftJoin('m.matchParticipant', 'mp2')
-                    ->leftJoin(
-                        'mp.matchResult',
-                        'mr',
-                        Join::WITH,
-                        'mr.matchResultType IN (:resultType)'
-                    )
-                    ->where(
-                        '(mp.number=:home and mp2.number=:away) OR (mp.number=:away and mp2.number=:home)'
-                    );
-
-                if ($matchStatusCategory !== null) {
-                    $query
-                        ->addSelect('msd')
-                        ->join('m.matchStatusDescription', 'msd', Join::WITH, 'msd.category = :category')
-                        ->setParameter('category', $matchStatusCategory);
-                }
-
-                if (is_array($participantId)) {
-                    $query
-                        ->andWhere('mp.participant in (:participant)')
-                        ->setParameter('participant', implode(',', $participantId));
-                } else {
-                    $query
-                        ->andWhere('mp.participant = :participant')
-                        ->setParameter('participant', $participantId);
-                }
-
-                foreach ($whereConditions as $condition) {
-                    $query->andWhere($condition);
-                }
-
-                foreach ($whereArguments as $key => $value) {
-                    if ($key === 'startDate') {
-                        $this->alterDateObjects($value);
-                    }
-                    $query->setParameter($key, $value);
-                }
-
-                if (is_numeric($limit)) {
-                    $query->setMaxResults($limit);
-                }
-
-                if (is_numeric($offset)) {
-                    $query->setFirstResult($offset);
-                }
-
-                if (!is_null($orderField)) {
-                    $query->orderBy('m.'.$orderField, $orderType);
-                }
-
-                $query
-                    ->setParameter('home', MatchParticipant::HOME)
-                    ->setParameter('away', MatchParticipant::AWAY)
-                    ->setParameter('resultType', $matchResultType);
-
-                // only if we ask for a limited/offset number of matches we will add the
-                if (is_numeric($limit) || is_numeric($offset)) {
-                    $query->groupBy('m.id');
-                }
-        */
-
         return $query->getQuery()->setHint(\Doctrine\ORM\Query::HINT_REFRESH, true)->getResult();
     }
 
@@ -542,55 +469,6 @@ class MatchRepository extends AbstractEntityRepository
         if (is_numeric($limit) || is_numeric($offset)) {
             $query->groupBy('m.id');
         }
-//        $query = $this
-//            ->createQueryBuilder('m', null, false)
-//            ->addSelect('mp')
-//            ->leftJoin(
-//                'm.matchParticipant',
-//                'mp1',
-//                Expr\Join::WITH,
-//                'mp.number = 1'
-//            )
-//            ->addSelect('mp2')
-//            ->leftJoin(
-//                'm.matchParticipant',
-//                'mp2',
-//                Expr\Join::WITH,
-//                'mp2.number = 2'
-//            )
-//            ->where('mp.participant IN (:homeParticipants)')
-//            ->andWhere('mp2.participant IN (:awayParticipants)')
-//            ->having('mp.number = :matchParticipantHomeNumber')
-//            ->andHaving('mp2.number = :matchParticipantAwayNumber')
-//            ->setParameter('homeParticipants', $homeParticipants)
-//            ->setParameter('awayParticipants', $awayParticipants)
-//            ->setParameter('matchParticipantHomeNumber', MatchParticipant::HOME)
-//            ->setParameter('matchParticipantAwayNumber', MatchParticipant::AWAY);
-//
-//        foreach ($whereConditions as $condition) {
-//            $query->andWhere($condition);
-//        }
-//
-//        foreach ($whereArguments as $key => $value) {
-//            $query->setParameter($key, $value);
-//        }
-//
-//        if (is_numeric($limit)) {
-//            $query->setMaxResults($limit);
-//        }
-//
-//        if (is_numeric($offset)) {
-//            $query->setFirstResult($offset);
-//        }
-//
-//        if (!is_null($orderField)) {
-//            $query->orderBy('m.'.$orderField, $orderType);
-//        }
-//
-//        // only if we ask for a limited/offset number of matches we will add the
-//        if (is_numeric($limit) || is_numeric($offset)) {
-//            $query->groupBy('m.id');
-//        }
 
         return $query->getQuery()->getResult();
     }
@@ -948,7 +826,7 @@ class MatchRepository extends AbstractEntityRepository
      * @param int[]     $competitionIds List of CompetitionSeasonStages.
      * @param null      $status         Match status.
      *
-     * @return array
+     * @return Match[]
      */
     public function findByDateAndStatusAndCompetitionIds(
         DateTime $dateFrom,
@@ -1541,7 +1419,7 @@ class MatchRepository extends AbstractEntityRepository
         // if we have the $competitionCategoryIds filter by id's
         if (!is_null($competitionCategoryIds)) {
             $queryBuilder
-                ->andWhere('season.competition IN (:ccIds)')
+                ->andWhere('competitionCategory.id IN (:ccIds)')
                 ->setParameter('ccIds', $competitionCategoryIds);
         }
 
