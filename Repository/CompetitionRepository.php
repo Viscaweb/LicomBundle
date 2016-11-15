@@ -87,6 +87,25 @@ class CompetitionRepository extends AbstractEntityRepository
     }
 
     /**
+     * Gets the most important competitions of a country, sorted by importance.
+     *
+     * @param int $countryId
+     * @param int $limit     Number of competitions to get.
+     */
+    public function findMostImportantByCountry($countryId, $limit = 1)
+    {
+        $queryBuilder = $this
+            ->createQueryBuilder('c')
+            ->join('c.competitionCategory', 'cc')
+            ->where('cc.country = :countryId')
+            ->setParameter('countryId', $countryId)
+            ->orderBy('c.positionInsideCategory', 'ASC')
+            ->setMaxResults($limit);
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+    /**
      * @param int|null $limit Limit
      *
      * @return array
