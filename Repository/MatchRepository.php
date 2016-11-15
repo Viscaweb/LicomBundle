@@ -4,7 +4,6 @@ namespace Visca\Bundle\LicomBundle\Repository;
 
 use DateTime;
 use DateTimeInterface;
-use Doctrine\ORM\Query\Expr;
 use Doctrine\ORM\Query\Expr\Join;
 use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
 use Visca\Bundle\LicomBundle\Entity\Athlete;
