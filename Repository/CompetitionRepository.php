@@ -101,14 +101,18 @@ class CompetitionRepository extends AbstractEntityRepository
             ->join('c.competitionCategory', 'cc')
             ->join('c.competitionSeason', 'cs')
             ->join('cs.competitionSeasonStage', 'css')
-            ->join('ViscaLicomBundle:Participant', 'p', Join::WITH, 'p.country = cc.country')
-            ->join('ViscaLicomBundle:ParticipantMembership', 'pm', Join::WITH, 'pm.entity = :entity AND pm.participantType = :participantType AND pm.participant = p.id AND pm.entityId = css.id')
-            ->where('p.id = :participant')
+            ->join('css.match', 'm')
+            ->join('m.matchParticipant', 'mp', Join::WITH, 'mp.participant = :participant')
+            ->where('cs.end IS NULL')
+            ->orWhere('cs.end > CURRENT_TIMESTAMP()')
             ->setParameters([
-                'participant' => $team->getId(),
-                'entity' => EntityCode::COMPETITION_SEASON_STAGE_CODE,
-                'participantType' => 'team'
+                'participant' => $team->getId()
             ])
+
+            // This query returns a register for every match found, too many registers.
+            // If we group by competition.id, we may get
+            ->groupBy('cs.id')
+
             ->orderBy('c.positionInsideCategory', 'ASC')
             ->setMaxResults($limit);
 
