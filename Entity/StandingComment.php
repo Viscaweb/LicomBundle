@@ -90,7 +90,7 @@ class StandingComment
      *
      * @return $this
      */
-    public function addStandingRow(StandingCommentGraph $standingCommentGraph)
+    public function addStandingCommentGraph(StandingCommentGraph $standingCommentGraph)
     {
         $this->standingCommentGraph[] = $standingCommentGraph;
 
