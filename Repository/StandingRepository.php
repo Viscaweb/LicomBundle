@@ -84,6 +84,6 @@ class StandingRepository extends AbstractEntityRepository
             return false;
         }
 
-        return (int)$totalMatchesPlayed[1][1] - (int)$totalMatchesPlayed[0][1] != 0;
+        return (int) $totalMatchesPlayed[1][1] - (int) $totalMatchesPlayed[0][1] != 0;
     }
 }
