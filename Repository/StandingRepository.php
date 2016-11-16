@@ -59,32 +59,31 @@ class StandingRepository extends AbstractEntityRepository
      */
     public function hasCompetitionLiveStandingUpToDateData($entity, $entityId)
     {
-        $hasDifferences = $this
-            ->createQueryBuilder('mainStanding')
-            ->select('SUM(liveCell.value) - SUM(mainCell.value)')
-            ->join('mainStanding.standingRow', 'mainRow')
-            ->join('mainRow.standingCell', 'mainCell', 'WITH', 'mainCell.standingColumn = :matchesTotalCode')
-            ->join(
-                Standing::class,
-                'liveStanding',
-                'WITH',
-                'liveStanding.entity = :entity and liveStanding.entityId = :entityId and liveStanding.standingType = :liveLeagueTableCode'
+        $totalMatchesPlayed = $this
+            ->createQueryBuilder('standing')
+            ->select('SUM(cell.value)')
+            ->join('standing.standingRow', 'row')
+            ->join('row.standingCell', 'cell', 'WITH', 'cell.standingColumn = :matchesTotalCode')
+            ->andWhere('standing.entity = :entity')
+            ->andWhere('standing.entityId = :entityId')
+            ->andWhere('standing.standingType in (:leagueTableCode, :liveLeagueTableCode)')
+            ->groupBy('standing.standingType')
+            ->setParameters(
+                [
+                    'matchesTotalCode' => StandingColumnCode::MATCHES_TOTAL_CODE,
+                    'liveLeagueTableCode' => StandingTypeCode::LIVE_LEAGUE_TABLE_CODE,
+                    'leagueTableCode' => StandingTypeCode::LEAGUE_TABLE_CODE,
+                    'entity' => $entity,
+                    'entityId' => $entityId,
+                ]
             )
-            ->join('liveStanding.standingRow', 'liveRow')
-            ->join('liveRow.standingCell', 'liveCell', 'WITH', 'liveCell.standingColumn = :matchesTotalCode')
-            ->andWhere('mainStanding.entity = :entity')
-            ->andWhere('mainStanding.entityId = :entityId')
-            ->andWhere('mainStanding.standingType = :leagueTableCode')
-            ->setParameters([
-                'matchesTotalCode' => StandingColumnCode::MATCHES_TOTAL_CODE,
-                'liveLeagueTableCode' => StandingTypeCode::LIVE_LEAGUE_TABLE_CODE,
-                'leagueTableCode' => StandingTypeCode::LEAGUE_TABLE_CODE,
-                'entity' => $entity,
-                'entityId' => $entityId,
-            ])
             ->getQuery()
-            ->getScalarResult();
+            ->getArrayResult();
 
-        return empty($hasDifferences[0]) ? false : (int) $hasDifferences[0][1] != 0;
+        if (empty($totalMatchesPlayed) || !isset($totalMatchesPlayed[0][1], $totalMatchesPlayed[1][1])) {
+            return false;
+        }
+
+        return (int)$totalMatchesPlayed[1][1] - (int)$totalMatchesPlayed[0][1] != 0;
     }
 }
