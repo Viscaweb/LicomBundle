@@ -4,6 +4,7 @@ namespace Visca\Bundle\LicomBundle\Entity;
 
 use Visca\Bundle\CoreBundle\Entity\Traits\OptionalDateTimeTrait;
 use Visca\Bundle\CoreBundle\Entity\Traits\DeletableTrait;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * StandingComment.
@@ -22,6 +23,11 @@ class StandingComment
      * @var string
      */
     private $text;
+
+    /**
+     * @var Collection
+     */
+    private $standingCommentGraph;
 
     /**
      * Get id.
@@ -55,5 +61,49 @@ class StandingComment
         $this->text = $text;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|StandingCommentGraph[]
+     */
+    public function getStandingCommentGraph()
+    {
+        return $this->standingCommentGraph;
+    }
+
+    /**
+     * @param Collection $standingCommentGraph
+     *
+     * @return $this
+     */
+    public function setStandingCommentGraph(Collection $standingCommentGraph)
+    {
+        $this->standingCommentGraph = $standingCommentGraph;
+
+        return $this;
+    }
+
+    /**
+     * Add StandingCommentGraph.
+     *
+     * @param StandingCommentGraph $standingCommentGraph
+     *
+     * @return $this
+     */
+    public function addStandingRow(StandingCommentGraph $standingCommentGraph)
+    {
+        $this->standingCommentGraph[] = $standingCommentGraph;
+
+        return $this;
+    }
+
+    /**
+     * Remove standingRow.
+     *
+     * @param StandingRow $standingCommentGraph
+     */
+    public function removeStandingRow(StandingRow $standingCommentGraph)
+    {
+        $this->standingCommentGraph->removeElement($standingCommentGraph);
     }
 }
