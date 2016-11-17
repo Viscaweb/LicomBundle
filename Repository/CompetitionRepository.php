@@ -3,7 +3,6 @@
 namespace Visca\Bundle\LicomBundle\Repository;
 
 use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
-use Visca\Bundle\LicomBundle\Entity\Code\EntityCode;
 use Visca\Bundle\LicomBundle\Entity\Code\LocalizationTranslationTypeCode;
 use Visca\Bundle\LicomBundle\Entity\Code\ProfileTranslationGraphLabelCode;
 use Visca\Bundle\LicomBundle\Entity\Competition;
@@ -92,7 +91,7 @@ class CompetitionRepository extends AbstractEntityRepository
      * Gets the most important competitions of a country, sorted by importance.
      *
      * @param Team $team
-     * @param int  $limit     Number of competitions to get.
+     * @param int  $limit Number of competitions to get.
      */
     public function findMostImportantByTeam(Team $team, $limit = 1)
     {
