@@ -144,7 +144,7 @@ class MatchCounterRepository
     /**
      * Returns the number of LIVE matches for the given sport.
      *
-     * @param Sport $sport Sport Entity
+     * @param Sport             $sport Sport Entity
      * @param DateTimeImmutable $date
      *
      * @return int
