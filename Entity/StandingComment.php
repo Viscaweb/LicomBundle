@@ -5,7 +5,7 @@ namespace Visca\Bundle\LicomBundle\Entity;
 use Visca\Bundle\CoreBundle\Entity\Traits\OptionalDateTimeTrait;
 use Visca\Bundle\CoreBundle\Entity\Traits\DeletableTrait;
 use Doctrine\Common\Collections\Collection;
-
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * StandingComment.
  */
@@ -28,6 +28,11 @@ class StandingComment
      * @var Collection
      */
     private $standingCommentGraph;
+
+    public function __construct()
+    {
+        $this->standingCommentGraph = new ArrayCollection();
+    }
 
     /**
      * Get id.
