@@ -8,9 +8,6 @@ use Visca\Bundle\LicomBundle\Entity\Code\StandingColumnCode;
 use Visca\Bundle\LicomBundle\Entity\Code\StandingTypeCode;
 use Visca\Bundle\LicomBundle\Entity\Standing;
 
-/**
- * Class StandingRepository.
- */
 class StandingPromotionRepository extends AbstractEntityRepository
 {
 }
