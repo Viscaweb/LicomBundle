@@ -31,3 +31,7 @@ Visca\Bundle\LicomBundle\Entity\StandingComment:
       nullable: true
       options:
         default: NULL
+  oneToMany:
+    standingCommentGraph:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\StandingCommentGraph
+      mappedBy: standingComment
