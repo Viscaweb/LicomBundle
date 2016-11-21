@@ -499,3 +499,12 @@ services:
         arguments:
             - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\ThreeWayMatchBettingOutcome
+
+    visca_licom.repository.standing_promotion:
+        class: Visca\Bundle\LicomBundle\Repository\StandingPromotionRepository
+        factory_service: visca_doctrine.repository.factory
+        factory_method: getRepository
+        arguments:
+            - '@visca_licom.entity_manager'
+            - Visca\Bundle\LicomBundle\Entity\StandingPromotion
+
