@@ -738,8 +738,15 @@ class MatchRepository extends AbstractEntityRepository
         return $queryBuilder->getQuery()->getResult();
     }
 
-
-    public function findByDateAndStatusAndSport2(
+    /**
+     * @param DateTime $dateFrom
+     * @param DateTime $dateTo
+     * @param null     $status
+     * @param null     $sportId
+     *
+     * @return array
+     */
+    public function findByDateAndStatusAndSportSimpleJoin(
         DateTime $dateFrom,
         DateTime $dateTo,
         $status = null,
