@@ -51,6 +51,8 @@ Visca\Bundle\LicomBundle\Entity\MatchBettingOutcome:
   indexes:
     fk_entity:
       columns: [Entity]
+    fk_entity_id:
+      columns: [entityId]
     fk_bettingOutcomeSubType:
       columns: [BettingOutcomeSubType]
     fk_bettingOutcomeScopeType:

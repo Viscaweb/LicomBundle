@@ -255,6 +255,14 @@ services:
             - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\Standing
 
+    visca_licom.repository.standing_comment_graph_label:
+        class: Visca\Bundle\LicomBundle\Repository\StandingCommentGraphLabelRepository
+        factory_service: visca_doctrine.repository.factory
+        factory_method: getRepository
+        arguments:
+            - '@visca_licom.entity_manager'
+            - Visca\Bundle\LicomBundle\Entity\StandingCommentGraphLabel
+
     visca_licom.repository.standing_comment:
         class: Visca\Bundle\LicomBundle\Repository\StandingCommentRepository
         factory_service: visca_doctrine.repository.factory
@@ -499,3 +507,12 @@ services:
         arguments:
             - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\ThreeWayMatchBettingOutcome
+
+    visca_licom.repository.standing_promotion:
+        class: Visca\Bundle\LicomBundle\Repository\StandingPromotionRepository
+        factory_service: visca_doctrine.repository.factory
+        factory_method: getRepository
+        arguments:
+            - '@visca_licom.entity_manager'
+            - Visca\Bundle\LicomBundle\Entity\StandingPromotion
+
