@@ -75,6 +75,8 @@ class MatchQueryBuilder extends QueryBuilder
     }
 
     /**
+     * @param int  $numberOfParticipants          Number of participants we want to join to.
+     * @param int  $numberOfMandatoryParticipants Number of mandatory participants we need.
      * @param bool $optimizeJoin
      *
      * @return $this
@@ -101,18 +103,43 @@ class MatchQueryBuilder extends QueryBuilder
                 ->join("$this->alias.matchParticipant", "mp2", Join::WITH, 'mp2.number = 2')
                 ->join("mp1.participant", "p1")
                 ->join("mp2.participant", "p2");
+
         } else {
             $this
                 ->addSelect("mp", "p")
-                ->leftJoin(
-                    "$this->alias.matchParticipant",
-                    'mp'
-                )
+                ->leftJoin("$this->alias.matchParticipant", 'mp')
                 ->join("mp.participant", 'p');
         }
 
         return $this;
     }
+
+    /**
+     * @param int  $numberOfParticipants          Number of participants we want to join to.
+     * @param int  $numberOfMandatoryParticipants Number of mandatory participants we need.
+     * @param bool $optimizeJoin
+     *
+     * @return $this
+     */
+    public function joinMatchParticipantSimple($optimizeJoin = false)
+    {
+        $this->matchParticipantJoinOptimized = $optimizeJoin;
+
+        if ($optimizeJoin) {
+            $this
+                ->addSelect("partial mp.{id, number}", "partial p.{id, name}")
+                ->join("$this->alias.matchParticipant", "mp")
+                ->join("mp.participant", "p");
+
+        } else {
+            $this
+                ->addSelect("mp", "p")
+                ->leftJoin("$this->alias.matchParticipant", 'mp')
+                ->join("mp.participant", 'p');
+        }
+        return $this;
+    }
+
 
     /**
      * @return $this
@@ -157,6 +184,41 @@ class MatchQueryBuilder extends QueryBuilder
                     $this->addSelect('partial '.$resultAlias.'.{id, value, matchResultType}');
                     $this->leftJoin(
                         'mp'.$postfix.'.matchResult',
+                        $resultAlias,
+                        Join::WITH,
+                        $resultAlias.'.matchResultType ='.$matchResultTypeCode
+                    );
+                }
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Like joinMatchResultSimple.
+     * The difference is this interprets only one join has been done with MatchParticipant.
+     *
+     * @param array $optimizeMatchResultTypeCodes
+     *
+     * @return $this
+     */
+    public function joinMatchResultSimple(array $optimizeMatchResultTypeCodes = [])
+    {
+        if (count($optimizeMatchResultTypeCodes) > 0) {
+            $total = 1;
+            if ($this->matchParticipantJoinOptimized) {
+                $total = 2;
+            }
+
+            for ($i = 0; $i < $total; ++$i) {
+                $postfix = $total === 0 ? '' : ($i + 1);
+
+                foreach ($optimizeMatchResultTypeCodes as $j => $matchResultTypeCode) {
+                    $resultAlias = 'result'.$j.'_'.$postfix;
+                    $this->addSelect('partial '.$resultAlias.'.{id, value, matchResultType}');
+                    $this->leftJoin(
+                        'mp.matchResult',
                         $resultAlias,
                         Join::WITH,
                         $resultAlias.'.matchResultType ='.$matchResultTypeCode

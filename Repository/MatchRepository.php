@@ -733,7 +733,19 @@ class MatchRepository extends AbstractEntityRepository
         $status = null,
         $sportId = null
     ) {
-        $queryBuilder = $this->findByDateAndStatusAndSportQueryBuilder($dateFrom, $dateTo, $status, $sportId);
+        $queryBuilder = $this->getByDateAndStatusAndSportQueryBuilder($dateFrom, $dateTo, $status, $sportId);
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+
+    public function findByDateAndStatusAndSport2(
+        DateTime $dateFrom,
+        DateTime $dateTo,
+        $status = null,
+        $sportId = null
+    ) {
+        $queryBuilder = $this->getByDateAndStatusAndSportQueryBuilder2($dateFrom, $dateTo, $status, $sportId);
 
         return $queryBuilder->getQuery()->getResult();
     }
@@ -744,7 +756,7 @@ class MatchRepository extends AbstractEntityRepository
      *
      * @param DateTime    $dateFrom
      * @param DateTime    $dateTo
-     * @param string|null $status   Any of the valid MatchStatusDescriptionCategoryType
+     * @param string|null $intervalSeconds Time ago we accept finished matches.
      * @param null        $sportId
      *
      * @return \Visca\Bundle\LicomBundle\Entity\Match[]
@@ -755,7 +767,7 @@ class MatchRepository extends AbstractEntityRepository
         $intervalSeconds = '30',
         $sportId = null
     ) {
-        $queryBuilder = $this->findByDateAndStatusAndSportQueryBuilder($dateFrom, $dateTo, "inprogress", $sportId);
+        $queryBuilder = $this->getByDateAndStatusAndSportQueryBuilder2($dateFrom, $dateTo, "inprogress", $sportId);
         $previosStatusCategories = $queryBuilder->getParameter('categories')->getValue();
         $statusCategories = array_merge($previosStatusCategories, $this->prepareStatusCategories("finished"));
         $queryBuilder->setParameter('categories', $statusCategories);
@@ -837,15 +849,14 @@ class MatchRepository extends AbstractEntityRepository
         $this->alterDateObjects($dateFrom, $dateTo);
 
         $queryBuilder = $this->createQueryBuilder('m');
-
         $queryBuilder
             ->setReducedColumnSet($optimized)
-            ->joinMatchParticipant($optimized)
+            ->joinMatchParticipantSimple($optimized)
             ->joinCompetition()
             ->where('m.startDate BETWEEN :dateFrom AND :dateTo')
             ->andWhere('c.id IN (:competitionIds)')
-            ->andWhere('mp1.id IS NOT NULL')
-            ->andWhere('mp2.id IS NOT NULL')
+//            ->andWhere('mp1.id IS NOT NULL')
+//            ->andWhere('mp2.id IS NOT NULL')
             ->setParameter('dateFrom', $dateFrom->format('Y-m-d H:i:s'))
             ->setParameter('dateTo', $dateTo->format('Y-m-d H:i:s'))
             ->setParameter('competitionIds', $competitionIds);
@@ -855,14 +866,8 @@ class MatchRepository extends AbstractEntityRepository
          */
         if ($status !== null) {
             $statusCategories = $this->prepareStatusCategories($status);
-
             $queryBuilder
-                ->leftJoin(
-                    'Visca\Bundle\LicomBundle\Entity\MatchStatusDescription',
-                    's',
-                    Join::WITH,
-                    's.id = m.matchStatusDescription'
-                )
+                ->leftJoin('m.matchStatusDescription', 's', Join::WITH, 's.id = m.matchStatusDescription')
                 ->andWhere('s.category IN (:categories)')
                 ->setParameter('categories', $statusCategories);
         }
@@ -1723,7 +1728,7 @@ class MatchRepository extends AbstractEntityRepository
      *
      * @return MatchQueryBuilder
      */
-    private function findByDateAndStatusAndSportQueryBuilder(
+    private function getByDateAndStatusAndSportQueryBuilder(
         DateTime $dateFrom,
         DateTime $dateTo,
         $status = null,
@@ -1748,6 +1753,85 @@ class MatchRepository extends AbstractEntityRepository
                 ]
             )
             ->joinMatchResult(
+                [
+                    MatchResultTypeCode::HALF_TIME_CODE,
+                    MatchResultTypeCode::RUNNING_SCORE_CODE,
+                ]
+            );
+
+        /*
+         * Filter by date
+         */
+        $this->alterDateObjects($dateFrom, $dateTo);
+
+        $queryBuilder
+            ->where('m.startDate BETWEEN :dateFrom AND :dateTo')
+            ->setParameter('dateFrom', $dateFrom->format('Y-m-d H:i'))
+            ->setParameter('dateTo', $dateTo->format('Y-m-d H:i'));
+
+        /*
+         * Filter the status
+         */
+        if ($status !== null) {
+            $statusCategories = $this->prepareStatusCategories($status);
+
+            $queryBuilder
+                ->leftJoin(
+                    'Visca\Bundle\LicomBundle\Entity\MatchStatusDescription',
+                    's',
+                    Join::WITH,
+                    's.id = m.matchStatusDescription'
+                )
+                ->andWhere('s.category IN (:categories)')
+                ->setParameter('categories', $statusCategories);
+        }
+
+
+        /*
+         * if we have the sport id
+         */
+        if (!is_null($sportId) && is_numeric($sportId)) {
+            $queryBuilder
+                ->andWhere('p'.($optimized ? '1' : '').'.sport = :sportId')
+                ->setParameter('sportId', $sportId);
+        }
+
+        return $queryBuilder;
+    }
+
+    /**
+     * @param DateTime $dateFrom
+     * @param DateTime $dateTo
+     * @param null     $status
+     * @param null     $sportId
+     *
+     * @return MatchQueryBuilder
+     */
+    private function getByDateAndStatusAndSportQueryBuilder2(
+        DateTime $dateFrom,
+        DateTime $dateTo,
+        $status = null,
+        $sportId = null
+    ) {
+        $optimized = false;
+        $queryBuilder = $this->createQueryBuilder('m');
+        $queryBuilder
+            ->setReducedColumnSet($optimized)
+            ->joinMatchParticipantSimple($optimized)
+            ->joinMatchAux(
+                [
+                    MatchAuxTypeCode::DATE_ENDED_CODE,
+                    MatchAuxTypeCode::DATE_STARTED_CODE,
+                    MatchAuxTypeCode::DATE_FIRST_HALF_ENDED_CODE,
+                    MatchAuxTypeCode::DATE_SECOND_HALF_STARTED_CODE,
+                    MatchAuxTypeCode::DATE_SECOND_HALF_ENDED_CODE,
+                    MatchAuxTypeCode::EXTRA_TIME_1ST_HALF_TIME_STARTED_AT_CODE,
+                    MatchAuxTypeCode::EXTRA_TIME_1ST_HALF_TIME_ENDED_AT_CODE,
+                    MatchAuxTypeCode::EXTRA_TIME_2ND_HALF_TIME_STARTED_AT_CODE,
+                    MatchAuxTypeCode::EXTRA_TIME_2ND_HALF_TIME_ENDED_AT_CODE,
+                ]
+            )
+            ->joinMatchResultSimple(
                 [
                     MatchResultTypeCode::HALF_TIME_CODE,
                     MatchResultTypeCode::RUNNING_SCORE_CODE,
