@@ -389,4 +389,24 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    /**
+     * @param int $months
+     *
+     * @return CompetitionSeasonStage[]
+     */
+    public function findGroupedBySeasonStartingWithinMonths($months)
+    {
+        return $this
+            ->createQueryBuilder('css')
+            ->where('css.start
+                BETWEEN
+                DATE_SUB(CURRENT_DATE(), :monthDiff, \'month\')
+                AND
+                DATE_ADD(CURRENT_DATE(), :monthDiff, \'month\')')
+            ->groupBy('css.competitionSeason')
+            ->setParameter('monthDiff', $months / 2)
+            ->getQuery()
+            ->getResult();
+    }
 }

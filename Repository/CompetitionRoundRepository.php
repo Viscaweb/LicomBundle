@@ -223,4 +223,24 @@ class CompetitionRoundRepository extends AbstractEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    /**
+     * @param int $months
+     *
+     * @return CompetitionRound[]
+     */
+    public function findGroupedBySeasonStageStartingWithinMonths($months)
+    {
+        return $this
+            ->createQueryBuilder('cr')
+            ->where('cr.start
+                BETWEEN
+                DATE_SUB(CURRENT_DATE(), :monthDiff, \'month\')
+                AND
+                DATE_ADD(CURRENT_DATE(), :monthDiff, \'month\')')
+            ->groupBy('cr.competitionSeasonStage')
+            ->setParameter('monthDiff', $months / 2)
+            ->getQuery()
+            ->getResult();
+    }
 }
