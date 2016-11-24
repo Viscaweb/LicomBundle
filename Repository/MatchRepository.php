@@ -569,10 +569,6 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * Finds Matches that has a given importance and are going to be played in $days days.
-     * If the toDays is not set, the query will return all the results biggers than the fromDate
-     * And will add the limit if provided.
-     *
      * @param int    $countryId  Country entity.
      * @param string $importance top|important|2nd.
      * @param int    $fromDays   Starting date the match can take place.
@@ -599,6 +595,45 @@ class MatchRepository extends AbstractEntityRepository
                     'cc.country = :country'
                 )
                 ->setParameter('country', $countryId);
+        }
+
+
+        return $queryBuilder->getQuery()->execute();
+    }
+
+    /**
+     * Finds Matches that has a given importance and are going to be played in $days days.
+     * If the toDays is not set, the query will return all the results biggers than the fromDate
+     * And will add the limit if provided.
+     *
+     * @param int    $countryId  Country entity.
+     * @param int    $sportId
+     * @param string $importance top|important|2nd.
+     * @param int    $fromDays   Starting date the match can take place.
+     *                           Specified in number of relative days from today.
+     * @param int    $toDays     Limit date the match can take place. Specified in number of relative days from today.
+     * @param int    $limit      Limit the number of matches returned. Default 3.
+     *
+     * @return \Visca\Bundle\LicomBundle\Entity\Match[]
+     */
+    public function findByCountryAndSportImportanceInDays($countryId, $sportId, $importance, $fromDays, $toDays = null, $limit = null)
+    {
+        $queryBuilder = $this->getQueryBuilderByImportance($importance, $fromDays, $toDays, $limit);
+
+        /// If we have some competition ids, filter them
+        if ($competitionId !== null) {
+            $queryBuilder
+                ->join('m.competitionSeasonStage', 'css')
+                ->join('css.competitionSeason', 'cs')
+                ->join('cs.competition', 'c')
+                ->join(
+                    'c.competitionCategory',
+                    'cc',
+                    Join::WITH,
+                    'cc.country = :country AND cc.sport = :sport'
+                )
+                ->setParameter('country', $countryId)
+                ->setParameter('sport', $sportId);
         }
 
 
