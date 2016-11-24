@@ -31,11 +31,8 @@ class MatchRepository extends AbstractEntityRepository
      *
      * @return MatchQueryBuilder
      */
-    public function createQueryBuilder(
-        $alias,
-        $indexBy = null,
-        $reducedColumnSet = false
-    ) {
+    public function createQueryBuilder($alias, $indexBy = null, $reducedColumnSet = false)
+    {
         $queryBuilder = new MatchQueryBuilder($this->entityManager, $this->entityName);
         $queryBuilder
             ->setReducedColumnSet($reducedColumnSet)
@@ -104,18 +101,18 @@ class MatchRepository extends AbstractEntityRepository
     /**
      * Finds a match by its competition id.
      *
-     * @param int    $competitionId   Competition ID
-     * @param array  $whereConditions Extra conditions
-     * @param array  $whereArguments  Extra condition's parameters
-     * @param null   $limit           Limit
-     * @param null   $offset          Limit offset
-     * @param null   $orderField      Order field
-     * @param string $orderType       Order type
+     * @param int|array $competitionIds  Competition ID
+     * @param array     $whereConditions Extra conditions
+     * @param array     $whereArguments  Extra condition's parameters
+     * @param null      $limit           Limit
+     * @param null      $offset          Limit offset
+     * @param null      $orderField      Order field
+     * @param string    $orderType       Order type
      *
      * @return Match[]
      */
     public function findByCompetitionId(
-        $competitionId,
+        $competitionIds,
         array $whereConditions = [],
         array $whereArguments = [],
         $limit = null,
@@ -123,6 +120,10 @@ class MatchRepository extends AbstractEntityRepository
         $orderField = null,
         $orderType = 'ASC'
     ) {
+        if (!is_array($competitionIds)) {
+            $competitionIds = [$competitionIds];
+        }
+
         $query = $this
             ->createQueryBuilder('m')
             ->join('m.competitionSeasonStage', 'stage')
@@ -132,8 +133,8 @@ class MatchRepository extends AbstractEntityRepository
             ->join('m.matchParticipant', 'mp2')
             ->join('mp.participant', 'p')
             ->join('mp2.participant', 'p2')
-            ->where('competition.id = :competitionId')
-            ->setParameter('competitionId', $competitionId)
+            ->where('competition.id IN (:competitionIds)')
+            ->setParameter('competitionIds', $competitionIds)
             ->orderBy('m.startDate', 'ASC');
 
         foreach ($whereConditions as $condition) {
@@ -168,11 +169,8 @@ class MatchRepository extends AbstractEntityRepository
      *
      * @return Match[]
      */
-    public function findByCompetitionIdAndStart(
-        $competitionId,
-        $limit = null,
-        $offset = null
-    ) {
+    public function findByCompetitionIdAndStart($competitionId, $limit = null, $offset = null)
+    {
         $qb = $this
             ->createQueryBuilder('m')
             ->join('m.competitionSeasonStage', 'stage')
@@ -225,10 +223,8 @@ class MatchRepository extends AbstractEntityRepository
      *
      * @return int[] Array of match id
      */
-    public function findMatchIdByPeriod(
-        DateTime $periodFrom,
-        DateTime $periodTo
-    ) {
+    public function findMatchIdByPeriod(DateTime $periodFrom, DateTime $periodTo)
+    {
         $this->alterDateObjects($periodFrom, $periodTo);
         $queryBuilder = parent::createQueryBuilder('m');
         $rows = $queryBuilder
@@ -535,83 +531,44 @@ class MatchRepository extends AbstractEntityRepository
      *
      * @return Match[]
      */
-    public function findByImportanceInDays(
-        $importance,
-        $fromDays,
-        $toDays = null,
-        $limit = null
-    ) {
-        /*
-         * DQL does not implement DATE() mysql function.
-         * Here's how to implement it:
-         * http://stackoverflow.com/questions/13272224/use-a-date-function-in-a-where-clause-with-dql
-         * But it also does not implement INTERVAL neither,
-         * So I can't do
-         * SELECT * FROM Match WHERE DATE(m.startDate) = (CURDATE() - INTERVAL :days DAY)
-         * easily...
-         *
-         * So I end up constructing a PHP object that holds the date of
-         * X days ago, and get those matches that start after (>=) that date.
-         * Also, order the result set by startDate, olders first.
-         */
-        $dateFrom = new \DateTime('+'.$fromDays.' days');
+    public function findByImportanceInDays($importance, $fromDays, $toDays = null, $limit = null)
+    {
+        $queryBuilder = $this->getQueryBuilderByImportance($importance, $fromDays, $toDays, $limit);
 
-        /*
-         * $fromDays = 0 means that we accept matches playing today.
-         * Therefore, we could get some matches that are finished.
-         *
-         * To avoid this behaviour, we must say that we accept only
-         * the matches are that playing in future.
-         */
-        if ($fromDays !== 0) {
-            $dateFrom->setTime(0, 0, 0);
-        }
-        $this->alterDateObjects($dateFrom);
-
-        $queryBuilder = parent::createQueryBuilder('m');
-        $queryBuilder
-            ->select('m')
-            ->setCacheable(false);
-
-        $queryBuilder
-            ->join('m.matchAuxProfile', 'ma', Join::WITH)
-            ->andWhere('m.startDate >= :start')
-            ->andWhere('ma.value = :importance')
-            ->orderBy('m.startDate', 'ASC')
-            ->setParameter('start', $dateFrom->format('Y-m-d H:i:s'))
-            ->setParameter('importance', $importance);
-
-        /*
-         * If we don't have any "to date", don't add it to the query
-         */
-        if ($toDays !== null) {
-            $dateEnd = new \DateTime('+'.$toDays.' days, 23:59:59');
-            $this->alterDateObjects($dateEnd);
-
-            $queryBuilder
-                ->andWhere('m.startDate <= :end')
-                ->setParameter('end', $dateEnd->format('Y-m-d H:i:s'));
-        }
-
-        if ($limit !== null) {
-            $queryBuilder->setMaxResults($limit);
-        }
-
-        // only if we ask for a limited/offset number of matches we will add the
-        if (is_numeric($limit)) {
-            $queryBuilder->groupBy('m.id');
-        }
-
-        return $queryBuilder
-            ->getQuery()
-            ->execute();
+        return $queryBuilder->getQuery()->execute();
     }
 
     /**
-     * Finds Matches that has a given importance and are going to be played in $days days.
-     * If the toDays is not set, the query will return all the results biggers than the fromDate
-     * And will add the limit if provided.
+     * Same as findByImportanceInDays but with Competition Filter.
      *
+     * @param array|null $competitionIds CompetitionIds if any to search importants by
+     * @param string     $importance     top|important|2nd.
+     * @param int        $fromDays       Starting date the match can take place.
+     *                                   Specified in number of relative days from today.
+     * @param int        $toDays         Limit date the match can take place. Specified in number of relative days from today.
+     * @param int        $limit          Limit the number of matches returned. Default 3.
+     *
+     * @return Match[]
+     */
+    public function findByCompetitionAndImportanceInDays($competitionIds, $importance, $fromDays, $toDays = null, $limit = null)
+    {
+        $queryBuilder = $this->getQueryBuilderByImportance($importance, $fromDays, $toDays, $limit);
+
+        /// If we have some competition ids, filter them
+        if ($competitionIds !== null) {
+            $queryBuilder
+                ->join('m.competitionSeasonStage', 'stage')
+                ->join('stage.competitionSeason', 'season')
+                ->join('season.competition', 'competition')
+                ->andWhere('competition.id IN (:competitionIds)')
+                ->setParameter('competitionIds', $competitionIds);
+        }
+
+
+        return $queryBuilder->getQuery()->execute();
+    }
+
+    /**
      * @param int    $countryId  Country entity.
      * @param string $importance top|important|2nd.
      * @param int    $fromDays   Starting date the match can take place.
@@ -621,99 +578,66 @@ class MatchRepository extends AbstractEntityRepository
      *
      * @return \Visca\Bundle\LicomBundle\Entity\Match[]
      */
-    public function findByCountryImportanceInDays(
-        $countryId,
-        $importance,
-        $fromDays,
-        $toDays = null,
-        $limit = null
-    ) {
-        /*
-         * DQL does not implement DATE() mysql function.
-         * Here's how to implement it:
-         * http://stackoverflow.com/questions/13272224/use-a-date-function-in-a-where-clause-with-dql
-         * But it also does not implement INTERVAL neither,
-         * So I can't do
-         * SELECT * FROM Match WHERE DATE(m.startDate) = (CURDATE() - INTERVAL :days DAY)
-         * easily...
-         *
-         * So I end up constructing a PHP object that holds the date of
-         * X days ago, and get those matches that start after (>=) that date.
-         * Also, order the result set by startDate, olders first.
-         */
-        $dateFrom = new \DateTime('+'.$fromDays.' days');
+    public function findByCountryImportanceInDays($countryId, $importance, $fromDays, $toDays = null, $limit = null)
+    {
+        $queryBuilder = $this->getQueryBuilderByImportance($importance, $fromDays, $toDays, $limit);
 
-        /*
-         * $fromDays = 0 means that we accept matches playing today.
-         * Therefore, we could get some matches that are finished.
-         *
-         * To avoid this behaviour, we must say that we accept only
-         * the matches are that playing in future.
-         */
-        if ($fromDays !== 0) {
-            $dateFrom->setTime(0, 0, 0);
-        }
-        $this->alterDateObjects($dateFrom);
-
-        $queryBuilder = parent::createQueryBuilder('m');
-        $queryBuilder
-            ->select('m')
-            ->setCacheable(false);
-
-        $queryBuilder
-            ->join('m.matchAuxProfile', 'ma', Join::WITH)
-            ->join(
-                'm.competitionSeasonStage',
-                'css',
-                Join::WITH
-            )
-            ->join(
-                'css.competitionSeason',
-                'cs',
-                Join::WITH
-            )
-            ->join(
-                'cs.competition',
-                'c',
-                Join::WITH
-            )
-            ->join(
-                'c.competitionCategory',
-                'cc',
-                Join::WITH,
-                'cc.country = :country'
-            )
-            ->andWhere('m.startDate >= :start')
-            ->andWhere('ma.value = :importance')
-            ->orderBy('m.startDate', 'ASC')
-            ->setParameter('start', $dateFrom->format('Y-m-d H:i:s'))
-            ->setParameter('importance', $importance)
-            ->setParameter('country', $countryId);
-
-        /*
-         * If we don't have any "to date", don't add it to the query
-         */
-        if ($toDays !== null) {
-            $dateEnd = new \DateTime('+'.$toDays.' days, 23:59:59');
-            $this->alterDateObjects($dateEnd);
-
+        /// If we have some competition ids, filter them
+        if ($competitionId !== null) {
             $queryBuilder
-                ->andWhere('m.startDate <= :end')
-                ->setParameter('end', $dateEnd->format('Y-m-d H:i:s'));
+                ->join('m.competitionSeasonStage', 'css')
+                ->join('css.competitionSeason', 'cs')
+                ->join('cs.competition', 'c')
+                ->join(
+                    'c.competitionCategory',
+                    'cc',
+                    Join::WITH,
+                    'cc.country = :country'
+                )
+                ->setParameter('country', $countryId);
         }
 
-        if ($limit !== null) {
-            $queryBuilder->setMaxResults($limit);
+
+        return $queryBuilder->getQuery()->execute();
+    }
+
+    /**
+     * Finds Matches that has a given importance and are going to be played in $days days.
+     * If the toDays is not set, the query will return all the results biggers than the fromDate
+     * And will add the limit if provided.
+     *
+     * @param int    $countryId  Country entity.
+     * @param int    $sportId
+     * @param string $importance top|important|2nd.
+     * @param int    $fromDays   Starting date the match can take place.
+     *                           Specified in number of relative days from today.
+     * @param int    $toDays     Limit date the match can take place. Specified in number of relative days from today.
+     * @param int    $limit      Limit the number of matches returned. Default 3.
+     *
+     * @return \Visca\Bundle\LicomBundle\Entity\Match[]
+     */
+    public function findByCountryAndSportImportanceInDays($countryId, $sportId, $importance, $fromDays, $toDays = null, $limit = null)
+    {
+        $queryBuilder = $this->getQueryBuilderByImportance($importance, $fromDays, $toDays, $limit);
+
+        /// If we have some competition ids, filter them
+        if ($competitionId !== null) {
+            $queryBuilder
+                ->join('m.competitionSeasonStage', 'css')
+                ->join('css.competitionSeason', 'cs')
+                ->join('cs.competition', 'c')
+                ->join(
+                    'c.competitionCategory',
+                    'cc',
+                    Join::WITH,
+                    'cc.country = :country AND cc.sport = :sport'
+                )
+                ->setParameter('country', $countryId)
+                ->setParameter('sport', $sportId);
         }
 
-        // only if we ask for a limited/offset number of matches we will add the
-        if (is_numeric($limit)) {
-            $queryBuilder->groupBy('m.id');
-        }
 
-        return $queryBuilder
-            ->getQuery()
-            ->execute();
+        return $queryBuilder->getQuery()->execute();
     }
 
     /**
@@ -727,12 +651,8 @@ class MatchRepository extends AbstractEntityRepository
      *
      * @return \Visca\Bundle\LicomBundle\Entity\Match[]
      */
-    public function findByDateAndStatusAndSport(
-        DateTime $dateFrom,
-        DateTime $dateTo,
-        $status = null,
-        $sportId = null
-    ) {
+    public function findByDateAndStatusAndSport(DateTime $dateFrom, DateTime $dateTo, $status = null, $sportId = null)
+    {
         $queryBuilder = $this->getByDateAndStatusAndSportQueryBuilder($dateFrom, $dateTo, $status, $sportId);
 
         return $queryBuilder->getQuery()->getResult();
@@ -809,9 +729,7 @@ class MatchRepository extends AbstractEntityRepository
             ->setReducedColumnSet($optimized)
             ->joinMatchParticipant($optimized)
             ->where('m.startDate BETWEEN :dateFrom AND :dateTo')
-            ->andWhere(
-                'm.competitionSeasonStage IN (:competitionSeasonStageIds)'
-            )
+            ->andWhere('m.competitionSeasonStage IN (:competitionSeasonStageIds)')
             ->andWhere('mp1.id IS NOT NULL')
             ->andWhere('mp2.id IS NOT NULL')
             ->setParameter('dateFrom', $dateFrom->format('Y-m-d H:i:s'))
@@ -889,19 +807,9 @@ class MatchRepository extends AbstractEntityRepository
      *
      * @return Match[]
      */
-    public function findMatchesByStatusBeforeDate(
-        $status,
-        DateTimeInterface $date,
-        $limit = null
-    ) {
-        return $this->findMatchesByStatusAndDateInterval(
-            $date,
-            $status,
-            true,
-            $limit,
-            null,
-            null
-        );
+    public function findMatchesByStatusBeforeDate($status, DateTimeInterface $date, $limit = null)
+    {
+        return $this->findMatchesByStatusAndDateInterval($date, $status, true, $limit, null, null);
     }
 
     /**
@@ -911,19 +819,9 @@ class MatchRepository extends AbstractEntityRepository
      *
      * @return Match[]
      */
-    public function findMatchesByStatusAfterDate(
-        $status,
-        DateTimeInterface $date,
-        $limit = null
-    ) {
-        return $this->findMatchesByStatusAndDateInterval(
-            $date,
-            $status,
-            false,
-            $limit,
-            null,
-            null
-        );
+    public function findMatchesByStatusAfterDate($status, DateTimeInterface $date, $limit = null)
+    {
+        return $this->findMatchesByStatusAndDateInterval($date, $status, false, $limit, null, null);
     }
 
     /**
@@ -1075,20 +973,9 @@ class MatchRepository extends AbstractEntityRepository
      *
      * @return Match[]
      */
-    public function findByDateAndStatusAndSportBeforeDate(
-        DateTimeInterface $date,
-        $status,
-        $sportId,
-        $limit = null
-    ) {
-        return $this->findMatchesByStatusAndDateInterval(
-            $date,
-            $status,
-            true,
-            $limit,
-            $sportId,
-            null
-        );
+    public function findByDateAndStatusAndSportBeforeDate(DateTimeInterface $date, $status, $sportId, $limit = null)
+    {
+        return $this->findMatchesByStatusAndDateInterval($date, $status, true, $limit, $sportId, null);
     }
 
     /**
@@ -1099,20 +986,9 @@ class MatchRepository extends AbstractEntityRepository
      *
      * @return Match[]
      */
-    public function findByDateAndStatusAndSportAfterDate(
-        DateTimeInterface $date,
-        $status,
-        $sportId,
-        $limit = null
-    ) {
-        return $this->findMatchesByStatusAndDateInterval(
-            $date,
-            $status,
-            false,
-            $limit,
-            $sportId,
-            null
-        );
+    public function findByDateAndStatusAndSportAfterDate(DateTimeInterface $date, $status, $sportId, $limit = null)
+    {
+        return $this->findMatchesByStatusAndDateInterval($date, $status, false, $limit, $sportId, null);
     }
 
     /**
@@ -1129,14 +1005,7 @@ class MatchRepository extends AbstractEntityRepository
         $competitionSeasonStageId,
         $limit = null
     ) {
-        return $this->findMatchesByStatusAndDateInterval(
-            $date,
-            $status,
-            true,
-            $limit,
-            null,
-            $competitionSeasonStageId
-        );
+        return $this->findMatchesByStatusAndDateInterval($date, $status, true, $limit, null, $competitionSeasonStageId);
     }
 
     /**
@@ -1153,14 +1022,7 @@ class MatchRepository extends AbstractEntityRepository
         $competitionSeasonStageId,
         $limit = null
     ) {
-        return $this->findMatchesByStatusAndDateInterval(
-            $date,
-            $status,
-            false,
-            $limit,
-            null,
-            $competitionSeasonStageId
-        );
+        return $this->findMatchesByStatusAndDateInterval($date, $status, false, $limit, null, $competitionSeasonStageId);
     }
 
     /**
@@ -1995,5 +1857,81 @@ class MatchRepository extends AbstractEntityRepository
             ->groupBy('dateWithHour')
             ->getQuery()
             ->getArrayResult();
+    }
+
+    /**
+     * Returns the query builder by importande in dates.
+     *
+     * @param $importance
+     * @param $fromDays
+     * @param $toDays
+     * @param $limit
+     *
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    protected function getQueryBuilderByImportance($importance, $fromDays, $toDays, $limit)
+    {
+        /*
+         * DQL does not implement DATE() mysql function.
+         * Here's how to implement it:
+         * http://stackoverflow.com/questions/13272224/use-a-date-function-in-a-where-clause-with-dql
+         * But it also does not implement INTERVAL neither,
+         * So I can't do
+         * SELECT * FROM Match WHERE DATE(m.startDate) = (CURDATE() - INTERVAL :days DAY)
+         * easily...
+         *
+         * So I end up constructing a PHP object that holds the date of
+         * X days ago, and get those matches that start after (>=) that date.
+         * Also, order the result set by startDate, olders first.
+         */
+        $dateFrom = new \DateTime('+'.$fromDays.' days');
+
+        /*
+         * $fromDays = 0 means that we accept matches playing today.
+         * Therefore, we could get some matches that are finished.
+         *
+         * To avoid this behaviour, we must say that we accept only
+         * the matches are that playing in future.
+         */
+        if ($fromDays !== 0) {
+            $dateFrom->setTime(0, 0, 0);
+        }
+        $this->alterDateObjects($dateFrom);
+
+        $queryBuilder = parent::createQueryBuilder('m');
+        $queryBuilder
+            ->select('m')
+            ->setCacheable(false);
+
+        $queryBuilder
+            ->join('m.matchAuxProfile', 'ma', Join::WITH)
+            ->andWhere('m.startDate >= :start')
+            ->andWhere('ma.value = :importance')
+            ->orderBy('m.startDate', 'ASC')
+            ->setParameter('start', $dateFrom->format('Y-m-d H:i:s'))
+            ->setParameter('importance', $importance);
+
+        /*
+         * If we don't have any "to date", don't add it to the query
+         */
+        if ($toDays !== null) {
+            $dateEnd = new \DateTime('+'.$toDays.' days, 23:59:59');
+            $this->alterDateObjects($dateEnd);
+
+            $queryBuilder
+                ->andWhere('m.startDate <= :end')
+                ->setParameter('end', $dateEnd->format('Y-m-d H:i:s'));
+        }
+
+        if ($limit !== null) {
+            $queryBuilder->setMaxResults($limit);
+        }
+
+        // only if we ask for a limited/offset number of matches we will add the
+        if (is_numeric($limit)) {
+            $queryBuilder->groupBy('m.id');
+        }
+
+        return $queryBuilder;
     }
 }
