@@ -103,7 +103,6 @@ class MatchQueryBuilder extends QueryBuilder
                 ->join("$this->alias.matchParticipant", "mp2", Join::WITH, 'mp2.number = 2')
                 ->join("mp1.participant", "p1")
                 ->join("mp2.participant", "p2");
-
         } else {
             $this
                 ->addSelect("mp", "p")
@@ -130,13 +129,13 @@ class MatchQueryBuilder extends QueryBuilder
                 ->addSelect("partial mp.{id, number}", "partial p.{id, name}")
                 ->join("$this->alias.matchParticipant", "mp")
                 ->join("mp.participant", "p");
-
         } else {
             $this
                 ->addSelect("mp", "p")
                 ->leftJoin("$this->alias.matchParticipant", 'mp')
                 ->join("mp.participant", 'p');
         }
+
         return $this;
     }
 
