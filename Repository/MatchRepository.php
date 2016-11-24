@@ -858,7 +858,7 @@ class MatchRepository extends AbstractEntityRepository
         $queryBuilder = $this->createQueryBuilder('m');
         $queryBuilder
             ->setReducedColumnSet($optimized)
-            ->joinMatchParticipantSimple($optimized)
+            ->joinMatchParticipantSingleJoin($optimized)
             ->joinCompetition()
             ->where('m.startDate BETWEEN :dateFrom AND :dateTo')
             ->andWhere('c.id IN (:competitionIds)')
@@ -1824,7 +1824,7 @@ class MatchRepository extends AbstractEntityRepository
         $queryBuilder = $this->createQueryBuilder('m');
         $queryBuilder
             ->setReducedColumnSet($optimized)
-            ->joinMatchParticipantSimple($optimized)
+            ->joinMatchParticipantSingleJoin($optimized)
             ->joinMatchAux(
                 [
                     MatchAuxTypeCode::DATE_ENDED_CODE,
@@ -1838,7 +1838,7 @@ class MatchRepository extends AbstractEntityRepository
                     MatchAuxTypeCode::EXTRA_TIME_2ND_HALF_TIME_ENDED_AT_CODE,
                 ]
             )
-            ->joinMatchResultSimple(
+            ->joinMatchResultSingleJoin(
                 [
                     MatchResultTypeCode::HALF_TIME_CODE,
                     MatchResultTypeCode::RUNNING_SCORE_CODE,
