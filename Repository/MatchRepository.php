@@ -101,18 +101,18 @@ class MatchRepository extends AbstractEntityRepository
     /**
      * Finds a match by its competition id.
      *
-     * @param array  $competitionIds  Competition ID
-     * @param array  $whereConditions Extra conditions
-     * @param array  $whereArguments  Extra condition's parameters
-     * @param null   $limit           Limit
-     * @param null   $offset          Limit offset
-     * @param null   $orderField      Order field
-     * @param string $orderType       Order type
+     * @param int|array $competitionIds  Competition ID
+     * @param array     $whereConditions Extra conditions
+     * @param array     $whereArguments  Extra condition's parameters
+     * @param null      $limit           Limit
+     * @param null      $offset          Limit offset
+     * @param null      $orderField      Order field
+     * @param string    $orderType       Order type
      *
      * @return Match[]
      */
     public function findByCompetitionId(    
-        array $competitionIds = [],
+        $competitionIds,
         array $whereConditions = [],
         array $whereArguments = [],
         $limit = null,
@@ -120,6 +120,11 @@ class MatchRepository extends AbstractEntityRepository
         $orderField = null,
         $orderType = 'ASC'
     ) {
+        
+        if(!is_array($competitionIds)){
+            $competitionIds = [$competitionIds];
+        }
+
         $query = $this
             ->createQueryBuilder('m')
             ->join('m.competitionSeasonStage', 'stage')
