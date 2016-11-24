@@ -111,7 +111,7 @@ class MatchRepository extends AbstractEntityRepository
      *
      * @return Match[]
      */
-    public function findByCompetitionId(    
+    public function findByCompetitionId(
         $competitionIds,
         array $whereConditions = [],
         array $whereArguments = [],
@@ -120,8 +120,7 @@ class MatchRepository extends AbstractEntityRepository
         $orderField = null,
         $orderType = 'ASC'
     ) {
-        
-        if(!is_array($competitionIds)){
+        if (!is_array($competitionIds)) {
             $competitionIds = [$competitionIds];
         }
 
@@ -524,11 +523,11 @@ class MatchRepository extends AbstractEntityRepository
      * If the toDays is not set, the query will return all the results biggers than the fromDate
      * And will add the limit if provided.
      *
-     * @param string     $importance     top|important|2nd.
-     * @param int        $fromDays       Starting date the match can take place.
-     *                                  Specified in number of relative days from today.
-     * @param int        $toDays        Limit date the match can take place. Specified in number of relative days from today.
-     * @param int        $limit         Limit the number of matches returned. Default 3.
+     * @param string $importance top|important|2nd.
+     * @param int    $fromDays   Starting date the match can take place.
+     *                           Specified in number of relative days from today.
+     * @param int    $toDays     Limit date the match can take place. Specified in number of relative days from today.
+     * @param int    $limit      Limit the number of matches returned. Default 3.
      *
      * @return Match[]
      */
@@ -540,14 +539,14 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * Same as findByImportanceInDays but with Competition Filter
+     * Same as findByImportanceInDays but with Competition Filter.
      *
      * @param array|null $competitionIds CompetitionIds if any to search importants by
      * @param string     $importance     top|important|2nd.
      * @param int        $fromDays       Starting date the match can take place.
-     *                                  Specified in number of relative days from today.
-     * @param int        $toDays        Limit date the match can take place. Specified in number of relative days from today.
-     * @param int        $limit         Limit the number of matches returned. Default 3.
+     *                                   Specified in number of relative days from today.
+     * @param int        $toDays         Limit date the match can take place. Specified in number of relative days from today.
+     * @param int        $limit          Limit the number of matches returned. Default 3.
      *
      * @return Match[]
      */
@@ -1850,7 +1849,7 @@ class MatchRepository extends AbstractEntityRepository
          * X days ago, and get those matches that start after (>=) that date.
          * Also, order the result set by startDate, olders first.
          */
-        $dateFrom = new \DateTime('+' . $fromDays . ' days');
+        $dateFrom = new \DateTime('+'.$fromDays.' days');
 
         /*
          * $fromDays = 0 means that we accept matches playing today.
@@ -1881,7 +1880,7 @@ class MatchRepository extends AbstractEntityRepository
          * If we don't have any "to date", don't add it to the query
          */
         if ($toDays !== null) {
-            $dateEnd = new \DateTime('+' . $toDays . ' days, 23:59:59');
+            $dateEnd = new \DateTime('+'.$toDays.' days, 23:59:59');
             $this->alterDateObjects($dateEnd);
 
             $queryBuilder
