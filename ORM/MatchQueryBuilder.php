@@ -121,7 +121,7 @@ class MatchQueryBuilder extends QueryBuilder
      *
      * @return $this
      */
-    public function joinMatchParticipantSimple($optimizeJoin = false)
+    public function joinMatchParticipantSingleJoin($optimizeJoin = false)
     {
         $this->matchParticipantJoinOptimized = $optimizeJoin;
 
@@ -203,7 +203,7 @@ class MatchQueryBuilder extends QueryBuilder
      *
      * @return $this
      */
-    public function joinMatchResultSimple(array $optimizeMatchResultTypeCodes = [])
+    public function joinMatchResultSingleJoin(array $optimizeMatchResultTypeCodes = [])
     {
         if (count($optimizeMatchResultTypeCodes) > 0) {
             $total = 1;
