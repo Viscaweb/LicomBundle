@@ -4,7 +4,6 @@ namespace Visca\Bundle\LicomBundle\Repository;
 
 use DateTime;
 use DateTimeInterface;
-use Doctrine\ORM\Query\Expr;
 use Doctrine\ORM\Query\Expr\Join;
 use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
 use Visca\Bundle\LicomBundle\Entity\Athlete;
@@ -410,79 +409,6 @@ class MatchRepository extends AbstractEntityRepository
             $query->orderBy('m.'.$orderField, $orderType);
         }
 
-        // only if we ask for a limited/offset number of matches we will add the
-//        if (is_numeric($limit) || is_numeric($offset)) {
-//            $query->groupBy('m.id');
-//        }
-
-
-        /*
-                $query = parent::createQueryBuilder('m');
-                $query
-                    ->select('m', 'mp', 'mp2', 'mr')
-                    ->leftJoin('m.matchParticipant', 'mp')
-                    ->leftJoin('m.matchParticipant', 'mp2')
-                    ->leftJoin(
-                        'mp.matchResult',
-                        'mr',
-                        Join::WITH,
-                        'mr.matchResultType IN (:resultType)'
-                    )
-                    ->where(
-                        '(mp.number=:home and mp2.number=:away) OR (mp.number=:away and mp2.number=:home)'
-                    );
-
-                if ($matchStatusCategory !== null) {
-                    $query
-                        ->addSelect('msd')
-                        ->join('m.matchStatusDescription', 'msd', Join::WITH, 'msd.category = :category')
-                        ->setParameter('category', $matchStatusCategory);
-                }
-
-                if (is_array($participantId)) {
-                    $query
-                        ->andWhere('mp.participant in (:participant)')
-                        ->setParameter('participant', implode(',', $participantId));
-                } else {
-                    $query
-                        ->andWhere('mp.participant = :participant')
-                        ->setParameter('participant', $participantId);
-                }
-
-                foreach ($whereConditions as $condition) {
-                    $query->andWhere($condition);
-                }
-
-                foreach ($whereArguments as $key => $value) {
-                    if ($key === 'startDate') {
-                        $this->alterDateObjects($value);
-                    }
-                    $query->setParameter($key, $value);
-                }
-
-                if (is_numeric($limit)) {
-                    $query->setMaxResults($limit);
-                }
-
-                if (is_numeric($offset)) {
-                    $query->setFirstResult($offset);
-                }
-
-                if (!is_null($orderField)) {
-                    $query->orderBy('m.'.$orderField, $orderType);
-                }
-
-                $query
-                    ->setParameter('home', MatchParticipant::HOME)
-                    ->setParameter('away', MatchParticipant::AWAY)
-                    ->setParameter('resultType', $matchResultType);
-
-                // only if we ask for a limited/offset number of matches we will add the
-                if (is_numeric($limit) || is_numeric($offset)) {
-                    $query->groupBy('m.id');
-                }
-        */
-
         return $query->getQuery()->setHint(\Doctrine\ORM\Query::HINT_REFRESH, true)->getResult();
     }
 
@@ -542,55 +468,6 @@ class MatchRepository extends AbstractEntityRepository
         if (is_numeric($limit) || is_numeric($offset)) {
             $query->groupBy('m.id');
         }
-//        $query = $this
-//            ->createQueryBuilder('m', null, false)
-//            ->addSelect('mp')
-//            ->leftJoin(
-//                'm.matchParticipant',
-//                'mp1',
-//                Expr\Join::WITH,
-//                'mp.number = 1'
-//            )
-//            ->addSelect('mp2')
-//            ->leftJoin(
-//                'm.matchParticipant',
-//                'mp2',
-//                Expr\Join::WITH,
-//                'mp2.number = 2'
-//            )
-//            ->where('mp.participant IN (:homeParticipants)')
-//            ->andWhere('mp2.participant IN (:awayParticipants)')
-//            ->having('mp.number = :matchParticipantHomeNumber')
-//            ->andHaving('mp2.number = :matchParticipantAwayNumber')
-//            ->setParameter('homeParticipants', $homeParticipants)
-//            ->setParameter('awayParticipants', $awayParticipants)
-//            ->setParameter('matchParticipantHomeNumber', MatchParticipant::HOME)
-//            ->setParameter('matchParticipantAwayNumber', MatchParticipant::AWAY);
-//
-//        foreach ($whereConditions as $condition) {
-//            $query->andWhere($condition);
-//        }
-//
-//        foreach ($whereArguments as $key => $value) {
-//            $query->setParameter($key, $value);
-//        }
-//
-//        if (is_numeric($limit)) {
-//            $query->setMaxResults($limit);
-//        }
-//
-//        if (is_numeric($offset)) {
-//            $query->setFirstResult($offset);
-//        }
-//
-//        if (!is_null($orderField)) {
-//            $query->orderBy('m.'.$orderField, $orderType);
-//        }
-//
-//        // only if we ask for a limited/offset number of matches we will add the
-//        if (is_numeric($limit) || is_numeric($offset)) {
-//            $query->groupBy('m.id');
-//        }
 
         return $query->getQuery()->getResult();
     }
@@ -856,7 +733,26 @@ class MatchRepository extends AbstractEntityRepository
         $status = null,
         $sportId = null
     ) {
-        $queryBuilder = $this->findByDateAndStatusAndSportQueryBuilder($dateFrom, $dateTo, $status, $sportId);
+        $queryBuilder = $this->getByDateAndStatusAndSportQueryBuilder($dateFrom, $dateTo, $status, $sportId);
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+    /**
+     * @param DateTime $dateFrom
+     * @param DateTime $dateTo
+     * @param null     $status
+     * @param null     $sportId
+     *
+     * @return array
+     */
+    public function findByDateAndStatusAndSportSimpleJoin(
+        DateTime $dateFrom,
+        DateTime $dateTo,
+        $status = null,
+        $sportId = null
+    ) {
+        $queryBuilder = $this->getByDateAndStatusAndSportQueryBuilder2($dateFrom, $dateTo, $status, $sportId);
 
         return $queryBuilder->getQuery()->getResult();
     }
@@ -867,7 +763,7 @@ class MatchRepository extends AbstractEntityRepository
      *
      * @param DateTime    $dateFrom
      * @param DateTime    $dateTo
-     * @param string|null $status   Any of the valid MatchStatusDescriptionCategoryType
+     * @param string|null $intervalSeconds Time ago we accept finished matches.
      * @param null        $sportId
      *
      * @return \Visca\Bundle\LicomBundle\Entity\Match[]
@@ -878,7 +774,7 @@ class MatchRepository extends AbstractEntityRepository
         $intervalSeconds = '30',
         $sportId = null
     ) {
-        $queryBuilder = $this->findByDateAndStatusAndSportQueryBuilder($dateFrom, $dateTo, "inprogress", $sportId);
+        $queryBuilder = $this->getByDateAndStatusAndSportQueryBuilder2($dateFrom, $dateTo, "inprogress", $sportId);
         $previosStatusCategories = $queryBuilder->getParameter('categories')->getValue();
         $statusCategories = array_merge($previosStatusCategories, $this->prepareStatusCategories("finished"));
         $queryBuilder->setParameter('categories', $statusCategories);
@@ -948,7 +844,7 @@ class MatchRepository extends AbstractEntityRepository
      * @param int[]     $competitionIds List of CompetitionSeasonStages.
      * @param null      $status         Match status.
      *
-     * @return array
+     * @return Match[]
      */
     public function findByDateAndStatusAndCompetitionIds(
         DateTime $dateFrom,
@@ -960,15 +856,14 @@ class MatchRepository extends AbstractEntityRepository
         $this->alterDateObjects($dateFrom, $dateTo);
 
         $queryBuilder = $this->createQueryBuilder('m');
-
         $queryBuilder
             ->setReducedColumnSet($optimized)
-            ->joinMatchParticipant($optimized)
+            ->joinMatchParticipantSingleJoin($optimized)
             ->joinCompetition()
             ->where('m.startDate BETWEEN :dateFrom AND :dateTo')
             ->andWhere('c.id IN (:competitionIds)')
-            ->andWhere('mp1.id IS NOT NULL')
-            ->andWhere('mp2.id IS NOT NULL')
+//            ->andWhere('mp1.id IS NOT NULL')
+//            ->andWhere('mp2.id IS NOT NULL')
             ->setParameter('dateFrom', $dateFrom->format('Y-m-d H:i:s'))
             ->setParameter('dateTo', $dateTo->format('Y-m-d H:i:s'))
             ->setParameter('competitionIds', $competitionIds);
@@ -978,14 +873,8 @@ class MatchRepository extends AbstractEntityRepository
          */
         if ($status !== null) {
             $statusCategories = $this->prepareStatusCategories($status);
-
             $queryBuilder
-                ->leftJoin(
-                    'Visca\Bundle\LicomBundle\Entity\MatchStatusDescription',
-                    's',
-                    Join::WITH,
-                    's.id = m.matchStatusDescription'
-                )
+                ->leftJoin('m.matchStatusDescription', 's', Join::WITH, 's.id = m.matchStatusDescription')
                 ->andWhere('s.category IN (:categories)')
                 ->setParameter('categories', $statusCategories);
         }
@@ -1541,7 +1430,7 @@ class MatchRepository extends AbstractEntityRepository
         // if we have the $competitionCategoryIds filter by id's
         if (!is_null($competitionCategoryIds)) {
             $queryBuilder
-                ->andWhere('season.competition IN (:ccIds)')
+                ->andWhere('competitionCategory.id IN (:ccIds)')
                 ->setParameter('ccIds', $competitionCategoryIds);
         }
 
@@ -1846,7 +1735,7 @@ class MatchRepository extends AbstractEntityRepository
      *
      * @return MatchQueryBuilder
      */
-    private function findByDateAndStatusAndSportQueryBuilder(
+    private function getByDateAndStatusAndSportQueryBuilder(
         DateTime $dateFrom,
         DateTime $dateTo,
         $status = null,
@@ -1871,6 +1760,85 @@ class MatchRepository extends AbstractEntityRepository
                 ]
             )
             ->joinMatchResult(
+                [
+                    MatchResultTypeCode::HALF_TIME_CODE,
+                    MatchResultTypeCode::RUNNING_SCORE_CODE,
+                ]
+            );
+
+        /*
+         * Filter by date
+         */
+        $this->alterDateObjects($dateFrom, $dateTo);
+
+        $queryBuilder
+            ->where('m.startDate BETWEEN :dateFrom AND :dateTo')
+            ->setParameter('dateFrom', $dateFrom->format('Y-m-d H:i'))
+            ->setParameter('dateTo', $dateTo->format('Y-m-d H:i'));
+
+        /*
+         * Filter the status
+         */
+        if ($status !== null) {
+            $statusCategories = $this->prepareStatusCategories($status);
+
+            $queryBuilder
+                ->leftJoin(
+                    'Visca\Bundle\LicomBundle\Entity\MatchStatusDescription',
+                    's',
+                    Join::WITH,
+                    's.id = m.matchStatusDescription'
+                )
+                ->andWhere('s.category IN (:categories)')
+                ->setParameter('categories', $statusCategories);
+        }
+
+
+        /*
+         * if we have the sport id
+         */
+        if (!is_null($sportId) && is_numeric($sportId)) {
+            $queryBuilder
+                ->andWhere('p'.($optimized ? '1' : '').'.sport = :sportId')
+                ->setParameter('sportId', $sportId);
+        }
+
+        return $queryBuilder;
+    }
+
+    /**
+     * @param DateTime $dateFrom
+     * @param DateTime $dateTo
+     * @param null     $status
+     * @param null     $sportId
+     *
+     * @return MatchQueryBuilder
+     */
+    private function getByDateAndStatusAndSportQueryBuilder2(
+        DateTime $dateFrom,
+        DateTime $dateTo,
+        $status = null,
+        $sportId = null
+    ) {
+        $optimized = false;
+        $queryBuilder = $this->createQueryBuilder('m');
+        $queryBuilder
+            ->setReducedColumnSet($optimized)
+            ->joinMatchParticipantSingleJoin($optimized)
+            ->joinMatchAux(
+                [
+                    MatchAuxTypeCode::DATE_ENDED_CODE,
+                    MatchAuxTypeCode::DATE_STARTED_CODE,
+                    MatchAuxTypeCode::DATE_FIRST_HALF_ENDED_CODE,
+                    MatchAuxTypeCode::DATE_SECOND_HALF_STARTED_CODE,
+                    MatchAuxTypeCode::DATE_SECOND_HALF_ENDED_CODE,
+                    MatchAuxTypeCode::EXTRA_TIME_1ST_HALF_TIME_STARTED_AT_CODE,
+                    MatchAuxTypeCode::EXTRA_TIME_1ST_HALF_TIME_ENDED_AT_CODE,
+                    MatchAuxTypeCode::EXTRA_TIME_2ND_HALF_TIME_STARTED_AT_CODE,
+                    MatchAuxTypeCode::EXTRA_TIME_2ND_HALF_TIME_ENDED_AT_CODE,
+                ]
+            )
+            ->joinMatchResultSingleJoin(
                 [
                     MatchResultTypeCode::HALF_TIME_CODE,
                     MatchResultTypeCode::RUNNING_SCORE_CODE,

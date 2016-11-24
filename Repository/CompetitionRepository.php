@@ -9,6 +9,7 @@ use Visca\Bundle\LicomBundle\Entity\Competition;
 use Visca\Bundle\LicomBundle\Entity\Country;
 use Visca\Bundle\LicomBundle\Entity\Match;
 use Visca\Bundle\LicomBundle\Entity\Sport;
+use Visca\Bundle\LicomBundle\Entity\Team;
 use Visca\Bundle\LicomBundle\Exception\NoTranslationFoundException;
 use Doctrine\ORM\Query\Expr\Join;
 
@@ -82,6 +83,37 @@ class CompetitionRepository extends AbstractEntityRepository
         if ($limit !== false && is_numeric($limit)) {
             $queryBuilder->setMaxResults($limit);
         }
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+    /**
+     * Gets the most important competitions of a country, sorted by importance.
+     *
+     * @param Team $team
+     * @param int  $limit Number of competitions to get.
+     */
+    public function findMostImportantByTeam(Team $team, $limit = 1)
+    {
+        $queryBuilder = $this
+            ->createQueryBuilder('c')
+            ->join('c.competitionCategory', 'cc')
+            ->join('c.competitionSeason', 'cs')
+            ->join('cs.competitionSeasonStage', 'css')
+            ->join('css.match', 'm')
+            ->join('m.matchParticipant', 'mp', Join::WITH, 'mp.participant = :participant')
+            ->where('cs.end IS NULL')
+            ->orWhere('cs.end > CURRENT_TIMESTAMP()')
+            ->setParameters([
+                'participant' => $team->getId()
+            ])
+
+            // This query returns a register for every match found, too many registers.
+            // If we group by competition.id, we may get
+            ->groupBy('cs.id')
+
+            ->orderBy('c.positionInsideCategory', 'ASC')
+            ->setMaxResults($limit);
 
         return $queryBuilder->getQuery()->getResult();
     }
