@@ -134,8 +134,7 @@ class MatchRepository extends AbstractEntityRepository
             ->join('mp.participant', 'p')
             ->join('mp2.participant', 'p2')
             ->where('competition.id IN (:competitionIds)')
-            ->setParameter('competitionIds', $competitionIds)
-            ->orderBy('m.startDate', 'ASC');
+            ->setParameter('competitionIds', $competitionIds);
 
         foreach ($whereConditions as $condition) {
             $query->andWhere($condition);
@@ -155,6 +154,8 @@ class MatchRepository extends AbstractEntityRepository
 
         if (!is_null($orderField)) {
             $query->orderBy('m.'.$orderField, $orderType);
+        } else {
+            $query->orderBy('m.startDate', 'ASC');
         }
 
         return $query->getQuery()->getResult();
