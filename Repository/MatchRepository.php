@@ -621,7 +621,7 @@ class MatchRepository extends AbstractEntityRepository
         $queryBuilder = $this->getQueryBuilderByImportance($importance, $fromDays, $toDays, $limit);
 
         /// If we have some competition ids, filter them
-        if ($competitionId !== null) {
+        if ($countryId !== null) {
             $queryBuilder
                 ->join('m.competitionSeasonStage', 'css')
                 ->join('css.competitionSeason', 'cs')
@@ -796,6 +796,38 @@ class MatchRepository extends AbstractEntityRepository
                 ->andWhere('s.category IN (:categories)')
                 ->setParameter('categories', $statusCategories);
         }
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+    /**
+     * @param int      $countryId
+     * @param int      $sportId
+     * @param DateTime $dateFrom
+     * @param null|int $limit
+     */
+    public function findByCountryIdSportIdAndDate($countryId, $sportId, DateTime $dateFrom, $limit = 3)
+    {
+        $optimized = true;
+        $this->alterDateObjects($dateFrom);
+
+        $queryBuilder = $this->createQueryBuilder('m');
+        $queryBuilder
+            ->setReducedColumnSet($optimized)
+            ->joinMatchParticipantSingleJoin($optimized)
+            ->joinCompetition()
+            ->join(
+                'c.competitionCategory',
+                'cc',
+                Join::WITH,
+                'cc.country = :country AND cc.sport = :sport'
+            )
+            ->where('m.startDate >= :dateFrom')
+            ->setParameter('country', $countryId)
+            ->setParameter('sport', $sportId)
+            ->setParameter('dateFrom', $dateFrom)
+            ->orderBy('m.startDate', 'ASC')
+            ->setMaxResults($limit);
 
         return $queryBuilder->getQuery()->getResult();
     }
