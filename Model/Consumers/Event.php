@@ -21,8 +21,8 @@ final class Event
     /**
      * Event constructor.
      *
-     * @param string $eventName
-     * @param string|null $objectId
+     * @param string                  $eventName
+     * @param string|null             $objectId
      * @param \DateTimeImmutable|null $timestamp
      * @param string|null $id
      */
