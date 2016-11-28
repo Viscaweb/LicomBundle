@@ -17,8 +17,9 @@ class CompetitionRoundRepository extends AbstractEntityRepository
 {
 
     /**
-     * @param CompetitionSeason    $competitionSeason    CompetitionSeason entity
-     * @param CompetitionStageType $competitionStageType CompetitionStageType entity
+     * @param CompetitionSeason         $competitionSeason     CompetitionSeason entity
+     * @param CompetitionStageType      $competitionStageType  CompetitionStageType entity
+     * @param null|CompetitionStageType $competitionStageType2 CompetitionStageType entity
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      *
@@ -26,18 +27,13 @@ class CompetitionRoundRepository extends AbstractEntityRepository
      */
     public function findByCompetitionSeasonAndCompetitionStageType(
         CompetitionSeason $competitionSeason,
-        CompetitionStageType $competitionStageType
+        CompetitionStageType $competitionStageType,
+        $competitionStageType2 = null
     ) {
         $queryBuilder = $this->entityManager->createQueryBuilder();
 
         $queryBuilder->select('Round')
             ->from('ViscaLicomBundle:CompetitionRound', 'Round')
-//            ->join(
-//                'ViscaLicomBundle:CompetitionSeasonStageGraph',
-//                'SeasonStageGraph',
-//                Join::INNER_JOIN,
-//                'SeasonStageGraph.competitionRound = Round.id'
-//            )
             ->join(
                 'ViscaLicomBundle:CompetitionSeasonStage',
                 'SeasonStage',
@@ -61,18 +57,25 @@ class CompetitionRoundRepository extends AbstractEntityRepository
 
         $queryBuilder->setParameters($parameters);
 
+        if($competitionStageType2 instanceof CompetitionStageType){
+            $queryBuilder
+                ->andWhere('Stage.competitionStageType2 = :competitionStageType2')
+                ->setParameter('competitionStageType2', $competitionStageType2->getId());
+        }
+
         return $queryBuilder->getQuery()->getResult();
     }
 
     /**
-     * @param CompetitionSeason    $competitionSeason         CompetitionSeason entity
-     * @param CompetitionStageType $competitionStageType      CompetitionStageType entity
-     * @param int                  $seasonStageGraphLabelCode CompetitionSeasonStageGraphLabelCode
-     *                                                        value so we can filter by
-     *                                                        `current round`|
-     *                                                        `next round`|
-     *                                                        `last round`|
-     *                                                        `previous round`.
+     * @param CompetitionSeason         $competitionSeason         CompetitionSeason entity
+     * @param CompetitionStageType      $competitionStageType      CompetitionStageType entity
+     * @param int                       $seasonStageGraphLabelCode CompetitionSeasonStageGraphLabelCode
+     *                                                             value so we can filter by
+     *                                                             `current round`|
+     *                                                             `next round`|
+     *                                                             `last round`|
+     *                                                             `previous round`.
+     * @param null|CompetitionStageType $competitionStageType2     CompetitionStageType entity
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      *
@@ -81,7 +84,8 @@ class CompetitionRoundRepository extends AbstractEntityRepository
     public function findByCompetitionSeasonAndCompetitionStageTypeAndLabel(
         CompetitionSeason $competitionSeason,
         CompetitionStageType $competitionStageType,
-        $seasonStageGraphLabelCode
+        $seasonStageGraphLabelCode,
+        $competitionStageType2 = null
     ) {
         $queryBuilder = $this->entityManager->createQueryBuilder();
 
@@ -119,6 +123,12 @@ class CompetitionRoundRepository extends AbstractEntityRepository
 
 
         $queryBuilder->setParameters($parameters);
+
+        if($competitionStageType2 instanceof CompetitionStageType){
+            $queryBuilder
+                ->andWhere('Stage.competitionStageType2 = :competitionStageType2')
+                ->setParameter('competitionStageType2', $competitionStageType2->getId());
+        }
 
         return $queryBuilder->getQuery()->getResult();
     }
