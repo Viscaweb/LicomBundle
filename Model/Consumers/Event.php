@@ -24,6 +24,7 @@ final class Event
      * @param string $eventName
      * @param string|null $objectId
      * @param \DateTimeImmutable|null $timestamp
+     * @param string|null $id
      */
     public function __construct($eventName, $objectId = null, \DateTimeImmutable $publishedAt = null, $id = null)
     {
