@@ -313,7 +313,7 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
     }
 
     /**
-     * TODO: Please check this task before modifiying this method: https://viscaweb.atlassian.net/browse/LIFE-2114
+     * TODO: Please check this task before modifiying this method: https://viscaweb.atlassian.net/browse/LIFE-2114.
      *
      * @param CompetitionSeason $competitionSeason
      * @param \DateTime         $currentDate
