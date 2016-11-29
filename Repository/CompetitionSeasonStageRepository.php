@@ -203,7 +203,8 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
      *
      * @return CompetitionSeasonStage
      */
-    public function findCurrentByCompetitionSeason(CompetitionSeason $competitionSeason) {
+    public function findCurrentByCompetitionSeason(CompetitionSeason $competitionSeason)
+    {
         return $this->findOneLabeledByCompetitionSeason(
             $competitionSeason,
             CompetitionSeasonGraphLabelCode::CURRENT_CODE
