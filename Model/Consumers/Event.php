@@ -16,7 +16,7 @@ final class Event
     private $publishedAt;
 
     /** @var string */
-    private $id;
+    private $uniqueId;
 
     /**
      * Event constructor.
@@ -24,14 +24,14 @@ final class Event
      * @param string                  $eventName
      * @param string|null             $objectId
      * @param \DateTimeImmutable|null $timestamp
-     * @param string|null $id
+     * @param string|null $uniqueId
      */
-    public function __construct($eventName, $objectId = null, \DateTimeImmutable $publishedAt = null, $id = null)
+    public function __construct($eventName, $objectId = null, \DateTimeImmutable $publishedAt = null, $uniqueId = null)
     {
         $this->eventName = $eventName;
         $this->objectId = $objectId;
         $this->publishedAt = $publishedAt ?: new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
-        $this->id = $id ?: Uuid::uuid4()->toString();
+        $this->uniqueId = $uniqueId ?: Uuid::uuid4()->toString();
     }
 
     /**
@@ -61,9 +61,9 @@ final class Event
     /**
      * @return string
      */
-    public function getId()
+    public function getUniqueId()
     {
-        return $this->id;
+        return $this->uniqueId;
     }
 
     /**
@@ -75,7 +75,7 @@ final class Event
             'eventName' => $this->eventName,
             'objectId' => $this->objectId,
             'publishedAt' => $this->publishedAt->format('Y-m-d H:i:s'),
-            'id' => $this->id
+            'uniqueId' => $this->uniqueId
         ]);
     }
 }
