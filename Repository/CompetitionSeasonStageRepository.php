@@ -314,6 +314,30 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
     }
 
     /**
+     * @param CompetitionSeason $competitionSeason
+     * @param \DateTime         $currentDate
+     *
+     * @return CompetitionSeasonStage[]|null
+     */
+    public function findCurrentByCompetitionSeasonAndDate(CompetitionSeason $competitionSeason, \DateTime $currentDate)
+    {
+        // First we get the CompetitionStageType of the CompetitionSeason
+        $qb = $this->entityManager->createQueryBuilder();
+        $result = $qb
+            ->select('css')
+            ->from('ViscaLicomBundle:CompetitionSeasonStage', 'css')
+            ->join('css.competitionStage', 'cstage', Join::WITH, 'css.competitionStage = cstage.id')
+            ->where('css.competitionSeason = :cs')
+            ->andWhere(':dateFrom BETWEEN css.start AND css.end')
+            ->setParameter('dateFrom', $currentDate->format('Y-m-d H:i'))
+            ->setParameter('cs', $competitionSeason)
+            ->getQuery()
+            ->getResult();
+
+        return $result;
+    }
+
+    /**
      * Returns the current CompetitionSeasonStage for the Participant.
      *
      * @param int $participantId Participant Id
