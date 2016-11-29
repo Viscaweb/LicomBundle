@@ -21,10 +21,10 @@ final class Event
     /**
      * Event constructor.
      *
-     * @param string $eventName
-     * @param string|null $objectId
+     * @param string                  $eventName
+     * @param string|null             $objectId
      * @param \DateTimeImmutable|null $timestamp
-     * @param string|null $uniqueId
+     * @param string|null             $uniqueId
      */
     public function __construct($eventName, $objectId = null, \DateTimeImmutable $publishedAt = null, $uniqueId = null)
     {
