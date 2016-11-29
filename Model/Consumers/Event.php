@@ -75,7 +75,7 @@ final class Event
             'eventName' => $this->eventName,
             'objectId' => $this->objectId,
             'publishedAt' => $this->publishedAt->format('Y-m-d H:i:s'),
-            'id' => $this->uniqueId
+            'id' => $this->id
         ]);
     }
 }
