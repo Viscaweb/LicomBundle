@@ -28,7 +28,7 @@ class CompetitionRoundRepository extends AbstractEntityRepository
     public function findByCompetitionSeasonAndCompetitionStageType(
         CompetitionSeason $competitionSeason,
         CompetitionStageType $competitionStageType,
-        $competitionStageType2 = null
+        CompetitionStageType $competitionStageType2 = null
     ) {
         $queryBuilder = $this->entityManager->createQueryBuilder();
 
@@ -57,7 +57,7 @@ class CompetitionRoundRepository extends AbstractEntityRepository
 
         $queryBuilder->setParameters($parameters);
 
-        if ($competitionStageType2 instanceof CompetitionStageType) {
+        if (!is_null($competitionStageType2)) {
             $queryBuilder
                 ->andWhere('Stage.competitionStageType2 = :competitionStageType2')
                 ->setParameter('competitionStageType2', $competitionStageType2->getId());

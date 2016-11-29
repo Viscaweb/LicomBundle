@@ -203,9 +203,8 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
      *
      * @return CompetitionSeasonStage
      */
-    public function findCurrentByCompetitionSeason(
-        CompetitionSeason $competitionSeason
-    ) {
+    public function findCurrentByCompetitionSeason(CompetitionSeason $competitionSeason)
+    {
         return $this->findOneLabeledByCompetitionSeason(
             $competitionSeason,
             CompetitionSeasonGraphLabelCode::CURRENT_CODE
@@ -314,10 +313,12 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
     }
 
     /**
+     * TODO: Please check this task before modifiying this method: https://viscaweb.atlassian.net/browse/LIFE-2114.
+     *
      * @param CompetitionSeason $competitionSeason
      * @param \DateTime         $currentDate
      *
-     * @return CompetitionSeasonStage[]|null
+     * @return CompetitionSeasonStage|null
      */
     public function findCurrentByCompetitionSeasonAndDate(CompetitionSeason $competitionSeason, \DateTime $currentDate)
     {
@@ -331,8 +332,9 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
             ->andWhere(':dateFrom BETWEEN css.start AND css.end')
             ->setParameter('dateFrom', $currentDate->format('Y-m-d H:i'))
             ->setParameter('cs', $competitionSeason)
+            ->setMaxResults(1)
             ->getQuery()
-            ->getResult();
+            ->getOneOrNullResult();
 
         return $result;
     }
