@@ -57,7 +57,7 @@ class CompetitionRoundRepository extends AbstractEntityRepository
 
         $queryBuilder->setParameters($parameters);
 
-        if($competitionStageType2 instanceof CompetitionStageType){
+        if ($competitionStageType2 instanceof CompetitionStageType) {
             $queryBuilder
                 ->andWhere('Stage.competitionStageType2 = :competitionStageType2')
                 ->setParameter('competitionStageType2', $competitionStageType2->getId());
@@ -124,7 +124,7 @@ class CompetitionRoundRepository extends AbstractEntityRepository
 
         $queryBuilder->setParameters($parameters);
 
-        if($competitionStageType2 instanceof CompetitionStageType){
+        if ($competitionStageType2 instanceof CompetitionStageType) {
             $queryBuilder
                 ->andWhere('Stage.competitionStageType2 = :competitionStageType2')
                 ->setParameter('competitionStageType2', $competitionStageType2->getId());
