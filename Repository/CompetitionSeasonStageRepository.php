@@ -329,14 +329,11 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
             ->andWhere(':dateFrom BETWEEN css.start AND css.end')
             ->setParameter('dateFrom', $currentDate->format('Y-m-d H:i'))
             ->setParameter('cs', $competitionSeason)
+            ->setMaxResults(1)
             ->getQuery()
-            ->getResult();
+            ->getOneOrNullResult();
 
-        if(empty($result)){
-            return null;
-        }
-
-        return $result[0];
+        return $result;
     }
 
     /**
