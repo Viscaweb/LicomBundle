@@ -203,9 +203,7 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
      *
      * @return CompetitionSeasonStage
      */
-    public function findCurrentByCompetitionSeason(
-        CompetitionSeason $competitionSeason
-    ) {
+    public function findCurrentByCompetitionSeason(CompetitionSeason $competitionSeason) {
         return $this->findOneLabeledByCompetitionSeason(
             $competitionSeason,
             CompetitionSeasonGraphLabelCode::CURRENT_CODE
@@ -317,7 +315,7 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
      * @param CompetitionSeason $competitionSeason
      * @param \DateTime         $currentDate
      *
-     * @return CompetitionSeasonStage[]|null
+     * @return CompetitionSeasonStage|null
      */
     public function findCurrentByCompetitionSeasonAndDate(CompetitionSeason $competitionSeason, \DateTime $currentDate)
     {
@@ -334,7 +332,11 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
             ->getQuery()
             ->getResult();
 
-        return $result;
+        if(empty($result)){
+            return null;
+        }
+
+        return $result[0];
     }
 
     /**
