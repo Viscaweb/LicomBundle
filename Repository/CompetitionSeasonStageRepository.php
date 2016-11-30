@@ -29,7 +29,7 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
     /**
      * @param int[] $competitionSeasonStageIds
      */
-    public function findByIdAndSortedByStageName($competitionSeasonStageIds)
+    public function findByIdsAndSortedByStageName($competitionSeasonStageIds)
     {
         $qb = $this->entityManager->createQueryBuilder();
 
