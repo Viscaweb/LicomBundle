@@ -27,6 +27,23 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
     }
 
     /**
+     * @param int[] $competitionSeasonStageIds
+     */
+    public function findByIdAndSortedByStageName($competitionSeasonStageIds)
+    {
+        $qb = $this->entityManager->createQueryBuilder();
+
+        $qb->select('css')
+            ->from('ViscaLicomBundle:CompetitionSeasonStage', 'css')
+            ->join('css.competitionStage', 'cs')
+            ->where('css.id IN (:ids)')
+            ->setParameter('ids', $competitionSeasonStageIds)
+            ->orderBy('cs.name', 'ASC');
+
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
      * Gets the current CompetitionSeasonStage for a given competition.
      *
      * @param Competition $competition Competition Entity.
