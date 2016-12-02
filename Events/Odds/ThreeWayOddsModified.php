@@ -4,18 +4,11 @@ namespace Visca\Bundle\LicomBundle\Events\Odds;
 
 use Visca\Bundle\LicomBundle\Entity\Match;
 use Visca\Bundle\LicomBundle\Events\AbstractEvent;
+use Visca\Bundle\LicomBundle\Events\Traits\ListenByMatchTrait;
 
 final class ThreeWayOddsModified extends AbstractEvent
 {
-    /**
-     * @param Match $match
-     *
-     * @return static
-     */
-    public static function listenByMatch(Match $match)
-    {
-        return new static('match.'.$match->getId());
-    }
+    use ListenByMatchTrait;
 
     /**
      * @return string
