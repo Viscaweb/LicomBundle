@@ -2,17 +2,15 @@
 
 namespace Visca\Bundle\LicomBundle\Events\Traits;
 
-use Visca\Bundle\LicomBundle\Entity\Match;
-
 trait ListenByMatchTrait
 {
     /**
-     * @param Match $match
+     * @param int $matchId
      *
      * @return static
      */
-    public static function listenByMatch(Match $match)
+    public static function listenByMatch($matchId)
     {
-        return new static('match.'.$match->getId());
+        return new static('match.'.$matchId);
     }
 }

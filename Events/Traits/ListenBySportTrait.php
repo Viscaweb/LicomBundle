@@ -2,17 +2,15 @@
 
 namespace Visca\Bundle\LicomBundle\Events\Traits;
 
-use Visca\Bundle\LicomBundle\Entity\Sport;
-
 trait ListenBySportTrait
 {
     /**
-     * @param Sport $sport
+     * @param int $sportId
      *
      * @return static
      */
-    public static function listenBySport(Sport $sport)
+    public static function listenBySport($sportId)
     {
-        return new static('sport.'.$sport->getId());
+        return new static('sport.'.$sportId);
     }
 }
