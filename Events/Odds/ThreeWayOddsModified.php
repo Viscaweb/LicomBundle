@@ -2,7 +2,6 @@
 
 namespace Visca\Bundle\LicomBundle\Events\Odds;
 
-use Visca\Bundle\LicomBundle\Entity\Match;
 use Visca\Bundle\LicomBundle\Events\AbstractEvent;
 use Visca\Bundle\LicomBundle\Events\Traits\ListenByMatchTrait;
 
