@@ -27,6 +27,23 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
     }
 
     /**
+     * @param int[] $competitionSeasonStageIds
+     */
+    public function findByIdsAndSortedByStageName($competitionSeasonStageIds)
+    {
+        $qb = $this->entityManager->createQueryBuilder();
+
+        $qb->select('css')
+            ->from('ViscaLicomBundle:CompetitionSeasonStage', 'css')
+            ->join('css.competitionStage', 'cs')
+            ->where('css.id IN (:ids)')
+            ->setParameter('ids', $competitionSeasonStageIds)
+            ->orderBy('cs.name', 'ASC');
+
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
      * Gets the current CompetitionSeasonStage for a given competition.
      *
      * @param Competition $competition Competition Entity.
@@ -203,9 +220,8 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
      *
      * @return CompetitionSeasonStage
      */
-    public function findCurrentByCompetitionSeason(
-        CompetitionSeason $competitionSeason
-    ) {
+    public function findCurrentByCompetitionSeason(CompetitionSeason $competitionSeason)
+    {
         return $this->findOneLabeledByCompetitionSeason(
             $competitionSeason,
             CompetitionSeasonGraphLabelCode::CURRENT_CODE
@@ -314,6 +330,33 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
     }
 
     /**
+     * TODO: Please check this task before modifiying this method: https://viscaweb.atlassian.net/browse/LIFE-2114.
+     *
+     * @param CompetitionSeason $competitionSeason
+     * @param \DateTime         $currentDate
+     *
+     * @return CompetitionSeasonStage|null
+     */
+    public function findCurrentByCompetitionSeasonAndDate(CompetitionSeason $competitionSeason, \DateTime $currentDate)
+    {
+        // First we get the CompetitionStageType of the CompetitionSeason
+        $qb = $this->entityManager->createQueryBuilder();
+        $result = $qb
+            ->select('css')
+            ->from('ViscaLicomBundle:CompetitionSeasonStage', 'css')
+            ->join('css.competitionStage', 'cstage', Join::WITH, 'css.competitionStage = cstage.id')
+            ->where('css.competitionSeason = :cs')
+            ->andWhere(':dateFrom BETWEEN css.start AND css.end')
+            ->setParameter('dateFrom', $currentDate->format('Y-m-d H:i'))
+            ->setParameter('cs', $competitionSeason)
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        return $result;
+    }
+
+    /**
      * Returns the current CompetitionSeasonStage for the Participant.
      *
      * @param int $participantId Participant Id
@@ -386,6 +429,26 @@ class CompetitionSeasonStageRepository extends AbstractEntityRepository
         return $this
             ->createQueryBuilder('css')
             ->groupBy('css.competitionSeason')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @param int $months
+     *
+     * @return CompetitionSeasonStage[]
+     */
+    public function findGroupedBySeasonStartingWithinMonths($months)
+    {
+        return $this
+            ->createQueryBuilder('css')
+            ->where('css.start
+                BETWEEN
+                DATE_SUB(CURRENT_DATE(), :monthDiff, \'month\')
+                AND
+                DATE_ADD(CURRENT_DATE(), :monthDiff, \'month\')')
+            ->groupBy('css.competitionSeason')
+            ->setParameter('monthDiff', $months / 2)
             ->getQuery()
             ->getResult();
     }
