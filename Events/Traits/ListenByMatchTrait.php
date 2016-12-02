@@ -11,6 +11,6 @@ trait ListenByMatchTrait
      */
     public static function listenByMatch($matchId)
     {
-        return new static('match.' . $matchId);
+        return new static('match.'.$matchId);
     }
 }
