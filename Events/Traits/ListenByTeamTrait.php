@@ -2,17 +2,15 @@
 
 namespace Visca\Bundle\LicomBundle\Events\Traits;
 
-use Visca\Bundle\LicomBundle\Entity\Team;
-
 trait ListenByTeamTrait
 {
     /**
-     * @param Team $team
+     * @param int $teamId
      *
      * @return static
      */
-    public static function listenByTeam(Team $team)
+    public static function listenByTeam($teamId)
     {
-        return new static('team.'.$team->getId());
+        return new static('team.'.$teamId);
     }
 }

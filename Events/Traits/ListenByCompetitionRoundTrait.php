@@ -2,17 +2,15 @@
 
 namespace Visca\Bundle\LicomBundle\Events\Traits;
 
-use Visca\Bundle\LicomBundle\Entity\CompetitionRound;
-
 trait ListenByCompetitionRoundTrait
 {
     /**
-     * @param LicomCompetitionRound $round
+     * @param int $roundId
      *
      * @return static
      */
-    public static function listenByCompetitionRound(CompetitionRound $round)
+    public static function listenByCompetitionRound($roundId)
     {
-        return new static('competition_round.'.$round->getId());
+        return new static('competition_round.'.$roundId);
     }
 }

@@ -2,17 +2,15 @@
 
 namespace Visca\Bundle\LicomBundle\Events\Traits;
 
-use Visca\Bundle\LicomBundle\Entity\Competition;
-
 trait ListenByCompetitionTrait
 {
     /**
-     * @param Competition $competition
+     * @param int $competitionId
      *
      * @return static
      */
-    public static function listenByCompetition(Competition $competition)
+    public static function listenByCompetition($competitionId)
     {
-        return new static('competition.'.$competition->getId());
+        return new static('competition.'.$competitionId);
     }
 }
