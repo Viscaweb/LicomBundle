@@ -53,6 +53,7 @@ Visca\Bundle\LicomBundle\Entity\StandingCommentGraph:
           nullable: false
     standingComment:
       targetEntity: Visca\Bundle\LicomBundle\Entity\StandingComment
+      inversedBy: standingCommentGraph
       joinColumns:
         StandingComment:
           referencedColumnName: id
