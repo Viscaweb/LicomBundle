@@ -36,7 +36,7 @@ class MatchLineupParticipantRepository extends AbstractEntityRepository
      * Get MatchLineup by MatchLineup. Preloads MatchIncidents
      * Sorted by MatchLineup.position.
      *
-     * @param int              $matchLineupId MatchLineup ID.
+     * @param int              $matchLineupId    MatchLineup ID.
      * @param MatchParticipant $matchParticipant
      *
      * @return \Visca\Bundle\LicomBundle\Entity\MatchLineupParticipant[]
