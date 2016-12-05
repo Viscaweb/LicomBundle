@@ -36,7 +36,7 @@ class MatchLineupParticipantRepository extends AbstractEntityRepository
      * Get MatchLineup by MatchLineup. Preloads MatchIncidents
      * Sorted by MatchLineup.position.
      *
-     * @param int              $matchLineupId    MatchLineup ID.
+     * @param int              $matchLineupId MatchLineup ID.
      * @param MatchParticipant $matchParticipant
      *
      * @return \Visca\Bundle\LicomBundle\Entity\MatchLineupParticipant[]
@@ -51,11 +51,43 @@ class MatchLineupParticipantRepository extends AbstractEntityRepository
             ->leftJoin('ml.participant', 'p')
             ->leftJoin('p.aux', 'px')
             ->leftJoin('p.matchIncident', 'mi', Join::WITH, 'mi.matchParticipant = :matchParticipant')
-            ->setParameters([
-                'matchLineupId' => $matchLineupId,
-                'matchParticipant' => $matchParticipant
-            ])
+            ->setParameters(
+                [
+                    'matchLineupId' => $matchLineupId,
+                    'matchParticipant' => $matchParticipant,
+                ]
+            )
             ->orderBy('ml.position', 'ASC');
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+    /**
+     * Get MatchLineup by MatchLineup. Preloads MatchIncidents
+     * Sorted by MatchLineup.position.
+     *
+     * @param int[] $matchLineupIds    MatchLineup IDs.
+     * @param int[] $matchParticipants Match Participants IDs.
+     *
+     * @return \Visca\Bundle\LicomBundle\Entity\MatchLineupParticipant[]
+     */
+    public function findByMatchLineups($matchLineupIds, $matchParticipants)
+    {
+        $queryBuilder = $this->createQueryBuilder('ml');
+        $queryBuilder
+            ->select('ml', 'mlt', 'p', 'px', 'mi')
+            ->where('ml.matchLineup in (:matchLineupId)')
+            ->leftJoin('ml.matchLineupType', 'mlt')
+            ->leftJoin('ml.participant', 'p')
+            ->leftJoin('p.aux', 'px')
+            ->leftJoin('p.matchIncident', 'mi', Join::WITH, 'mi.matchParticipant in (:matchParticipants)')
+            ->setParameters(
+                [
+                    'matchLineupId' => $matchLineupIds,
+                    'matchParticipants' => $matchParticipants
+                ]
+            )
+            ->orderBy('ml.participant, ml.position', 'ASC');
 
         return $queryBuilder->getQuery()->getResult();
     }
