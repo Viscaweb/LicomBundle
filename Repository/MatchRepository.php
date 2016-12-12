@@ -1850,8 +1850,7 @@ class MatchRepository extends AbstractEntityRepository
             case MatchStatusDescriptionCategoryType::NOTSTARTED:
                 $statusCategories = [
                     MatchStatusDescriptionCategoryType::NOTSTARTED,
-                    MatchStatusDescriptionCategoryType::CANCELLED,
-                    MatchStatusDescriptionCategoryType::UNKNOWN,
+                    MatchStatusDescriptionCategoryType::CANCELLED
                 ];
                 break;
 
