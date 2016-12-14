@@ -12,6 +12,9 @@ abstract class AbstractEvent implements Event
     /** @var string */
     private $scope;
 
+    /** @var null|string */
+    static $name = null;
+
     /**
      * AbstractEvent constructor.
      *
@@ -34,6 +37,10 @@ abstract class AbstractEvent implements Event
      */
     public function getName()
     {
-        return $this->getEventObject().'@'.$this->getScope();
+        if (self::$name !== null) {
+            return self::$name;
+        }
+
+        return self::$name = $this->getEventObject().'@'.$this->getScope();
     }
 }
