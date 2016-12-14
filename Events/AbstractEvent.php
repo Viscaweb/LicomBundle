@@ -13,7 +13,7 @@ abstract class AbstractEvent implements Event
     private $scope;
 
     /** @var null|string */
-    static $name = null;
+    public static $name = null;
 
     /**
      * AbstractEvent constructor.
