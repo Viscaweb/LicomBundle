@@ -67,9 +67,7 @@ class ParticipantMembershipRepository extends AbstractEntityRepository
      *
      * @return array
      */
-    public function getParticipantIdsByAthleteId(
-        $athleteId
-    ) {
+    public function getParticipantIdsByAthleteId($athleteId) {
         return $this
             ->createQueryBuilder('pm')
             ->select('pm')

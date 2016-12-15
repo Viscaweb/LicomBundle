@@ -524,17 +524,23 @@ class MatchRepository extends AbstractEntityRepository
      * If the toDays is not set, the query will return all the results biggers than the fromDate
      * And will add the limit if provided.
      *
-     * @param string $importance top|important|2nd.
-     * @param int    $fromDays   Starting date the match can take place.
-     *                           Specified in number of relative days from today.
-     * @param int    $toDays     Limit date the match can take place. Specified in number of relative days from today.
-     * @param int    $limit      Limit the number of matches returned. Default 3.
+     * @param string $importance     top|important|2nd.
+     * @param int    $fromDays       Starting date the match can take place.
+     *                               Specified in number of relative days from today.
+     * @param int    $toDays         Limit date the match can take place. Specified in number of relative days from today.
+     * @param int[]  $ignoreMatchId
+     * @param int    $limit          Limit the number of matches returned. Default 3.
      *
      * @return Match[]
      */
-    public function findByImportanceInDays($importance, $fromDays, $toDays = null, $limit = null)
+    public function findByImportanceInDays($importance, $fromDays, $toDays = null, $ignoreMatchIds = [], $limit = null)
     {
         $queryBuilder = $this->getQueryBuilderByImportance($importance, $fromDays, $toDays, $limit);
+
+        if (count($ignoreMatchIds) > 0) {
+            $queryBuilder->andWhere('m.id NOT IN (:matchIds)')
+                ->setParameter('matchIds', $ignoreMatchIds);
+        }
 
         return $queryBuilder->getQuery()->execute();
     }
@@ -551,8 +557,14 @@ class MatchRepository extends AbstractEntityRepository
      *
      * @return Match[]
      */
-    public function findByCompetitionAndImportanceInDays($competitionIds, $importance, $fromDays, $toDays = null, $limit = null)
-    {
+    public function findByCompetitionAndImportanceInDays(
+        $competitionIds,
+        $importance,
+        $fromDays,
+        $toDays = null,
+        $ignoreMatchIds = [],
+        $limit = null
+    ) {
         $queryBuilder = $this->getQueryBuilderByImportance($importance, $fromDays, $toDays, $limit);
 
         /// If we have some competition ids, filter them
@@ -565,6 +577,10 @@ class MatchRepository extends AbstractEntityRepository
                 ->setParameter('competitionIds', $competitionIds);
         }
 
+        if (count($ignoreMatchIds) > 0) {
+            $queryBuilder->andWhere('m.id NOT IN (:matchIds)')
+                ->setParameter('matchIds', $ignoreMatchIds);
+        }
 
         return $queryBuilder->getQuery()->execute();
     }
@@ -607,18 +623,26 @@ class MatchRepository extends AbstractEntityRepository
      * If the toDays is not set, the query will return all the results biggers than the fromDate
      * And will add the limit if provided.
      *
-     * @param int    $countryId  Country entity.
+     * @param int    $countryId        Country entity.
      * @param int    $sportId
-     * @param string $importance top|important|2nd.
-     * @param int    $fromDays   Starting date the match can take place.
-     *                           Specified in number of relative days from today.
-     * @param int    $toDays     Limit date the match can take place. Specified in number of relative days from today.
-     * @param int    $limit      Limit the number of matches returned. Default 3.
+     * @param string $importance       top|important|2nd.
+     * @param int    $fromDays         Starting date the match can take place.
+     *                                 Specified in number of relative days from today.
+     * @param int    $toDays           Limit date the match can take place. Specified in number of relative days from today.
+     * @param int    $ignoreMatchesIds Do not retrieve matches in this list.
+     * @param int    $limit            Limit the number of matches returned. Default 3.
      *
      * @return \Visca\Bundle\LicomBundle\Entity\Match[]
      */
-    public function findByCountryAndSportImportanceInDays($countryId, $sportId, $importance, $fromDays, $toDays = null, $limit = null)
-    {
+    public function findByCountryAndSportImportanceInDays(
+        $countryId,
+        $sportId,
+        $importance,
+        $fromDays,
+        $toDays = null,
+        $ignoreMatchesIds = [],
+        $limit = null
+    ) {
         $queryBuilder = $this->getQueryBuilderByImportance($importance, $fromDays, $toDays, $limit);
 
         /// If we have some competition ids, filter them
@@ -637,6 +661,10 @@ class MatchRepository extends AbstractEntityRepository
                 ->setParameter('sport', $sportId);
         }
 
+        if (count($ignoreMatchesIds) > 0) {
+            $queryBuilder->andWhere('m.id NOT IN (:matchIds)')
+                ->setParameter('matchIds', $ignoreMatchesIds);
+        }
 
         return $queryBuilder->getQuery()->execute();
     }
@@ -647,7 +675,7 @@ class MatchRepository extends AbstractEntityRepository
      *
      * @param DateTime    $dateFrom
      * @param DateTime    $dateTo
-     * @param string|null $status   Any of the valid MatchStatusDescriptionCategoryType
+     * @param string|null $status Any of the valid MatchStatusDescriptionCategoryType
      * @param null        $sportId
      *
      * @return \Visca\Bundle\LicomBundle\Entity\Match[]
@@ -807,7 +835,7 @@ class MatchRepository extends AbstractEntityRepository
      * @param DateTime $dateFrom
      * @param null|int $limit
      */
-    public function findByCountryIdSportIdAndDate($countryId, $sportId, DateTime $dateFrom, $limit = 3)
+    public function findByCountryIdSportIdAndDate($countryId, $sportId, DateTime $dateFrom, $ignoreMatchIds = [], $limit = 3)
     {
         $optimized = true;
         $this->alterDateObjects($dateFrom);
@@ -829,6 +857,11 @@ class MatchRepository extends AbstractEntityRepository
             ->setParameter('dateFrom', $dateFrom)
             ->orderBy('m.startDate', 'ASC')
             ->setMaxResults($limit);
+
+        if (count($ignoreMatchIds) > 0) {
+            $queryBuilder->andWhere('m.id NOT IN (:matchIds)')
+                ->setParameter('matchIds', $ignoreMatchIds);
+        }
 
         return $queryBuilder->getQuery()->getResult();
     }
@@ -858,10 +891,10 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param string|null       $status                    Match Status description.
-     * @param DateTimeInterface $date                      A date.
-     * @param bool|true         $before                    Do we want matches before the date?
-     * @param null              $limit                     How many matches we want.
+     * @param string|null       $status Match Status description.
+     * @param DateTimeInterface $date   A date.
+     * @param bool|true         $before Do we want matches before the date?
+     * @param null              $limit  How many matches we want.
      * @param int|null          $sportId
      * @param array             $competitionSeasonStageIds
      *
@@ -953,10 +986,10 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param string            $status                    Match Status description.
-     * @param DateTimeInterface $date                      A date.
+     * @param string            $status Match Status description.
+     * @param DateTimeInterface $date   A date.
      * @param int[]             $competitionSeasonStageIds
-     * @param int|null          $limit                     How many matches we want.
+     * @param int|null          $limit  How many matches we want.
      *
      * @return \Visca\Bundle\LicomBundle\Entity\Match[]
      */
@@ -1055,7 +1088,14 @@ class MatchRepository extends AbstractEntityRepository
         $competitionSeasonStageId,
         $limit = null
     ) {
-        return $this->findMatchesByStatusAndDateInterval($date, $status, false, $limit, null, $competitionSeasonStageId);
+        return $this->findMatchesByStatusAndDateInterval(
+            $date,
+            $status,
+            false,
+            $limit,
+            null,
+            $competitionSeasonStageId
+        );
     }
 
     /**
