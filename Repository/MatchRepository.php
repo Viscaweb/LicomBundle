@@ -524,12 +524,12 @@ class MatchRepository extends AbstractEntityRepository
      * If the toDays is not set, the query will return all the results biggers than the fromDate
      * And will add the limit if provided.
      *
-     * @param string $importance     top|important|2nd.
-     * @param int    $fromDays       Starting date the match can take place.
-     *                               Specified in number of relative days from today.
-     * @param int    $toDays         Limit date the match can take place. Specified in number of relative days from today.
+     * @param string $importance    top|important|2nd.
+     * @param int    $fromDays      Starting date the match can take place.
+     *                              Specified in number of relative days from today.
+     * @param int    $toDays        Limit date the match can take place. Specified in number of relative days from today.
      * @param int[]  $ignoreMatchId
-     * @param int    $limit          Limit the number of matches returned. Default 3.
+     * @param int    $limit         Limit the number of matches returned. Default 3.
      *
      * @return Match[]
      */
@@ -675,7 +675,7 @@ class MatchRepository extends AbstractEntityRepository
      *
      * @param DateTime    $dateFrom
      * @param DateTime    $dateTo
-     * @param string|null $status Any of the valid MatchStatusDescriptionCategoryType
+     * @param string|null $status   Any of the valid MatchStatusDescriptionCategoryType
      * @param null        $sportId
      *
      * @return \Visca\Bundle\LicomBundle\Entity\Match[]
@@ -891,10 +891,10 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param string|null       $status Match Status description.
-     * @param DateTimeInterface $date   A date.
-     * @param bool|true         $before Do we want matches before the date?
-     * @param null              $limit  How many matches we want.
+     * @param string|null       $status                    Match Status description.
+     * @param DateTimeInterface $date                      A date.
+     * @param bool|true         $before                    Do we want matches before the date?
+     * @param null              $limit                     How many matches we want.
      * @param int|null          $sportId
      * @param array             $competitionSeasonStageIds
      *
@@ -986,10 +986,10 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param string            $status Match Status description.
-     * @param DateTimeInterface $date   A date.
+     * @param string            $status                    Match Status description.
+     * @param DateTimeInterface $date                      A date.
      * @param int[]             $competitionSeasonStageIds
-     * @param int|null          $limit  How many matches we want.
+     * @param int|null          $limit                     How many matches we want.
      *
      * @return \Visca\Bundle\LicomBundle\Entity\Match[]
      */
