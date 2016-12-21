@@ -1,6 +1,6 @@
 <?php
 
-namespace Visca\Bundle\LicomBundle\Events\Standings;
+namespace Visca\Bundle\LicomBundle\Events\Standing;
 
 use Visca\Bundle\LicomBundle\Events\AbstractEvent;
 use Visca\Bundle\LicomBundle\Events\Traits\ListenByCompetitionSeasonStageTrait;
@@ -15,6 +15,6 @@ final class Standing extends AbstractEvent
      */
     public function getEventObject()
     {
-        return 'standings';
+        return 'standing';
     }
 }
