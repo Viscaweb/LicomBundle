@@ -30,3 +30,4 @@ Listen by...
 | Odds                                | ✓     |             |                        |                  |                  |                |      |         |       |                   |
 | → OddsThreeWay                      | ✓     |             |                        |                  |                  |                |      |         |       |                   |
 | → OddsOverUnder                     | ✓     |             |                        |                  |                  |                |      |         |       |                   |
+| Standings                           |       | ✓           | ✓                      |                  |                  |                |      |         |       |                   |
