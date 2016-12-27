@@ -41,6 +41,9 @@ use Visca\Bundle\LicomBundle\Services\Filters\MatchMostRelevantFilter;
  */
 class MatchSlugMatcher
 {
+    const SELECT_MATCH_USING_FILTERS = 1;
+    const SELECT_MATCH_USING_MOST_RELEVANT_FIELD = 2;
+
     /**
      * @var MatchRepository Match Repository
      */
@@ -98,14 +101,14 @@ class MatchSlugMatcher
     }
 
     /**
-     * @param string      $matchSlug   Match Slug, i.e. 'fc-barcelona-madrid'
-     * @param Competition $competition Competition
-     *
-     * @throws NoMatchFoundException
+     * @param string      $matchSlug     Match Slug, i.e. 'fc-barcelona-madrid'
+     * @param Competition $competition   Competition
+     * @param int         $filteringType Filtering type
      *
      * @return Match
+     * @throws NoMatchFoundException
      */
-    public function match($matchSlug, Competition $competition)
+    public function match($matchSlug, Competition $competition, $filteringType = self::SELECT_MATCH_USING_FILTERS)
     {
         /*
          * Find all possible combinations
@@ -164,7 +167,18 @@ class MatchSlugMatcher
             $competition
         );
 
-        return $this->getBestMatch($competitionMatchCollection);
+        switch ($filteringType){
+            case self::SELECT_MATCH_USING_FILTERS:
+                return $this->getBestMatch($competitionMatchCollection);
+            case self::SELECT_MATCH_USING_MOST_RELEVANT_FIELD:
+                foreach ($competitionMatchCollection as $match) {
+                    if ($match->isMostRelevant()) {
+                        return $match;
+                    }
+                }
+
+                throw new NoMatchFoundException();
+        }
     }
 
     /**
