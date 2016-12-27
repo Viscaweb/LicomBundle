@@ -714,8 +714,8 @@ class MatchRepository extends AbstractEntityRepository
                     'awayMatchParticipant.participant',
                     'awayParticipant'
                 )
-                ->addParameter('homeParticipantNumber', MatchParticipant::HOME)
-                ->addParameter('awayParticipantNumber', MatchParticipant::AWAY);
+                ->setParameter('homeParticipantNumber', MatchParticipant::HOME)
+                ->setParameter('awayParticipantNumber', MatchParticipant::AWAY);
         }
 
         return $queryBuilder->getQuery()->getResult();
