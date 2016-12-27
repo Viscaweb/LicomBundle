@@ -678,6 +678,7 @@ class MatchRepository extends AbstractEntityRepository
      * @param string|null $status   Any of the valid MatchStatusDescriptionCategoryType
      * @param null        $sportId
      * @param bool        $includeMatchsParticipants
+     * @param bool        $includeCompetition
      *
      * @return \Visca\Bundle\LicomBundle\Entity\Match[]
      */
@@ -686,7 +687,8 @@ class MatchRepository extends AbstractEntityRepository
         DateTime $dateTo,
         $status = null,
         $sportId = null,
-        $includeMatchsParticipants = false
+        $includeMatchsParticipants = false,
+        $includeCompetition = false
     ){
         $queryBuilder = $this->getByDateAndStatusAndSportQueryBuilder($dateFrom, $dateTo, $status, $sportId);
 
@@ -716,6 +718,14 @@ class MatchRepository extends AbstractEntityRepository
                 )
                 ->setParameter('homeParticipantNumber', MatchParticipant::HOME)
                 ->setParameter('awayParticipantNumber', MatchParticipant::AWAY);
+        }
+
+        if ($includeCompetition){
+            $queryBuilder
+                ->addSelect('competition.id as competitionId')
+                ->join('m.competitionSeasonStage', 'stage')
+                ->join('stage.competitionSeason', 'season')
+                ->join('season.competition', 'competition');
         }
 
         return $queryBuilder->getQuery()->getResult();
