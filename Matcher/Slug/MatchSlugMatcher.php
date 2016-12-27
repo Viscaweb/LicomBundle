@@ -105,8 +105,9 @@ class MatchSlugMatcher
      * @param Competition $competition   Competition
      * @param int         $filteringType Filtering type
      *
-     * @return Match
      * @throws NoMatchFoundException
+     *
+     * @return Match
      */
     public function match($matchSlug, Competition $competition, $filteringType = self::SELECT_MATCH_USING_FILTERS)
     {
@@ -167,7 +168,7 @@ class MatchSlugMatcher
             $competition
         );
 
-        switch ($filteringType){
+        switch ($filteringType) {
             case self::SELECT_MATCH_USING_FILTERS:
                 return $this->getBestMatch($competitionMatchCollection);
             case self::SELECT_MATCH_USING_MOST_RELEVANT_FIELD:
