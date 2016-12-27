@@ -524,12 +524,12 @@ class MatchRepository extends AbstractEntityRepository
      * If the toDays is not set, the query will return all the results biggers than the fromDate
      * And will add the limit if provided.
      *
-     * @param string $importance    top|important|2nd.
-     * @param int    $fromDays      Starting date the match can take place.
-     *                              Specified in number of relative days from today.
-     * @param int    $toDays        Limit date the match can take place. Specified in number of relative days from today.
+     * @param string $importance top|important|2nd.
+     * @param int    $fromDays   Starting date the match can take place.
+     *                           Specified in number of relative days from today.
+     * @param int    $toDays     Limit date the match can take place. Specified in number of relative days from today.
      * @param int[]  $ignoreMatchId
-     * @param int    $limit         Limit the number of matches returned. Default 3.
+     * @param int    $limit      Limit the number of matches returned. Default 3.
      *
      * @return Match[]
      */
@@ -623,14 +623,14 @@ class MatchRepository extends AbstractEntityRepository
      * If the toDays is not set, the query will return all the results biggers than the fromDate
      * And will add the limit if provided.
      *
-     * @param int    $countryId        Country entity.
+     * @param int    $countryId  Country entity.
      * @param int    $sportId
-     * @param string $importance       top|important|2nd.
-     * @param int    $fromDays         Starting date the match can take place.
-     *                                 Specified in number of relative days from today.
-     * @param int    $toDays           Limit date the match can take place. Specified in number of relative days from today.
+     * @param string $importance top|important|2nd.
+     * @param int    $fromDays   Starting date the match can take place.
+     *                           Specified in number of relative days from today.
+     * @param int    $toDays     Limit date the match can take place. Specified in number of relative days from today.
      * @param int    $ignoreMatchesIds Do not retrieve matches in this list.
-     * @param int    $limit            Limit the number of matches returned. Default 3.
+     * @param int    $limit      Limit the number of matches returned. Default 3.
      *
      * @return \Visca\Bundle\LicomBundle\Entity\Match[]
      */
@@ -677,12 +677,46 @@ class MatchRepository extends AbstractEntityRepository
      * @param DateTime    $dateTo
      * @param string|null $status   Any of the valid MatchStatusDescriptionCategoryType
      * @param null        $sportId
+     * @param bool        $includeMatchsParticipants
      *
      * @return \Visca\Bundle\LicomBundle\Entity\Match[]
      */
-    public function findByDateAndStatusAndSport(DateTime $dateFrom, DateTime $dateTo, $status = null, $sportId = null)
-    {
+    public function findByDateAndStatusAndSport(
+        DateTime $dateFrom,
+        DateTime $dateTo,
+        $status = null,
+        $sportId = null,
+        $includeMatchsParticipants = false
+    ){
         $queryBuilder = $this->getByDateAndStatusAndSportQueryBuilder($dateFrom, $dateTo, $status, $sportId);
+
+        if ($includeMatchsParticipants) {
+            $queryBuilder
+                ->addSelect('homeParticipant.id as homeParticipantId')
+                ->addSelect('awayParticipant.id as awayParticipantId')
+                ->join(
+                    'm.matchParticipant',
+                    'homeMatchParticipant',
+                    Join::WITH,
+                    'homeMatchParticipant.number = :homeParticipantNumber'
+                )
+                ->join(
+                    'homeMatchParticipant.participant',
+                    'homeParticipant'
+                )
+                ->join(
+                    'm.matchParticipant',
+                    'awayMatchParticipant',
+                    Join::WITH,
+                    'awayMatchParticipant.number = :awayParticipantNumber'
+                )
+                ->join(
+                    'awayMatchParticipant.participant',
+                    'awayParticipant'
+                )
+                ->addParameter('homeParticipantNumber', MatchParticipant::HOME)
+                ->addParameter('awayParticipantNumber', MatchParticipant::AWAY);
+        }
 
         return $queryBuilder->getQuery()->getResult();
     }
