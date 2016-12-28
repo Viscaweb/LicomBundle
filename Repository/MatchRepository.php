@@ -1653,12 +1653,14 @@ class MatchRepository extends AbstractEntityRepository
     /**
      * @param DateTime $start
      * @param DateTime $end
+     * @param int|null $sportId
      *
      * @return array
      */
     public function findMatchesWhichMostRelevantWasNotUpdatedBetweenDates(
         \DateTime $start,
-        \DateTime $end
+        \DateTime $end,
+        $sportId = null
     ) {
         $query = parent::createQueryBuilder('m')
             ->select(
@@ -1702,6 +1704,29 @@ class MatchRepository extends AbstractEntityRepository
                     'end' => $end,
                 ]
             );
+
+        /*
+        * if we have the sport id
+        */
+        if (!is_null($sportId) && is_numeric($sportId)) {
+            $queryBuilder
+                // join the participant to filter by sport
+                ->join(
+                    'ViscaLicomBundle:MatchParticipant',
+                    'mp1',
+                    'WITH',
+                    'mp1.match = m AND mp1.number = :homeNumber'
+                )
+                ->andWhere('mp1.id IS NOT NULL')
+                ->setParameter('homeNumber', MatchParticipant::HOME)
+                // Where sport
+                ->join(
+                    "mp1.participant",
+                    'p1'
+                )
+                ->andWhere('p1.sport = :sportId')
+                ->setParameter('sportId', $sportId);
+        }
 
         return $query->getQuery()->getArrayResult();
     }
