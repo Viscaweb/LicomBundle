@@ -1709,7 +1709,7 @@ class MatchRepository extends AbstractEntityRepository
         * if we have the sport id
         */
         if (!is_null($sportId) && is_numeric($sportId)) {
-            $queryBuilder
+            $query
                 // join the participant to filter by sport
                 ->join(
                     'ViscaLicomBundle:MatchParticipant',
