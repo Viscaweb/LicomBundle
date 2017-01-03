@@ -170,15 +170,9 @@ class MatchSlugMatcher
 
         switch ($filteringType) {
             case self::SELECT_MATCH_USING_FILTERS:
-                return $this->getBestMatch($competitionMatchCollection);
+                return $this->getBestMatchUsingFilters($competitionMatchCollection);
             case self::SELECT_MATCH_USING_MOST_RELEVANT_FIELD:
-                foreach ($competitionMatchCollection as $match) {
-                    if ($match->isMostRelevant()) {
-                        return $match;
-                    }
-                }
-
-                throw new NoMatchFoundException();
+                return $this->getBestMatchUsingMostRelevantField($competitionMatchCollection);
         }
     }
 
@@ -189,7 +183,7 @@ class MatchSlugMatcher
      *
      * @return Match
      */
-    public function getBestMatch(array $matches)
+    public function getBestMatchUsingFilters(array $matches)
     {
         /**
          * Take the best match to display in this list.
@@ -270,5 +264,27 @@ class MatchSlugMatcher
                 throw new NoMatchFoundException($message);
             }
         }
+    }
+
+    /**
+     * @param Match[] $competitionMatchCollection
+     *
+     * @throws NoMatchFoundException
+     *
+     * @return mixed
+     */
+    private function getBestMatchUsingMostRelevantField($competitionMatchCollection)
+    {
+        if (empty($competitionMatchCollection)) {
+            throw new NoMatchFoundException();
+        }
+
+        foreach ($competitionMatchCollection as $match) {
+            if ($match->isMostRelevant()) {
+                return $match;
+            }
+        }
+
+        return reset($competitionMatchCollection);
     }
 }
