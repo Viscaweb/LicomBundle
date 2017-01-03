@@ -269,8 +269,9 @@ class MatchSlugMatcher
     /**
      * @param Match[] $competitionMatchCollection
      *
-     * @return mixed
      * @throws NoMatchFoundException
+     *
+     * @return mixed
      */
     private function getBestMatchUsingMostRelevantField($competitionMatchCollection)
     {
