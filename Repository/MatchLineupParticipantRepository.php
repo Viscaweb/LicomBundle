@@ -4,6 +4,7 @@ namespace Visca\Bundle\LicomBundle\Repository;
 
 use Doctrine\ORM\Query\Expr\Join;
 use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
+use Visca\Bundle\LicomBundle\Entity\Enum\ParticipantType;
 use Visca\Bundle\LicomBundle\Entity\MatchLineupParticipant;
 use Visca\Bundle\LicomBundle\Entity\MatchParticipant;
 
@@ -36,7 +37,7 @@ class MatchLineupParticipantRepository extends AbstractEntityRepository
      * Get MatchLineup by MatchLineup. Preloads MatchIncidents
      * Sorted by MatchLineup.position.
      *
-     * @param int              $matchLineupId    MatchLineup ID.
+     * @param int              $matchLineupId MatchLineup ID.
      * @param MatchParticipant $matchParticipant
      *
      * @return \Visca\Bundle\LicomBundle\Entity\MatchLineupParticipant[]
@@ -71,24 +72,55 @@ class MatchLineupParticipantRepository extends AbstractEntityRepository
      *
      * @return \Visca\Bundle\LicomBundle\Entity\MatchLineupParticipant[]
      */
-    public function findByMatchLineups($matchLineupIds, $matchParticipants)
+    public function findPlayersByMatchLineups($matchLineupIds, $matchParticipants)
+    {
+        $queryBuilder = $this->matchLineupsQueryBuilder($matchLineupIds, $matchParticipants);
+        $queryBuilder->andWhere('p INSTANCE OF Visca\Bundle\LicomBundle\Entity\Athlete');
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+    /**
+     * Get MatchLineup by MatchLineup. Preloads MatchIncidents
+     * Sorted by MatchLineup.position.
+     *
+     * @param int[] $matchLineupIds    MatchLineup IDs.
+     * @param int[] $matchParticipants Match Participants IDs.
+     *
+     * @return \Visca\Bundle\LicomBundle\Entity\MatchLineupParticipant[]
+     */
+    public function findCoachesByMatchLineups($matchLineupIds, $matchParticipants)
+    {
+        $queryBuilder = $this->matchLineupsQueryBuilder($matchLineupIds, $matchParticipants);
+        $queryBuilder->andWhere('p INSTANCE OF Visca\Bundle\LicomBundle\Entity\Coach');
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+    /**
+     * @param $matchLineupIds
+     * @param $matchParticipants
+     *
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    private function matchLineupsQueryBuilder($matchLineupIds, $matchParticipants)
     {
         $queryBuilder = $this->createQueryBuilder('ml');
         $queryBuilder
             ->select('ml', 'mlt', 'p', 'px', 'mi')
-            ->where('ml.matchLineup in (:matchLineupId)')
             ->leftJoin('ml.matchLineupType', 'mlt')
             ->leftJoin('ml.participant', 'p')
             ->leftJoin('p.aux', 'px')
             ->leftJoin('p.matchIncident', 'mi', Join::WITH, 'mi.matchParticipant in (:matchParticipants)')
+            ->where('ml.matchLineup in (:matchLineupId)')
             ->setParameters(
                 [
                     'matchLineupId' => $matchLineupIds,
-                    'matchParticipants' => $matchParticipants
+                    'matchParticipants' => $matchParticipants,
                 ]
             )
             ->orderBy('ml.participant, ml.position', 'ASC');
 
-        return $queryBuilder->getQuery()->getResult();
+        return $queryBuilder;
     }
 }
