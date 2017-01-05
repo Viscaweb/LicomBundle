@@ -4,7 +4,6 @@ namespace Visca\Bundle\LicomBundle\Repository;
 
 use Doctrine\ORM\Query\Expr\Join;
 use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
-use Visca\Bundle\LicomBundle\Entity\Enum\ParticipantType;
 use Visca\Bundle\LicomBundle\Entity\MatchLineupParticipant;
 use Visca\Bundle\LicomBundle\Entity\MatchParticipant;
 
@@ -37,7 +36,7 @@ class MatchLineupParticipantRepository extends AbstractEntityRepository
      * Get MatchLineup by MatchLineup. Preloads MatchIncidents
      * Sorted by MatchLineup.position.
      *
-     * @param int              $matchLineupId MatchLineup ID.
+     * @param int              $matchLineupId    MatchLineup ID.
      * @param MatchParticipant $matchParticipant
      *
      * @return \Visca\Bundle\LicomBundle\Entity\MatchLineupParticipant[]
