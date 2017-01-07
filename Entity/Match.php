@@ -127,7 +127,6 @@ class Match implements EntityWithAuxInterface
         $this->aux = new ArrayCollection();
         $this->matchParticipant = new ArrayCollection();
         $this->matchAuxProfile = new ArrayCollection();
-        $this->mostRelevant = false;
         $this->updatedAt = new \DateTime();
     }
 
