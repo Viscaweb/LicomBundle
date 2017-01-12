@@ -268,13 +268,13 @@ class CompetitionRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param $competitionStagesIds [] $competitionStagesIds
+     * @param $competitionStagesIds[] $competitionStagesIds
      *
      * @return Competition[]
      */
     public function findByCompetitionStageIds($competitionStagesIds)
     {
-        $competitions = $this->entityManager
+        return $this->entityManager
             ->createQueryBuilder()
             ->select('c')
             ->from('ViscaLicomBundle:Competition', 'c')
@@ -284,8 +284,6 @@ class CompetitionRepository extends AbstractEntityRepository
             ->groupBy('c.id')
             ->getQuery()
             ->getResult();
-
-        return $competitions;
     }
 
     /**
