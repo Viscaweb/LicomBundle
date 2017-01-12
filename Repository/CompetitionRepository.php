@@ -272,7 +272,8 @@ class CompetitionRepository extends AbstractEntityRepository
      *
      * @return Competition[]
      */
-    public function findByCompetitionStageIds($competitionStagesIds) {
+    public function findByCompetitionStageIds($competitionStagesIds)
+    {
         $competitions = $this->entityManager
             ->createQueryBuilder()
             ->select('c')
