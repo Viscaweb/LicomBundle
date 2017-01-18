@@ -2,17 +2,15 @@
 
 namespace Visca\Bundle\LicomBundle\Events\Traits;
 
-use Visca\Bundle\LicomBundle\Entity\CompetitionSeasonStage;
-
 trait ListenByCompetitionSeasonStageTrait
 {
     /**
-     * @param CompetitionSeasonStage $competitionSeasonStage
+     * @param int $competitionSeasonStageId
      *
      * @return static
      */
-    public static function listenByCompetitionSeasonStage(CompetitionSeasonStage $competitionSeasonStage)
+    public static function listenByCompetitionSeasonStage($competitionSeasonStageId)
     {
-        return new static('competition_season_stage.'.$competitionSeasonStage->getId());
+        return new static('competition_season_stage.'.$competitionSeasonStageId);
     }
 }

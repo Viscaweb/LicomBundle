@@ -26,4 +26,23 @@ class MatchLineupRepository extends AbstractEntityRepository
 
         return $queryBuilder->getQuery()->getOneOrNullResult();
     }
+
+    /**
+     * Get MatchLineup by MatchParticipants.
+     *
+     * @param int[] $matchParticipantId MatchParticipant ID
+     *
+     * @return MatchLineup[]
+     */
+    public function findByMatchParticipants($matchParticipantIds)
+    {
+        $queryBuilder = $this
+            ->createQueryBuilder('m')
+            ->where('m.matchParticipant in (:matchParticipantIds)')
+            ->setParameter('matchParticipantIds', $matchParticipantIds)
+            ->orderBy('m.matchParticipant');
+
+
+        return $queryBuilder->getQuery()->getResult();
+    }
 }

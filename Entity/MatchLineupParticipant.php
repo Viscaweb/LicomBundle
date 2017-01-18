@@ -80,7 +80,7 @@ class MatchLineupParticipant
     /**
      * Get MatchLineup.
      *
-     * @return int
+     * @return MatchLineup
      */
     public function getMatchLineup()
     {

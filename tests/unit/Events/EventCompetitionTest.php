@@ -40,100 +40,24 @@ class EventCompetitionTest extends PHPUnit_Framework_TestCase
 
         return [
             // Competition
-            [$competitionEvent,            'listenByCompetition',            $this->createCompetition(1),            'competition@competition.1'],
+            [$competitionEvent,            'listenByCompetition',            1, 'competition@competition.1'],
 
             // CompetitionStage
-            [$competitionStageEvent,       'listenByCompetition',            $this->createCompetition(1),            'competition_stage@competition.1'],
-            [$competitionStageEvent,       'listenByCompetitionStage',       $this->createCompetitionStage(1),       'competition_stage@competition_stage.1'],
+            [$competitionStageEvent,       'listenByCompetition',            1, 'competition_stage@competition.1'],
+            [$competitionStageEvent,       'listenByCompetitionLeg',         1, 'competition_stage@competition_leg.1'],
+            [$competitionStageEvent,       'listenByCompetitionStage',       1, 'competition_stage@competition_stage.1'],
 
             // CompetitionRound
-            [$competitionRoundEvent,       'listenByCompetition',            $this->createCompetition(1),            'competition_round@competition.1'],
-            [$competitionRoundEvent,       'listenByCompetitionRound',       $this->createCompetitionRound(1),       'competition_round@competition_round.1'],
+            [$competitionRoundEvent,       'listenByCompetition',            1, 'competition_round@competition.1'],
+            [$competitionRoundEvent,       'listenByCompetitionRound',       1, 'competition_round@competition_round.1'],
 
             // CompetitionLeg
-            [$competitionLegEvent,         'listenByCompetition',            $this->createCompetition(1),            'competition_leg@competition.1'],
-            [$competitionLegEvent,         'listenByCompetitionLeg',         $this->createCompetitionLeg(1),         'competition_leg@competition_leg.1'],
+            [$competitionLegEvent,         'listenByCompetition',            1, 'competition_leg@competition.1'],
+            [$competitionLegEvent,         'listenByCompetitionLeg',         1, 'competition_leg@competition_leg.1'],
 
             // CompetitionSeasonStage
-            [$competitionSeasonStageEvent, 'listenByCompetition',            $this->createCompetition(1),            'competition_season_stage@competition.1'],
-            [$competitionSeasonStageEvent, 'listenByCompetitionSeasonStage', $this->createCompetitionSeasonStage(1), 'competition_season_stage@competition_season_stage.1'],
+            [$competitionSeasonStageEvent, 'listenByCompetition',            1, 'competition_season_stage@competition.1'],
+            [$competitionSeasonStageEvent, 'listenByCompetitionSeasonStage', 1, 'competition_season_stage@competition_season_stage.1'],
         ];
-    }
-
-    /**
-     * @param int $competitionId
-     *
-     * @return Competition
-     */
-    private function createCompetition($competitionId)
-    {
-        $competitionObj = new Competition();
-        $this->setId($competitionObj, $competitionId);
-
-        return $competitionObj;
-    }
-
-    /**
-     * @param int $competitionStageId
-     *
-     * @return CompetitionStage
-     */
-    private function createCompetitionStage($competitionStageId)
-    {
-        $competitionStageObj = new CompetitionStage();
-        $this->setId($competitionStageObj, $competitionStageId);
-
-        return $competitionStageObj;
-    }
-
-    /**
-     * @param int $competitionRoundId
-     *
-     * @return CompetitionRound
-     */
-    private function createCompetitionRound($competitionRoundId)
-    {
-        $competitionRoundObj = new CompetitionRound();
-        $this->setId($competitionRoundObj, $competitionRoundId);
-
-        return $competitionRoundObj;
-    }
-
-    /**
-     * @param int $competitionLegId
-     *
-     * @return CompetitionLeg
-     */
-    private function createCompetitionLeg($competitionLegId)
-    {
-        $competitionLegObj = new CompetitionLeg();
-        $this->setId($competitionLegObj, $competitionLegId);
-
-        return $competitionLegObj;
-    }
-
-    /**
-     * @param int $competitionSeasonStageId
-     *
-     * @return CompetitionSeasonStage
-     */
-    private function createCompetitionSeasonStage($competitionSeasonStageId)
-    {
-        $competitionSeasonStageObj = new CompetitionSeasonStage();
-        $this->setId($competitionSeasonStageObj, $competitionSeasonStageId);
-
-        return $competitionSeasonStageObj;
-    }
-
-    /**
-     * @param mixed $object
-     * @param int   $id
-     */
-    private function setId($object, $id)
-    {
-        $objReflected = new ReflectionClass($object);
-        $idProperty = $objReflected->getProperty('id');
-        $idProperty->setAccessible(true);
-        $idProperty->setValue($object, $id);
     }
 }

@@ -2,19 +2,20 @@
 
 namespace Visca\Bundle\LicomBundle\Repository;
 
+use Doctrine\ORM\Query\Expr\Join;
 use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
 use Visca\Bundle\LicomBundle\Entity\Athlete;
 use Visca\Bundle\LicomBundle\Entity\Code\EntityCode;
 use Visca\Bundle\LicomBundle\Entity\Code\LocalizationTranslationTypeCode;
 use Visca\Bundle\LicomBundle\Entity\Code\ProfileTranslationGraphLabelCode;
 use Visca\Bundle\LicomBundle\Entity\Code\StandingTypeCode;
-use Visca\Bundle\LicomBundle\Entity\CompetitionSeason;
+use Visca\Bundle\LicomBundle\Entity\MatchLineup;
 use Visca\Bundle\LicomBundle\Entity\Participant;
 use Visca\Bundle\LicomBundle\Entity\ParticipantMembership;
 use Visca\Bundle\LicomBundle\Entity\Sport;
 use Visca\Bundle\LicomBundle\Entity\Standing;
 use Visca\Bundle\LicomBundle\Exception\NoTranslationFoundException;
-use Doctrine\ORM\Query\Expr\Join;
+use Visca\Bundle\LicomBundle\Entity\Code\ParticipantAuxTypeCode;
 
 /**
  * Class ParticipantRepository.
@@ -27,6 +28,10 @@ class ParticipantRepository extends AbstractEntityRepository
      * @var ProfileEntityGraphRepository
      */
     protected $repositoryProfileEntityGraph;
+    /**
+     * @var LocalizationTranslationRepository
+     */
+    protected $repositoryLocalizationTranslation;
 
     /**
      * @param ProfileEntityGraphRepository $repositoryProfileEntityGraph Repository
@@ -36,11 +41,6 @@ class ParticipantRepository extends AbstractEntityRepository
     ) {
         $this->repositoryProfileEntityGraph = $repositoryProfileEntityGraph;
     }
-
-    /**
-     * @var LocalizationTranslationRepository
-     */
-    protected $repositoryLocalizationTranslation;
 
     /**
      * @param LocalizationTranslationRepository $repositoryLocalizationTranslation Repository
@@ -208,9 +208,63 @@ class ParticipantRepository extends AbstractEntityRepository
             ->join('mp.matchIncident', 'mi')
             ->join('mi.participant', 'a', Join::WITH, 'a.id = :athleteId')
             ->groupBy('participant.id')
-            ->setParameters([
-                'athleteId' => $athleteId
-            ])->getQuery()->getResult();
+            ->setParameters(
+                [
+                    'athleteId' => $athleteId,
+                ]
+            )->getQuery()->getResult();
+    }
+
+    /**
+     * @param int $athlete
+     *
+     * @return Participant|null
+     */
+    public function findMainTeamByAthleteId($athleteId)
+    {
+        return $this->findTeamByAthleteIdQuery($athleteId)
+            ->andWhere('paux.type is null or paux.type != :nationalTeamCode')
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    /**
+     * @param int $athlete
+     *
+     * @return Participant|null
+     */
+    public function findNationalTeamByAthleteId($athleteId)
+    {
+        return $this->findTeamByAthleteIdQuery($athleteId)
+            ->andWhere('paux.type = :nationalTeamCode')
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    /**
+     * @param int $athlete
+     *
+     * @return Participant|null
+     */
+    private function findTeamByAthleteIdQuery($athleteId)
+    {
+        return $this
+            ->createQueryBuilder('participant')
+            ->leftJoin('participant.aux', 'paux')
+            ->join('participant.matchParticipant', 'mp')
+            ->join(MatchLineup::class, 'lineup', 'WITH', 'lineup.matchParticipant = mp.id')
+            ->join('lineup.matchLineupParticipants', 'mlp')
+            ->join('mp.match', 'match')
+            ->where('mlp.participant = :athleteId')
+            ->groupBy('participant.id')
+            ->orderBy('match.startDate', 'DESC')
+            ->setMaxResults(1)
+            ->setParameters(
+                [
+                    'nationalTeamCode' => ParticipantAuxTypeCode::IS_NATIONAL_TEAM_CODE,
+                    'athleteId' => $athleteId,
+                ]
+            );
     }
 
     /**

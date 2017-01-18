@@ -41,6 +41,9 @@ use Visca\Bundle\LicomBundle\Services\Filters\MatchMostRelevantFilter;
  */
 class MatchSlugMatcher
 {
+    const SELECT_MATCH_USING_FILTERS = 1;
+    const SELECT_MATCH_USING_MOST_RELEVANT_FIELD = 2;
+
     /**
      * @var MatchRepository Match Repository
      */
@@ -98,14 +101,15 @@ class MatchSlugMatcher
     }
 
     /**
-     * @param string      $matchSlug   Match Slug, i.e. 'fc-barcelona-madrid'
-     * @param Competition $competition Competition
+     * @param string      $matchSlug     Match Slug, i.e. 'fc-barcelona-madrid'
+     * @param Competition $competition   Competition
+     * @param int         $filteringType Filtering type
      *
      * @throws NoMatchFoundException
      *
      * @return Match
      */
-    public function match($matchSlug, Competition $competition)
+    public function match($matchSlug, Competition $competition, $filteringType = self::SELECT_MATCH_USING_FILTERS)
     {
         /*
          * Find all possible combinations
@@ -164,7 +168,12 @@ class MatchSlugMatcher
             $competition
         );
 
-        return $this->getBestMatch($competitionMatchCollection);
+        switch ($filteringType) {
+            case self::SELECT_MATCH_USING_FILTERS:
+                return $this->getBestMatchUsingFilters($competitionMatchCollection);
+            case self::SELECT_MATCH_USING_MOST_RELEVANT_FIELD:
+                return $this->getBestMatchUsingMostRelevantField($competitionMatchCollection);
+        }
     }
 
     /**
@@ -174,7 +183,7 @@ class MatchSlugMatcher
      *
      * @return Match
      */
-    public function getBestMatch(array $matches)
+    public function getBestMatchUsingFilters(array $matches)
     {
         /**
          * Take the best match to display in this list.
@@ -255,5 +264,27 @@ class MatchSlugMatcher
                 throw new NoMatchFoundException($message);
             }
         }
+    }
+
+    /**
+     * @param Match[] $competitionMatchCollection
+     *
+     * @throws NoMatchFoundException
+     *
+     * @return mixed
+     */
+    private function getBestMatchUsingMostRelevantField($competitionMatchCollection)
+    {
+        if (empty($competitionMatchCollection)) {
+            throw new NoMatchFoundException();
+        }
+
+        foreach ($competitionMatchCollection as $match) {
+            if ($match->isMostRelevant()) {
+                return $match;
+            }
+        }
+
+        return reset($competitionMatchCollection);
     }
 }

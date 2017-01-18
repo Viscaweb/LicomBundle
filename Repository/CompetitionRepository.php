@@ -268,6 +268,25 @@ class CompetitionRepository extends AbstractEntityRepository
     }
 
     /**
+     * @param $competitionStagesIds[] $competitionStagesIds
+     *
+     * @return Competition[]
+     */
+    public function findByCompetitionStage($competitionStagesIds)
+    {
+        return $this->entityManager
+            ->createQueryBuilder()
+            ->select('c')
+            ->from('ViscaLicomBundle:Competition', 'c')
+            ->join('ViscaLicomBundle:CompetitionStage', 'cs', Join::WITH, 'cs.competition = c.id')
+            ->where('cs.id in (:competitionStageIds)')
+            ->setParameter('competitionStageIds', $competitionStagesIds)
+            ->groupBy('c.id')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
      * @param array $ids
      * @param Sport $sport
      *
