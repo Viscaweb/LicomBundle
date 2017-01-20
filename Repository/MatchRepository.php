@@ -874,6 +874,33 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
+     * @param null|int $status   Match status.
+     * @param int[]    $matchIds Matches Ids to search
+     *
+     * @return Match[]
+     */
+    public function findByStatusAndMatchIds($status, array $matchIds)
+    {
+        if (is_null($status) || empty($matchIds)) {
+            return [];
+        }
+
+        $optimized = true;
+        $statusCategories = $this->prepareStatusCategories($status);
+
+        $queryBuilder = $this->createQueryBuilder('m');
+        $queryBuilder
+            ->setReducedColumnSet($optimized)
+            ->andWhere('m.id IN (:matchIds)')
+            ->setParameter('matchIds', $matchIds)
+            ->leftJoin('m.matchStatusDescription', 's', Join::WITH, 's.id = m.matchStatusDescription')
+            ->andWhere('s.category IN (:categories)')
+            ->setParameter('categories', $statusCategories);
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+    /**
      * @param int      $countryId
      * @param int      $sportId
      * @param DateTime $dateFrom
