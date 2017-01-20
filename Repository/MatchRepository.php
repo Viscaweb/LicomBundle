@@ -874,13 +874,14 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param null|int  $status   Match status.
-     * @param int[]     $matchIds Matches Ids to search
+     * @param null|int $status   Match status.
+     * @param int[]    $matchIds Matches Ids to search
      *
      * @return Match[]
      */
-    public function findByStatusAndMatchIds($status, array $matchIds) {
-        if(is_null($status) || empty($matchIds)){
+    public function findByStatusAndMatchIds($status, array $matchIds)
+    {
+        if (is_null($status) || empty($matchIds)) {
             return [];
         }
 
