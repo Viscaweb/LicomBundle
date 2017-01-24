@@ -400,12 +400,6 @@ Visca\Bundle\LicomBundle\Entity\StandingViewGraph:
         standingView: @standing_view8
         label: @standing_view_graph_label1
         standingColumn: @standing_column38
-    standing_view_graph9_1_54:
-        position: 10
-        del: 'no'
-        standingView: '@standing_view9'
-        label: '@standing_view_graph_label1'
-        standingColumn: '@standing_column154'
     standing_view_graph9_1_15:
         position: 20
         del: 'no'
@@ -417,7 +411,7 @@ Visca\Bundle\LicomBundle\Entity\StandingViewGraph:
         del: 'no'
         standingView: '@standing_view9'
         label: '@standing_view_graph_label2'
-        standingColumn: '@standing_column157'
+        standingColumn: '@standing_column15'
     standing_view_graph10_1_37:
         position: 10
         del: 'no'
