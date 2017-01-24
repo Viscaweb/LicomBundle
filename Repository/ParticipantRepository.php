@@ -268,6 +268,8 @@ class ParticipantRepository extends AbstractEntityRepository
     }
 
     /**
+     * TODO: The Participant Membership is not well filled, LIBE must provide it properly.
+     *
      * Returns the Athlete team in the current Standing.
      *
      * @param Athlete  $athlete
