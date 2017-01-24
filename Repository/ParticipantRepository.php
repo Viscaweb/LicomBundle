@@ -268,6 +268,8 @@ class ParticipantRepository extends AbstractEntityRepository
     }
 
     /**
+     * TODO: The Participant Membership is not well filled, LIBE must provide it properly.
+     *
      * Returns the Athlete team in the current Standing.
      *
      * @param Athlete  $athlete
@@ -275,10 +277,8 @@ class ParticipantRepository extends AbstractEntityRepository
      *
      * @return mixed
      */
-    public function findOneByMainTeamByAthleteAndStanding(
-        Athlete $athlete,
-        Standing $standing
-    ) {
+    public function findOneByMainTeamByAthleteAndStanding(Athlete $athlete, Standing $standing)
+    {
         $participantMemberships = $athlete->getParticipantMembership();
         $teamIds = [];
         if (!$participantMemberships->isEmpty()) {
@@ -290,18 +290,8 @@ class ParticipantRepository extends AbstractEntityRepository
 
         $query = $this
             ->createQueryBuilder('participant')
-            ->join(
-                'ViscaLicomBundle:Standing',
-                'standing',
-                'WITH',
-                'standing.entityId = :standingId'
-            )
-            ->join(
-                'ViscaLicomBundle:StandingRow',
-                'standingRow',
-                'WITH',
-                'standingRow.standing = standing.id'
-            )
+            ->join('ViscaLicomBundle:Standing', 'standing', 'WITH', 'standing.entityId = :standingId')
+            ->join('ViscaLicomBundle:StandingRow', 'standingRow', 'WITH', 'standingRow.standing = standing.id')
             ->where('standing.entity = :standingEntity')
             ->andWhere('standing.standingType = :standingType')
             ->andWhere('participant.id IN (:athleteTeamsIds)')
