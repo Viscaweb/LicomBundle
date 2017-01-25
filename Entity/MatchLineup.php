@@ -99,6 +99,14 @@ class MatchLineup
     }
 
     /**
+     * @return bool
+     */
+    public function hasFormation()
+    {
+        return !empty($this->formation);
+    }
+
+    /**
      * @param MatchLineupParticipant $matchLineupParticipant
      *
      * @return $this
@@ -128,5 +136,25 @@ class MatchLineup
     public function getMatchLineupParticipants()
     {
         return $this->matchLineupParticipants;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasMatchLineupParticipants()
+    {
+        return count($this->matchLineupParticipants) > 0;
+    }
+
+    /**
+     * @param Collection $matchLineupParticipants
+     *
+     * @return MatchLineup
+     */
+    public function setMatchLineupParticipants($matchLineupParticipants)
+    {
+        $this->matchLineupParticipants = $matchLineupParticipants;
+
+        return $this;
     }
 }
