@@ -147,7 +147,7 @@ class MatchLineup
     }
 
     /**
-     * @param Collection $matchLineupParticipants
+     * @param MatchLineupParticipant[] $matchLineupParticipants
      *
      * @return MatchLineup
      */
