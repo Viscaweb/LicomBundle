@@ -8,7 +8,7 @@ use Visca\Bundle\LicomBundle\Entity\MatchLineupParticipant;
 use Visca\Bundle\LicomBundle\Entity\MatchParticipant;
 
 /**
- * Class MatchLineupRepository.
+ * Class MatchLineupParticipantRepository.
  */
 class MatchLineupParticipantRepository extends AbstractEntityRepository
 {
@@ -112,10 +112,12 @@ class MatchLineupParticipantRepository extends AbstractEntityRepository
             ->leftJoin('p.aux', 'px')
             ->leftJoin('p.matchIncident', 'mi', Join::WITH, 'mi.matchParticipant in (:matchParticipants)')
             ->where('ml.matchLineup in (:matchLineupId)')
+            ->andWhere('ml.del = :del')
             ->setParameters(
                 [
                     'matchLineupId' => $matchLineupIds,
                     'matchParticipants' => $matchParticipants,
+                    'del' => 'no'
                 ]
             )
             ->orderBy('ml.participant, ml.position', 'ASC');
