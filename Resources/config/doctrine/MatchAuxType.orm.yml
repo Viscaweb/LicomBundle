@@ -1,6 +1,7 @@
 Visca\Bundle\LicomBundle\Entity\MatchAuxType:
   type: entity
   table: Match_auxType
+  repositoryClass: Visca\Bundle\LicomBundle\Repository\MatchAuxTypeRepository
   id:
     id:
       type: smallint
