@@ -268,9 +268,7 @@ class ParticipantRepository extends AbstractEntityRepository
     }
 
     /**
-     * TODO: The Participant Membership is not well filled, LIBE must provide it properly.
-     *
-     * Returns the Athlete team in the current Standing.
+     * Returns the Athlete team in the current Standing from the ParticipantMembership.
      *
      * @param Athlete  $athlete
      * @param Standing $standing
@@ -284,7 +282,14 @@ class ParticipantRepository extends AbstractEntityRepository
         if (!$participantMemberships->isEmpty()) {
             /** @var ParticipantMembership $participantMembership */
             foreach ($participantMemberships as $participantMembership) {
-                $teamIds[] = $participantMembership->getEntityId();
+                if (!is_null($participantMembership->getStart()) && is_null($participantMembership->getEnd())) {
+                    $teamIds[] = $participantMembership->getEntityId();
+                }
+            }
+
+            // Be sure we always have one.
+            if (empty($teamIds)) {
+                $teamIds[] = $participantMemberships->first()->getEntityId();
             }
         }
 
