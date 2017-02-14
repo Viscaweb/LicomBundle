@@ -1444,7 +1444,7 @@ class MatchRepository extends AbstractEntityRepository
 
         if (!empty($competitionIds)) {
             $queryBuilder
-                ->andWhere('season.competition NOT IN (:competitionIds)')
+                ->andWhere('season.competition IN (:competitionIds)')
                 ->setParameter('competitionIds', $competitionIds);
         }
 
