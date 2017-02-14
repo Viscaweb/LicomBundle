@@ -10,6 +10,14 @@ services:
         calls:
             - ['setUtcDateAlterer', ['@visca_licom.alterer.utc_date']]
 
+    visca_licom.repository.match_aux_type:
+        class: Visca\Bundle\LicomBundle\Repository\MatchAuxTypeRepository
+        factory_service: visca_doctrine.repository.factory
+        factory_method: getRepository
+        arguments:
+            - '@visca_licom.entity_manager'
+            - Visca\Bundle\LicomBundle\Entity\MatchAuxType
+
     visca_licom.repository.match_lineup:
         class: Visca\Bundle\LicomBundle\Repository\MatchLineupRepository
         factory_service: visca_doctrine.repository.factory

@@ -268,40 +268,35 @@ class ParticipantRepository extends AbstractEntityRepository
     }
 
     /**
-     * Returns the Athlete team in the current Standing.
+     * Returns the Athlete team in the current Standing from the ParticipantMembership.
      *
      * @param Athlete  $athlete
      * @param Standing $standing
      *
      * @return mixed
      */
-    public function findOneByMainTeamByAthleteAndStanding(
-        Athlete $athlete,
-        Standing $standing
-    ) {
+    public function findOneByMainTeamByAthleteAndStanding(Athlete $athlete, Standing $standing)
+    {
         $participantMemberships = $athlete->getParticipantMembership();
         $teamIds = [];
         if (!$participantMemberships->isEmpty()) {
             /** @var ParticipantMembership $participantMembership */
             foreach ($participantMemberships as $participantMembership) {
-                $teamIds[] = $participantMembership->getEntityId();
+                if (!is_null($participantMembership->getStart()) && is_null($participantMembership->getEnd())) {
+                    $teamIds[] = $participantMembership->getEntityId();
+                }
+            }
+
+            // Be sure we always have one.
+            if (empty($teamIds)) {
+                $teamIds[] = $participantMemberships->first()->getEntityId();
             }
         }
 
         $query = $this
             ->createQueryBuilder('participant')
-            ->join(
-                'ViscaLicomBundle:Standing',
-                'standing',
-                'WITH',
-                'standing.entityId = :standingId'
-            )
-            ->join(
-                'ViscaLicomBundle:StandingRow',
-                'standingRow',
-                'WITH',
-                'standingRow.standing = standing.id'
-            )
+            ->join('ViscaLicomBundle:Standing', 'standing', 'WITH', 'standing.entityId = :standingId')
+            ->join('ViscaLicomBundle:StandingRow', 'standingRow', 'WITH', 'standingRow.standing = standing.id')
             ->where('standing.entity = :standingEntity')
             ->andWhere('standing.standingType = :standingType')
             ->andWhere('participant.id IN (:athleteTeamsIds)')
