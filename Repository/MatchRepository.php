@@ -1393,6 +1393,7 @@ class MatchRepository extends AbstractEntityRepository
      * @param \DateTime|null $dateTo                 DateTime
      * @param string|null    $status                 Status
      * @param array|null     $competitionCategoryIds Status
+     * @param int[]          $competitionIds
      *
      * @return array
      */
@@ -1402,7 +1403,8 @@ class MatchRepository extends AbstractEntityRepository
         \DateTime $dateFrom = null,
         \DateTime $dateTo = null,
         $status = null,
-        $competitionCategoryIds = null
+        $competitionCategoryIds = null,
+        $competitionIds = []
     ) {
         // Gets the custom query builder
         $queryBuilder = $this->getCompetitionCategoryBuilder($sport);
@@ -1438,6 +1440,12 @@ class MatchRepository extends AbstractEntityRepository
             $queryBuilder
                 ->andWhere('competitionCategory.id IN (:ccIds)')
                 ->setParameter('ccIds', $competitionCategoryIds);
+        }
+
+        if (!empty($competitionIds)) {
+            $queryBuilder
+                ->andWhere('season.competition IN (:competitionIds)')
+                ->setParameter('competitionIds', $competitionIds);
         }
 
         // Add the filter by date if needed.
