@@ -4,7 +4,7 @@ namespace Visca\Bundle\LicomBundle\Services\Chain;
 
 use InvalidArgumentException;
 use OutOfRangeException;
-use Visca\Bundle\LicomBundle\Formatter\Odds\Interfaces\OddsFormatterInterface;
+use Visca\Bundle\SportBundle\Transformer\Odds\OddsFormatterInterface;
 
 /**
  * Chain containing all the odds formatter.
