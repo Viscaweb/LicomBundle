@@ -12,7 +12,7 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
-    "viscaweb/doctrine-bundle": "dev-develop",
+    "viscaweb/doctrine-bundle": "dev-feature/php71",
     "viscaweb/core-bundle": "dev-develop",
     "beberlei/DoctrineExtensions": "~1.0.9",
     "ramsey/uuid": "3.4.*"
