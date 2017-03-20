@@ -42,7 +42,6 @@ class MatchRepository extends AbstractEntityRepository
         return $queryBuilder;
     }
 
-
     /**
      * Finds a match by its country id.
      *
@@ -754,27 +753,67 @@ class MatchRepository extends AbstractEntityRepository
      * Gets list of matches that happen in a given day and optionally has a given
      * state.
      *
-     * @param DateTime    $dateFrom
-     * @param DateTime    $dateTo
      * @param string|null $intervalSeconds Time ago we accept finished matches.
      * @param null        $sportId
      *
      * @return \Visca\Bundle\LicomBundle\Entity\Match[]
      */
-    public function findInProgressAndRecentlyFinishedByDateAndAndSport(
-        DateTime $dateFrom,
-        DateTime $dateTo,
-        $intervalSeconds = '30',
-        $sportId = null
-    ) {
-        $queryBuilder = $this->getByDateAndStatusAndSportQueryBuilder2($dateFrom, $dateTo, "inprogress", $sportId);
-        $previosStatusCategories = $queryBuilder->getParameter('categories')->getValue();
-        $statusCategories = array_merge($previosStatusCategories, $this->prepareStatusCategories("finished"));
-        $queryBuilder->setParameter('categories', $statusCategories);
+    public function findInProgressAndRecentlyFinishedByDateAndAndSport($intervalSeconds = '30', $sportId = null)
+    {
+        $optimized = false;
 
-        $queryBuilder->andWhere(
-            "s.category = 'inprogress' OR (s.category = 'finished' AND m.coverage = 'live' AND DATE_ADD(aux1.value, $intervalSeconds, 'SECOND') >= CURRENT_TIMESTAMP())"
-        );
+        $queryBuilder = $this->createQueryBuilder('m');
+        $queryBuilder
+            ->setReducedColumnSet($optimized)
+            ->joinMatchAuxTimes()
+            ->joinMatchParticipantSingleJoin($optimized)
+            ->joinMatchResultSingleJoin(
+                [
+                    MatchResultTypeCode::HALF_TIME_CODE,
+                    MatchResultTypeCode::RUNNING_SCORE_CODE,
+                ]
+            );
+
+        /*
+         * Filter the status
+         */
+        $conn = $this->entityManager->getConnection();
+        $qb = $conn->createQueryBuilder();
+        $matchStatusDescriptionCollection = $qb
+            ->select('ms.*')
+            ->from('MatchStatusDescription', 'ms')
+            ->where('category = :category')
+            ->setParameter('category', MatchStatusDescriptionCategoryType::INPROGRESS)
+            ->execute()
+            ->fetchAll();
+
+        $matchStatusDescriptionIds = array_map(function ($item) {
+            return $item['id'];
+        }, $matchStatusDescriptionCollection);
+
+
+        $queryBuilder
+            ->leftJoin(
+                'Visca\Bundle\LicomBundle\Entity\MatchStatusDescription',
+                's',
+                Join::WITH,
+                's.id = m.matchStatusDescription'
+            );
+
+        /*
+         * if we have the sport id
+         */
+        if (!is_null($sportId) && is_numeric($sportId)) {
+            $queryBuilder
+                ->andWhere('p'.($optimized ? '1' : '').'.sport = :sportId')
+                ->setParameter('sportId', $sportId);
+        }
+
+        $queryBuilder
+            ->andWhere(
+            "s.id IN (:statusIds) OR (s.category = 'finished' AND m.coverage = 'live' AND DATE_ADD(aux1.value, $intervalSeconds, 'SECOND') >= CURRENT_TIMESTAMP())"
+        )
+            ->setParameter('statusIds', $matchStatusDescriptionIds);
 
         return $queryBuilder->getQuery()->getResult();
     }

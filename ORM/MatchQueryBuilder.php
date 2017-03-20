@@ -5,6 +5,7 @@ namespace Visca\Bundle\LicomBundle\ORM;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query\Expr\Join;
+use Visca\Bundle\LicomBundle\Entity\Code\MatchAuxTypeCode;
 
 /**
  * Class MatchQueryBuilder.
@@ -135,6 +136,27 @@ class MatchQueryBuilder extends QueryBuilder
                 ->leftJoin("$this->alias.matchParticipant", 'mp')
                 ->join("mp.participant", 'p');
         }
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function joinMatchAuxTimes()
+    {
+        $this->joinMatchAux(
+        [
+            MatchAuxTypeCode::DATE_ENDED_CODE,
+            MatchAuxTypeCode::DATE_STARTED_CODE,
+            MatchAuxTypeCode::DATE_FIRST_HALF_ENDED_CODE,
+            MatchAuxTypeCode::DATE_SECOND_HALF_STARTED_CODE,
+            MatchAuxTypeCode::DATE_SECOND_HALF_ENDED_CODE,
+            MatchAuxTypeCode::EXTRA_TIME_1ST_HALF_TIME_STARTED_AT_CODE,
+            MatchAuxTypeCode::EXTRA_TIME_1ST_HALF_TIME_ENDED_AT_CODE,
+            MatchAuxTypeCode::EXTRA_TIME_2ND_HALF_TIME_STARTED_AT_CODE,
+            MatchAuxTypeCode::EXTRA_TIME_2ND_HALF_TIME_ENDED_AT_CODE,
+        ]);
 
         return $this;
     }
