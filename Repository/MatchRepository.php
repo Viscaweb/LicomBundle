@@ -777,19 +777,7 @@ class MatchRepository extends AbstractEntityRepository
         /*
          * Filter the status
          */
-        $conn = $this->entityManager->getConnection();
-        $qb = $conn->createQueryBuilder();
-        $matchStatusDescriptionCollection = $qb
-            ->select('ms.*')
-            ->from('MatchStatusDescription', 'ms')
-            ->where('category = :category')
-            ->setParameter('category', MatchStatusDescriptionCategoryType::INPROGRESS)
-            ->execute()
-            ->fetchAll();
-
-        $matchStatusDescriptionIds = array_map(function ($item) {
-            return $item['id'];
-        }, $matchStatusDescriptionCollection);
+        $matchStatusDescriptionIds = $this->getInProgressMatchStatusDescriptionIds();
 
 
         $queryBuilder
@@ -2148,5 +2136,30 @@ class MatchRepository extends AbstractEntityRepository
         }
 
         return $queryBuilder;
+    }
+
+    /**
+     * @return array
+     */
+    private function getInProgressMatchStatusDescriptionIds(): array
+    {
+        $conn = $this->entityManager->getConnection();
+        $qb = $conn->createQueryBuilder();
+        $matchStatusDescriptionCollection = $qb
+            ->select('ms.*')
+            ->from('MatchStatusDescription', 'ms')
+            ->where('category = :category')
+            ->setParameter('category', MatchStatusDescriptionCategoryType::INPROGRESS)
+            ->execute()
+            ->fetchAll();
+
+        $matchStatusDescriptionIds = array_map(
+            function ($item) {
+                return $item['id'];
+            },
+            $matchStatusDescriptionCollection
+        );
+
+        return $matchStatusDescriptionIds;
     }
 }
