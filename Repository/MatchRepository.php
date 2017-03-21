@@ -16,7 +16,6 @@ use Visca\Bundle\LicomBundle\Entity\Participant;
 use Visca\Bundle\LicomBundle\Entity\Sport;
 use Visca\Bundle\LicomBundle\ORM\MatchQueryBuilder;
 use Visca\Bundle\LicomBundle\Repository\Traits\UTCAltererTrait;
-use Visca\Bundle\SportBundle\Service\DateTimeUtils;
 
 /**
  * Class MatchRepository.
@@ -772,7 +771,12 @@ class MatchRepository extends AbstractEntityRepository
         $dateFromImmutable = \DateTimeImmutable::createFromMutable($dateFrom);
         $dateFromImmutable = $dateFromImmutable->sub(new \DateInterval('P1D'))->setTime(12, 0, 0);
 
-        $queryBuilder = $this->getByDateAndStatusAndSportQueryBuilder2(DateTimeUtils::createFromImmutable($dateFromImmutable), $dateTo, "inprogress", $sportId);
+        $queryBuilder = $this->getByDateAndStatusAndSportQueryBuilder2(
+            new \DateTime($dateFromImmutable->format('r'), $dateFromImmutable->getTimezone()),
+            $dateTo,
+            "inprogress",
+            $sportId
+        );
         $previosStatusCategories = $queryBuilder->getParameter('categories')->getValue();
         $statusCategories = array_merge($previosStatusCategories, $this->prepareStatusCategories("finished"));
         $queryBuilder->setParameter('categories', $statusCategories);
