@@ -2141,7 +2141,7 @@ class MatchRepository extends AbstractEntityRepository
     /**
      * @return array
      */
-    private function getInProgressMatchStatusDescriptionIds(): array
+    private function getInProgressMatchStatusDescriptionIds()
     {
         $conn = $this->entityManager->getConnection();
         $qb = $conn->createQueryBuilder();
