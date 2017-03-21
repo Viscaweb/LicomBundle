@@ -1857,8 +1857,8 @@ class MatchRepository extends AbstractEntityRepository
     /**
      * @param DateTimeInterface $dateFrom
      * @param DateTimeInterface $dateTo
-     * @param null     $status
-     * @param null     $sportId
+     * @param null              $status
+     * @param null              $sportId
      *
      * @return MatchQueryBuilder
      */
