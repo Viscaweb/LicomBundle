@@ -16,6 +16,7 @@ use Visca\Bundle\LicomBundle\Entity\Participant;
 use Visca\Bundle\LicomBundle\Entity\Sport;
 use Visca\Bundle\LicomBundle\ORM\MatchQueryBuilder;
 use Visca\Bundle\LicomBundle\Repository\Traits\UTCAltererTrait;
+use Visca\Bundle\SportBundle\Service\DateTimeUtils;
 
 /**
  * Class MatchRepository.
@@ -767,7 +768,11 @@ class MatchRepository extends AbstractEntityRepository
         $intervalSeconds = '30',
         $sportId = null
     ) {
-        $queryBuilder = $this->getByDateAndStatusAndSportQueryBuilder2($dateFrom, $dateTo, "inprogress", $sportId);
+        // Correct $dateFrom to accept from -1day @ 12:00
+        $dateFromImmutable = \DateTimeImmutable::createFromMutable($dateFrom);
+        $dateFromImmutable = $dateFromImmutable->sub(new \DateInterval('P1D'))->setTime(12, 0, 0);
+
+        $queryBuilder = $this->getByDateAndStatusAndSportQueryBuilder2(DateTimeUtils::createFromImmutable($dateFromImmutable), $dateTo, "inprogress", $sportId);
         $previosStatusCategories = $queryBuilder->getParameter('categories')->getValue();
         $statusCategories = array_merge($previosStatusCategories, $this->prepareStatusCategories("finished"));
         $queryBuilder->setParameter('categories', $statusCategories);
@@ -1846,16 +1851,16 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param DateTime $dateFrom
-     * @param DateTime $dateTo
+     * @param DateTimeInterface $dateFrom
+     * @param DateTimeInterface $dateTo
      * @param null     $status
      * @param null     $sportId
      *
      * @return MatchQueryBuilder
      */
     private function getByDateAndStatusAndSportQueryBuilder2(
-        DateTime $dateFrom,
-        DateTime $dateTo,
+        DateTimeInterface $dateFrom,
+        DateTimeInterface $dateTo,
         $status = null,
         $sportId = null
     ) {
