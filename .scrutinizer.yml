@@ -70,5 +70,5 @@ build:
 
     tests:
         override:
-                command: bin/phpunit -c app --process-isolation --testsuite "Suite1" --debug
+                command: bin/phpunit -c app --process-isolation --testsuite "All" --debug
                 on_node: 1
