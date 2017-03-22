@@ -1,6 +1,6 @@
 <?php
 
-namespace Repository\Counter;
+namespace Visca\Bundle\LicomBundle\tests\functional\Repository;
 
 use Visca\Bundle\CoreBundle\Test\WebTestCase;
 use Visca\Bundle\LicomBundle\Entity\Sport;
