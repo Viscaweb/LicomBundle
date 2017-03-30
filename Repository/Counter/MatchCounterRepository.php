@@ -153,7 +153,7 @@ class MatchCounterRepository
     {
         $date = $date ?: new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
         $dateTo = $date->setTime(22, 59, 00);
-        $dateFrom = $dateTo->sub(new \DateInterval('P1D'))->setTime(23, 00, 00);
+        $dateFrom = $dateTo->sub(new \DateInterval('P1D'))->setTime(12, 00, 00);
 
         $queryBuilder = $this->getMatchQueryBuilder()
             ->join("m.matchParticipant", "mp1", "WITH", 'mp1.number = 1')
