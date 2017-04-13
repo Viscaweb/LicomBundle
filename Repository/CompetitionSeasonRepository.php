@@ -2,7 +2,6 @@
 
 namespace Visca\Bundle\LicomBundle\Repository;
 
-use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\NoResultException;
 use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
