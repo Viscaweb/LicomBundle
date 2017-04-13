@@ -65,6 +65,7 @@ class MatchParticipant
     public function __construct()
     {
         $this->matchResult = new ArrayCollection();
+        $this->matchIncident = new ArrayCollection();
     }
 
     /**

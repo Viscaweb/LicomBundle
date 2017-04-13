@@ -1,0 +1,75 @@
+filter:
+    paths:
+    excluded_paths: [vendor/*, tests/*]
+
+tools:
+    php_changetracking: true
+    php_analyzer: true
+    php_sim: true
+    php_mess_detector: true
+    php_code_sniffer:
+        config:
+            standard: "PSR2"
+    sensiolabs_security_checker: true
+    php_pdepend: true
+    php_loc:
+        enabled: true
+        excluded_dirs: [vendor, tests]
+    php_cpd:
+        enabled: true
+        excluded_dirs: [vendor, tests]
+    php_cs_fixer:
+        config: { level: psr2 }
+    php_analyzer: true
+    js_hint: true
+
+checks:
+    php:
+        code_rating: true
+        duplication: true
+
+build:
+    cache:
+        directories:
+            - vendor/
+
+    dependencies:
+        before:
+             # Databases
+             - mysql -uroot -e 'CREATE DATABASE licom'
+
+             # Installing Ramdisk
+             - curl -sS https://gist.githubusercontent.com/JonasHaouzi/9c14b16a3fa6c67e3a3556507c14e17d/raw/fd5194ff8d993449fc75330a688f90e9c56d8aa1/ramdisk-mysql-ubutu.sh | sudo bash
+
+    environment:
+        timezone: 'Europe/Madrid'
+
+        php: '5.6'
+
+        hosts:
+            life.dev: '127.0.0.1'
+
+        node: 'v6.7.0'
+
+
+        apache2:
+            modules: ['rewrite']
+            sites:
+                symfony_app:
+                    web_root: 'web/'
+                    host: 'life.dev'
+    project_setup:
+            before:
+                - app/console doctrine:schema:create
+                - app/console doctrine:schema:create --em=licom
+                - app/console doctrine:fixtures:load --append --em=default --fixtures=src/Visca/Bundle/CommentBundle/DataFixtures/ORM --fixtures=src/Visca/Bundle/PredictionBundle/DataFixtures/ORM/Prediction --fixtures=src/Visca/Bundle/UserBundle/DataFixtures/ORM --fixtures=src/Application/Sonata/NewsBundle/DataFixtures/ORM
+                - app/console visca:licom:fixtures:load --em=licom all-types
+                - app/console visca:partner:update-geo-ip-database
+
+
+
+    tests:
+        override:
+            -
+                command: bin/phpunit -c app --process-isolation --testsuite "All" --debug
+                on_node: 1

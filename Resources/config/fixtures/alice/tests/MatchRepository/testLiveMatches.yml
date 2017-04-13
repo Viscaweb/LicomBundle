@@ -1,0 +1,147 @@
+include:
+  - ../../types/MatchStatusDescription.yml
+  - ../../default/CompetitionSeasonStage.yml
+  - ../../default/CompetitionRound.yml
+  - ../../default/CompetitionSeason.yml
+  - ../../default/CompetitionStage.yml
+  - ../../default/Competition.yml
+  - ../../types/CompetitionStageType.yml
+  - ../../default/CompetitionCategory.yml
+  - ../../types/Sport.yml
+  - ../../default/Country.yml
+
+
+
+Visca\Bundle\LicomBundle\Entity\Match:
+  match_template (template):
+    __construct: { create: [] }
+    competitionRound: @competition_round_default
+    competitionSeasonStage: @competition_season_stage_default
+
+  match_today_not_live{1..2} (extends match_template):
+    name: 'today not live'
+    matchStatusDescription: @match_status_description1
+    startDate: <dateTimeBetween('today, 00:00:00', 'today, 23:59:59')>
+
+
+  match_today_live{1..2} (extends match_template):
+    name: 'today live'
+    matchStatusDescription: @match_status_description3
+    startDate: <dateTimeBetween('today, 00:00:00', 'today, 23:59:59')>
+
+  match_yesterday_not_live{1..2} (extends match_template):
+    name: 'yesterday not live'
+    matchStatusDescription: @match_status_description1
+    startDate: <dateTimeBetween('-1 days, 00:00:00', '-1 days, 23:59:59')>
+
+  match_yesterday_live{1..2} (extends match_template):
+    name: 'yesterday live'
+    matchStatusDescription: @match_status_description3
+    startDate: <dateTimeBetween('-1 days, 12:00:00', '-1 days, 23:59:59')>
+
+Visca\Bundle\LicomBundle\Entity\Team:
+  team{1..8}:
+    __construct: { create: [] }
+    country: "@country*"
+    gender: male
+    sport: "@sport1"
+    name: 'team'
+    del: 'no'
+
+
+Visca\Bundle\LicomBundle\Entity\MatchParticipant:
+  match_participant_not_live1:
+    match: '@match_today_not_live1'
+    participant: '@team1'
+    number: 1
+    del: 'no'
+
+  match_participant_not_live2:
+    match: '@match_today_not_live1'
+    participant: '@team2'
+    number: 2
+    del: 'no'
+
+  match_participant_not_live3:
+    match: '@match_today_not_live2'
+    participant: '@team1'
+    number: 1
+    del: 'no'
+
+  match_participant_not_live4:
+    match: '@match_today_not_live2'
+    participant: '@team2'
+    number: 2
+    del: 'no'
+
+  match_participant_live1:
+    match: '@match_today_live1'
+    participant: '@team3'
+    number: 1
+    del: 'no'
+
+  match_participant_live2:
+    match: '@match_today_live1'
+    participant: '@team4'
+    number: 2
+    del: 'no'
+
+  match_participant_live3:
+    match: '@match_today_live2'
+    participant: '@team4'
+    number: 1
+    del: 'no'
+
+  match_participant_live4:
+    match: '@match_today_live2'
+    participant: '@team5'
+    number: 2
+    del: 'no'
+
+  match_participant_yesterday_not_live1:
+    match: '@match_yesterday_not_live1'
+    participant: '@team3'
+    number: 1
+    del: 'no'
+
+  match_participant_yesterday_not_live2:
+    match: '@match_yesterday_not_live1'
+    participant: '@team4'
+    number: 2
+    del: 'no'
+
+  match_participant_yesterday_not_live4:
+    match: '@match_yesterday_not_live2'
+    participant: '@team4'
+    number: 1
+    del: 'no'
+
+  match_participant_yesterday_not_live5:
+    match: '@match_yesterday_not_live2'
+    participant: '@team5'
+    number: 2
+    del: 'no'
+
+  match_participant_yesterday_live1:
+    match: '@match_yesterday_live1'
+    participant: '@team3'
+    number: 1
+    del: 'no'
+
+  match_participant_yesterday_live2:
+    match: '@match_yesterday_live1'
+    participant: '@team4'
+    number: 2
+    del: 'no'
+
+  match_participant_yesterday_live4:
+    match: '@match_yesterday_live2'
+    participant: '@team4'
+    number: 1
+    del: 'no'
+
+  match_participant_yesterday_live5:
+    match: '@match_yesterday_live2'
+    participant: '@team5'
+    number: 2
+    del: 'no'
