@@ -3,7 +3,6 @@
 namespace Visca\Bundle\LicomBundle\Repository;
 
 use Doctrine\ORM\Query;
-use Doctrine\ORM\Query\Expr\Join;
 use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
 
 /**
