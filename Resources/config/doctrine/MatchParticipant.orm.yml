@@ -40,11 +40,6 @@ Visca\Bundle\LicomBundle\Entity\MatchParticipant:
       columns: [Match_id]
     fk_participant:
       columns: [Participant]
-  uniqueConstraints:
-    uq_number_match:
-      columns: [number, Match_id]
-    uq_match_participant:
-      columns: [Match_id, Participant]
   oneToMany:
     matchIncident:
       targetEntity: Visca\Bundle\LicomBundle\Entity\MatchIncident

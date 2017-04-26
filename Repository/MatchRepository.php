@@ -1311,16 +1311,13 @@ class MatchRepository extends AbstractEntityRepository
      * Find matches by an Athlete and a IncidentType.
      *
      * @param Athlete  $athlete               Athlete entity
-     * @param int      $matchIncidentTypeCode MatchIncidentTypeCode value
+     * @param int[]    $matchIncidentTypeCode MatchIncidentTypeCode value
      * @param null|int $year                  Year to filter
      *
      * @return mixed
      */
-    public function findByAthleteAndMatchIncidentTypeAndYear(
-        Athlete $athlete,
-        $matchIncidentTypeCode,
-        $year = null
-    ) {
+    public function findByAthleteAndMatchIncidentTypeAndYear(Athlete $athlete, $matchIncidentTypeCode, $year = null)
+    {
         $queryBuilder = $this->entityManager->createQueryBuilder();
 
         /**
@@ -1371,14 +1368,14 @@ class MatchRepository extends AbstractEntityRepository
             ->join('css.competitionSeason', 'cs')
             ->join('css.competitionStage', 'cstage')
             ->where('mp2.number != mp.number')
-            ->andWhere('mi.matchIncidentType = :type')
+            ->andWhere('mi.matchIncidentType IN (:type)')
             ->andWhere('mr.matchResultType = :resultType')
             ->andWhere('mr2.matchResultType = :resultType')
             ->setParameters(
                 [
                     'athlete' => $athlete->getId(),
                     'type' => $matchIncidentTypeCode,
-                    'resultType' => MatchResultTypeCode::RUNNING_SCORE_CODE
+                    'resultType' => MatchResultTypeCode::RUNNING_SCORE_CODE,
                 ]
             )
             ->orderBy('m.startDate', 'DESC');
@@ -1421,17 +1418,10 @@ class MatchRepository extends AbstractEntityRepository
         /*
          * If we have some listed categories, remove them from the listing
          */
-        if (!is_null($competitionsListed)
-            && is_array($competitionsListed) && !empty($competitionsListed)
-        ) {
+        if (!is_null($competitionsListed) && is_array($competitionsListed) && !empty($competitionsListed)) {
             $queryBuilder
-                ->andWhere(
-                    'season.competition NOT IN (:competitionsListed)'
-                )
-                ->setParameter(
-                    'competitionsListed',
-                    $competitionsListed
-                );
+                ->andWhere('season.competition NOT IN (:competitionsListed)')
+                ->setParameter('competitionsListed', $competitionsListed);
         }
 
         // Add the status filter
@@ -1545,7 +1535,7 @@ class MatchRepository extends AbstractEntityRepository
      * @return array
      */
     public function filterMatchesIdsByCompetition(
-        $matchesIds = array(),
+        $matchesIds = [],
         $competitionId = null
     ) {
         $queryBuilder = $this->entityManager->createQueryBuilder();
@@ -1583,7 +1573,7 @@ class MatchRepository extends AbstractEntityRepository
         }
 
 
-        return array();
+        return [];
     }
 
     /**
@@ -2003,7 +1993,7 @@ class MatchRepository extends AbstractEntityRepository
             case MatchStatusDescriptionCategoryType::NOTSTARTED:
                 $statusCategories = [
                     MatchStatusDescriptionCategoryType::NOTSTARTED,
-                    MatchStatusDescriptionCategoryType::CANCELLED
+                    MatchStatusDescriptionCategoryType::CANCELLED,
                 ];
                 break;
 
