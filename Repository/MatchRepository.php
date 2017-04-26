@@ -675,7 +675,7 @@ class MatchRepository extends AbstractEntityRepository
      *
      * @param DateTime    $dateFrom
      * @param DateTime    $dateTo
-     * @param string|null $status                    Any of the valid MatchStatusDescriptionCategoryType
+     * @param string|null $status Any of the valid MatchStatusDescriptionCategoryType
      * @param null        $sportId
      * @param bool        $includeMatchsParticipants
      * @param bool        $includeCompetition
@@ -971,10 +971,10 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param string|null       $status                    Match Status description.
-     * @param DateTimeInterface $date                      A date.
-     * @param bool|true         $before                    Do we want matches before the date?
-     * @param null              $limit                     How many matches we want.
+     * @param string|null       $status Match Status description.
+     * @param DateTimeInterface $date   A date.
+     * @param bool|true         $before Do we want matches before the date?
+     * @param null              $limit  How many matches we want.
      * @param int|null          $sportId
      * @param array             $competitionSeasonStageIds
      *
@@ -1066,10 +1066,10 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param string            $status                    Match Status description.
-     * @param DateTimeInterface $date                      A date.
+     * @param string            $status Match Status description.
+     * @param DateTimeInterface $date   A date.
      * @param int[]             $competitionSeasonStageIds
-     * @param int|null          $limit                     How many matches we want.
+     * @param int|null          $limit  How many matches we want.
      *
      * @return \Visca\Bundle\LicomBundle\Entity\Match[]
      */
@@ -1378,7 +1378,7 @@ class MatchRepository extends AbstractEntityRepository
                 [
                     'athlete' => $athlete->getId(),
                     'type' => $matchIncidentTypeCode,
-                    'resultType' => MatchResultTypeCode::RUNNING_SCORE_CODE
+                    'resultType' => MatchResultTypeCode::RUNNING_SCORE_CODE,
                 ]
             )
             ->orderBy('m.startDate', 'DESC');
@@ -1421,17 +1421,10 @@ class MatchRepository extends AbstractEntityRepository
         /*
          * If we have some listed categories, remove them from the listing
          */
-        if (!is_null($competitionsListed)
-            && is_array($competitionsListed) && !empty($competitionsListed)
-        ) {
+        if (!is_null($competitionsListed) && is_array($competitionsListed) && !empty($competitionsListed)) {
             $queryBuilder
-                ->andWhere(
-                    'season.competition NOT IN (:competitionsListed)'
-                )
-                ->setParameter(
-                    'competitionsListed',
-                    $competitionsListed
-                );
+                ->andWhere('season.competition NOT IN (:competitionsListed)')
+                ->setParameter('competitionsListed', $competitionsListed);
         }
 
         // Add the status filter
@@ -1545,7 +1538,7 @@ class MatchRepository extends AbstractEntityRepository
      * @return array
      */
     public function filterMatchesIdsByCompetition(
-        $matchesIds = array(),
+        $matchesIds = [],
         $competitionId = null
     ) {
         $queryBuilder = $this->entityManager->createQueryBuilder();
@@ -1583,7 +1576,7 @@ class MatchRepository extends AbstractEntityRepository
         }
 
 
-        return array();
+        return [];
     }
 
     /**
@@ -2003,7 +1996,7 @@ class MatchRepository extends AbstractEntityRepository
             case MatchStatusDescriptionCategoryType::NOTSTARTED:
                 $statusCategories = [
                     MatchStatusDescriptionCategoryType::NOTSTARTED,
-                    MatchStatusDescriptionCategoryType::CANCELLED
+                    MatchStatusDescriptionCategoryType::CANCELLED,
                 ];
                 break;
 
