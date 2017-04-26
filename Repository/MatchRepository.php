@@ -1311,16 +1311,13 @@ class MatchRepository extends AbstractEntityRepository
      * Find matches by an Athlete and a IncidentType.
      *
      * @param Athlete  $athlete               Athlete entity
-     * @param int      $matchIncidentTypeCode MatchIncidentTypeCode value
+     * @param int[]    $matchIncidentTypeCode MatchIncidentTypeCode value
      * @param null|int $year                  Year to filter
      *
      * @return mixed
      */
-    public function findByAthleteAndMatchIncidentTypeAndYear(
-        Athlete $athlete,
-        $matchIncidentTypeCode,
-        $year = null
-    ) {
+    public function findByAthleteAndMatchIncidentTypeAndYear(Athlete $athlete, $matchIncidentTypeCode, $year = null)
+    {
         $queryBuilder = $this->entityManager->createQueryBuilder();
 
         /**
@@ -1371,7 +1368,7 @@ class MatchRepository extends AbstractEntityRepository
             ->join('css.competitionSeason', 'cs')
             ->join('css.competitionStage', 'cstage')
             ->where('mp2.number != mp.number')
-            ->andWhere('mi.matchIncidentType = :type')
+            ->andWhere('mi.matchIncidentType IN (:type)')
             ->andWhere('mr.matchResultType = :resultType')
             ->andWhere('mr2.matchResultType = :resultType')
             ->setParameters(
