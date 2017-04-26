@@ -675,7 +675,7 @@ class MatchRepository extends AbstractEntityRepository
      *
      * @param DateTime    $dateFrom
      * @param DateTime    $dateTo
-     * @param string|null $status Any of the valid MatchStatusDescriptionCategoryType
+     * @param string|null $status                    Any of the valid MatchStatusDescriptionCategoryType
      * @param null        $sportId
      * @param bool        $includeMatchsParticipants
      * @param bool        $includeCompetition
@@ -971,10 +971,10 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param string|null       $status Match Status description.
-     * @param DateTimeInterface $date   A date.
-     * @param bool|true         $before Do we want matches before the date?
-     * @param null              $limit  How many matches we want.
+     * @param string|null       $status                    Match Status description.
+     * @param DateTimeInterface $date                      A date.
+     * @param bool|true         $before                    Do we want matches before the date?
+     * @param null              $limit                     How many matches we want.
      * @param int|null          $sportId
      * @param array             $competitionSeasonStageIds
      *
@@ -1066,10 +1066,10 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param string            $status Match Status description.
-     * @param DateTimeInterface $date   A date.
+     * @param string            $status                    Match Status description.
+     * @param DateTimeInterface $date                      A date.
      * @param int[]             $competitionSeasonStageIds
-     * @param int|null          $limit  How many matches we want.
+     * @param int|null          $limit                     How many matches we want.
      *
      * @return \Visca\Bundle\LicomBundle\Entity\Match[]
      */
