@@ -16,17 +16,13 @@ use Visca\Bundle\LicomBundle\Repository\MatchRepository;
  */
 class MatchCounterRepository
 {
-    /**
-     * @var MatchRepository Match Repository
-     */
+    /** @var MatchRepository Match Repository */
     protected $matchRepository;
-    /**
-     * @var CompetitionSeasonStageRepository Competition Season Stage Repository
-     */
+
+    /** @var CompetitionSeasonStageRepository Competition Season Stage Repository */
     protected $competitionSeasonStageRepository;
-    /**
-     * @var int
-     */
+
+    /** @var int */
     private $resultCacheLifetime = 60;
 
     /**
@@ -38,7 +34,7 @@ class MatchCounterRepository
     public function __construct(
         MatchRepository $matchRepository,
         CompetitionSeasonStageRepository $competitionSeasonStageRepository
-    ) {
+    ){
         $this->matchRepository = $matchRepository;
         $this->competitionSeasonStageRepository = $competitionSeasonStageRepository;
     }
@@ -82,10 +78,8 @@ class MatchCounterRepository
      * @param QueryBuilder $qb
      * @param Competition  $competition
      */
-    private function filterByCompetition(
-        QueryBuilder $qb,
-        Competition $competition
-    ) {
+    private function filterByCompetition(QueryBuilder $qb, Competition $competition)
+    {
         $competitionIsValid = $this->competitionSeasonStageRepository
             ->createQueryBuilder('stage')
             ->select('stage.id')
@@ -103,10 +97,8 @@ class MatchCounterRepository
      * @param QueryBuilder $qb
      * @param string       $matchStatusCategory
      */
-    private function filterByMatchStatusCategory(
-        QueryBuilder $qb,
-        $matchStatusCategory
-    ) {
+    private function filterByMatchStatusCategory(QueryBuilder $qb, $matchStatusCategory)
+    {
         $qb
             ->join('m.matchStatusDescription', 'MatchStatusDescription')
             ->andWhere('MatchStatusDescription.category = :statusCategory')
