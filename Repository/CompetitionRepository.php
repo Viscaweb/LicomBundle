@@ -18,31 +18,26 @@ use Doctrine\ORM\Query\Expr\Join;
  */
 class CompetitionRepository extends AbstractEntityRepository
 {
-    /**
-     * @var ProfileEntityGraphRepository
-     */
+    /** @var ProfileEntityGraphRepository */
     protected $repositoryProfileEntityGraph;
+
+    /** @var LocalizationTranslationRepository */
+    protected $repositoryLocalizationTranslation;
 
     /**
      * @param ProfileEntityGraphRepository $repositoryProfileEntityGraph Repository
      */
-    public function setRepositoryProfileEntityGraph(
-        ProfileEntityGraphRepository $repositoryProfileEntityGraph
-    ) {
+    public function setRepositoryProfileEntityGraph(ProfileEntityGraphRepository $repositoryProfileEntityGraph)
+    {
         $this->repositoryProfileEntityGraph = $repositoryProfileEntityGraph;
     }
 
     /**
-     * @var LocalizationTranslationRepository
-     */
-    protected $repositoryLocalizationTranslation;
-
-    /**
      * @param LocalizationTranslationRepository $repositoryLocalizationTranslation Repository
      */
-    public function setRepositoryLocalizationTranslation(
-        LocalizationTranslationRepository $repositoryLocalizationTranslation
-    ) {
+    public function setRepositoryLocalizationTranslation(LocalizationTranslationRepository $repositoryLocalizationTranslation
+    )
+    {
         $this->repositoryLocalizationTranslation = $repositoryLocalizationTranslation;
     }
 
@@ -189,10 +184,8 @@ class CompetitionRepository extends AbstractEntityRepository
      *
      * @return Competition[]
      */
-    public function findBySlug(
-        $licomProfileId,
-        $competitionSlug
-    ) {
+    public function findBySlug($licomProfileId, $competitionSlug)
+    {
         $localizationTranslationRepository = $this->repositoryLocalizationTranslation;
         try {
             $competitionsSlugTranslations = $localizationTranslationRepository
@@ -220,10 +213,8 @@ class CompetitionRepository extends AbstractEntityRepository
      *
      * @return Competition|null
      */
-    public function findMainCompetitionByCountryAndSport(
-        Country $country,
-        Sport $sport
-    ) {
+    public function findMainCompetitionByCountryAndSport(Country $country, Sport $sport)
+    {
         $competitionCategory = $this->entityManager
             ->createQueryBuilder()
             ->select('competition_category.id')
@@ -268,7 +259,7 @@ class CompetitionRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param $competitionStagesIds[] $competitionStagesIds
+     * @param $competitionStagesIds [] $competitionStagesIds
      *
      * @return Competition[]
      */
@@ -311,9 +302,8 @@ class CompetitionRepository extends AbstractEntityRepository
      *
      * @return Competition[]|null
      */
-    public function findByMatchesIds(
-        $matches = array()
-    ) {
+    public function findByMatchesIds($matches = [])
+    {
         $competitions = $this->entityManager
             ->createQueryBuilder()
             ->select('c as competition, count(match.id) as matchesNumber')
