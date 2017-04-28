@@ -16,17 +16,13 @@ use Visca\Bundle\LicomBundle\Repository\MatchRepository;
  */
 class MatchCounterRepository
 {
-    /**
-     * @var MatchRepository Match Repository
-     */
+    /** @var MatchRepository Match Repository */
     protected $matchRepository;
-    /**
-     * @var CompetitionSeasonStageRepository Competition Season Stage Repository
-     */
+
+    /** @var CompetitionSeasonStageRepository Competition Season Stage Repository */
     protected $competitionSeasonStageRepository;
-    /**
-     * @var int
-     */
+
+    /** @var int */
     private $resultCacheLifetime = 60;
 
     /**
@@ -82,10 +78,8 @@ class MatchCounterRepository
      * @param QueryBuilder $qb
      * @param Competition  $competition
      */
-    private function filterByCompetition(
-        QueryBuilder $qb,
-        Competition $competition
-    ) {
+    private function filterByCompetition(QueryBuilder $qb, Competition $competition)
+    {
         $competitionIsValid = $this->competitionSeasonStageRepository
             ->createQueryBuilder('stage')
             ->select('stage.id')
@@ -103,10 +97,8 @@ class MatchCounterRepository
      * @param QueryBuilder $qb
      * @param string       $matchStatusCategory
      */
-    private function filterByMatchStatusCategory(
-        QueryBuilder $qb,
-        $matchStatusCategory
-    ) {
+    private function filterByMatchStatusCategory(QueryBuilder $qb, $matchStatusCategory)
+    {
         $qb
             ->join('m.matchStatusDescription', 'MatchStatusDescription')
             ->andWhere('MatchStatusDescription.category = :statusCategory')
@@ -174,6 +166,52 @@ class MatchCounterRepository
             );
 
         return $queryBuilder->getQuery()->getSingleScalarResult();
+    }
+
+    /**
+     * Returns the number of LIVE matches for the given sport.
+     *
+     * @param Sport             $sport Sport Entity
+     * @param DateTimeImmutable $date
+     *
+     * @return []
+     */
+    public function countLiveMatchesBySportAndCompetition(Sport $sport, \DateTimeImmutable $date = null)
+    {
+        $date = $date ?: new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
+        $dateTo = $date->setTime(22, 59, 00);
+        $dateFrom = $dateTo->sub(new \DateInterval('P1D'))->setTime(12, 00, 00);
+
+        $queryBuilder = $this
+            ->matchRepository
+            ->createQueryBuilder('m')
+            ->select('c.id  as competition, count(DISTINCT m) as totalMatches');
+
+        $queryBuilder->setCacheable(false);
+
+        $queryBuilder
+            ->join("m.matchParticipant", "mp1", "WITH", 'mp1.number = 1')
+            ->join("m.matchParticipant", "mp2", "WITH", 'mp2.number = 2')
+            ->join("mp1.participant", "p1")
+            ->join("mp1.participant", "p2")
+            ->join('m.matchStatusDescription', 'status')
+            ->join('m.competitionSeasonStage', 'css')
+            ->join('css.competitionSeason', 'cs')
+            ->join('cs.competition', 'c')
+            ->where('p1.sport = :sportId')
+            ->andWhere('status.category = :statusCategory')
+            ->andWhere('m.startDate BETWEEN :dateFrom AND :dateTo')
+            ->setParameters(
+                [
+                    'sportId' => $sport->getId(),
+                    'statusCategory' => MatchStatusDescription::IN_PROGRESS_KEY,
+                    'dateFrom' => $dateFrom,
+                    'dateTo' => $dateTo,
+                ]
+            )
+            ->groupBy('c.id');
+
+        return $queryBuilder->getQuery()->getScalarResult();
     }
 
     /**
