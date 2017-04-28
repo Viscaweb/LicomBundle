@@ -128,6 +128,7 @@ class MatchRepository extends AbstractEntityRepository
 
         $query = $this
             ->createQueryBuilder('m')
+            ->select('m')
             ->join('m.competitionSeasonStage', 'stage')
             ->join('stage.competitionSeason', 'season')
             ->join('season.competition', 'competition')
@@ -2090,7 +2091,9 @@ class MatchRepository extends AbstractEntityRepository
         $statusCategories = $this->prepareStatusCategories(MatchStatusDescriptionCategoryType::NOTSTARTED);
 
         $queryBuilder = parent::createQueryBuilder('m');
-        $queryBuilder->setCacheable(false);
+        $queryBuilder
+            ->select('m')
+            ->setCacheable(false);
 
         $queryBuilder
             ->join('m.matchAuxProfile', 'ma', Join::WITH)
