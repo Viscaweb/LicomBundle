@@ -102,6 +102,7 @@ class MatchRepository extends AbstractEntityRepository
      * Finds a match by its competition id.
      *
      * @param int|array $competitionIds  Competition ID
+     * @param int|null  $status          Status to search for
      * @param array     $whereConditions Extra conditions
      * @param array     $whereArguments  Extra condition's parameters
      * @param null      $limit           Limit
@@ -113,6 +114,7 @@ class MatchRepository extends AbstractEntityRepository
      */
     public function findByCompetitionId(
         $competitionIds,
+        $status = null,
         array $whereConditions = [],
         array $whereArguments = [],
         $limit = null,
@@ -126,6 +128,7 @@ class MatchRepository extends AbstractEntityRepository
 
         $query = $this
             ->createQueryBuilder('m')
+            ->select('m')
             ->join('m.competitionSeasonStage', 'stage')
             ->join('stage.competitionSeason', 'season')
             ->join('season.competition', 'competition')
@@ -142,6 +145,17 @@ class MatchRepository extends AbstractEntityRepository
 
         foreach ($whereArguments as $key => $value) {
             $query->setParameter($key, $value);
+        }
+
+        /*
+         * Filter the status
+         */
+        if ($status !== null) {
+            $statusCategories = $this->prepareStatusCategories($status);
+            $query
+                ->leftJoin('m.matchStatusDescription', 's', Join::WITH, 's.id = m.matchStatusDescription')
+                ->andWhere('s.category IN (:categories)')
+                ->setParameter('categories', $statusCategories);
         }
 
         if (is_numeric($limit)) {
@@ -2073,6 +2087,9 @@ class MatchRepository extends AbstractEntityRepository
         }
         $this->alterDateObjects($dateFrom);
 
+        // We don't want the in progress matches
+        $statusCategories = $this->prepareStatusCategories(MatchStatusDescriptionCategoryType::NOTSTARTED);
+
         $queryBuilder = parent::createQueryBuilder('m');
         $queryBuilder
             ->select('m')
@@ -2080,11 +2097,14 @@ class MatchRepository extends AbstractEntityRepository
 
         $queryBuilder
             ->join('m.matchAuxProfile', 'ma', Join::WITH)
+            ->leftJoin('m.matchStatusDescription', 's')
             ->andWhere('m.startDate >= :start')
             ->andWhere('ma.value = :importance')
-            ->orderBy('m.startDate', 'ASC')
+            ->andWhere('s.category IN (:categories)')
             ->setParameter('start', $dateFrom->format('Y-m-d H:i:s'))
-            ->setParameter('importance', $importance);
+            ->setParameter('importance', $importance)
+            ->setParameter('categories', $statusCategories)
+            ->orderBy('m.startDate', 'ASC');
 
         /*
          * If we don't have any "to date", don't add it to the query
