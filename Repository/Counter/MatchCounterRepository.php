@@ -34,7 +34,7 @@ class MatchCounterRepository
     public function __construct(
         MatchRepository $matchRepository,
         CompetitionSeasonStageRepository $competitionSeasonStageRepository
-    ){
+    ) {
         $this->matchRepository = $matchRepository;
         $this->competitionSeasonStageRepository = $competitionSeasonStageRepository;
     }

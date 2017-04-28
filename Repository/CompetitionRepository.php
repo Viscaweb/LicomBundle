@@ -36,8 +36,7 @@ class CompetitionRepository extends AbstractEntityRepository
      * @param LocalizationTranslationRepository $repositoryLocalizationTranslation Repository
      */
     public function setRepositoryLocalizationTranslation(LocalizationTranslationRepository $repositoryLocalizationTranslation
-    )
-    {
+    ) {
         $this->repositoryLocalizationTranslation = $repositoryLocalizationTranslation;
     }
 
