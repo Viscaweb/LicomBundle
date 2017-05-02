@@ -176,7 +176,7 @@ class MatchCounterRepository
      *
      * @return []
      */
-    public function countLiveMatchesBySportAndCompetition(Sport $sport, \DateTimeImmutable $date = null)
+    public function countLiveMatchesBySportAndCompetitionCategory(Sport $sport, \DateTimeImmutable $date = null)
     {
         $date = $date ?: new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
         $dateTo = $date->setTime(22, 59, 00);
@@ -185,7 +185,7 @@ class MatchCounterRepository
         $queryBuilder = $this
             ->matchRepository
             ->createQueryBuilder('m')
-            ->select('c.id  as competition, count(DISTINCT m) as totalMatches');
+            ->select('cc.id as competitionCategory, count(DISTINCT m) as totalMatches');
 
         $queryBuilder->setCacheable(false);
 
@@ -198,6 +198,7 @@ class MatchCounterRepository
             ->join('m.competitionSeasonStage', 'css')
             ->join('css.competitionSeason', 'cs')
             ->join('cs.competition', 'c')
+            ->join('c.competitionCategory', 'cc')
             ->where('p1.sport = :sportId')
             ->andWhere('status.category = :statusCategory')
             ->andWhere('m.startDate BETWEEN :dateFrom AND :dateTo')
@@ -209,7 +210,7 @@ class MatchCounterRepository
                     'dateTo' => $dateTo,
                 ]
             )
-            ->groupBy('c.id');
+            ->groupBy('cc.id');
 
         return $queryBuilder->getQuery()->getScalarResult();
     }
