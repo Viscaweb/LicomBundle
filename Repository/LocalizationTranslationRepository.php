@@ -49,6 +49,7 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      * @param int $entityId                      Entity to look for
      *
      * @throws NoTranslationFoundException
+     *
      * @deprecated The translations will soon be provided by the API directly. Try using the API instead of fetching data against DB directly.
      *
      * @return LocalizationTranslation
@@ -76,6 +77,7 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      * @param int[] $entityIds                     Entities to look for
      *
      * @throws NoTranslationFoundException
+     *
      * @deprecated The translations will soon be provided by the API directly. Try using the API instead of fetching data against DB directly.
      *
      * @return LocalizationTranslation[]
@@ -101,6 +103,7 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      * @param string[] $textCollection                Text to look for
      *
      * @throws NoTranslationFoundException
+     *
      * @deprecated The translations will soon be provided by the API directly. Try using the API instead of fetching data against DB directly.
      *
      * @return LocalizationTranslation[]
@@ -128,6 +131,7 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      * @param string[] $filterText                    Filter by text value
      *
      * @throws NoTranslationFoundException
+     *
      * @deprecated The translations will soon be provided by the API directly. Try using the API instead of fetching data against DB directly.
      *
      * @return LocalizationTranslation[]
@@ -209,6 +213,7 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      * @param string[] $textCollection                Text to look for
      *
      * @throws NoTranslationFoundException
+     *
      * @deprecated The translations will soon be provided by the API directly. Try using the API instead of fetching data against DB directly.
      *
      * @return LocalizationTranslation[]
@@ -232,6 +237,7 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      * @param int[] $entityIds                     Entities to look for
      *
      * @throws NoTranslationFoundException
+     *
      * @deprecated The translations will soon be provided by the API directly. Try using the API instead of fetching data against DB directly.
      *
      * @return LocalizationTranslation[]
@@ -255,6 +261,7 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      * @param string[] $filterText                    Text to look for
      *
      * @throws NoTranslationFoundException
+     *
      * @deprecated The translations will soon be provided by the API directly. Try using the API instead of fetching data against DB directly.
      *
      * @return LocalizationTranslation[]
@@ -331,6 +338,7 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      * @param int $entityId                      Entity to look for
      *
      * @throws NoTranslationFoundException
+     *
      * @deprecated The translations will soon be provided by the API directly. Try using the API instead of fetching data against DB directly.
      *
      * @return LocalizationTranslation
@@ -355,6 +363,7 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      * @param int[] $entityIdCollection            Entities to look for
      *
      * @throws NoTranslationFoundException
+     *
      * @deprecated The translations will soon be provided by the API directly. Try using the API instead of fetching data against DB directly.
      *
      * @return LocalizationTranslation[]
@@ -377,6 +386,7 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      * @param string $text                          Text to look for
      *
      * @throws NoTranslationFoundException
+     *
      * @deprecated The translations will soon be provided by the API directly. Try using the API instead of fetching data against DB directly.
      *
      * @return LocalizationTranslation
@@ -401,6 +411,7 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      * @param string[] $textCollection                Text to look for
      *
      * @throws NoTranslationFoundException
+     *
      * @deprecated The translations will soon be provided by the API directly. Try using the API instead of fetching data against DB directly.
      *
      * @return LocalizationTranslation[]
@@ -425,6 +436,7 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      * @param string[] $filterText                    Filter by text value
      *
      * @throws NoTranslationFoundException
+     *
      * @deprecated The translations will soon be provided by the API directly. Try using the API instead of fetching data against DB directly.
      *
      * @return LocalizationTranslation[]
