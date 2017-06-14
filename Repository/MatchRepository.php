@@ -102,6 +102,7 @@ class MatchRepository extends AbstractEntityRepository
      * Finds a match by its competition id.
      *
      * @param int|array $competitionIds  Competition ID
+     * @param int|null  $status          Status to search for
      * @param array     $whereConditions Extra conditions
      * @param array     $whereArguments  Extra condition's parameters
      * @param null      $limit           Limit
@@ -113,6 +114,7 @@ class MatchRepository extends AbstractEntityRepository
      */
     public function findByCompetitionId(
         $competitionIds,
+        $status = null,
         array $whereConditions = [],
         array $whereArguments = [],
         $limit = null,
@@ -126,6 +128,7 @@ class MatchRepository extends AbstractEntityRepository
 
         $query = $this
             ->createQueryBuilder('m')
+            ->select('m')
             ->join('m.competitionSeasonStage', 'stage')
             ->join('stage.competitionSeason', 'season')
             ->join('season.competition', 'competition')
@@ -142,6 +145,17 @@ class MatchRepository extends AbstractEntityRepository
 
         foreach ($whereArguments as $key => $value) {
             $query->setParameter($key, $value);
+        }
+
+        /*
+         * Filter the status
+         */
+        if ($status !== null) {
+            $statusCategories = $this->prepareStatusCategories($status);
+            $query
+                ->leftJoin('m.matchStatusDescription', 's', Join::WITH, 's.id = m.matchStatusDescription')
+                ->andWhere('s.category IN (:categories)')
+                ->setParameter('categories', $statusCategories);
         }
 
         if (is_numeric($limit)) {
@@ -1311,16 +1325,13 @@ class MatchRepository extends AbstractEntityRepository
      * Find matches by an Athlete and a IncidentType.
      *
      * @param Athlete  $athlete               Athlete entity
-     * @param int      $matchIncidentTypeCode MatchIncidentTypeCode value
+     * @param int[]    $matchIncidentTypeCode MatchIncidentTypeCode value
      * @param null|int $year                  Year to filter
      *
      * @return mixed
      */
-    public function findByAthleteAndMatchIncidentTypeAndYear(
-        Athlete $athlete,
-        $matchIncidentTypeCode,
-        $year = null
-    ) {
+    public function findByAthleteAndMatchIncidentTypeAndYear(Athlete $athlete, $matchIncidentTypeCode, $year = null)
+    {
         $queryBuilder = $this->entityManager->createQueryBuilder();
 
         /**
@@ -1371,14 +1382,14 @@ class MatchRepository extends AbstractEntityRepository
             ->join('css.competitionSeason', 'cs')
             ->join('css.competitionStage', 'cstage')
             ->where('mp2.number != mp.number')
-            ->andWhere('mi.matchIncidentType = :type')
+            ->andWhere('mi.matchIncidentType IN (:type)')
             ->andWhere('mr.matchResultType = :resultType')
             ->andWhere('mr2.matchResultType = :resultType')
             ->setParameters(
                 [
                     'athlete' => $athlete->getId(),
                     'type' => $matchIncidentTypeCode,
-                    'resultType' => MatchResultTypeCode::RUNNING_SCORE_CODE
+                    'resultType' => MatchResultTypeCode::RUNNING_SCORE_CODE,
                 ]
             )
             ->orderBy('m.startDate', 'DESC');
@@ -1421,17 +1432,10 @@ class MatchRepository extends AbstractEntityRepository
         /*
          * If we have some listed categories, remove them from the listing
          */
-        if (!is_null($competitionsListed)
-            && is_array($competitionsListed) && !empty($competitionsListed)
-        ) {
+        if (!is_null($competitionsListed) && is_array($competitionsListed) && !empty($competitionsListed)) {
             $queryBuilder
-                ->andWhere(
-                    'season.competition NOT IN (:competitionsListed)'
-                )
-                ->setParameter(
-                    'competitionsListed',
-                    $competitionsListed
-                );
+                ->andWhere('season.competition NOT IN (:competitionsListed)')
+                ->setParameter('competitionsListed', $competitionsListed);
         }
 
         // Add the status filter
@@ -1545,7 +1549,7 @@ class MatchRepository extends AbstractEntityRepository
      * @return array
      */
     public function filterMatchesIdsByCompetition(
-        $matchesIds = array(),
+        $matchesIds = [],
         $competitionId = null
     ) {
         $queryBuilder = $this->entityManager->createQueryBuilder();
@@ -1583,7 +1587,7 @@ class MatchRepository extends AbstractEntityRepository
         }
 
 
-        return array();
+        return [];
     }
 
     /**
@@ -2003,7 +2007,7 @@ class MatchRepository extends AbstractEntityRepository
             case MatchStatusDescriptionCategoryType::NOTSTARTED:
                 $statusCategories = [
                     MatchStatusDescriptionCategoryType::NOTSTARTED,
-                    MatchStatusDescriptionCategoryType::CANCELLED
+                    MatchStatusDescriptionCategoryType::CANCELLED,
                 ];
                 break;
 
@@ -2083,6 +2087,9 @@ class MatchRepository extends AbstractEntityRepository
         }
         $this->alterDateObjects($dateFrom);
 
+        // We don't want the in progress matches
+        $statusCategories = $this->prepareStatusCategories(MatchStatusDescriptionCategoryType::NOTSTARTED);
+
         $queryBuilder = parent::createQueryBuilder('m');
         $queryBuilder
             ->select('m')
@@ -2090,11 +2097,14 @@ class MatchRepository extends AbstractEntityRepository
 
         $queryBuilder
             ->join('m.matchAuxProfile', 'ma', Join::WITH)
+            ->leftJoin('m.matchStatusDescription', 's')
             ->andWhere('m.startDate >= :start')
             ->andWhere('ma.value = :importance')
-            ->orderBy('m.startDate', 'ASC')
+            ->andWhere('s.category IN (:categories)')
             ->setParameter('start', $dateFrom->format('Y-m-d H:i:s'))
-            ->setParameter('importance', $importance);
+            ->setParameter('importance', $importance)
+            ->setParameter('categories', $statusCategories)
+            ->orderBy('m.startDate', 'ASC');
 
         /*
          * If we don't have any "to date", don't add it to the query
