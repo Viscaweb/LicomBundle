@@ -34,21 +34,6 @@ Visca\Bundle\LicomBundle\Entity\MatchAuxType:
         code: FirstToServe
         name: FirstToServe
         del: 'no'
-    match_aux_type8:
-        id: 8
-        code: CurrentPeriodStartedAt
-        name: CurrentPeriodStartedAt
-        del: 'no'
-    match_aux_type9:
-        id: 9
-        code: FirstHalfTimeStartedAt
-        name: 'First half start date'
-        del: 'no'
-    match_aux_type10:
-        id: 10
-        code: SecondHalfTimeStartedAt
-        name: 'Second half start date'
-        del: 'no'
     match_aux_type11:
         id: 11
         code: ExtraTime1stHalfTimeStartedAt
