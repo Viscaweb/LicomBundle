@@ -41,6 +41,9 @@ Visca\Bundle\LicomBundle\Entity\MatchParticipant:
     fk_participant:
       columns: [Participant]
   oneToMany:
+    matchParticipantAux:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\MatchParticipantAux
+      mappedBy: matchParticipant
     matchIncident:
       targetEntity: Visca\Bundle\LicomBundle\Entity\MatchIncident
       mappedBy: matchParticipant
