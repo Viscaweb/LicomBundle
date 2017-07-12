@@ -62,7 +62,7 @@ class MatchParticipant
     /**
      * @var Collection|MatchParticipantAux[]
      */
-    private $matchParticipantAux;
+    private $aux;
 
     /**
      * Constructor.
@@ -71,7 +71,7 @@ class MatchParticipant
     {
         $this->matchResult = new ArrayCollection();
         $this->matchIncident = new ArrayCollection();
-        $this->matchParticipantAux = new ArrayCollection();
+        $this->aux = new ArrayCollection();
     }
 
     /**
@@ -228,34 +228,34 @@ class MatchParticipant
     }
 
     /**
-     * @param MatchParticipantAux $matchParticipantAux
+     * @param MatchParticipantAux $aux
      *
      * @return $this
      */
     public function addMatchParticipantAux(
-        MatchParticipantAux $matchParticipantAux
+        MatchParticipantAux $aux
     ) {
-        $this->matchParticipantAux[] = $matchParticipantAux;
+        $this->aux[] = $aux;
 
         return $this;
     }
 
     /**
-     * @param MatchParticipantAux $matchParticipantAux
+     * @param MatchParticipantAux $aux
      */
-    public function removeMatchParticipantAux(MatchParticipantAux $matchParticipantAux)
+    public function removeAux(MatchParticipantAux $aux)
     {
-        $this->matchParticipantAux->removeElement($matchParticipantAux);
+        $this->aux->removeElement($aux);
     }
 
     /**
-     * Get matchParticipantAux.
+     * Get aux.
      *
      * @return Collection|MatchParticipantAux[]
      */
-    public function getMatchParticipantAux()
+    public function getAux()
     {
-        return $this->matchParticipantAux;
+        return $this->aux;
     }
 
     /**
