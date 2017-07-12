@@ -232,7 +232,7 @@ class MatchParticipant
      *
      * @return $this
      */
-    public function addMatchParticipantAux(
+    public function addAux(
         MatchParticipantAux $aux
     ) {
         $this->aux[] = $aux;
