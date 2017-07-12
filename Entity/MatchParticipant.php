@@ -229,6 +229,7 @@ class MatchParticipant
 
     /**
      * @param MatchParticipantAux $matchParticipantAux
+     *
      * @return $this
      */
     public function addMatchParticipantAux(
