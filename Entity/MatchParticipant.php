@@ -254,7 +254,7 @@ class MatchParticipant
      */
     public function getMatchParticipantAux()
     {
-        return $this->getMatchParticipantAux();
+        return $this->matchParticipantAux;
     }
 
     /**
