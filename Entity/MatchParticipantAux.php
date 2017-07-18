@@ -3,11 +3,12 @@
 namespace Visca\Bundle\LicomBundle\Entity;
 
 use Visca\Bundle\CoreBundle\Entity\Traits\DeletableTrait;
+use Visca\Bundle\LicomBundle\Entity\Interfaces\AuxInterface;
 
 /**
  * MatchParticipantAux.
  */
-class MatchParticipantAux
+class MatchParticipantAux implements AuxInterface
 {
     use DeletableTrait;
 
@@ -49,13 +50,23 @@ class MatchParticipantAux
     }
 
     /**
+     * @inheritdoc
+     */
+    public function getType()
+    {
+        return $this->matchParticipantAuxType;
+    }
+
+    /**
      * Get matchParticipantAuxType.
      *
      * @return MatchParticipantAuxType
+     *
+     * @deprecated Use getType() instead
      */
     public function getMatchParticipantAuxType()
     {
-        return $this->matchParticipantAuxType;
+        return $this->getType();
     }
 
     /**
