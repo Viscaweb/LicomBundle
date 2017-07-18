@@ -50,7 +50,7 @@ class MatchParticipantAux implements AuxInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getType()
     {
