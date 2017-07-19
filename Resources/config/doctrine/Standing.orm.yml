@@ -51,8 +51,8 @@ Visca\Bundle\LicomBundle\Entity\Standing:
     fk_standingType:
       columns: [StandingType]
   uniqueConstraints:
-    uq_entity_entityId_standingType_round_name:
-      columns: [Entity, entityId, StandingType, round, name]
+    uq_entity_entityId_standingType:
+      columns: [Entity, entityId, StandingType]
   oneToMany:
     standingRow:
       targetEntity: Visca\Bundle\LicomBundle\Entity\StandingRow
