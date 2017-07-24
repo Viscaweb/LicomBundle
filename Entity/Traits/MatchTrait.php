@@ -10,7 +10,6 @@ use Visca\Bundle\LicomBundle\Entity\CompetitionSeasonStage;
 use Visca\Bundle\LicomBundle\Entity\Country;
 use Visca\Bundle\LicomBundle\Entity\MatchParticipant;
 use Visca\Bundle\LicomBundle\Entity\MatchStatusDescription;
-use Visca\Bundle\LicomBundle\Entity\Sport;
 use Visca\Bundle\LicomBundle\Entity\Value\MatchAuxProfileValue;
 use Visca\Bundle\LicomBundle\Exception\MatchParticipantNotFoundException;
 
@@ -195,14 +194,6 @@ trait MatchTrait
     public function getCompetition()
     {
         return $this->getCompetitionSeasonStage()->getCompetitionSeason()->getCompetition();
-    }
-
-    /**
-     * @return Sport
-     */
-    public function getSport()
-    {
-        return $this->getCompetition()->getCompetitionCategory()->getSport();
     }
 
     /**
