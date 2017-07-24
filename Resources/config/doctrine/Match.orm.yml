@@ -100,6 +100,12 @@ Visca\Bundle\LicomBundle\Entity\Match:
         region: Match
         usage: READ_ONLY
   manyToOne:
+    sport:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\Sport
+      joinColumns:
+        Sport:
+          referencedColumnName: id
+          nullable: true
     competitionSeasonStage:
       targetEntity: Visca\Bundle\LicomBundle\Entity\CompetitionSeasonStage
       inversedBy: match
