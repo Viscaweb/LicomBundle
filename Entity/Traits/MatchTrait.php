@@ -198,14 +198,6 @@ trait MatchTrait
     }
 
     /**
-     * @return Sport
-     */
-    public function getSport()
-    {
-        return $this->getCompetition()->getCompetitionCategory()->getSport();
-    }
-
-    /**
      * @return Country
      */
     public function getCountry()
