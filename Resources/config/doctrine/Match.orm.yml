@@ -105,7 +105,7 @@ Visca\Bundle\LicomBundle\Entity\Match:
       joinColumns:
         Sport:
           referencedColumnName: id
-          nullable: true
+          nullable: false
     competitionSeasonStage:
       targetEntity: Visca\Bundle\LicomBundle\Entity\CompetitionSeasonStage
       inversedBy: match
