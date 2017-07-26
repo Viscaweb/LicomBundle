@@ -3,7 +3,9 @@
 namespace Visca\Bundle\LicomBundle\Repository;
 
 use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
+use Visca\Bundle\LicomBundle\Entity\Match;
 use Visca\Bundle\LicomBundle\Entity\Sport;
+use Doctrine\ORM\Query\Expr\Join;
 
 /**
  * Class SportRepository.
@@ -56,11 +58,7 @@ class SportRepository extends AbstractEntityRepository
     public function findSportByMatchId($id)
     {
         return $this->createQueryBuilder('sport')
-            ->join('sport.competitionCategory', 'cc')
-            ->join('cc.competition', 'c')
-            ->join('c.competitionSeason', 'cs')
-            ->join('cs.competitionSeasonStage', 'css')
-            ->join('css.match', 'match')
+            ->join(Match::class, 'match', Join::WITH, 'match.Sport = sport.id')
             ->where('match.id = :id')
             ->setParameter('id', $id)
             ->getQuery()
