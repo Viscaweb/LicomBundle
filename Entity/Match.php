@@ -399,7 +399,7 @@ class Match implements EntityWithAuxInterface
      */
     public function getSport()
     {
-        return $this->sport ?: $this->getCompetition()->getCompetitionCategory()->getSport();
+        return $this->sport;
     }
 
     /**
