@@ -22,6 +22,7 @@ Visca\Bundle\LicomBundle\Entity\Match:
   match1:
     __construct: { create: [] }
     name: Default match
+    Sport: @sport1
     startDate: <dateTimeBetween('-1 week', 'now')>
     competitionSeasonStage: @competition_season_stage_default
     matchStatusDescription: @match_status_description1
