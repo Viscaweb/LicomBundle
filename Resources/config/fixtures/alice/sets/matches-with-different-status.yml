@@ -23,8 +23,8 @@ Visca\Bundle\LicomBundle\Entity\Team:
 
 Visca\Bundle\LicomBundle\Entity\Match:
   match_template (template):
-    __construct:
-      create: []
+    __construct: { create: [] }
+    Sport: @sport1
     startDate: <dateTimeBetween('now', 'now')>
     competitionSeasonStage: @competition_season_stage_default
 
