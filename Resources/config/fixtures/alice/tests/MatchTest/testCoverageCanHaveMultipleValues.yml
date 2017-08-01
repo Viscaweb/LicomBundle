@@ -21,8 +21,8 @@ Visca\Bundle\LicomBundle\Entity\Match:
     coverage: ["live"]
 
   match_coverage1:
-    __construct:
-      create: []
+    __construct: { create: [] }
+    Sport: @sport1
     competitionSeasonStage: @competition_season_stage_default
     matchStatusDescription: @match_status_description1
     name: "Match with lineup"
@@ -30,8 +30,8 @@ Visca\Bundle\LicomBundle\Entity\Match:
     coverage: [live,lineup]
 
   match_coverage2:
-    __construct:
-      create: []
+    __construct: { create: [] }
+    Sport: @sport1
     competitionSeasonStage: @competition_season_stage_default
     matchStatusDescription: @match_status_description1
     name: "Match with lineup and comment"
