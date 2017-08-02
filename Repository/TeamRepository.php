@@ -91,18 +91,20 @@ class TeamRepository extends AbstractEntityRepository
     /**
      * Returns the top teams by Sport.
      *
-     * @param Sport $sport Sport
+     * @param Sport    $sport Sport
+     * @param int|null $limit Limit of results
      *
      * @return Team[]
      */
-    public function findTop(Sport $sport)
+    public function findTop(Sport $sport, $limit = null)
     {
         $profileGraphRepository = $this->repositoryProfileEntityGraph;
 
         $profileTopEntriesIds = $profileGraphRepository->findByLabel(
             $sport,
             'top-teams',
-            true
+            true,
+            $limit
         );
 
         $queryBuilder = $this->createQueryBuilder('c')

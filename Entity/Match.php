@@ -120,7 +120,7 @@ class Match implements EntityWithAuxInterface
     private $mostRelevant;
 
     /**
-     * @var Sport|null
+     * @var Sport
      */
     private $sport;
 
