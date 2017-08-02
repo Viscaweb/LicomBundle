@@ -405,11 +405,11 @@ class Match implements EntityWithAuxInterface
     /**
      * Set sport.
      *
-     * @param Sport|null $sport
+     * @param Sport $sport
      *
      * @return Match
      */
-    public function setSport(Sport $sport = null)
+    public function setSport(Sport $sport)
     {
         $this->sport = $sport;
 
