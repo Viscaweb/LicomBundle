@@ -5,7 +5,7 @@ namespace Visca\Bundle\LicomBundle\Entity\Enum;
 use Fresh\DoctrineEnumBundle\DBAL\Types\AbstractEnumType;
 
 /**
- * Class DevicePlatformType
+ * Class DevicePlatformType.
  */
 class DevicePlatformType extends AbstractEnumType
 {
