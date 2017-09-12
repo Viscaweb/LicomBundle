@@ -89,6 +89,7 @@ class ParticipantMembershipRepository extends AbstractEntityRepository
     /**
      * @param Participant $participant
      * @param $matchDate
+     *
      * @return mixed
      */
     public function findTeamCoachActiveByParticipantAndDate(Participant $participant, $matchDate)
