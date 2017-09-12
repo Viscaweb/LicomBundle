@@ -50,6 +50,8 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      *
      * @throws NoTranslationFoundException
      *
+     * @deprecated The translations will soon be provided by the API directly. Try using the API instead of fetching data against DB directly.
+     *
      * @return LocalizationTranslation
      */
     public function findOneByProfile(
@@ -76,6 +78,8 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      *
      * @throws NoTranslationFoundException
      *
+     * @deprecated The translations will soon be provided by the API directly. Try using the API instead of fetching data against DB directly.
+     *
      * @return LocalizationTranslation[]
      */
     public function findByProfileAndEntityIds(
@@ -99,6 +103,8 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      * @param string[] $textCollection                Text to look for
      *
      * @throws NoTranslationFoundException
+     *
+     * @deprecated The translations will soon be provided by the API directly. Try using the API instead of fetching data against DB directly.
      *
      * @return LocalizationTranslation[]
      */
@@ -125,6 +131,8 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      * @param string[] $filterText                    Filter by text value
      *
      * @throws NoTranslationFoundException
+     *
+     * @deprecated The translations will soon be provided by the API directly. Try using the API instead of fetching data against DB directly.
      *
      * @return LocalizationTranslation[]
      */
@@ -206,6 +214,8 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      *
      * @throws NoTranslationFoundException
      *
+     * @deprecated The translations will soon be provided by the API directly. Try using the API instead of fetching data against DB directly.
+     *
      * @return LocalizationTranslation[]
      */
     public function findByProfileAndTextUsingRules(
@@ -228,6 +238,8 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      *
      * @throws NoTranslationFoundException
      *
+     * @deprecated The translations will soon be provided by the API directly. Try using the API instead of fetching data against DB directly.
+     *
      * @return LocalizationTranslation[]
      */
     public function findByProfileAndEntityIdsUsingRules(
@@ -249,6 +261,8 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      * @param string[] $filterText                    Text to look for
      *
      * @throws NoTranslationFoundException
+     *
+     * @deprecated The translations will soon be provided by the API directly. Try using the API instead of fetching data against DB directly.
      *
      * @return LocalizationTranslation[]
      */
@@ -325,6 +339,8 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      *
      * @throws NoTranslationFoundException
      *
+     * @deprecated The translations will soon be provided by the API directly. Try using the API instead of fetching data against DB directly.
+     *
      * @return LocalizationTranslation
      */
     public function findOneByLocalizationAndEntityId(
@@ -348,6 +364,8 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      *
      * @throws NoTranslationFoundException
      *
+     * @deprecated The translations will soon be provided by the API directly. Try using the API instead of fetching data against DB directly.
+     *
      * @return LocalizationTranslation[]
      */
     public function findByLocalizationAndEntityIds(
@@ -368,6 +386,8 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      * @param string $text                          Text to look for
      *
      * @throws NoTranslationFoundException
+     *
+     * @deprecated The translations will soon be provided by the API directly. Try using the API instead of fetching data against DB directly.
      *
      * @return LocalizationTranslation
      */
@@ -392,6 +412,8 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      *
      * @throws NoTranslationFoundException
      *
+     * @deprecated The translations will soon be provided by the API directly. Try using the API instead of fetching data against DB directly.
+     *
      * @return LocalizationTranslation[]
      */
     public function findByLocalizationAndText(
@@ -414,6 +436,8 @@ class LocalizationTranslationRepository extends AbstractEntityRepository
      * @param string[] $filterText                    Filter by text value
      *
      * @throws NoTranslationFoundException
+     *
+     * @deprecated The translations will soon be provided by the API directly. Try using the API instead of fetching data against DB directly.
      *
      * @return LocalizationTranslation[]
      */

@@ -120,6 +120,11 @@ class Match implements EntityWithAuxInterface
     private $mostRelevant;
 
     /**
+     * @var Sport
+     */
+    private $sport;
+
+    /**
      * Constructor.
      */
     public function __construct()
@@ -383,6 +388,30 @@ class Match implements EntityWithAuxInterface
     public function setCompetitionLeg(CompetitionLeg $competitionLeg = null)
     {
         $this->competitionLeg = $competitionLeg;
+
+        return $this;
+    }
+
+    /**
+     * Get sport.
+     *
+     * @return Sport
+     */
+    public function getSport()
+    {
+        return $this->sport;
+    }
+
+    /**
+     * Set sport.
+     *
+     * @param Sport $sport
+     *
+     * @return Match
+     */
+    public function setSport(Sport $sport)
+    {
+        $this->sport = $sport;
 
         return $this;
     }
