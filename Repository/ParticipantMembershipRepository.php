@@ -85,22 +85,4 @@ class ParticipantMembershipRepository extends AbstractEntityRepository
             ->getQuery()
             ->getArrayResult();
     }
-
-    /**
-     * @param Participant $participant
-     * @param $matchDate
-     * @return mixed
-     */
-    public function findTeamCoachActiveByParticipantAndDate(Participant $participant, $matchDate)
-    {
-        return $this
-            ->createQueryBuilder('pm')
-            ->where('(pm.entity = :entity AND pm.entityId = :participantId AND pm.active = true AND pm.start >= :matchDate AND pm.participantType = \'coach\')')
-            ->where('(pm.entity = :entity AND pm.entityId = :participantId AND pm.start >= :matchDate AND pm.end <= :matchDate AND pm.participantType = \'coach\')')
-            ->setParameter('participantId', $participant->getId())
-            ->setParameter('matchDate', $matchDate)
-            ->setParameter('entity', EntityCode::PARTICIPANT_CODE)
-            ->getQuery()
-            ->getOneOrNullResult();
-    }
 }
