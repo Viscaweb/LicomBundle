@@ -332,7 +332,8 @@ class ParticipantRepository extends AbstractEntityRepository
 
     /**
      * @param Participant $team
-     * @param \DateTime $date
+     * @param \DateTime   $date
+     *
      * @return mixed
      */
     public function findTeamCoachByParticipantAndDate(Participant $team, \DateTime $date)
