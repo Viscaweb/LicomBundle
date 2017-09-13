@@ -332,10 +332,10 @@ class ParticipantRepository extends AbstractEntityRepository
 
     /**
      * @param Participant $team
-     * @param $date
+     * @param \DateTime $date
      * @return mixed
      */
-    public function findTeamCoachByParticipantAndDate(Participant $team, $date)
+    public function findTeamCoachByParticipantAndDate(Participant $team, \DateTime $date)
     {
         return $this
             ->createQueryBuilder('p')
