@@ -334,15 +334,15 @@ class ParticipantRepository extends AbstractEntityRepository
      * @param Participant $team
      * @param \DateTime   $date
      *
-     * @return mixed
+     * @return Participant|null
      */
     public function findTeamCoachByParticipantAndDate(Participant $team, \DateTime $date)
     {
         return $this
             ->createQueryBuilder('p')
             ->innerJoin(ParticipantMembership::class, 'pm', Join::WITH, 'pm.entityId = p.id')
-            ->where('(pm.entity = :entity AND pm.participant = :participantId AND pm.active = true AND pm.start <= :matchDate AND pm.participantType = \'coach\')')
-            ->orWhere('(pm.entity = :entity AND pm.participant = :participantId AND pm.start <= :matchDate AND pm.end >= :matchDate AND pm.participantType = \'coach\')')
+            ->where('pm.entity = :entity AND pm.participant = :participantId AND pm.participantType = \'coach\')')
+            ->andWhere('(pm.active = true AND pm.start <= :matchDate) OR (pm.start <= :matchDate AND pm.end >= :matchDate)')
             ->setParameter('participantId', $team->getId())
             ->setParameter('matchDate', $date)
             ->setParameter('entity', EntityCode::PARTICIPANT_CODE)
