@@ -341,7 +341,7 @@ class ParticipantRepository extends AbstractEntityRepository
         return $this
             ->createQueryBuilder('p')
             ->innerJoin(ParticipantMembership::class, 'pm', Join::WITH, 'pm.entityId = p.id')
-            ->where('pm.entity = :entity AND pm.participant = :participantId AND pm.participantType = \'coach\')')
+            ->where('pm.entity = :entity AND pm.participant = :participantId AND pm.participantType = \'coach\'')
             ->andWhere('(pm.active = true AND pm.start <= :matchDate) OR (pm.start <= :matchDate AND pm.end >= :matchDate)')
             ->setParameter('participantId', $team->getId())
             ->setParameter('matchDate', $date)
