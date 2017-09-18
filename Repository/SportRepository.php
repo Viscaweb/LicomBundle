@@ -58,7 +58,7 @@ class SportRepository extends AbstractEntityRepository
     public function findSportByMatchId($id)
     {
         return $this->createQueryBuilder('sport')
-            ->join(Match::class, 'match', Join::WITH, 'match.Sport = sport.id')
+            ->join(Match::class, 'match', Join::WITH, 'match.sport = sport.id')
             ->where('match.id = :id')
             ->setParameter('id', $id)
             ->getQuery()
