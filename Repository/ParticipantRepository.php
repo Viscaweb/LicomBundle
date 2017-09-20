@@ -14,6 +14,7 @@ use Visca\Bundle\LicomBundle\Entity\Participant;
 use Visca\Bundle\LicomBundle\Entity\ParticipantMembership;
 use Visca\Bundle\LicomBundle\Entity\Sport;
 use Visca\Bundle\LicomBundle\Entity\Standing;
+use Visca\Bundle\LicomBundle\Entity\Team;
 use Visca\Bundle\LicomBundle\Exception\NoTranslationFoundException;
 use Visca\Bundle\LicomBundle\Entity\Code\ParticipantAuxTypeCode;
 
@@ -334,9 +335,9 @@ class ParticipantRepository extends AbstractEntityRepository
      * @param Participant $team
      * @param \DateTime   $date
      *
-     * @return Participant|null
+     * @return Team|null
      */
-    public function findTeamCoachByParticipantAndDate(Participant $team, \DateTime $date)
+    public function findCoachByTeamAndDate(Participant $team, \DateTime $date)
     {
         return $this
             ->createQueryBuilder('coach')
