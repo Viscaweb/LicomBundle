@@ -14,6 +14,7 @@ use Visca\Bundle\LicomBundle\Entity\Participant;
 use Visca\Bundle\LicomBundle\Entity\ParticipantMembership;
 use Visca\Bundle\LicomBundle\Entity\Sport;
 use Visca\Bundle\LicomBundle\Entity\Standing;
+use Visca\Bundle\LicomBundle\Entity\Team;
 use Visca\Bundle\LicomBundle\Exception\NoTranslationFoundException;
 use Visca\Bundle\LicomBundle\Entity\Code\ParticipantAuxTypeCode;
 
@@ -334,16 +335,19 @@ class ParticipantRepository extends AbstractEntityRepository
      * @param Participant $team
      * @param \DateTime   $date
      *
-     * @return Participant|null
+     * @return Team|null
      */
-    public function findTeamCoachByParticipantAndDate(Participant $team, \DateTime $date)
+    public function findCoachByTeamAndDate(Participant $team, \DateTime $date)
     {
         return $this
-            ->createQueryBuilder('p')
-            ->innerJoin(ParticipantMembership::class, 'pm', Join::WITH, 'pm.entityId = p.id')
-            ->where('pm.entity = :entity AND pm.participant = :participantId AND pm.participantType = \'coach\'')
-            ->andWhere('(pm.active = true AND pm.start <= :matchDate) OR (pm.start <= :matchDate AND pm.end >= :matchDate)')
-            ->setParameter('participantId', $team->getId())
+            ->createQueryBuilder('coach')
+            ->innerJoin(
+                ParticipantMembership::class,
+                'pm',
+                Join::WITH,
+                'pm.participant = coach.id AND pm.entityId = :teamId AND pm.entity = :entity AND pm.participantType = \'coach\'')
+            ->where('(pm.active = true AND pm.start <= :matchDate) OR (pm.start <= :matchDate AND pm.end >= :matchDate)')
+            ->setParameter('teamId', $team->getId())
             ->setParameter('matchDate', $date)
             ->setParameter('entity', EntityCode::PARTICIPANT_CODE)
             ->getQuery()
