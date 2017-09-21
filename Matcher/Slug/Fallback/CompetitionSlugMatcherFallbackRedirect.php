@@ -9,6 +9,7 @@ use Visca\Bundle\LicomBundle\Matcher\Slug\CompetitionSlugMatcher;
 use Visca\Bundle\LicomBundle\Exception\NoMatchFoundException;
 use Visca\Bundle\LicomBundle\Entity\Country;
 use Visca\Bundle\LicomBundle\Entity\Competition;
+use Visca\Bundle\SportBundle\Service\CompetitionGetRelatedRoutes;
 
 /**
  * Class CompetitionSlugMatcherFallback.
