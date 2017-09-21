@@ -11,7 +11,7 @@ use Visca\Bundle\LicomBundle\Entity\Country;
 use Visca\Bundle\LicomBundle\Entity\Competition;
 
 /**
- * Class CompetitionSlugMatcherFallback
+ * Class CompetitionSlugMatcherFallback.
  */
 class CompetitionSlugMatcherFallbackRedirect extends CompetitionSlugMatcher
 {
@@ -92,6 +92,7 @@ class CompetitionSlugMatcherFallbackRedirect extends CompetitionSlugMatcher
     {
         if (isset($this->map[$competitionSlug])) {
             $competitionSlug = $this->map[$competitionSlug];
+
             return $this->slugMatcher->match($competitionSlug, $country);
         }
 
