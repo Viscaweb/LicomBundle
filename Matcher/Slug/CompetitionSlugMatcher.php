@@ -96,7 +96,7 @@ class CompetitionSlugMatcher
      *
      * @throws NoMatchFoundException
      */
-    private function noMatchFoundException($competitionSlug)
+    protected function noMatchFoundException($competitionSlug)
     {
         $message = "Unable to find any Competition with the given slug ($competitionSlug given).";
         $this->logger->debug($message);

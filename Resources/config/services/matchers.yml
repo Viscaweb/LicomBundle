@@ -1,42 +1,50 @@
 services:
-    # Matchers
-    visca_licom.matcher.slug.competition:
-        class: Visca\Bundle\LicomBundle\Matcher\Slug\CompetitionSlugMatcher
-        arguments:
-             - '@visca_licom.repository.competition'
-             - '%licom_profile_id%'
-             - '@logger'
+  # Matchers
+  visca_licom.matcher.slug.competition:
+    class: Visca\Bundle\LicomBundle\Matcher\Slug\CompetitionSlugMatcher
+    arguments:
+         - '@visca_licom.repository.competition'
+         - '%licom_profile_id%'
+         - '@logger'
 
-    visca_licom.matcher.slug.participant:
-        class: Visca\Bundle\LicomBundle\Matcher\Slug\ParticipantSlugMatcher
-        arguments:
-             - '@visca_licom.repository.participant'
-             - '%licom_profile_id%'
+  visca_licom.matcher.slug.participant:
+    class: Visca\Bundle\LicomBundle\Matcher\Slug\ParticipantSlugMatcher
+    arguments:
+         - '@visca_licom.repository.participant'
+         - '%licom_profile_id%'
 
-    visca_licom.matcher.slug.match:
-        class: Visca\Bundle\LicomBundle\Matcher\Slug\MatchSlugMatcher
-        arguments:
-             - '@visca_licom.repository.match'
-             - '@visca_licom.matcher.participant_combination'
-             - '@visca_licom.filter.match.most_revelant'
-             - '@visca_licom.matcher.helper.participant_combination'
-             - '%licom_profile_id%'
-             - '@logger'
+  visca_licom.matcher.slug.match:
+    class: Visca\Bundle\LicomBundle\Matcher\Slug\MatchSlugMatcher
+    arguments:
+         - '@visca_licom.repository.match'
+         - '@visca_licom.matcher.participant_combination'
+         - '@visca_licom.filter.match.most_revelant'
+         - '@visca_licom.matcher.helper.participant_combination'
+         - '%licom_profile_id%'
+         - '@logger'
 
-    visca_licom.matcher.slug.country:
-        class: Visca\Bundle\LicomBundle\Matcher\Slug\CountrySlugMatcher
-        arguments:
-             - '@visca_licom.repository.country'
-             - '%licom_profile_id%'
-             - '@logger'
+  visca_licom.matcher.slug.country:
+    class: Visca\Bundle\LicomBundle\Matcher\Slug\CountrySlugMatcher
+    arguments:
+         - '@visca_licom.repository.country'
+         - '%licom_profile_id%'
+         - '@logger'
 
-    visca_licom.matcher.participant_combination:
-            class: Visca\Bundle\LicomBundle\Matcher\Slug\ParticipantCombinationSlugMatcher
-            arguments:
-                - '@visca_licom.repository.participant'
-                - '@visca_licom.repository.localization_translation'
-                - '@visca_licom.cache.participant_combination'
+  visca_licom.matcher.participant_combination:
+    class: Visca\Bundle\LicomBundle\Matcher\Slug\ParticipantCombinationSlugMatcher
+    arguments:
+        - '@visca_licom.repository.participant'
+        - '@visca_licom.repository.localization_translation'
+        - '@visca_licom.cache.participant_combination'
 
-    # Helper
-    visca_licom.matcher.helper.participant_combination:
-            class: Visca\Bundle\LicomBundle\Matcher\Slug\Helper\FindTeamsCombinationsHelper
+  # Helper
+  visca_licom.matcher.helper.participant_combination:
+    class: Visca\Bundle\LicomBundle\Matcher\Slug\Helper\FindTeamsCombinationsHelper
+
+
+  #Fallbacks
+  visca_licom.matcher.slug_fallback.competition:
+    class: Visca\Bundle\LicomBundle\Matcher\Slug\Fallback\CompetitionSlugMatcherFallbackRedirect
+    arguments:
+      - '@visca_licom.matcher.slug.competition'
+      - '@visca_sport.widget.competition_get_related_routes'
