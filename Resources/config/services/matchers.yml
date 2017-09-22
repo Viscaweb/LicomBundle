@@ -41,10 +41,3 @@ services:
   visca_licom.matcher.helper.participant_combination:
     class: Visca\Bundle\LicomBundle\Matcher\Slug\Helper\FindTeamsCombinationsHelper
 
-
-  #Fallbacks
-  visca_licom.matcher.slug_fallback.competition:
-    class: Visca\Bundle\LicomBundle\Matcher\Slug\Fallback\CompetitionSlugMatcherFallbackRedirect
-    arguments:
-      - '@visca_licom.matcher.slug.competition'
-      - '@visca_sport.widget.competition_get_related_routes'
