@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Visca\Bundle\LicomBundle\Matcher\Slug\Fallback;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -14,7 +12,7 @@ use Visca\Bundle\SportBundle\Service\CompetitionGetRelatedRoutes;
 /**
  * Class CompetitionSlugMatcherFallback.
  */
-class CompetitionSlugMatcherFallbackRedirect extends CompetitionSlugMatcher
+class CompetitionSlugMatcherFallbackRedirect
 {
     /** @var CompetitionSlugMatcher */
     private $slugMatcher;
@@ -36,39 +34,74 @@ class CompetitionSlugMatcherFallbackRedirect extends CompetitionSlugMatcher
             'lega-pro-grp-a' => 'serie-c-grp-a',
             'lega-pro-grp-b' => 'serie-c-grp-b',
             'lega-pro-grp-c' => 'serie-c-grp-c',
-            'coppa-italia-lega-pro' => 'coppa-italia-serie-c'
+            'coppa-italia-lega-pro' => 'coppa-italia-serie-c',
         ];
     }
 
     /**
-     * @return Competition|RedirectResponse
+     *
+     * @param string  $competitionSlug
+     * @param Country $country
+     *
+     * @return RedirectResponse|Competition
      */
-    public function matchForFixtures(string $competitionSlug, Country $country)
+    public function matchForFixtures($competitionSlug, Country $country)
     {
         return $this->matchOrRedirect($competitionSlug, $country, 'getFixturesRoute');
     }
 
-    public function matchForResults(string $competitionSlug, Country $country)
+    /**
+     * @param string  $competitionSlug
+     * @param Country $country
+     *
+     * @return RedirectResponse|Competition
+     */
+    public function matchForResults($competitionSlug, Country $country)
     {
         return $this->matchOrRedirect($competitionSlug, $country, 'getResultsRoute');
     }
 
-    public function matchForStanding(string $competitionSlug, Country $country)
+    /**
+     * @param string  $competitionSlug
+     * @param Country $country
+     *
+     * @return RedirectResponse|Competition
+     */
+    public function matchForStanding($competitionSlug, Country $country)
     {
         return $this->matchOrRedirect($competitionSlug, $country, 'getStandingRoute');
     }
 
-    public function matchForSummary(string $competitionSlug, Country $country)
+    /**
+     * @param string  $competitionSlug
+     * @param Country $country
+     *
+     * @return RedirectResponse|Competition
+     */
+    public function matchForSummary($competitionSlug, Country $country)
     {
         return $this->matchOrRedirect($competitionSlug, $country, 'getCompetitionRoute');
     }
 
-    public function matchForTeams(string $competitionSlug, Country $country)
+    /**
+     * @param string  $competitionSlug
+     * @param Country $country
+     *
+     * @return RedirectResponse|Competition
+     */
+    public function matchForTeams($competitionSlug, Country $country)
     {
         return $this->matchOrRedirect($competitionSlug, $country, 'getTeamsRoute');
     }
 
-    protected function matchOrRedirect(string $competitionSlug, Country $country, string $urlMethod)
+    /**
+     * @param string  $competitionSlug
+     * @param Country $country
+     * @param string  $urlMethod
+     *
+     * @return RedirectResponse|Competition
+     */
+    protected function matchOrRedirect($competitionSlug, Country $country, $urlMethod)
     {
         try {
             $competition = $this->slugMatcher->match($competitionSlug, $country);
@@ -88,8 +121,14 @@ class CompetitionSlugMatcherFallbackRedirect extends CompetitionSlugMatcher
 
     /**
      * @throw NoMatchFoundException
+     *
+     * @param string  $competitionSlug
+     * @param Country $country
+     *
+     * @return Competition
+     * @throws NoMatchFoundException
      */
-    protected function findFallback(string $competitionSlug, Country $country)
+    protected function findFallback($competitionSlug, Country $country)
     {
         if (isset($this->map[$competitionSlug])) {
             $competitionSlug = $this->map[$competitionSlug];
