@@ -87,4 +87,21 @@ class BettingOfferRepository extends AbstractEntityRepository
 
         return $queryBuilder->getQuery()->getResult();
     }
+
+    /**
+     * @param $matchId
+     * @return array
+     */
+    public function findByMatch($matchId)
+    {
+        $queryBuilder = $this
+            ->createQueryBuilder('o')
+            ->join('o.bettingOutcome', 'ou')
+            ->where('ou.entityId = :matchId')
+            ->andWhere('ou.entity = :matchEntity')
+            ->setParameter('matchId', $matchId)
+            ->setParameter('matchEntity', EntityCode::MATCH_CODE);
+
+        return $queryBuilder->getQuery()->getResult();
+    }
 }
