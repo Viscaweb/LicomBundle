@@ -90,6 +90,7 @@ class BettingOfferRepository extends AbstractEntityRepository
 
     /**
      * @param $matchId
+     *
      * @return array
      */
     public function findByMatch($matchId)
