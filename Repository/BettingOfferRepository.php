@@ -4,6 +4,7 @@ namespace Visca\Bundle\LicomBundle\Repository;
 
 use Doctrine\ORM\Query\Expr\Join;
 use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
+use Visca\Bundle\LicomBundle\Entity\BettingOffer;
 
 /**
  * Class BettingOfferRepository.
@@ -89,7 +90,8 @@ class BettingOfferRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param $matchId
+     * @param int $matchId
+     *
      * @return array
      */
     public function findByMatch($matchId)
