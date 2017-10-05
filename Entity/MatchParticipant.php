@@ -85,7 +85,7 @@ class MatchParticipant
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function __clone()
     {
