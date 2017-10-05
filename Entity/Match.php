@@ -146,7 +146,7 @@ class Match implements EntityWithAuxInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function __clone()
     {
