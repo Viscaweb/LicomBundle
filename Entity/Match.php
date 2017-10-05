@@ -146,6 +146,15 @@ class Match implements EntityWithAuxInterface
     }
 
     /**
+     * @inheritDoc
+     */
+    public function __clone()
+    {
+        $this->id = null;
+        $this->matchParticipant = clone $this->matchParticipant;
+    }
+
+    /**
      * @return bool
      */
     public function isMostRelevant()
