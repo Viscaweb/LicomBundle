@@ -85,14 +85,6 @@ class MatchParticipant
     }
 
     /**
-     * @inheritDoc
-     */
-    public function __clone()
-    {
-        $this->id = null;
-    }
-
-    /**
      * Get id.
      *
      * @return int

@@ -150,7 +150,6 @@ class Match implements EntityWithAuxInterface
      */
     public function __clone()
     {
-        $this->id = null;
         $this->matchParticipant = clone $this->matchParticipant;
     }
 
