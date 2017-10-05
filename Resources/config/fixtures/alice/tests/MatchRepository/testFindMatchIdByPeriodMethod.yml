@@ -12,8 +12,8 @@ include:
 
 Visca\Bundle\LicomBundle\Entity\Match:
   match_template (template):
-    __construct:
-      create: []
+    __construct: { create: [] }
+    Sport: @sport1
     competitionSeasonStage: @competition_season_stage_default
     matchStatusDescription: @match_status_description1
     name: ""

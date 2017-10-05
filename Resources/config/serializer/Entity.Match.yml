@@ -5,6 +5,8 @@ Visca\Bundle\LicomBundle\Entity\Match:
         expose: true
       name:
         expose: true
+      Sport:
+        expose: true
       startDate:
         expose: true
       matchParticipant:

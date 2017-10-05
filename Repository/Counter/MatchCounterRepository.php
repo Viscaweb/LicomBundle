@@ -56,26 +56,6 @@ class MatchCounterRepository
 
     /**
      * @param QueryBuilder $qb
-     * @param Sport        $sport
-     */
-    private function filterBySport(QueryBuilder $qb, Sport $sport)
-    {
-        $sportIsValid = $this->competitionSeasonStageRepository
-            ->createQueryBuilder('stage')
-            ->select('stage.id')
-            ->join('stage.competitionSeason', 'season')
-            ->join('season.competition', 'competition')
-            ->join('competition.competitionCategory', 'competitionCategory')
-            ->join('competitionCategory.sport', 'sport')
-            ->where('sport.id = :sportId');
-
-        $qb
-            ->andWhere($qb->expr()->exists($sportIsValid))
-            ->setParameter('sportId', $sport->getId());
-    }
-
-    /**
-     * @param QueryBuilder $qb
      * @param Competition  $competition
      */
     private function filterByCompetition(QueryBuilder $qb, Competition $competition)
@@ -128,7 +108,8 @@ class MatchCounterRepository
     public function countMatchesBySport(Sport $sport)
     {
         $queryBuilder = $this->getMatchQueryBuilder();
-        $this->filterBySport($queryBuilder, $sport);
+        $queryBuilder->where('m.sport = :sport')
+            ->setParameter('sport', $sport);
 
         $this->getScalarResult($queryBuilder);
     }

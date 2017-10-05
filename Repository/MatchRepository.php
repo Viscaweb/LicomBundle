@@ -1038,21 +1038,7 @@ class MatchRepository extends AbstractEntityRepository
         */
         if (!is_null($sportId) && is_numeric($sportId)) {
             $queryBuilder
-                // join the participant to filter by sport
-                ->join(
-                    'ViscaLicomBundle:MatchParticipant',
-                    'mp1',
-                    'WITH',
-                    'mp1.match = m AND mp1.number = :homeNumber'
-                )
-                ->andWhere('mp1.id IS NOT NULL')
-                ->setParameter('homeNumber', MatchParticipant::HOME)
-                // Where sport
-                ->join(
-                    "mp1.participant",
-                    'p1'
-                )
-                ->andWhere('p1.sport = :sportId')
+                ->andWhere('m.sport = :sportId')
                 ->setParameter('sportId', $sportId);
         }
 
@@ -1758,21 +1744,7 @@ class MatchRepository extends AbstractEntityRepository
         */
         if (!is_null($sportId) && is_numeric($sportId)) {
             $query
-                // join the participant to filter by sport
-                ->join(
-                    'ViscaLicomBundle:MatchParticipant',
-                    'mp1',
-                    'WITH',
-                    'mp1.match = m AND mp1.number = :homeNumber'
-                )
-                ->andWhere('mp1.id IS NOT NULL')
-                ->setParameter('homeNumber', MatchParticipant::HOME)
-                // Where sport
-                ->join(
-                    "mp1.participant",
-                    'p1'
-                )
-                ->andWhere('p1.sport = :sportId')
+                ->andWhere('m.sport = :sportId')
                 ->setParameter('sportId', $sportId);
         }
 
@@ -1930,7 +1902,7 @@ class MatchRepository extends AbstractEntityRepository
          */
         if (!is_null($sportId) && is_numeric($sportId)) {
             $queryBuilder
-                ->andWhere('p'.($optimized ? '1' : '').'.sport = :sportId')
+                ->andWhere('m.sport = :sportId')
                 ->setParameter('sportId', $sportId);
         }
 
