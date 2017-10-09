@@ -96,6 +96,7 @@ Visca\Bundle\LicomBundle\Entity\Match:
     matchParticipant:
       targetEntity: Visca\Bundle\LicomBundle\Entity\MatchParticipant
       mappedBy: match
+      cascade: [persist]
       cache:
         region: Match
         usage: READ_ONLY

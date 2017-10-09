@@ -146,6 +146,19 @@ class Match implements EntityWithAuxInterface
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function __clone()
+    {
+        /**
+         * Create new instance of match participant's collection to prevent mutation issues.
+         *
+         * @see https://github.com/Viscaweb/LicomBundle/pull/143
+         */
+        $this->matchParticipant = clone $this->matchParticipant;
+    }
+
+    /**
      * @return bool
      */
     public function isMostRelevant()

@@ -54,6 +54,7 @@ Visca\Bundle\LicomBundle\Entity\MatchParticipant:
     match:
       targetEntity: Visca\Bundle\LicomBundle\Entity\Match
       inversedBy: matchParticipant
+      cascade: [persist]
       joinColumns:
         Match_id:
           referencedColumnName: id
