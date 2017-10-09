@@ -4,6 +4,7 @@ namespace Visca\Bundle\LicomBundle\Repository;
 
 use Doctrine\ORM\Query\Expr\Join;
 use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
+use Visca\Bundle\LicomBundle\Entity\BettingOffer;
 
 /**
  * Class BettingOfferRepository.
@@ -91,15 +92,15 @@ class BettingOfferRepository extends AbstractEntityRepository
     /**
      * @param int $matchId
      *
-     * @return array
+     * @return BettingOffer[]
      */
     public function findByMatch($matchId)
     {
         $queryBuilder = $this
-            ->createQueryBuilder('o')
-            ->join('o.bettingOutcome', 'ou')
-            ->where('ou.entityId = :matchId')
-            ->andWhere('ou.entity = :matchEntity')
+            ->createQueryBuilder('offer')
+            ->join('offer.bettingOutcome', 'outcome')
+            ->where('outcome.entityId = :matchId')
+            ->andWhere('outcome.entity = :matchEntity')
             ->setParameter('matchId', $matchId)
             ->setParameter('matchEntity', EntityCode::MATCH_CODE);
 
