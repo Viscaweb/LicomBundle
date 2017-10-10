@@ -538,18 +538,25 @@ class MatchRepository extends AbstractEntityRepository
      * If the toDays is not set, the query will return all the results biggers than the fromDate
      * And will add the limit if provided.
      *
-     * @param string $importance    top|important|2nd.
-     * @param int    $fromDays      Starting date the match can take place.
-     *                              Specified in number of relative days from today.
-     * @param int    $toDays        Limit date the match can take place. Specified in number of relative days from today.
+     * @param string $importance     top|important|2nd.
+     * @param int    $fromDays       Starting date the match can take place.
+     *                               Specified in number of relative days from today.
+     * @param int    $toDays         Limit date the match can take place. Specified in number of relative days from today.
      * @param int[]  $ignoreMatchId
-     * @param int    $limit         Limit the number of matches returned. Default 3.
+     * @param int    $limit          Limit the number of matches returned. Default 3.
+     * @param int    $licomProfileId The licom profile we're getting info for
      *
      * @return Match[]
      */
-    public function findByImportanceInDays($importance, $fromDays, $toDays = null, $ignoreMatchIds = [], $limit = null)
-    {
-        $queryBuilder = $this->getQueryBuilderByImportance($importance, $fromDays, $toDays, $limit);
+    public function findByImportanceInDays(
+        $importance,
+        $fromDays,
+        $toDays = null,
+        $ignoreMatchIds = [],
+        $limit = null,
+        $licomProfileId = null
+    ) {
+        $queryBuilder = $this->getQueryBuilderByImportance($importance, $fromDays, $toDays, $limit, $licomProfileId);
 
         if (count($ignoreMatchIds) > 0) {
             $queryBuilder->andWhere('m.id NOT IN (:matchIds)')
@@ -568,6 +575,7 @@ class MatchRepository extends AbstractEntityRepository
      *                                   Specified in number of relative days from today.
      * @param int        $toDays         Limit date the match can take place. Specified in number of relative days from today.
      * @param int        $limit          Limit the number of matches returned. Default 3.
+     * @param int        $licomProfileId The licom profile we're getting info for
      *
      * @return Match[]
      */
@@ -577,9 +585,10 @@ class MatchRepository extends AbstractEntityRepository
         $fromDays,
         $toDays = null,
         $ignoreMatchIds = [],
-        $limit = null
+        $limit = null,
+        $licomProfileId = null
     ) {
-        $queryBuilder = $this->getQueryBuilderByImportance($importance, $fromDays, $toDays, $limit);
+        $queryBuilder = $this->getQueryBuilderByImportance($importance, $fromDays, $toDays, $limit, $licomProfileId);
 
         /// If we have some competition ids, filter them
         if ($competitionIds !== null) {
@@ -592,7 +601,8 @@ class MatchRepository extends AbstractEntityRepository
         }
 
         if (count($ignoreMatchIds) > 0) {
-            $queryBuilder->andWhere('m.id NOT IN (:matchIds)')
+            $queryBuilder
+                ->andWhere('m.id NOT IN (:matchIds)')
                 ->setParameter('matchIds', $ignoreMatchIds);
         }
 
@@ -600,21 +610,28 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param int    $countryId  Country entity.
-     * @param string $importance top|important|2nd.
-     * @param int    $fromDays   Starting date the match can take place.
-     *                           Specified in number of relative days from today.
-     * @param int    $toDays     Limit date the match can take place. Specified in number of relative days from today.
-     * @param int    $limit      Limit the number of matches returned. Default 3.
+     * @param int    $countryId      Country entity.
+     * @param string $importance     top|important|2nd.
+     * @param int    $fromDays       Starting date the match can take place.
+     *                               Specified in number of relative days from today.
+     * @param int    $toDays         Limit date the match can take place. Specified in number of relative days from today.
+     * @param int    $limit          Limit the number of matches returned. Default 3.
+     * @param int    $licomProfileId The licom profile we're getting info for
      *
      * @return \Visca\Bundle\LicomBundle\Entity\Match[]
      */
-    public function findByCountryImportanceInDays($countryId, $importance, $fromDays, $toDays = null, $limit = null)
-    {
-        $queryBuilder = $this->getQueryBuilderByImportance($importance, $fromDays, $toDays, $limit);
+    public function findByCountryImportanceInDays(
+        $countryId,
+        $importance,
+        $fromDays,
+        $toDays = null,
+        $limit = null,
+        $licomProfileId = null
+    ) {
+        $queryBuilder = $this->getQueryBuilderByImportance($importance, $fromDays, $toDays, $limit, $licomProfileId);
 
         /// If we have some competition ids, filter them
-        if ($competitionId !== null) {
+        if ($countryId !== null) {
             $queryBuilder
                 ->join('m.competitionSeasonStage', 'css')
                 ->join('css.competitionSeason', 'cs')
@@ -645,6 +662,7 @@ class MatchRepository extends AbstractEntityRepository
      * @param int    $toDays           Limit date the match can take place. Specified in number of relative days from today.
      * @param int    $ignoreMatchesIds Do not retrieve matches in this list.
      * @param int    $limit            Limit the number of matches returned. Default 3.
+     * @param int    $licomProfileId   The licom profile we're getting info for
      *
      * @return \Visca\Bundle\LicomBundle\Entity\Match[]
      */
@@ -655,9 +673,10 @@ class MatchRepository extends AbstractEntityRepository
         $fromDays,
         $toDays = null,
         $ignoreMatchesIds = [],
-        $limit = null
+        $limit = null,
+        $licomProfileId = null
     ) {
-        $queryBuilder = $this->getQueryBuilderByImportance($importance, $fromDays, $toDays, $limit);
+        $queryBuilder = $this->getQueryBuilderByImportance($importance, $fromDays, $toDays, $limit, $licomProfileId);
 
         /// If we have some competition ids, filter them
         if ($countryId !== null) {
@@ -2030,7 +2049,7 @@ class MatchRepository extends AbstractEntityRepository
      *
      * @return \Doctrine\ORM\QueryBuilder
      */
-    protected function getQueryBuilderByImportance($importance, $fromDays, $toDays, $limit)
+    protected function getQueryBuilderByImportance($importance, $fromDays, $toDays, $limit, $licomProfileId)
     {
         /*
          * DQL does not implement DATE() mysql function.
@@ -2088,6 +2107,12 @@ class MatchRepository extends AbstractEntityRepository
             $queryBuilder
                 ->andWhere('m.startDate <= :end')
                 ->setParameter('end', $dateEnd->format('Y-m-d H:i:s'));
+        }
+
+        if (!is_null($licomProfileId)) {
+            $queryBuilder
+                ->andWhere('ma.profile = :licomProfileId')
+                ->setParameter('licomProfileId', $licomProfileId);
         }
 
         if ($limit !== null) {
