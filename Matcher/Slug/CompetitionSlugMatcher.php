@@ -54,11 +54,9 @@ class CompetitionSlugMatcher
      *
      * @return Competition
      */
-    public function match($competitionSlug, Country $country)
+    public function match($competitionSlug, Country $country): Competition
     {
-        /*
-         * Find related competitions having this slug
-         */
+        /* Find related competitions having this slug */
         $competitions = $this
             ->competitionRepository
             ->findBySlug(
@@ -70,25 +68,24 @@ class CompetitionSlugMatcher
             $this->noMatchFoundException($competitionSlug);
         }
 
-        /*
-         * Ensure the competition is related to the specified country
-         */
-        $competitionFoundEntity = null;
+        /* Ensure the competition is related to the specified country */
         foreach ($competitions as $competition) {
-            $competitionCountry = $competition
-                ->getCompetitionCategory()
-                ->getCountry();
-            if ($competitionCountry->getId() == $country->getId()) {
-                $competitionFoundEntity = $competition;
-                break;
+            $competitionCountry = $competition->getCompetitionCategory()->getCountry();
+            if ($competitionCountry->getId() === $country->getId()) {
+                return $competition;
             }
         }
 
-        if (!($competitionFoundEntity instanceof Competition)) {
-            $this->noMatchFoundException($competitionSlug);
+        /* Otherwise, if only one country uses this slug, we make the redirection anyway */
+        $countriesIds = [];
+        foreach ($competitions as $competition) {
+            $countriesIds[$competition->getCompetitionCategory()->getCountry()->getId()] = 1;
+        }
+        if (count($countriesIds) === 1) {
+            return reset($competitions);
         }
 
-        return $competitionFoundEntity;
+        $this->noMatchFoundException($competitionSlug);
     }
 
     /**
