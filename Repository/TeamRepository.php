@@ -2,9 +2,11 @@
 
 namespace Visca\Bundle\LicomBundle\Repository;
 
+use Doctrine\ORM\Query\Expr\Join;
 use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
 use Visca\Bundle\LicomBundle\Entity\Athlete;
 use Visca\Bundle\LicomBundle\Entity\Code\EntityCode;
+use Visca\Bundle\LicomBundle\Entity\LocalizationTranslation;
 use Visca\Bundle\LicomBundle\Entity\Sport;
 use Visca\Bundle\LicomBundle\Entity\Team;
 
@@ -86,6 +88,21 @@ class TeamRepository extends AbstractEntityRepository
             )
             ->getQuery()
             ->getResult();
+    }
+
+    /**
+     * @return Team[]
+     */
+    public function findWithNoSlug()
+    {
+        $query = $this
+            ->createQueryBuilder('t')
+            ->leftJoin(LocalizationTranslation::class, 'lt', Join::WITH, 'lt.entityId = t.id AND lt.localizationTranslationType = 36')
+            ->where('t.sport = 1 AND lt.id IS NULL')
+            ->getQuery();
+
+        return $query->getResult();
+
     }
 
     /**
