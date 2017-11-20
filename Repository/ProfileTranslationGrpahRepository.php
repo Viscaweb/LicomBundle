@@ -7,6 +7,6 @@ use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
 /**
  * Class ProfileRepository.
  */
-class ProfileTranslationGraphRepository extends AbstractEntityRepository
+class ProfileTranslationGrpahRepository extends AbstractEntityRepository
 {
 }

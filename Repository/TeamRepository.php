@@ -102,7 +102,6 @@ class TeamRepository extends AbstractEntityRepository
             ->getQuery();
 
         return $query->getResult();
-
     }
 
     /**
