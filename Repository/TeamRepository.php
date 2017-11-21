@@ -106,7 +106,7 @@ class TeamRepository extends AbstractEntityRepository
                 Join::WITH,
                 'lt.entityId = t.id AND lt.localizationTranslationType = :slugType'
             )
-            ->setParam('slugType', LocalizationTranslationType::TEAM_SLUG_ID)
+            ->setParameter('slugType', LocalizationTranslationType::TEAM_SLUG_ID)
             ->where('t.sport = 1 AND lt.id IS NULL')
             ->getQuery()
             ->getResult();
