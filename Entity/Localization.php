@@ -23,6 +23,8 @@ class Localization
     use OptionalDateTimeTrait;
     use DeletableTrait;
 
+    const DEFAULT_LANGUAGE_CODES = ['es', 'fr', 'en', 'it', 'de', 'nl', 'pt'];
+
     /**
      * @var int
      */
