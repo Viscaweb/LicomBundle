@@ -97,6 +97,7 @@ class TeamRepository extends AbstractEntityRepository
     public function findWithNoSlug()
     {
         // Only using sport 1 (football) to get the teams as they're the only ones important at this moment
+        // as it is the only sport where the teams have a web address
         return $this
             ->createQueryBuilder('t')
             ->leftJoin(

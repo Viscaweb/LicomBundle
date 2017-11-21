@@ -11,8 +11,6 @@ class LocalizationTranslationGraph
 {
     use DeletableTrait;
 
-    const DEFAULT_ID = 1;
-
     /**
      * @var LocalizationTranslationGraphLabel
      */
