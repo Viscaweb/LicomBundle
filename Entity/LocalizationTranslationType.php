@@ -15,6 +15,8 @@ class LocalizationTranslationType
     use OptionalDateTimeTrait;
     use DeletableTrait;
 
+    const TEAM_SLUG_ID = '36';
+
     /**
      * @var int
      */

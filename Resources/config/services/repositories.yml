@@ -303,6 +303,14 @@ services:
             - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\Profile
 
+    visca_licom.repository.profile_translation_graph:
+            class: Visca\Bundle\LicomBundle\Repository\ProfileTranslationGraphRepository
+            factory_service: visca_doctrine.repository.factory
+            factory_method: getRepository
+            arguments:
+                - '@visca_licom.entity_manager'
+                - Visca\Bundle\LicomBundle\Entity\ProfileTranslationGraph
+
     visca_licom.repository.profile_rule:
         class: Visca\Bundle\LicomBundle\Repository\ProfileRuleRepository
         factory_service: visca_doctrine.repository.factory

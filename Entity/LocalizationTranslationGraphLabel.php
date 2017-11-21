@@ -11,6 +11,8 @@ class LocalizationTranslationGraphLabel
 {
     use GraphLabelTrait;
 
+    const LABEL_DEFAULT_ID = 1;
+
     /**
      * @var int
      */
