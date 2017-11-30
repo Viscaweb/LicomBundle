@@ -5,6 +5,7 @@ namespace Visca\Bundle\LicomBundle\Matcher\Slug;
 use Visca\Bundle\LicomBundle\Entity\Country;
 use Visca\Bundle\LicomBundle\Entity\Participant;
 use Visca\Bundle\LicomBundle\Entity\Sport;
+use Visca\Bundle\LicomBundle\Entity\Team;
 use Visca\Bundle\LicomBundle\Exception\NoMatchFoundException;
 use Visca\Bundle\LicomBundle\Repository\ParticipantRepository;
 
@@ -69,7 +70,8 @@ class ParticipantSlugMatcher
         foreach ($participants as $participant) {
             $participantCountry = $participant->getCountry();
             $participantSport = $participant->getSport();
-            if ($participantCountry->getId() == $country->getId() &&
+            if (get_class($participant) === Team::class &&
+                $participantCountry->getId() == $country->getId() &&
                 $participantSport->getId() == $sport->getId()) {
                 $participantFoundEntity = $participant;
                 break;
