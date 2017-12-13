@@ -8,6 +8,30 @@ class SpreadBettingOutcome extends MatchBettingOutcome
     private $winner;
 
     /**
+     * @var null|float
+     */
+    private $handicap;
+
+    /**
+     * @return float|null
+     */
+    public function getHandicap()
+    {
+        return $this->handicap;
+    }
+
+    /**
+     * @param int|float $handicap
+     * @return $this
+     */
+    public function setHandicap($handicap)
+    {
+        $this->handicap = $handicap;
+
+        return $this;
+    }
+
+    /**
      * @return Participant
      */
     public function getWinner()
@@ -26,4 +50,6 @@ class SpreadBettingOutcome extends MatchBettingOutcome
 
         return $this;
     }
+
+
 }
