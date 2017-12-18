@@ -7,9 +7,7 @@ class SpreadBettingOutcome extends MatchBettingOutcome
     /** @var Participant */
     private $winner;
 
-    /**
-     * @var float
-     */
+    /** @var float */
     private $handicap;
 
     /**
