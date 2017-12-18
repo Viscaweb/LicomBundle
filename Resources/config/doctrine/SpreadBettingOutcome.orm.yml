@@ -1,0 +1,16 @@
+Visca\Bundle\LicomBundle\Entity\SpreadBettingOutcome:
+  type: entity
+  repositoryClass: Visca\Bundle\LicomBundle\Repository\SpreadBettingOutcomeRepository
+
+  fields:
+    handicap:
+      type: float
+      nullable: false
+      column: dparam
+
+  manyToOne:
+    winner:
+      targetEntity: Visca\Bundle\LicomBundle\Entity\Participant
+      joinColumns:
+        iparam:
+          referencedColumnName: id
