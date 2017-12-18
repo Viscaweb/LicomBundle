@@ -5,7 +5,7 @@ Visca\Bundle\LicomBundle\Entity\SpreadBettingOutcome:
   fields:
     handicap:
       type: float
-      nullable: true
+      nullable: false
       column: dparam
 
   manyToOne:
