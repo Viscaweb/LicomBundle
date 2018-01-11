@@ -83,15 +83,13 @@ class MatchCommentRepository extends AbstractEntityRepository
             $sortCriteria = [
                 $timeComment,
                 0,
-                $extraTimeComment,
-                $comment->getId()
+                $extraTimeComment
             ];
         } else {
             $sortCriteria = [
                 $this->convertNegativeTime($timeComment),
-                $this->returnsTrueIfForceAfter($timeComment) ? 1 : -1,
-                $extraTimeComment,
-                $comment->getId()
+                $this->isAfterMatch($timeComment) ? 1 : 0,
+                $extraTimeComment
             ];
         }
 
@@ -110,7 +108,7 @@ class MatchCommentRepository extends AbstractEntityRepository
      *
      * @return bool
      */
-    private function returnsTrueIfForceAfter($time)
+    private function isAfterMatch($time)
     {
         // -3 Half-time | -4 After match
 
