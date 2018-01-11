@@ -17,7 +17,8 @@ class MatchCommentRepository extends AbstractEntityRepository
      *
      * @return MatchComment[]
      */
-    public function findByMatchAndLocalizationProfile($matchId, $localizationProfile) {
+    public function findByMatchAndLocalizationProfile($matchId, $localizationProfile)
+    {
         $comments = $this
             ->createQueryBuilder('mc')
             ->where('mc.match = :matchId')
@@ -62,7 +63,8 @@ class MatchCommentRepository extends AbstractEntityRepository
      *
      * @return bool
      */
-    private function sortComments(MatchComment $comment1, MatchComment $comment2) {
+    private function sortComments(MatchComment $comment1, MatchComment $comment2)
+    {
         $position1 = $this->getCommentPosition($comment1);
         $position2 = $this->getCommentPosition($comment2);
 
