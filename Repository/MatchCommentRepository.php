@@ -6,9 +6,6 @@ use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
 use Visca\Bundle\LicomBundle\Entity\MatchComment;
 use Visca\Bundle\LicomBundle\Entity\Match;
 
-/**
- * Class MatchCommentRepository.
- */
 class MatchCommentRepository extends AbstractEntityRepository
 {
     /**
@@ -20,10 +17,8 @@ class MatchCommentRepository extends AbstractEntityRepository
      *
      * @return MatchComment[]
      */
-    public function findByMatchAndLocalizationProfile(
-        $matchId,
-        $localizationProfile
-    ) {
+    public function findByMatchAndLocalizationProfile($matchId, $localizationProfile)
+    {
         $comments = $this
             ->createQueryBuilder('mc')
             ->where('mc.match = :matchId')
@@ -68,10 +63,8 @@ class MatchCommentRepository extends AbstractEntityRepository
      *
      * @return bool
      */
-    private function sortComments(
-        MatchComment $comment1,
-        MatchComment $comment2
-    ) {
+    private function sortComments(MatchComment $comment1, MatchComment $comment2)
+    {
         $position1 = $this->getCommentPosition($comment1);
         $position2 = $this->getCommentPosition($comment2);
 
@@ -92,15 +85,13 @@ class MatchCommentRepository extends AbstractEntityRepository
             $sortCriteria = [
                 $timeComment,
                 0,
-                $extraTimeComment,
-                $comment->getId()
+                $extraTimeComment
             ];
         } else {
             $sortCriteria = [
                 $this->convertNegativeTime($timeComment),
-                $this->returnsTrueIfForceAfter($timeComment) ? 1 : -1,
-                $extraTimeComment,
-                $comment->getId()
+                $this->isAfterMatch($timeComment) ? 1 : 0,
+                $extraTimeComment
             ];
         }
 
@@ -115,22 +106,15 @@ class MatchCommentRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param $time
+     * @param int|null $time
      *
      * @return bool
      */
-    private function returnsTrueIfForceAfter($time)
+    private function isAfterMatch($time)
     {
-        switch ($time) {
-            case -4: // After match
-                return true;
-                break;
-            case -3: // Half-time
-                return true;
-                break;
-            default:
-                return false;
-        }
+        // -3 Half-time | -4 After match
+
+        return $time === -3 || $time === -4;
     }
 
     /**
@@ -141,15 +125,11 @@ class MatchCommentRepository extends AbstractEntityRepository
     private function convertNegativeTime($time)
     {
         switch ($time) {
-            case -2: // Before match
-                return 0;
-                break;
             case -4: // After match
                 return 120;
-                break;
             case -3: // Half-time
                 return 45;
-                break;
+            case -2: // Before match
             default:
                 return 0;
         }
