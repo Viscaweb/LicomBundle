@@ -28,7 +28,7 @@ Listen by...
 | CompetitionSeasonStage              |       | ✓           | ✓                      |                  |                  |                |      |         |       |                   |
 | CompetitionStage                    |       | ✓           |                        |                  | ✓                |                |      |         |       |                   |
 | Participant                         |       |             |                        |                  |                  |                |      |         | ✓     |                   |
-| Odds                                | ✓     |             |                        |                  |                  |                |      |         |       |                   |
-| → OddsThreeWay                      | ✓     |             |                        |                  |                  |                |      |         |       |                   |
-| → OddsOverUnder                     | ✓     |             |                        |                  |                  |                |      |         |       |                   |
+| Odds (`deprecated`)                                | ✓     |             |                        |                  |                  |                |      |         |       |                   |
+| → OddsThreeWay (`deprecated`)                      | ✓     |             |                        |                  |                  |                |      |         |       |                   |
+| → OddsOverUnder (`deprecated`)                     | ✓     |             |                        |                  |                  |                |      |         |       |                   |
 | Standings                           |       | ✓           | ✓                      |                  |                  |                |      |         |       |                   |
