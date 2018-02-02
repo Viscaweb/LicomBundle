@@ -59,7 +59,7 @@ class MatchCommentRepository extends AbstractEntityRepository
             ->getQuery()
             ->getSingleResult();
 
-        return (int)$result['total'];
+        return (int) $result['total'];
     }
 
     /**
