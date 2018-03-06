@@ -25,6 +25,10 @@ Visca\Bundle\LicomBundle\Entity\MatchIncident:
       options:
         default: 0
         unsigned: true
+    participantName:
+      type: string
+      length: 255
+      nullable: true
     position:
       type: smallint
       length: 3
@@ -71,7 +75,7 @@ Visca\Bundle\LicomBundle\Entity\MatchIncident:
       joinColumns:
         MatchParticipant:
           referencedColumnName: id
-          nullable: false
+          nullable: true
     matchIncidentType:
       targetEntity: Visca\Bundle\LicomBundle\Entity\MatchIncidentType
       joinColumns:
