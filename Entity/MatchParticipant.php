@@ -40,11 +40,6 @@ class MatchParticipant
     private $number;
 
     /**
-     * @var string
-     */
-    private $participantName;
-
-    /**
      * @var Match
      */
     private $match;
@@ -304,25 +299,5 @@ class MatchParticipant
         }
 
         return $redCardsIncidents;
-    }
-
-    /**
-     * @return string
-     */
-    public function getParticipantName()
-    {
-        return $this->participantName;
-    }
-
-    /**
-     * @param string $participantName
-     *
-     * @return $this
-     */
-    public function setParticipantName($participantName)
-    {
-        $this->participantName = $participantName;
-
-        return $this;
     }
 }

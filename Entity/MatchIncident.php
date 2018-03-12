@@ -71,6 +71,11 @@ class MatchIncident implements EntityWithAuxInterface
     private $matchParticipant;
 
     /**
+     * @var string
+     */
+    private $participantName;
+
+    /**
      * @var MatchIncidentType
      */
     private $matchIncidentType;
@@ -326,5 +331,25 @@ class MatchIncident implements EntityWithAuxInterface
     public function getAux()
     {
         return $this->matchIncidentAux;
+    }
+
+    /**
+     * @return string
+     */
+    public function getParticipantName()
+    {
+        return $this->participantName;
+    }
+
+    /**
+     * @param string $participantName
+     *
+     * @return $this
+     */
+    public function setParticipantName($participantName)
+    {
+        $this->participantName = $participantName;
+
+        return $this;
     }
 }
