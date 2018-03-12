@@ -75,7 +75,7 @@ class MatchLineupParticipant
      *
      * @return MatchLineupParticipant
      */
-    public function setParticipant(Participant $participant)
+    public function setParticipant(Participant $participant = null)
     {
         $this->participant = $participant;
 
