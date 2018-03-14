@@ -75,7 +75,7 @@ Visca\Bundle\LicomBundle\Entity\MatchIncident:
       joinColumns:
         MatchParticipant:
           referencedColumnName: id
-          nullable: true
+          nullable: false
     matchIncidentType:
       targetEntity: Visca\Bundle\LicomBundle\Entity\MatchIncidentType
       joinColumns:
@@ -88,3 +88,4 @@ Visca\Bundle\LicomBundle\Entity\MatchIncident:
       joinColumns:
         Participant:
           referencedColumnName: id
+          nullable: true
