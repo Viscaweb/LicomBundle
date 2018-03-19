@@ -24,6 +24,11 @@ class MatchLineupParticipant
     private $participant;
 
     /**
+     * @var string
+     */
+    private $participantName;
+
+    /**
      * @var MatchLineup
      */
     private $matchLineup;
@@ -70,7 +75,7 @@ class MatchLineupParticipant
      *
      * @return MatchLineupParticipant
      */
-    public function setParticipant(Participant $participant)
+    public function setParticipant(Participant $participant = null)
     {
         $this->participant = $participant;
 
@@ -169,6 +174,26 @@ class MatchLineupParticipant
     public function setShirt($shirt)
     {
         $this->shirt = $shirt;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getParticipantName()
+    {
+        return $this->participantName;
+    }
+
+    /**
+     * @param string $participantName
+     *
+     * @return $this
+     */
+    public function setParticipantName($participantName)
+    {
+        $this->participantName = $participantName;
 
         return $this;
     }

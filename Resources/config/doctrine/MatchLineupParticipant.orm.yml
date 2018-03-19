@@ -27,6 +27,10 @@ Visca\Bundle\LicomBundle\Entity\MatchLineupParticipant:
       options:
         default: NULL
         unsigned: true
+    participantName:
+      type: string
+      length: 255
+      nullable: true
     del:
       type: SoftDeletionType
       length: 0
@@ -63,7 +67,7 @@ Visca\Bundle\LicomBundle\Entity\MatchLineupParticipant:
       joinColumns:
         Participant:
           referencedColumnName: id
-          nullable: false
+          nullable: true
     matchLineupType:
       targetEntity: Visca\Bundle\LicomBundle\Entity\MatchLineupParticipantType
       joinColumns:
