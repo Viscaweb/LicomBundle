@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Visca\Bundle\LicomBundle\Repository;
 
 use Visca\Bundle\DoctrineBundle\Repository\Abstracts\AbstractEntityRepository;
@@ -45,7 +43,7 @@ class MatchCommentRepository extends AbstractEntityRepository
      * @throws \Doctrine\ORM\NoResultException
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function countByMatchAndLocalizationProfile(int $matchId, int $profileId): int
+    public function countByMatchAndLocalizationProfile($matchId, $profileId)
     {
         $result = $this
             ->createQueryBuilder('mc')
