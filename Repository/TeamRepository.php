@@ -8,6 +8,8 @@ use Visca\Bundle\LicomBundle\Entity\Athlete;
 use Visca\Bundle\LicomBundle\Entity\Code\EntityCode;
 use Visca\Bundle\LicomBundle\Entity\LocalizationTranslation;
 use Visca\Bundle\LicomBundle\Entity\LocalizationTranslationType;
+use Visca\Bundle\LicomBundle\Entity\Profile;
+use Visca\Bundle\LicomBundle\Entity\ProfileTranslationGraph;
 use Visca\Bundle\LicomBundle\Entity\Sport;
 use Visca\Bundle\LicomBundle\Entity\Team;
 
