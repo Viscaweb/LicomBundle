@@ -92,7 +92,7 @@ class TeamRepository extends AbstractEntityRepository
     }
 
     /**
-     * @return Team[]
+     * @return array
      */
     public function findWithNoSlug()
     {
@@ -100,14 +100,29 @@ class TeamRepository extends AbstractEntityRepository
         // as it is the only sport where the teams have a web address
         return $this
             ->createQueryBuilder('t')
+            ->addSelect('COUNT(p.id) AS totalTranslations')
             ->leftJoin(
                 LocalizationTranslation::class,
                 'lt',
                 Join::WITH,
                 'lt.entityId = t.id AND lt.localizationTranslationType = :slugType'
             )
+            ->leftJoin(
+                ProfileTranslationGraph::class,
+                'ptg',
+                Join::WITH,
+                'ptg.localizationTranslation = lt.id'
+            )
+            ->leftJoin(
+                Profile::class,
+                'p',
+                Join::WITH,
+                'p.id = ptg.profile'
+            )
             ->setParameter('slugType', LocalizationTranslationType::TEAM_SLUG_ID)
-            ->where('t.sport = 1 AND lt.id IS NULL')
+            ->where('t.sport = 1')
+            ->groupBy('t.id')
+            ->having('totalTranslations < 7')
             ->getQuery()
             ->getResult();
     }
