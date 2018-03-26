@@ -413,6 +413,14 @@ services:
             - '@visca_licom.entity_manager'
             - Visca\Bundle\LicomBundle\Entity\LocalizationTranslationType
 
+    visca_licom.repository.localization_translation_graph:
+        class: Visca\Bundle\LicomBundle\Repository\LocalizationTranslationGraphRepository
+        factory_service: visca_doctrine.repository.factory
+        factory_method: getRepository
+        arguments:
+            - '@visca_licom.entity_manager'
+            - Visca\Bundle\LicomBundle\Entity\LocalizationTranslationGraph
+
     visca_licom.repository.localization_translation_graph_label:
         class: Visca\Bundle\LicomBundle\Repository\LocalizationTranslationGraphLabelRepository
         factory_service: visca_doctrine.repository.factory
