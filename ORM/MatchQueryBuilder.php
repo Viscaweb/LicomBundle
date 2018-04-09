@@ -64,7 +64,7 @@ class MatchQueryBuilder extends QueryBuilder
         $this->alias = $alias;
         $columnsSelection = $alias;
         if ($this->reducedColumnSet) {
-            $columnsSelection = 'partial '.$alias.'.{id, startDate, coverage, winner, competitionRound, competitionLeg, matchStatusDescription, competitionSeasonStage}';
+            $columnsSelection = 'partial '.$alias.'.{id, startDate, coverage, winner, competitionRound, competitionLeg, matchStatusDescription, competitionSeasonStage, mostRelevant}';
         }
 
         $this
