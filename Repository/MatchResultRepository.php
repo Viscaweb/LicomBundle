@@ -58,13 +58,14 @@ class MatchResultRepository extends AbstractEntityRepository
      *
      * @return array
      */
-    public function findByMatchAndType(Match $match, $matchResultTypeId)
+    public function findByMatchAndMatchResultType(Match $match, $matchResultTypeId)
     {
         $result = $this->createQueryBuilder('matchResult')
             ->innerJoin('matchResult.matchParticipant', 'matchParticipant')
             ->innerJoin('matchParticipant.match', 'match')
             ->where('match = :match')
             ->andWhere('matchResult.matchResultType = :matchResultTypeId')
+            ->andWhere("matchResult.del = 'no'")
             ->setParameter('match', $match)
             ->setParameter('matchResultTypeId', $matchResultTypeId)
             ->getQuery()
