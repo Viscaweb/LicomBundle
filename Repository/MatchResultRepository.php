@@ -51,4 +51,25 @@ class MatchResultRepository extends AbstractEntityRepository
 
         return $result['total'];
     }
+
+    /**
+     * @param Match $match
+     * @param int   $matchResultTypeId
+     *
+     * @return array
+     */
+    public function findByMatchAndType(Match $match, $matchResultTypeId)
+    {
+        $result = $this->createQueryBuilder('matchResult')
+            ->innerJoin('matchResult.matchParticipant', 'matchParticipant')
+            ->innerJoin('matchParticipant.match', 'match')
+            ->where('match = :match')
+            ->andWhere('matchResult.matchResultType = :matchResultTypeId')
+            ->setParameter('match', $match)
+            ->setParameter('matchResultTypeId', $matchResultTypeId)
+            ->getQuery()
+            ->getResult();
+
+        return $result;
+    }
 }
