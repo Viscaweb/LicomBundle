@@ -122,7 +122,7 @@ class TeamRepository extends AbstractEntityRepository
                 'p.id = ptg.profile'
             )
             ->setParameter('slugType', LocalizationTranslationType::TEAM_SLUG_ID)
-            ->where("t.sport = 1 AND t.del = 'no'")
+            ->where("t.sport IN (1, 5, 23, 24) AND t.del = 'no'")
             ->groupBy('t.id')
             ->having('totalTranslations < 7')
             ->getQuery()
