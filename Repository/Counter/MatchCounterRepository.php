@@ -205,14 +205,19 @@ class MatchCounterRepository
      */
     public function countLiveMatchesByCompetition(Competition $competition)
     {
-        $queryBuilder = $this->getMatchQueryBuilder();
+        $qb = $this->matchRepository->createQueryBuilder('m');
 
-        $this->filterByMatchStatusCategory(
-            $queryBuilder,
-            MatchStatusDescription::IN_PROGRESS_KEY
-        );
-        $this->filterByCompetition($queryBuilder, $competition);
+        $qb->select('count(DISTINCT m)')
+            ->join('m.matchStatusDescription', 'md')
+            ->join('m.competitionSeasonStage', 'css')
+            ->join('css.competitionSeason', 'cs')
+            ->where('md.category = :category')
+            ->andWHere('cs.competition = :competitionId')
+            ->setParameters([
+                'category' => 'inprogress',
+                'competitionId' => $competition->getId()
+            ]);
 
-        return $this->getScalarResult($queryBuilder);
+        return $this->getScalarResult($qb);
     }
 }
