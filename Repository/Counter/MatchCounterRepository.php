@@ -205,6 +205,35 @@ class MatchCounterRepository
      */
     public function countLiveMatchesByCompetition(Competition $competition)
     {
+        /*
+        SELECT
+    count(DISTINCT m0_.id) AS sclr_0
+FROM
+    `Match` m0_
+    INNER JOIN MatchStatusDescription m1_ ON m0_.MatchStatusDescription = m1_.id
+    INNER JOIN CompetitionSeasonStage c2_ ON m0_.CompetitionSeasonStage = c2_.id
+    INNER JOIN CompetitionSeason c3_ ON c2_.CompetitionSeason = c3_.id
+WHERE
+    m1_.category = 'inprogress'
+    AND c3_.Competition=1320
+*/
+        $qb = $this->matchRepository->createQueryBuilder('m');
+
+        $qb->select('count(DISTINCT m)')
+            ->from('ViscaLicomBundle:Match', 'm')
+            ->join('m.matchStatusDescription', 'md')
+            ->join('m.competitionSeasonStage', 'css')
+            ->join('css.competitionSeason', 'cs')
+            ->where('md.category = :category')
+            ->andWHere('cs.Competition = :competitionId')
+            ->setParameters([
+                'category' => 'inprogress',
+                'competitionId' => $competition->getId()
+            ]);
+
+        return $this->getScalarResult($qb);
+
+        /*
         $queryBuilder = $this->getMatchQueryBuilder();
 
         $this->filterByMatchStatusCategory(
@@ -214,5 +243,6 @@ class MatchCounterRepository
         $this->filterByCompetition($queryBuilder, $competition);
 
         return $this->getScalarResult($queryBuilder);
+        */
     }
 }
