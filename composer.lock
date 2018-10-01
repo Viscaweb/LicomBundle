@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "412b3d45bc6fcf41cad7df9bb7c1e135",
+    "content-hash": "f5f00b1f4d5b265cc1f2d06146e4b232",
     "packages": [
         {
             "name": "beberlei/DoctrineExtensions",
@@ -224,11 +224,11 @@
         },
         {
             "name": "viscaweb/doctrine-bundle",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "git@bitbucket.org:viscaweb/doctrine-bundle.git",
-                "reference": "a78d6bfde6d1b0623392736445194a5fdadfa7f4"
+                "reference": "44ae46e4cb9999ffe0d10d3ee89b7a8d5ab0918e"
             },
             "type": "symfony-bundle",
             "autoload": {
@@ -246,7 +246,7 @@
                 }
             ],
             "description": "Viscaweb doctrine bundle",
-            "time": "2017-03-16T14:25:31+00:00"
+            "time": "2018-10-01T12:52:47+00:00"
         }
     ],
     "packages-dev": [
