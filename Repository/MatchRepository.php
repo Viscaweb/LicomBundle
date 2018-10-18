@@ -286,15 +286,18 @@ class MatchRepository extends AbstractEntityRepository
         $optimized = true;
 
         $queryBuilder = $this->createQueryBuilder('m', null, $optimized);
-        $queryBuilder->joinMatchParticipant($optimized);
 
         if (is_array($participantId)) {
+            $queryBuilder->joinMatchParticipant($optimized);
             $queryBuilder
                 ->andWhere('mp1.participant in (:participants) OR mp2.participant in (:participants)')
                 ->setParameter('participants', $participantId);
         } else {
+            $queryBuilder->addSelect('partial mp.{id, number}', 'partial p.{id, name}');
+            $queryBuilder->join("m.matchParticipant", 'mp');
+            $queryBuilder->join('mp.participant', 'p');
             $queryBuilder
-                ->andWhere('mp1.participant = :participant OR mp2.participant = :participant')
+                ->andWhere('mp.participant = :participant')
                 ->setParameter('participant', $participantId);
         }
 
