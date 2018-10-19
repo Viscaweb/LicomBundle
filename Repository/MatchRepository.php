@@ -293,10 +293,18 @@ class MatchRepository extends AbstractEntityRepository
                 ->andWhere('mp1.participant in (:participants) OR mp2.participant in (:participants)')
                 ->setParameter('participants', $participantId);
         } else {
-            $queryBuilder->addSelect('partial mp.{id, number}', 'partial p.{id, name}');
-            $queryBuilder->join("m.matchParticipant", 'mp');
-            $queryBuilder->join('mp.participant', 'p');
             $queryBuilder
+                ->addSelect(
+                    'partial mp1.{id, number}',
+                    'partial mp2.{id, number}',
+                    'partial p1.{id, name}',
+                    'partial p2.{id, name}'
+                )
+                ->join("m.matchParticipant", "mp1", Join::WITH, 'mp1.number = 1')
+                ->join("m.matchParticipant", "mp2", Join::WITH, 'mp2.number = 2')
+                ->join("mp1.participant", "p1")
+                ->join("mp2.participant", "p2")
+                ->join("m.matchParticipant", 'mp')
                 ->andWhere('mp.participant = :participant')
                 ->setParameter('participant', $participantId);
         }
