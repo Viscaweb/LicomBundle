@@ -398,15 +398,14 @@ class MatchRepository extends AbstractEntityRepository
                 ->setParameter('category', $matchStatusCategory);
         }
 
-        if (!is_null($participantPosition)) {
-            $condition = 'mp'.$participantPosition.'.participant = :participant';
+        if ($participantPosition !== null) {
+            $query->andWhere('mp'.$participantPosition.'.participant = :participant');
         } else {
-            $condition = 'mp1.participant = :participant OR mp2.participant = :participant';
+            $query->join('m.matchParticipant', 'mpX')
+                ->andWhere('mpX.participant = :participant');
         }
 
-        $query
-            ->andWhere($condition)
-            ->setParameter('participant', $participantId);
+        $query->setParameter('participant', $participantId);
 
         foreach ($whereConditions as $condition) {
             $query->andWhere($condition);
