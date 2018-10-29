@@ -335,16 +335,16 @@ class MatchRepository extends AbstractEntityRepository
     /**
      * Finds a match by one of its participants.
      *
-     * @param int       $participantId       Participant entity ID.
-     * @param array     $whereConditions     Where conditions.
-     * @param array     $whereArguments      Where condition arguments.
-     * @param null      $limit               Limit the number of results.
-     * @param null      $offset              Offset of the results.
-     * @param null      $orderField          Order field name
-     * @param string    $orderType           Order type (ASC, DESC)
-     * @param int|int[] $matchResultType     Type of match results we want to preload.
-     * @param null      $matchStatusCategory
-     * @param null      $participantPosition Force the participant position (HOME|AWAY)
+     * @param int                          $participantId       Participant entity ID.
+     * @param array                        $whereConditions     Where conditions.
+     * @param array                        $whereArguments      Where condition arguments.
+     * @param ?int                         $limit               Limit the number of results.
+     * @param ?int                         $offset              Offset of the results.
+     * @param ?string                      $orderField          Order field name
+     * @param string                       $orderType           Order type (ASC, DESC)
+     * @param int|int[]                    $matchResultType     Type of match results we want to preload.
+     * @param ?MatchStatusDescription      $matchStatusCategory
+     * @param ?int                         $participantPosition Force the participant position (HOME|AWAY)
      *
      * @return \Visca\Bundle\LicomBundle\Entity\Match[]
      */
@@ -362,15 +362,36 @@ class MatchRepository extends AbstractEntityRepository
     ) {
         // To make the query WAY faster, we'll extract the list of IDs for this team.
         $matchesIds = [];
-        $rawMatchesIds = $this
+        $qb = $this
             ->entityManager
             ->createQueryBuilder()
             ->select('IDENTITY(mp.match) AS matchId')
             ->from('ViscaLicomBundle:MatchParticipant', 'mp')
+            ->join('mp.match', 'm')
             ->where('mp.participant = :participantId')
-            ->setParameter('participantId', $participantId)
-            ->getQuery()
-            ->getArrayResult();
+            ->setParameter('participantId', $participantId);
+
+        if (\count($whereConditions)) {
+            foreach ($whereConditions as $condition) {
+                $qb->andWhere($condition);
+            }
+
+            foreach ($whereArguments as $key => $value) {
+                if ($key === 'startDate') {
+                    $this->alterDateObjects($value);
+                }
+                $qb->setParameter($key, $value);
+            }
+        }
+
+        if ($matchStatusCategory !== null) {
+            $qb
+                ->join('m.matchStatusDescription', 'msd', Join::WITH, 'msd.category = :category')
+                ->setParameter('category', $matchStatusCategory);
+        }
+
+        $rawMatchesIds = $qb->getQuery()->getArrayResult();
+
         foreach ($rawMatchesIds as $rawMatchId) {
             $matchesIds[] = $rawMatchId['matchId'];
         }
@@ -381,8 +402,7 @@ class MatchRepository extends AbstractEntityRepository
 
         // Run the query
         $optimized = true;
-        $matchResultType = is_array($matchResultType) ? $matchResultType : [$matchResultType];
-
+        $matchResultType = \is_array($matchResultType) ? $matchResultType : [$matchResultType];
 
         $query = $this->createQueryBuilder('m', null, $optimized);
         $query
@@ -394,28 +414,12 @@ class MatchRepository extends AbstractEntityRepository
         if ($matchStatusCategory !== null) {
             $query
                 ->addSelect('msd')
-                ->join('m.matchStatusDescription', 'msd', Join::WITH, 'msd.category = :category')
-                ->setParameter('category', $matchStatusCategory);
+                ->join('m.matchStatusDescription', 'msd');
         }
 
         if ($participantPosition !== null) {
             $query->andWhere('mp'.$participantPosition.'.participant = :participant');
-        } else {
-            $query->join('m.matchParticipant', 'mpX')
-                ->andWhere('mpX.participant = :participant');
-        }
-
-        $query->setParameter('participant', $participantId);
-
-        foreach ($whereConditions as $condition) {
-            $query->andWhere($condition);
-        }
-
-        foreach ($whereArguments as $key => $value) {
-            if ($key === 'startDate') {
-                $this->alterDateObjects($value);
-            }
-            $query->setParameter($key, $value);
+            $query->setParameter('participant', $participantId);
         }
 
         if (is_numeric($limit)) {
