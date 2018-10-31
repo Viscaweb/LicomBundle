@@ -1093,7 +1093,6 @@ class MatchRepository extends AbstractEntityRepository
                 ->join('css', 'CompetitionSeason', 'cs', 'cs.id = css.CompetitionSeason')
                 ->join('cs', 'Competition', 'c', 'c.id = cs.Competition')
                 ->join('c', 'CompetitionCategory', 'cc', 'cc.id = c.CompetitionCategory AND country = :countryId')
-                //->andWhere('cc.country = :countryId')
                 ->setParameter('countryId', $countryId);
         }
 
