@@ -952,13 +952,24 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param int      $countryId
-     * @param int      $sportId
+     * @param int $countryId
+     * @param int $sportId
      * @param DateTime $dateFrom
+     * @param DateTime|null $dateTo
+     * @param null|string $status
+     * @param array $ignoreMatchIds
      * @param null|int $limit
+     * @return array
      */
-    public function findByCountryIdSportIdAndDate($countryId, $sportId, DateTime $dateFrom, $ignoreMatchIds = [], $limit = 3)
-    {
+    public function findByCountryIdSportIdDateIntervalAndStatus(
+        int $countryId,
+        int $sportId,
+        DateTime $dateFrom,
+        ?DateTime $dateTo = null,
+        ?string $status = null,
+        $ignoreMatchIds = [],
+        int $limit = 3
+    ) {
         $optimized = true;
         $this->alterDateObjects($dateFrom);
 
@@ -980,9 +991,27 @@ class MatchRepository extends AbstractEntityRepository
             ->orderBy('m.startDate', 'ASC')
             ->setMaxResults($limit);
 
-        if (count($ignoreMatchIds) > 0) {
+        if (\count($ignoreMatchIds) > 0) {
             $queryBuilder->andWhere('m.id NOT IN (:matchIds)')
                 ->setParameter('matchIds', $ignoreMatchIds);
+        }
+
+        if ($dateTo !== null) {
+            $queryBuilder->andWhere('m.startDate <= :dateTo')
+                ->setParameter('dateTo', $dateTo);
+        }
+
+        if ($status !== null) {
+            $statusCategories = $this->prepareStatusCategories($status);
+            $queryBuilder
+                ->leftJoin(
+                    'Visca\Bundle\LicomBundle\Entity\MatchStatusDescription',
+                    's',
+                    Join::WITH,
+                    's.id = sm.matchStatusDescription'
+                )
+                ->andWhere('s.category IN (:categories)')
+                ->setParameter('categories', $statusCategories);
         }
 
         return $queryBuilder->getQuery()->getResult();
