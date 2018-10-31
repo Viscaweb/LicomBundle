@@ -1042,26 +1042,14 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param string|null       $status                    Match Status description.
-     * @param DateTimeInterface $date                      A date.
-     * @param bool|true         $before                    Do we want matches before the date?
-     * @param null              $limit                     How many matches we want.
-     * @param int|null          $sportId
-     * @param array             $competitionSeasonStageIds
-     *
      * @return Match[]
      */
     public function findMatchesByStatusAndDateInterval(
-        DateTimeInterface $date,
-        $status,
-        $before = true,
-        $limit = null,
-        $sportId = null,
-        $competitionSeasonStageIds = array()
+        DateTimeInterface $date, ?string $status, bool $isBefore = true, ?int $limit = null, ?int $sportId = null, ?int $countryId = null
     ) {
-        $symbol = $before ? '<' : '>=';
-        $order = $before ? 'DESC' : 'ASC';
-        if ($before) {
+        $symbol = $isBefore ? '<' : '>=';
+        $order = $isBefore ? 'DESC' : 'ASC';
+        if ($isBefore) {
             $date->setTime(23, 59, 59);
         } else {
             $date->setTime(0, 0, 0);
@@ -1069,57 +1057,64 @@ class MatchRepository extends AbstractEntityRepository
 
         $this->alterDateObjects($date);
 
-        $queryBuilder = $this->createQueryBuilder('m');
-        $queryBuilder
-            ->andWhere('m.startDate '.$symbol.' :start')
-            ->orderBy('m.startDate', $order)
-            ->setMaxResults($limit)
+
+        $con = $this->entityManager->getConnection();
+        $subQuery = $con->createQueryBuilder();
+        $subQuery
+            ->select('sm.id')
+            ->from('`Match`','sm')
+            ->andWhere('sm.startDate '.$symbol.' :start')
             ->setParameter('start', $date->format('Y-m-d H:i:s'));
 
-        if (!is_null($status)) {
+        if ($status !== null) {
             $statusCategories = $this->prepareStatusCategories($status);
+            $statusCategories = implode(', ', array_map( function ($category) { return "'".$category."'";},$statusCategories ));
 
-            $queryBuilder
-                ->leftJoin(
-                    'Visca\Bundle\LicomBundle\Entity\MatchStatusDescription',
-                    's',
-                    Join::WITH,
-                    's.id = m.matchStatusDescription'
-                )
-                ->andWhere('s.category IN (:categories)')
-                ->setParameter('categories', $statusCategories);
+            $subQuery
+                ->leftJoin('sm', 'MatchStatusDescription', 's', 's.id = sm.matchStatusDescription')
+                ->andWhere('s.category IN ('.$statusCategories.')');
         }
 
         /*
         * if we have the sport id
         */
-        if (!is_null($sportId) && is_numeric($sportId)) {
-            $queryBuilder
-                ->andWhere('m.sport = :sportId')
+        if ($sportId !== null && is_numeric($sportId)) {
+            $subQuery
+                ->andWhere('sm.sport = :sportId')
                 ->setParameter('sportId', $sportId);
         }
 
-        if (!is_null($competitionSeasonStageIds)) {
-            $queryBuilder
-                // Where CompetitionSeasonStages
-                ->andWhere(
-                    'm.competitionSeasonStage IN (:competitionSeasonStageIds)'
-                )
-                ->setParameter(
-                    'competitionSeasonStageIds',
-                    $competitionSeasonStageIds
-                );
+        if ($countryId !== null) {
+            $subQuery
+                ->join('sm', 'CompetitionSeasonStage', 'css', 'css.id = sm.CompetitionSeasonStage')
+                ->join('css', 'CompetitionSeason', 'cs', 'cs.id = css.CompetitionSeason')
+                ->join('cs', 'Competition', 'c', 'c.id = cs.Competition')
+                ->join('c', 'CompetitionCategory', 'cc', 'cc.id = c.CompetitionCategory AND country = :countryId')
+                //->andWhere('cc.country = :countryId')
+                ->setParameter('countryId', $countryId);
         }
 
+        // The reason behind this subquery being done in a separate query is that
+        // the performance is quite low
+        $subQuery->orderBy('sm.startDate', $order);
+        $statement = $subQuery->execute();
+        $subResults = $statement->fetchAll();
+        $matchIds = [];
         if ($limit !== null) {
-            $queryBuilder->setMaxResults($limit);
+            $subResults = \array_slice($subResults, 0, $limit);
+            $matchIds = array_column($subResults, 'id');
         }
 
-        $results = $queryBuilder
+        if (\count($matchIds) === 0) {
+            return [];
+        }
+
+        $queryBuilder = $this->createQueryBuilder('m');
+        $queryBuilder->where('m.id IN ('.implode(', ', $matchIds).')');
+
+        return $queryBuilder
             ->getQuery()
             ->execute();
-
-        return $results;
     }
 
     /**
