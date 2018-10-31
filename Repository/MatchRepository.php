@@ -779,20 +779,15 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param DateTime $dateFrom
-     * @param DateTime $dateTo
-     * @param null     $status
-     * @param null     $sportId
-     *
      * @return array
      */
-    public function findByDateAndStatusAndSportSimpleJoin(
+    public function findByDateStatusSportSimpleJoin(
         DateTime $dateFrom,
         DateTime $dateTo,
-        $status = null,
-        $sportId = null
+        ?string $status,
+        int $sportId
     ) {
-        $queryBuilder = $this->getByDateAndStatusAndSportQueryBuilder2($dateFrom, $dateTo, $status, $sportId);
+        $queryBuilder = $this->byDateStatusSportQueryBuilder2($dateFrom, $dateTo, $status, $sportId);
 
         return $queryBuilder->getQuery()->getResult();
     }
@@ -818,7 +813,7 @@ class MatchRepository extends AbstractEntityRepository
         $dateFromImmutable = \DateTimeImmutable::createFromMutable($dateFrom);
         $dateFromImmutable = $dateFromImmutable->sub(new \DateInterval('P1D'))->setTime(12, 0, 0);
 
-        $queryBuilder = $this->getByDateAndStatusAndSportQueryBuilder2(
+        $queryBuilder = $this->byDateStatusSportQueryBuilder2(
             new \DateTime($dateFromImmutable->format('r'), $dateFromImmutable->getTimezone()),
             $dateTo,
             "inprogress",
@@ -957,13 +952,25 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param int      $countryId
-     * @param int      $sportId
-     * @param DateTime $dateFrom
-     * @param null|int $limit
+     * @param int           $countryId
+     * @param int           $sportId
+     * @param DateTime      $dateFrom
+     * @param DateTime|null $dateTo
+     * @param null|string   $status
+     * @param array         $ignoreMatchIds
+     * @param null|int      $limit
+     *
+     * @return array
      */
-    public function findByCountryIdSportIdAndDate($countryId, $sportId, DateTime $dateFrom, $ignoreMatchIds = [], $limit = 3)
-    {
+    public function findByCountryIdSportIdDateIntervalAndStatus(
+        int $countryId,
+        int $sportId,
+        DateTime $dateFrom,
+        ?DateTime $dateTo = null,
+        ?string $status = null,
+        $ignoreMatchIds = [],
+        int $limit = 3
+    ) {
         $optimized = true;
         $this->alterDateObjects($dateFrom);
 
@@ -985,9 +992,27 @@ class MatchRepository extends AbstractEntityRepository
             ->orderBy('m.startDate', 'ASC')
             ->setMaxResults($limit);
 
-        if (count($ignoreMatchIds) > 0) {
+        if (\count($ignoreMatchIds) > 0) {
             $queryBuilder->andWhere('m.id NOT IN (:matchIds)')
                 ->setParameter('matchIds', $ignoreMatchIds);
+        }
+
+        if ($dateTo !== null) {
+            $queryBuilder->andWhere('m.startDate <= :dateTo')
+                ->setParameter('dateTo', $dateTo);
+        }
+
+        if ($status !== null) {
+            $statusCategories = $this->prepareStatusCategories($status);
+            $queryBuilder
+                ->leftJoin(
+                    'Visca\Bundle\LicomBundle\Entity\MatchStatusDescription',
+                    's',
+                    Join::WITH,
+                    's.id = sm.matchStatusDescription'
+                )
+                ->andWhere('s.category IN (:categories)')
+                ->setParameter('categories', $statusCategories);
         }
 
         return $queryBuilder->getQuery()->getResult();
@@ -1002,7 +1027,7 @@ class MatchRepository extends AbstractEntityRepository
      */
     public function findMatchesByStatusBeforeDate($status, DateTimeInterface $date, $limit = null)
     {
-        return $this->findMatchesByStatusAndDateInterval($date, $status, true, $limit, null, null);
+        return $this->findMatchesByStatusAndDateInterval($date, $status, true, $limit);
     }
 
     /**
@@ -1014,30 +1039,18 @@ class MatchRepository extends AbstractEntityRepository
      */
     public function findMatchesByStatusAfterDate($status, DateTimeInterface $date, $limit = null)
     {
-        return $this->findMatchesByStatusAndDateInterval($date, $status, false, $limit, null, null);
+        return $this->findMatchesByStatusAndDateInterval($date, $status, false, $limit);
     }
 
     /**
-     * @param string|null       $status                    Match Status description.
-     * @param DateTimeInterface $date                      A date.
-     * @param bool|true         $before                    Do we want matches before the date?
-     * @param null              $limit                     How many matches we want.
-     * @param int|null          $sportId
-     * @param array             $competitionSeasonStageIds
-     *
      * @return Match[]
      */
     public function findMatchesByStatusAndDateInterval(
-        DateTimeInterface $date,
-        $status,
-        $before = true,
-        $limit = null,
-        $sportId = null,
-        $competitionSeasonStageIds = array()
+        DateTimeInterface $date, ?string $status, bool $isBefore = true, ?int $limit = null, ?int $sportId = null, ?int $countryId = null
     ) {
-        $symbol = $before ? '<' : '>=';
-        $order = $before ? 'DESC' : 'ASC';
-        if ($before) {
+        $symbol = $isBefore ? '<' : '>=';
+        $order = $isBefore ? 'DESC' : 'ASC';
+        if ($isBefore) {
             $date->setTime(23, 59, 59);
         } else {
             $date->setTime(0, 0, 0);
@@ -1045,57 +1058,67 @@ class MatchRepository extends AbstractEntityRepository
 
         $this->alterDateObjects($date);
 
-        $queryBuilder = $this->createQueryBuilder('m');
-        $queryBuilder
-            ->andWhere('m.startDate '.$symbol.' :start')
-            ->orderBy('m.startDate', $order)
-            ->setMaxResults($limit)
+
+        $con = $this->entityManager->getConnection();
+        $subQuery = $con->createQueryBuilder();
+        $subQuery
+            ->select('sm.id')
+            ->from('`Match`', 'sm')
+            ->andWhere('sm.startDate '.$symbol.' :start')
             ->setParameter('start', $date->format('Y-m-d H:i:s'));
 
-        if (!is_null($status)) {
+        if ($status !== null) {
             $statusCategories = $this->prepareStatusCategories($status);
+            $statusCategories = implode(', ', array_map(function ($category) {
+                return "'".$category."'";
+            }, $statusCategories));
 
-            $queryBuilder
-                ->leftJoin(
-                    'Visca\Bundle\LicomBundle\Entity\MatchStatusDescription',
-                    's',
-                    Join::WITH,
-                    's.id = m.matchStatusDescription'
-                )
-                ->andWhere('s.category IN (:categories)')
-                ->setParameter('categories', $statusCategories);
+            $subQuery
+                ->leftJoin('sm', 'MatchStatusDescription', 's', 's.id = sm.matchStatusDescription')
+                ->andWhere('s.category IN ('.$statusCategories.')');
         }
 
         /*
         * if we have the sport id
         */
-        if (!is_null($sportId) && is_numeric($sportId)) {
-            $queryBuilder
-                ->andWhere('m.sport = :sportId')
+        if ($sportId !== null && is_numeric($sportId)) {
+            $subQuery
+                ->andWhere('sm.sport = :sportId')
                 ->setParameter('sportId', $sportId);
         }
 
-        if (!is_null($competitionSeasonStageIds)) {
-            $queryBuilder
-                // Where CompetitionSeasonStages
-                ->andWhere(
-                    'm.competitionSeasonStage IN (:competitionSeasonStageIds)'
-                )
-                ->setParameter(
-                    'competitionSeasonStageIds',
-                    $competitionSeasonStageIds
-                );
+        if ($countryId !== null) {
+            $subQuery
+                ->join('sm', 'CompetitionSeasonStage', 'css', 'css.id = sm.CompetitionSeasonStage')
+                ->join('css', 'CompetitionSeason', 'cs', 'cs.id = css.CompetitionSeason')
+                ->join('cs', 'Competition', 'c', 'c.id = cs.Competition')
+                ->join('c', 'CompetitionCategory', 'cc', 'cc.id = c.CompetitionCategory AND country = :countryId')
+                ->setParameter('countryId', $countryId);
         }
 
+        // The reason behind this subquery being done in a separate query is that
+        // the performance is quite low if we do it in a single query and combined with ORDER BY + LIMIT
+        $subQuery->orderBy('sm.startDate', $order);
+        $statement = $subQuery->execute();
+        $matchIds = [];
         if ($limit !== null) {
-            $queryBuilder->setMaxResults($limit);
+            for ($i = 0; $i < $limit; ++$i) {
+                $matchIds[] = $statement->fetch()['id'];
+            }
+        } else {
+            $matchIds = array_column($statement->fetchAll(), 'id');
         }
 
-        $results = $queryBuilder
+        if (\count($matchIds) === 0) {
+            return [];
+        }
+
+        $queryBuilder = $this->createQueryBuilder('m');
+        $queryBuilder->where('m.id IN ('.implode(', ', $matchIds).')');
+
+        return $queryBuilder
             ->getQuery()
             ->execute();
-
-        return $results;
     }
 
     /**
@@ -1154,7 +1177,7 @@ class MatchRepository extends AbstractEntityRepository
      */
     public function findByDateAndStatusAndSportBeforeDate(DateTimeInterface $date, $status, $sportId, $limit = null)
     {
-        return $this->findMatchesByStatusAndDateInterval($date, $status, true, $limit, $sportId, null);
+        return $this->findMatchesByStatusAndDateInterval($date, $status, true, $limit, $sportId);
     }
 
     /**
@@ -1167,24 +1190,19 @@ class MatchRepository extends AbstractEntityRepository
      */
     public function findByDateAndStatusAndSportAfterDate(DateTimeInterface $date, $status, $sportId, $limit = null)
     {
-        return $this->findMatchesByStatusAndDateInterval($date, $status, false, $limit, $sportId, null);
+        return $this->findMatchesByStatusAndDateInterval($date, $status, false, $limit, $sportId);
     }
 
     /**
-     * @param DateTimeInterface $date                     A date.
-     * @param string            $status                   Match Status description.
-     * @param array|null        $competitionSeasonStageId The sport Id.
-     * @param int|null          $limit                    How many matches we want.
-     *
      * @return Match[]
      */
     public function findByDateAndStatusAndCompetitionSeasonStageBeforeDate(
         DateTimeInterface $date,
         $status,
-        $competitionSeasonStageId,
-        $limit = null
+        int $countryId,
+        int $limit
     ) {
-        return $this->findMatchesByStatusAndDateInterval($date, $status, true, $limit, null, $competitionSeasonStageId);
+        return $this->findMatchesByStatusAndDateInterval($date, $status, true, $limit, null, $countryId);
     }
 
     /**
@@ -1198,16 +1216,11 @@ class MatchRepository extends AbstractEntityRepository
     public function findMatchesByStatusAndCompetitionSeasonStageAfterDate(
         DateTimeInterface $date,
         $status,
-        $competitionSeasonStageId,
-        $limit = null
+        int $countryId,
+        int $limit
     ) {
         return $this->findMatchesByStatusAndDateInterval(
-            $date,
-            $status,
-            false,
-            $limit,
-            null,
-            $competitionSeasonStageId
+            $date, $status, false, $limit, null, $countryId
         );
     }
 
@@ -1871,11 +1884,11 @@ class MatchRepository extends AbstractEntityRepository
      *
      * @return MatchQueryBuilder
      */
-    private function getByDateAndStatusAndSportQueryBuilder2(
+    private function byDateStatusSportQueryBuilder2(
         DateTimeInterface $dateFrom,
         DateTimeInterface $dateTo,
-        $status = null,
-        $sportId = null
+        ?string $status,
+        int $sportId
     ) {
         $optimized = false;
         $queryBuilder = $this->createQueryBuilder('m');
@@ -1933,7 +1946,7 @@ class MatchRepository extends AbstractEntityRepository
         /*
          * if we have the sport id
          */
-        if (!is_null($sportId) && is_numeric($sportId)) {
+        if ($sportId !== null && is_numeric($sportId)) {
             $queryBuilder
                 ->andWhere('m.sport = :sportId')
                 ->setParameter('sportId', $sportId);
