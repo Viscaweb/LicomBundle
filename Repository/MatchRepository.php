@@ -813,7 +813,7 @@ class MatchRepository extends AbstractEntityRepository
         $dateFromImmutable = \DateTimeImmutable::createFromMutable($dateFrom);
         $dateFromImmutable = $dateFromImmutable->sub(new \DateInterval('P1D'))->setTime(12, 0, 0);
 
-        $queryBuilder = $this->getByDateAndStatusAndSportQueryBuilder2(
+        $queryBuilder = $this->byDateStatusSportQueryBuilder2(
             new \DateTime($dateFromImmutable->format('r'), $dateFromImmutable->getTimezone()),
             $dateTo,
             "inprogress",
@@ -1026,7 +1026,7 @@ class MatchRepository extends AbstractEntityRepository
      */
     public function findMatchesByStatusBeforeDate($status, DateTimeInterface $date, $limit = null)
     {
-        return $this->findMatchesByStatusAndDateInterval($date, $status, true, $limit, null, null);
+        return $this->findMatchesByStatusAndDateInterval($date, $status, true, $limit);
     }
 
     /**
@@ -1038,7 +1038,7 @@ class MatchRepository extends AbstractEntityRepository
      */
     public function findMatchesByStatusAfterDate($status, DateTimeInterface $date, $limit = null)
     {
-        return $this->findMatchesByStatusAndDateInterval($date, $status, false, $limit, null, null);
+        return $this->findMatchesByStatusAndDateInterval($date, $status, false, $limit);
     }
 
     /**
@@ -1173,7 +1173,7 @@ class MatchRepository extends AbstractEntityRepository
      */
     public function findByDateAndStatusAndSportBeforeDate(DateTimeInterface $date, $status, $sportId, $limit = null)
     {
-        return $this->findMatchesByStatusAndDateInterval($date, $status, true, $limit, $sportId, null);
+        return $this->findMatchesByStatusAndDateInterval($date, $status, true, $limit, $sportId);
     }
 
     /**
@@ -1186,24 +1186,19 @@ class MatchRepository extends AbstractEntityRepository
      */
     public function findByDateAndStatusAndSportAfterDate(DateTimeInterface $date, $status, $sportId, $limit = null)
     {
-        return $this->findMatchesByStatusAndDateInterval($date, $status, false, $limit, $sportId, null);
+        return $this->findMatchesByStatusAndDateInterval($date, $status, false, $limit, $sportId);
     }
 
     /**
-     * @param DateTimeInterface $date                     A date.
-     * @param string            $status                   Match Status description.
-     * @param array|null        $competitionSeasonStageId The sport Id.
-     * @param int|null          $limit                    How many matches we want.
-     *
      * @return Match[]
      */
     public function findByDateAndStatusAndCompetitionSeasonStageBeforeDate(
         DateTimeInterface $date,
         $status,
-        $competitionSeasonStageId,
-        $limit = null
+        int $countryId,
+        int $limit
     ) {
-        return $this->findMatchesByStatusAndDateInterval($date, $status, true, $limit, null, $competitionSeasonStageId);
+        return $this->findMatchesByStatusAndDateInterval($date, $status, true, $limit, null, $countryId);
     }
 
     /**
@@ -1217,16 +1212,11 @@ class MatchRepository extends AbstractEntityRepository
     public function findMatchesByStatusAndCompetitionSeasonStageAfterDate(
         DateTimeInterface $date,
         $status,
-        $competitionSeasonStageId,
-        $limit = null
+        int $countryId,
+        int $limit
     ) {
         return $this->findMatchesByStatusAndDateInterval(
-            $date,
-            $status,
-            false,
-            $limit,
-            null,
-            $competitionSeasonStageId
+            $date, $status, false, $limit, null, $countryId
         );
     }
 
