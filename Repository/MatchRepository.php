@@ -1103,7 +1103,7 @@ class MatchRepository extends AbstractEntityRepository
         $statement = $subQuery->execute();
         $matchIds = [];
         if ($limit !== null) {
-            for ($i = 0; $i < $limit; $i++) {
+            for ($i = 0; $i < $limit; ++$i) {
                 $matchIds = $statement->fetch()['id'];
             }
         } else {
