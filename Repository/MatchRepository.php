@@ -1098,11 +1098,13 @@ class MatchRepository extends AbstractEntityRepository
         // the performance is quite low
         $subQuery->orderBy('sm.startDate', $order);
         $statement = $subQuery->execute();
-        $subResults = $statement->fetchAll();
         $matchIds = [];
         if ($limit !== null) {
-            $subResults = \array_slice($subResults, 0, $limit);
-            $matchIds = array_column($subResults, 'id');
+            for ($i = 0; $i < $limit; $i++) {
+                $matchIds = $statement->fetch()['id'];
+            }
+        } else {
+            $matchIds = array_column($statement->fetchAll(), 'id');
         }
 
         if (\count($matchIds) === 0) {
