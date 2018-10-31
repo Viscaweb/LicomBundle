@@ -952,13 +952,14 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param int $countryId
-     * @param int $sportId
-     * @param DateTime $dateFrom
+     * @param int           $countryId
+     * @param int           $sportId
+     * @param DateTime      $dateFrom
      * @param DateTime|null $dateTo
-     * @param null|string $status
-     * @param array $ignoreMatchIds
-     * @param null|int $limit
+     * @param null|string   $status
+     * @param array         $ignoreMatchIds
+     * @param null|int      $limit
+     *
      * @return array
      */
     public function findByCountryIdSportIdDateIntervalAndStatus(
@@ -1062,13 +1063,15 @@ class MatchRepository extends AbstractEntityRepository
         $subQuery = $con->createQueryBuilder();
         $subQuery
             ->select('sm.id')
-            ->from('`Match`','sm')
+            ->from('`Match`', 'sm')
             ->andWhere('sm.startDate '.$symbol.' :start')
             ->setParameter('start', $date->format('Y-m-d H:i:s'));
 
         if ($status !== null) {
             $statusCategories = $this->prepareStatusCategories($status);
-            $statusCategories = implode(', ', array_map( function ($category) { return "'".$category."'";},$statusCategories ));
+            $statusCategories = implode(', ', array_map(function ($category) {
+                return "'".$category."'";
+            }, $statusCategories));
 
             $subQuery
                 ->leftJoin('sm', 'MatchStatusDescription', 's', 's.id = sm.matchStatusDescription')
