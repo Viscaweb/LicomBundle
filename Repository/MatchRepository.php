@@ -1871,11 +1871,11 @@ class MatchRepository extends AbstractEntityRepository
      *
      * @return MatchQueryBuilder
      */
-    private function getByDateAndStatusAndSportQueryBuilder2(
+    private function byDateStatusSportQueryBuilder2(
         DateTimeInterface $dateFrom,
         DateTimeInterface $dateTo,
-        $status = null,
-        $sportId = null
+        ?string $status,
+        int $sportId
     ) {
         $optimized = false;
         $queryBuilder = $this->createQueryBuilder('m');
@@ -1933,7 +1933,7 @@ class MatchRepository extends AbstractEntityRepository
         /*
          * if we have the sport id
          */
-        if (!is_null($sportId) && is_numeric($sportId)) {
+        if ($sportId !== null && is_numeric($sportId)) {
             $queryBuilder
                 ->andWhere('m.sport = :sportId')
                 ->setParameter('sportId', $sportId);
