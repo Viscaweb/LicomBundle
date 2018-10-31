@@ -779,20 +779,15 @@ class MatchRepository extends AbstractEntityRepository
     }
 
     /**
-     * @param DateTime $dateFrom
-     * @param DateTime $dateTo
-     * @param null     $status
-     * @param null     $sportId
-     *
      * @return array
      */
-    public function findByDateAndStatusAndSportSimpleJoin(
+    public function findByDateStatusSportSimpleJoin(
         DateTime $dateFrom,
         DateTime $dateTo,
-        $status = null,
-        $sportId = null
+        ?string $status,
+        int $sportId
     ) {
-        $queryBuilder = $this->getByDateAndStatusAndSportQueryBuilder2($dateFrom, $dateTo, $status, $sportId);
+        $queryBuilder = $this->byDateStatusSportQueryBuilder2($dateFrom, $dateTo, $status, $sportId);
 
         return $queryBuilder->getQuery()->getResult();
     }
