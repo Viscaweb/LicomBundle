@@ -20,11 +20,11 @@
   "repositories": [
     {
       "type": "vcs",
-      "url": "git@bitbucket.org:viscaweb/doctrine-bundle.git"
+      "url": "git@github.com:Viscaweb/DoctrineBundle.git"
     },
     {
       "type": "vcs",
-      "url": "git@bitbucket.org:viscaweb/core-bundle.git"
+      "url": "git@github.com:Viscaweb/core-bundle.git"
     }
   ],
   "autoload": {
