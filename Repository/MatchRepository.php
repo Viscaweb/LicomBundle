@@ -1101,12 +1101,15 @@ class MatchRepository extends AbstractEntityRepository
         $subQuery->orderBy('sm.startDate', $order);
         $statement = $subQuery->execute();
         $matchIds = [];
-        if ($limit !== null) {
-            for ($i = 0; $i < $limit; ++$i) {
-                $matchIds[] = $statement->fetch()['id'];
+
+        if ($statement->rowCount() > 0) {
+            if ($limit !== null) {
+                for ($i = 0; $i < $limit; ++$i) {
+                    $matchIds[] = $statement->fetch()['id'];
+                }
+            } else {
+                $matchIds = array_column($statement->fetchAll(), 'id');
             }
-        } else {
-            $matchIds = array_column($statement->fetchAll(), 'id');
         }
 
         if (\count($matchIds) === 0) {
