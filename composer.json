@@ -13,7 +13,7 @@
   "prefer-stable": true,
   "require": {
     "viscaweb/doctrine-bundle"    : "v1.0.2",
-    "viscaweb/core-bundle"        : "dev-develop",
+    "viscaweb/core-bundle"        : "dev-multicontainer",
     "beberlei/DoctrineExtensions" : "~1.0.9",
     "ramsey/uuid": "3.4.*"
   },
