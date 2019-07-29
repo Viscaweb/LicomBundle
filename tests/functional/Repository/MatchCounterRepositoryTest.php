@@ -2,7 +2,7 @@
 
 namespace Visca\Bundle\LicomBundle\tests\functional\Repository;
 
-use Visca\Bundle\CoreBundle\Test\WebTestCase;
+use Tests\WebTestCase;
 use Visca\Bundle\LicomBundle\Entity\Sport;
 use Visca\Bundle\LicomBundle\Repository\Counter\MatchCounterRepository;
 
