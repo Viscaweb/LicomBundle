@@ -73,6 +73,13 @@ class CompetitionSeason
         return $this->id;
     }
 
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
     /**
      * Get name.
      *
