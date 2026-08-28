@@ -1099,6 +1099,9 @@ class MatchRepository extends AbstractEntityRepository
         // The reason behind this subquery being done in a separate query is that
         // the performance is quite low if we do it in a single query and combined with ORDER BY + LIMIT
         $subQuery->orderBy('sm.startDate', $order);
+        if ($limit !== null) {
+            $subQuery->setMaxResults($limit);
+        }
         $statement = $subQuery->execute();
         $matchIds = [];
 
